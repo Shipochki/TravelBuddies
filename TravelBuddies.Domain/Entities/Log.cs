@@ -1,6 +1,7 @@
 ﻿namespace TravelBuddies.Domain.Entities
 {
 	using System.ComponentModel.DataAnnotations;
+	using System.ComponentModel.DataAnnotations.Schema;
 
 	public class Log
 	{
@@ -14,8 +15,8 @@
 		[Required]
 		public DateTime DateTimeLogged { get; set; } = DateTime.Now;
 
-		//UserId null
-
-		//User null
+		[ForeignKey(nameof(User))]
+		public int? UserId { get; set; }
+		public User? User { get; set; }
 	}
 }

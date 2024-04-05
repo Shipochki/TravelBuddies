@@ -1,6 +1,7 @@
 ﻿namespace TravelBuddies.Domain.Entities
 {
 	using System.ComponentModel.DataAnnotations;
+	using System.ComponentModel.DataAnnotations.Schema;
 	using static DataConstants.ReviewConstants;
 
 	public class Review
@@ -8,18 +9,20 @@
 		[Key]
 		public int Id { get; set; }
 
-		//CreatorId
-
-		//Creator User
+		[Required]
+		[ForeignKey(nameof(Creator))]
+		public int CreatorId { get; set; }
+		public required User Creator {  get; set; } 
 
 		public int Rating { get; set; }
 
 		[MaxLength(MaxLengthText)]
 		public string? Text { get; set; }
 
-		//ReciverId
-
-		//Reciver User
+		[Required]
+		[ForeignKey(nameof(Reciver))]
+		public int ReciverId { get; set; }
+		public required User Reciver { get; set; }
 
 		public bool IsDeleted { get; set; }
 	}

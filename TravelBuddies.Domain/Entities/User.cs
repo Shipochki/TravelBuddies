@@ -25,6 +25,8 @@
 		[MaxLength(MaxLengthEmail)]
 		public required string Email { get; set; }
 
+		public string? ProfilePictureLink { get; set; }
+
 		[Required]
 		public required string PasswordHashed { get; set; }
 
@@ -40,9 +42,9 @@
 
 		public bool IsSubscriptionPaid { get; set; } = false;
 
-		//VehicleId null
-
-		//Vehicle
+		[ForeignKey(nameof(Vehicle))]
+		public int? VehicleId { get; set; }
+		public Vehicle? Vehicle { get; set; }
 
 		[Required]
 		[ForeignKey(nameof(Role))]
@@ -53,7 +55,7 @@
 
 		public HashSet<Message> Messages { get; set; } = new HashSet<Message>();
 
-		//List UserGroup
+		public HashSet<UserGroup> UsersGroups { get; set; } = new HashSet<UserGroup>();
 
 		public HashSet<Log> Logs { get; set; } = new HashSet<Log>();
 

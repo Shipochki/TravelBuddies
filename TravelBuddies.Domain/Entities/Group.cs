@@ -1,24 +1,27 @@
 ﻿namespace TravelBuddies.Domain.Entities
 {
 	using System.ComponentModel.DataAnnotations;
+	using System.ComponentModel.DataAnnotations.Schema;
 
 	public class Group
 	{
 		[Key]
 		public int Id { get; set; }
 
-		//PostId
+		[Required]
+		[ForeignKey(nameof(Post))]
+		public int PostId { get; set; }
+		public required Post Post { get; set; }
 
-		//Post
-
-		//CreatorId
-
-		//Creator
+		[Required]
+		[ForeignKey(nameof(Creator))]
+		public int CreatorId { get; set; }
+		public required User Creator { get; set; }
 
 		public bool IsDeleted { get; set; } = false;
 
-		//List UserGroup
+		public HashSet<UserGroup> UsersGroups { get; set; } = new HashSet<UserGroup>();
 
-		//List Message
+		public HashSet<Message> Messages { get; set; } = new HashSet<Message>();
 	}
 }

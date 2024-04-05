@@ -47,5 +47,20 @@
 			public const int MaxLengthCityName = 100;
 			public const int MinLengthCityName = 1;
 		}
+
+		public static class VehicleConstants
+		{
+			public const int MaxLengthBrandName = 50;
+			public const int MinLengthBrandName = 1;
+
+			public const int MaxLengthModelName = 70;
+			public const int MinLengthModelName = 1;
+		}
+
+		public static class VerificationEmail
+		{
+			public const int MaxLengthEmail = 100;
+			public const int MinLengthEmail = 3;
+		}
 	}
 }

@@ -1,6 +1,7 @@
 ﻿namespace TravelBuddies.Domain.Entities
 {
 	using System.ComponentModel.DataAnnotations;
+	using System.ComponentModel.DataAnnotations.Schema;
 	using static DataConstants.PostConstants;
 
 	public class Post
@@ -32,13 +33,15 @@
 
 		public DateTime DateAndTime { get; set; }
 
-		//CreatorId 
+		[Required]
+		[ForeignKey(nameof(User))]
+		public int CreatorId { get; set; }
 
-		//Creator user
+		public required User User { get; set; }
 
-		//GroupId null
-
-		//Group 
+		[ForeignKey(nameof(Group))]
+		public int? GroupId { get; set; }
+		public Group? Group { get; set; }
 
 		public bool IsDeleted { get; set; } = false;
 	}
