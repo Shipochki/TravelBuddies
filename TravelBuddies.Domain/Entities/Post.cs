@@ -1,7 +1,7 @@
 ﻿namespace TravelBuddies.Domain.Entities
 {
 	using System.ComponentModel.DataAnnotations;
-	using static DataConstants.Post;
+	using static DataConstants.PostConstants;
 
 	public class Post
 	{

@@ -1,7 +1,7 @@
 ﻿namespace TravelBuddies.Domain.Entities
 {
 	using System.ComponentModel.DataAnnotations;
-	using static DataConstants.Message;
+	using static DataConstants.MessageConstants;
 
 	public class Message
 	{
