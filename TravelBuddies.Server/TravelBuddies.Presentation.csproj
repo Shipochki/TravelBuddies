@@ -21,6 +21,7 @@
     <ProjectReference Include="..\travelbuddies.client\travelbuddies.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\TravelBuddies\TravelBuddies.Application.csproj" />
   </ItemGroup>
 
 </Project>
