@@ -28,7 +28,7 @@
 		public bool Baggage { get; set; }
 
 		public bool Pets { get; set; }
-
+			
 		public bool IsCompleted { get; set; }
 
 		public DateTime DateAndTime { get; set; }

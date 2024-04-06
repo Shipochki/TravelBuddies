@@ -30,7 +30,7 @@
 		[Required]
 		public required string PasswordHashed { get; set; }
 
-		public HashSet<byte> PasswordSalt { get; set; } = new HashSet<byte>();
+		public List<byte> PasswordSalt { get; set; } = new List<byte>();
 
 		[MaxLength(MaxLengthCountryName)]
 		public string? Country { get; set; }
@@ -51,15 +51,15 @@
 		public int RoleId { get; set; }
 		public required Role Role { get; set; }
 
-		public HashSet<Review> Reviews { get; set; } = new HashSet<Review>();
+		public List<Review> Reviews { get; set; } = new List<Review>();
 
-		public HashSet<Message> Messages { get; set; } = new HashSet<Message>();
+		public List<Message> Messages { get; set; } = new List<Message>();
 
-		public HashSet<UserGroup> UsersGroups { get; set; } = new HashSet<UserGroup>();
+		public List<UserGroup> UsersGroups { get; set; } = new List<UserGroup>();
 
-		public HashSet<Log> Logs { get; set; } = new HashSet<Log>();
+		public List<Log> Logs { get; set; } = new List<Log>();
 
-		public HashSet<Post> Posts { get; set; } = new HashSet<Post>();
+		public List<Post> Posts { get; set; } = new List<Post>();
 
 		public bool IsDeleted { get; set; } = false;
 	}

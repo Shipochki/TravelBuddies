@@ -20,8 +20,8 @@
 
 		public bool IsDeleted { get; set; } = false;
 
-		public HashSet<UserGroup> UsersGroups { get; set; } = new HashSet<UserGroup>();
+		public ICollection<UserGroup> UsersGroups { get; set; } = new List<UserGroup>();
 
-		public HashSet<Message> Messages { get; set; } = new HashSet<Message>();
+		public ICollection<Message> Messages { get; set; } = new List<Message>();
 	}
 }

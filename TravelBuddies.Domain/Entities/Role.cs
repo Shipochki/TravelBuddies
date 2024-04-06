@@ -12,6 +12,6 @@
 		[MaxLength(MaxLengthName)]
 		public required string Name { get; set; }
 
-		public HashSet<User> Users { get; set; } = new HashSet<User>();
+		public List<User> Users { get; set; } = new List<User>();
 	}
 }
