@@ -11,6 +11,28 @@
 
 		}
 
+		public DbSet<User> Users { get; set; }
+
+		public DbSet<Role> Roles { get; set; }
+
+		public DbSet<UserSubscription> UsersSubscriptions { get; set; }
+
+		public DbSet<VerificationEmail> VerificationEmails { get; set; }
+
+		public DbSet<Review> Reviews { get; set; }
+
+		public DbSet<Message> Messages { get; set; }
+
+		public DbSet<Group> Groups { get; set; }
+
+		public DbSet<Post> Posts { get; set; }
+
+		public DbSet<Vehicle> Vehicles { get; set; }
+
+		public DbSet<UserGroup> UsersGroups { get; set; }
+
+		public DbSet<Log> Logs { get; set; }
+
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			List<Role> roles = new List<Role>()
