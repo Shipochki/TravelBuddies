@@ -7,6 +7,7 @@
     <SpaRoot>..\travelbuddies.client</SpaRoot>
     <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
     <SpaProxyServerUrl>https://localhost:5173</SpaProxyServerUrl>
+    <UserSecretsId>b97979f2-d220-48d4-bdf9-420168cb9998</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,6 +28,7 @@
     <ProjectReference Include="..\travelbuddies.client\travelbuddies.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\TravelBuddies.Infrastructure\TravelBuddies.Infrastructure.csproj" />
     <ProjectReference Include="..\TravelBuddies\TravelBuddies.Application.csproj" />
   </ItemGroup>
 

@@ -1,11 +1,17 @@
-
 namespace TravelBuddies.Server
 {
+	using Microsoft.EntityFrameworkCore;
+	using TravelBuddies.Infrastructure.Database;
+
 	public class Program
 	{
 		public static void Main(string[] args)
 		{
 			var builder = WebApplication.CreateBuilder(args);
+
+			var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+			builder.Services.AddDbContext<TravelBuddiesDbContext>(options =>
+				options.UseSqlServer(connectionString));
 
 			// Add services to the container.
 			builder.Services.AddAuthorization();
