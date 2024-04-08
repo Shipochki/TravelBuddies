@@ -48,29 +48,28 @@
 			modelBuilder.Entity<UserGroup>()
 				.HasKey(u => new {u.UserId, u.GroupId});
 
+			modelBuilder
+				.Entity<UserGroup>()
+				.HasOne(u => u.User)
+				.WithMany(u => u.UsersGroups)
+				.OnDelete(DeleteBehavior.Restrict);
+
+			modelBuilder
+				.Entity<UserGroup>()
+				.HasOne(u => u.Group)
+				.WithMany(u => u.UsersGroups)
+				.OnDelete(DeleteBehavior.Restrict);
+
 			modelBuilder.Entity<Group>()
 				.HasOne(g => g.Creator)
 				.WithMany(g => g.Groups)
 				.HasForeignKey(g => g.CreatorId)
 				.OnDelete(DeleteBehavior.Restrict);
 
-			//modelBuilder.Entity<Message>()
-			//	.HasOne(g => g.Creator)
-			//	.WithMany(g => g.Messages)
-			//	.HasForeignKey(g => g.CreatorId)
-			//	.OnDelete(DeleteBehavior.Restrict);
-
-			//modelBuilder.Entity<Message>()
-			//	.HasOne(g => g.Group)
-			//	.WithMany(g => g.Messages)
-			//	.HasForeignKey(g => g.GroupId)
-			//	.OnDelete(DeleteBehavior.Restrict);
-
-			//modelBuilder.Entity<Post>()
-			//	.HasOne(p => p.Creator)
-			//	.WithMany(p => p.Posts)
-			//	.HasForeignKey(p => p.CreatorId)
-			//	.OnDelete(DeleteBehavior.Restrict);
+			modelBuilder.Entity<Group>()
+				.HasOne(g => g.Post)
+				.WithOne(g => g.Group)
+				.OnDelete(DeleteBehavior.Restrict);
 
 			modelBuilder.Entity<Review>()
 				.HasOne(r => r.Creator)
