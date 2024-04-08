@@ -45,6 +45,9 @@
 			modelBuilder.Entity<Role>()
 				.HasData(roles);
 
+			modelBuilder.Entity<UserGroup>()
+				.HasKey(u => new {u.UserId, u.GroupId});
+
 			base.OnModelCreating(modelBuilder);
 		}
 	}
