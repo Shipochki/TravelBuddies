@@ -51,7 +51,9 @@
 		public int RoleId { get; set; }
 		public required Role Role { get; set; }
 
-		public List<Review> Reviews { get; set; } = new List<Review>();
+		public List<Review> RecivedReviews { get; set; } = new List<Review>();
+
+		public List<Review> CreatedReviews { get; set; } = new List<Review>();
 
 		public List<Message> Messages { get; set; } = new List<Message>();
 
@@ -60,6 +62,8 @@
 		public List<Log> Logs { get; set; } = new List<Log>();
 
 		public List<Post> Posts { get; set; } = new List<Post>();
+
+		public List<Group> Groups { get; set; } = new List<Group>();
 
 		public bool IsDeleted { get; set; } = false;
 	}

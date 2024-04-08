@@ -12,8 +12,9 @@
 		[Required]
 		[ForeignKey(nameof(Creator))]
 		public int CreatorId { get; set; }
-		public required User Creator {  get; set; } 
+		public required User Creator {  get; set; }
 
+		[Required]
 		public int Rating { get; set; }
 
 		[MaxLength(MaxLengthText)]

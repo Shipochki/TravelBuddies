@@ -23,7 +23,6 @@
 		public int GroupId { get; set; }
 		public required Group Group { get; set; }
 
-		[Required]
 		public DateTime SendTime = DateTime.Now;
 
 		public bool IsDeleted { get; set; } = false;

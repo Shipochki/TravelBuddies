@@ -15,7 +15,7 @@
 
 		public required string VerificationCodeHashed { get; set; }
 
-		public required string CodeSalt { get; set; }
+		public List<byte> CodeSalt { get; set; } = new List<byte>();
 
 		public bool IsVerified { get; set; }
 
@@ -23,6 +23,6 @@
 		[ForeignKey(nameof(User))]
 		public int UserId { get; set; }
 
-		public User User { get; set; } = null!;
+		public required User User { get; set; }
 	}
 }

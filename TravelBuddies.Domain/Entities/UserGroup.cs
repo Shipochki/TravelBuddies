@@ -8,11 +8,11 @@
 		[Required]
 		[ForeignKey(nameof(User))]
 		public int UserId { get; set; }
-		public User User { get; set; } = null!;
+		public required User User { get; set; }
 
 		[Required]
 		[ForeignKey(nameof(Group))]
 		public int GroupId { get; set; }
-		public Group Group { get; set; } = null!;
+		public required Group Group { get; set; }
 	}
 }

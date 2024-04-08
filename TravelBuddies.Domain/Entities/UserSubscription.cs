@@ -11,7 +11,7 @@
 		[Required]
 		[ForeignKey(nameof(User))]
 		public int UserId { get; set; }
-		public User User { get; set; } = null!;
+		public required User User { get; set; }
 
 		public bool IsPaid { get; set; }
 
