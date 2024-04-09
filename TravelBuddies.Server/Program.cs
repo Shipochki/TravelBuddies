@@ -1,9 +1,9 @@
 namespace TravelBuddies.Server
 {
-	using Microsoft.EntityFrameworkCore;
-	using TravelBuddies.Infrastructure.Database;
+    using Microsoft.EntityFrameworkCore;
+    using TravelBuddies.Infrastructure;
 
-	public class Program
+    public class Program
 	{
 		public static void Main(string[] args)
 		{

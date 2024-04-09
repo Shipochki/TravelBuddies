@@ -14,8 +14,4 @@
     <ProjectReference Include="..\TravelBuddies.Domain\TravelBuddies.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Abstract\" />
-  </ItemGroup>
-
 </Project>
