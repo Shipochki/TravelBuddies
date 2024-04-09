@@ -4,11 +4,9 @@
 
 	public interface IReviewRepository
 	{
-		Task<Review> CreateReviewAsync(Review review);
+		Task CreateReviewAsync(Review review);
 
-		Task<Review> EditReviewAsync(Review review);
-
-		Task DeleteReviewAsync(Review review);
+		void UpdateReview(Review review);
 
 		Task<List<Review>> GetAllReviewsByReciverId(int reciverId);
 		Task<Review?> GetReviewByIdAsync(int reviewId);

@@ -6,7 +6,7 @@
 	{
 		Task AddSubcription(UserSubscription subcription);
 
-		Task RemoveSubcription(UserSubscription subscription);
+		void RemoveSubcription(UserSubscription subscription);
 
 		Task<UserSubscription?> GetSubcriptionByUserId(int userId);
 	}

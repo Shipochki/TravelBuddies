@@ -4,17 +4,11 @@
 
 	public interface IPostRepository
 	{
-		Task<Post> CreatePostAsync(Post post);
+		Task CreatePostAsync(Post post);
 
-		Task<Post> UpdateGroup(Post post, Group group);
+		void UpdatePost(Post post);
 
-		Task DeletePost(Post post);
-
-		Task CompletePost(Post post);
-
-		Task<Post> EditPostAsync(Post post);
-
-		List<Post> GetAllPosts();
+		Task<List<Post>> GetAllPosts();
 
 		Task<Post?> GetPostByIdAsync(int postId);
 	}

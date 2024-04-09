@@ -4,8 +4,8 @@
 
 	public interface IGroupRepository
 	{
-		Task<Group> CreateGroupAsync(Group group);
+		Task CreateGroupAsync(Group group);
 		Task<Group?> GetGroupById(int groupId);
-		Task<Group?> GetGroupByPostId(int groupId);
+		Task<Group?> GetGroupByPostId(int postId);
 	}
 }

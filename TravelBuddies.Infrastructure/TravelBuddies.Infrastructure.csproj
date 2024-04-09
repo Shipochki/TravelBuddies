@@ -19,8 +19,4 @@
     <ProjectReference Include="..\TravelBuddies\TravelBuddies.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repository\" />
-  </ItemGroup>
-
 </Project>

@@ -4,11 +4,9 @@
 
 	public interface IMessageRepository
 	{
-		Task<Message> CreateMessage(Message message);
+		Task CreateMessageAsync(Message message);
 
-		Task<Message> EditMessage(Message message);
-
-		Task DeleteMessage(Message message);
+		void UpdateMessageAsync(Message message);
 
 		Task<List<Message>> GetAllMessagesByGroupId(int groupId);
 

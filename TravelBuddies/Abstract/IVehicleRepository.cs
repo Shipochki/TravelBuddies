@@ -4,13 +4,11 @@
 
 	public interface IVehicleRepository
 	{
-		Task<Vehicle> CreateVehicleAsync(Vehicle vehicle, User user);
+		Task CreateVehicleAsync(Vehicle vehicle);
 
-		Task<Vehicle?> GetVehicleByOwnerIdAsync(int ownerId);
+		void DeleteVehicle(Vehicle vehicle);
 
-		Task DeleteVehicle(Vehicle vehicle);
-
-		Task<Vehicle> EditVehicleAsync(Vehicle vehicle);
+		void UpdateVehicleAsync(Vehicle vehicle);
 
 		Task<Vehicle?> GetVehicleById(int vehicleId);
 	}
