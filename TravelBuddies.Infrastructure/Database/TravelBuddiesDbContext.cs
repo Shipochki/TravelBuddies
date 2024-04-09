@@ -8,7 +8,14 @@
 		public TravelBuddiesDbContext(DbContextOptions<TravelBuddiesDbContext> options)
 			: base(options)
 		{
-
+			if (this.Database.IsRelational())
+			{
+				this.Database.Migrate();
+			}
+			else
+			{
+				this.Database.EnsureCreated();
+			}
 		}
 
 		public DbSet<User> Users { get; set; }
