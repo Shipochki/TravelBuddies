@@ -1,11 +1,13 @@
 namespace TravelBuddies.Server
 {
 	using Microsoft.AspNetCore.Identity;
+	using Microsoft.AspNetCore.Identity.UI.Services;
 	using Microsoft.EntityFrameworkCore;
 	using TravelBuddies.Domain.Entities;
 	using TravelBuddies.Infrastructure;
+	using TravelBuddies.Infrastructure.EmailSender;
 
-    public class Program
+	public class Program
 	{
 		public static void Main(string[] args)
 		{
@@ -15,9 +17,13 @@ namespace TravelBuddies.Server
 			builder.Services.AddDbContext<TravelBuddiesDbContext>(options =>
 				options.UseSqlServer(connectionString));
 
-			builder.Services.AddIdentity<User, IdentityRole>()
+			builder.Services.AddTransient<IEmailSender, EmailSender>();
+
+			builder.Services
+				.AddIdentity<User, IdentityRole>()
 				.AddEntityFrameworkStores<TravelBuddiesDbContext>()
-				.AddDefaultTokenProviders();
+				.AddDefaultTokenProviders()
+				.AddDefaultUI();
 
 			// Add services to the container.
 			builder.Services.AddAuthorization();
@@ -43,6 +49,7 @@ namespace TravelBuddies.Server
 			app.UseAuthorization();
 
 			app.MapFallbackToFile("/index.html");
+			app.MapIdentityApi<IdentityUser>();
 
 			app.Run();
 		}

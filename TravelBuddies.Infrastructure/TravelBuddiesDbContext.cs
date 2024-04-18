@@ -13,23 +13,23 @@
             
         }
 
-        public required DbSet<Review> Reviews { get; set; }
+        public DbSet<Review> Reviews { get; set; }
 
-        public required DbSet<Message> Messages { get; set; }
+        public DbSet<Message> Messages { get; set; }
 
-        public required DbSet<Group> Groups { get; set; }
+        public DbSet<Group> Groups { get; set; }
 
-        public required DbSet<Post> Posts { get; set; }
+        public DbSet<Post> Posts { get; set; }
 
-        public required DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
 
-        public required DbSet<UserGroup> UsersGroups { get; set; }
+        public DbSet<UserGroup> UsersGroups { get; set; }
 
-        public required DbSet<Log> Logs { get; set; }
+        public DbSet<Log> Logs { get; set; }
 
-        public required DbSet<City> Cities { get; set; }
+        public DbSet<City> Cities { get; set; }
 
-        public required DbSet<Country> Countries { get; set; }
+        public DbSet<Country> Countries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

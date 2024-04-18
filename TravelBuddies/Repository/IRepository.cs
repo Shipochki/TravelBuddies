@@ -1,7 +1,6 @@
-﻿using System.Linq.Expressions;
-
-namespace TravelBuddies.Application.Abstract
+﻿namespace TravelBuddies.Application.Repository
 {
+	using System.Linq.Expressions;
 	/// <summary>
 	/// Abstraction of repository access methods
 	/// </summary>
