@@ -192,7 +192,7 @@ namespace TravelBuddies.Infrastructure.Migrations
 
                     b.HasIndex("CountryId");
 
-                    b.ToTable("Cities");
+                    b.ToTable("Cities", (string)null);
                 });
 
             modelBuilder.Entity("TravelBuddies.Domain.Entities.Country", b =>
@@ -210,7 +210,7 @@ namespace TravelBuddies.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Countries");
+                    b.ToTable("Countries", (string)null);
                 });
 
             modelBuilder.Entity("TravelBuddies.Domain.Entities.Group", b =>
@@ -238,7 +238,7 @@ namespace TravelBuddies.Infrastructure.Migrations
                     b.HasIndex("PostId")
                         .IsUnique();
 
-                    b.ToTable("Groups");
+                    b.ToTable("Groups", (string)null);
                 });
 
             modelBuilder.Entity("TravelBuddies.Domain.Entities.Log", b =>
@@ -262,7 +262,7 @@ namespace TravelBuddies.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Logs");
+                    b.ToTable("Logs", (string)null);
                 });
 
             modelBuilder.Entity("TravelBuddies.Domain.Entities.Message", b =>
@@ -294,7 +294,7 @@ namespace TravelBuddies.Infrastructure.Migrations
 
                     b.HasIndex("GroupId");
 
-                    b.ToTable("Messages");
+                    b.ToTable("Messages", (string)null);
                 });
 
             modelBuilder.Entity("TravelBuddies.Domain.Entities.Post", b =>
@@ -358,7 +358,7 @@ namespace TravelBuddies.Infrastructure.Migrations
 
                     b.HasIndex("ToDestinationCityId");
 
-                    b.ToTable("Posts");
+                    b.ToTable("Posts", (string)null);
                 });
 
             modelBuilder.Entity("TravelBuddies.Domain.Entities.Review", b =>
@@ -393,7 +393,7 @@ namespace TravelBuddies.Infrastructure.Migrations
 
                     b.HasIndex("ReciverId");
 
-                    b.ToTable("Reviews");
+                    b.ToTable("Reviews", (string)null);
                 });
 
             modelBuilder.Entity("TravelBuddies.Domain.Entities.User", b =>
@@ -509,7 +509,7 @@ namespace TravelBuddies.Infrastructure.Migrations
 
                     b.HasIndex("GroupId");
 
-                    b.ToTable("UsersGroups");
+                    b.ToTable("UsersGroups", (string)null);
                 });
 
             modelBuilder.Entity("TravelBuddies.Domain.Entities.Vehicle", b =>
@@ -544,7 +544,7 @@ namespace TravelBuddies.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Vehicles");
+                    b.ToTable("Vehicles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

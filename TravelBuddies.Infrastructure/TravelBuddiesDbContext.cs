@@ -13,7 +13,9 @@
             
         }
 
-        public DbSet<Review> Reviews { get; set; }
+		public override DbSet<User> Users { get => base.Users; set => base.Users = value; }
+
+		public DbSet<Review> Reviews { get; set; }
 
         public DbSet<Message> Messages { get; set; }
 

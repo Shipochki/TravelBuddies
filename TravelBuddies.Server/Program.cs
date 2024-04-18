@@ -17,8 +17,6 @@ namespace TravelBuddies.Server
 			builder.Services.AddDbContext<TravelBuddiesDbContext>(options =>
 				options.UseSqlServer(connectionString));
 
-			builder.Services.AddTransient<IEmailSender, EmailSender>();
-
 			builder.Services
 				.AddIdentity<User, IdentityRole>()
 				.AddEntityFrameworkStores<TravelBuddiesDbContext>()
