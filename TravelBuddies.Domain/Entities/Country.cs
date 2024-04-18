@@ -1,17 +1,15 @@
 ﻿namespace TravelBuddies.Domain.Entities
 {
 	using System.ComponentModel.DataAnnotations;
-	using static DataConstants.RoleConstants;
+	using static DataConstants.Country;
 
-	public class Role
+	public class Country
 	{
 		[Key]
 		public int Id { get; set; }
 
 		[Required]
-		[MaxLength(MaxLengthName)]
+		[MaxLength(MaxLengthCountryName)]
 		public required string Name { get; set; }
-
-		public List<User> Users { get; set; } = new List<User>();
 	}
 }

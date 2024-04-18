@@ -34,18 +34,6 @@
 
 			public const int MaxLengthLastName = 50;
 			public const int MinLengthLastName = 3;
-
-			public const int MaxLengthPhoneNumber = 15;
-			public const int MinLengthPhoneNumber = 7;
-
-			public const int MaxLengthEmail = 100;
-			public const int MinLengthEmail = 3;
-
-			public const int MaxLengthCountryName = 60;
-			public const int MinLengthCountryName = 1;
-
-			public const int MaxLengthCityName = 100;
-			public const int MinLengthCityName = 1;
 		}
 
 		public static class VehicleConstants
@@ -61,6 +49,18 @@
 		{
 			public const int MaxLengthEmail = 100;
 			public const int MinLengthEmail = 3;
+		}
+
+		public static class Country
+		{
+			public const int MaxLengthCountryName = 60;
+			public const int MinLengthCountryName = 1;
+		}
+
+		public static class City
+		{
+			public const int MaxLengthCityName = 100;
+			public const int MinLengthCityName = 1;
 		}
 	}
 }

@@ -1,55 +1,46 @@
 ﻿namespace TravelBuddies.Infrastructure
 {
-    using Microsoft.EntityFrameworkCore;
+	using Microsoft.AspNetCore.Identity;
+	using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+	using Microsoft.EntityFrameworkCore;
     using TravelBuddies.Domain.Entities;
 
-    public class TravelBuddiesDbContext : DbContext
+    public class TravelBuddiesDbContext : IdentityDbContext<User>
     {
         public TravelBuddiesDbContext(DbContextOptions<TravelBuddiesDbContext> options)
             : base(options)
         {
-            if (Database.IsRelational())
-            {
-                Database.Migrate();
-            }
-            else
-            {
-                Database.EnsureCreated();
-            }
+            
         }
 
-        public DbSet<User> Users { get; set; }
+        public required DbSet<Review> Reviews { get; set; }
 
-        public DbSet<Role> Roles { get; set; }
+        public required DbSet<Message> Messages { get; set; }
 
-        public DbSet<UserSubscription> UsersSubscriptions { get; set; }
+        public required DbSet<Group> Groups { get; set; }
 
-        public DbSet<VerificationEmail> VerificationEmails { get; set; }
+        public required DbSet<Post> Posts { get; set; }
 
-        public DbSet<Review> Reviews { get; set; }
+        public required DbSet<Vehicle> Vehicles { get; set; }
 
-        public DbSet<Message> Messages { get; set; }
+        public required DbSet<UserGroup> UsersGroups { get; set; }
 
-        public DbSet<Group> Groups { get; set; }
+        public required DbSet<Log> Logs { get; set; }
 
-        public DbSet<Post> Posts { get; set; }
+        public required DbSet<City> Cities { get; set; }
 
-        public DbSet<Vehicle> Vehicles { get; set; }
-
-        public DbSet<UserGroup> UsersGroups { get; set; }
-
-        public DbSet<Log> Logs { get; set; }
+        public required DbSet<Country> Countries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            List<Role> roles = new List<Role>()
+            List<IdentityRole> roles = new List<IdentityRole>()
             {
-                { new Role() { Id = 1, Name = "Client" } },
-                { new Role() { Id = 2, Name = "Driver"} },
-                { new Role() { Id = 3, Name = "Admin"} }
+                { new IdentityRole() { Name = "Client" } },
+                { new IdentityRole() { Name = "Driver" } },
+                { new IdentityRole () { Name = "Admin" } }
             };
 
-            modelBuilder.Entity<Role>()
+            modelBuilder.Entity<IdentityRole>()
                 .HasData(roles);
 
             modelBuilder.Entity<UserGroup>()
@@ -88,6 +79,18 @@
                 .HasOne(r => r.Reciver)
                 .WithMany(r => r.RecivedReviews)
                 .HasForeignKey(r => r.ReciverId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Post>()
+                .HasOne(p => p.FromDestinationCity)
+                .WithMany()
+                .HasForeignKey(p => p.FromDestinationCityId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Post>()
+                .HasOne(p => p.ToDestinationCity)
+                .WithMany()
+                .HasForeignKey(p => p.ToDestinationCityId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(modelBuilder);

@@ -1,7 +1,9 @@
 namespace TravelBuddies.Server
 {
-    using Microsoft.EntityFrameworkCore;
-    using TravelBuddies.Infrastructure;
+	using Microsoft.AspNetCore.Identity;
+	using Microsoft.EntityFrameworkCore;
+	using TravelBuddies.Domain.Entities;
+	using TravelBuddies.Infrastructure;
 
     public class Program
 	{
@@ -12,6 +14,10 @@ namespace TravelBuddies.Server
 			var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 			builder.Services.AddDbContext<TravelBuddiesDbContext>(options =>
 				options.UseSqlServer(connectionString));
+
+			builder.Services.AddIdentity<User, IdentityRole>()
+				.AddEntityFrameworkStores<TravelBuddiesDbContext>()
+				.AddDefaultTokenProviders();
 
 			// Add services to the container.
 			builder.Services.AddAuthorization();

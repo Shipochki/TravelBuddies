@@ -7,7 +7,7 @@
 	{
 		[Required]
 		[ForeignKey(nameof(User))]
-		public int UserId { get; set; }
+		public required string UserId { get; set; }
 		public required User User { get; set; }
 
 		[Required]

@@ -15,7 +15,7 @@
 
 		[Required]
 		[ForeignKey(nameof(Creator))]
-		public int CreatorId { get; set; }
+		public required string CreatorId { get; set; }
 		public required User Creator {  get; set; }
 
 		[Required]

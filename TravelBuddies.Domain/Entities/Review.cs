@@ -11,7 +11,7 @@
 
 		[Required]
 		[ForeignKey(nameof(Creator))]
-		public int CreatorId { get; set; }
+		public required string CreatorId { get; set; }
 		public required User Creator {  get; set; }
 
 		[Required]
@@ -22,7 +22,7 @@
 
 		[Required]
 		[ForeignKey(nameof(Reciver))]
-		public int ReciverId { get; set; }
+		public required string ReciverId { get; set; }
 		public required User Reciver { get; set; }
 
 		public bool IsDeleted { get; set; }

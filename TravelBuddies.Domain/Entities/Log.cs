@@ -13,10 +13,8 @@
 		public required string Text { get; set; }
 
 		[Required]
-		public DateTime DateTimeLogged { get; set; } = DateTime.Now;
+		public DateTime LogDateTime { get; set; } = DateTime.Now;
 
-		[ForeignKey(nameof(User))]
-		public int? UserId { get; set; }
-		public User? User { get; set; }
+		public string? UserId { get; set; }
 	}
 }

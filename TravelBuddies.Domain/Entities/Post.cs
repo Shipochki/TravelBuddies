@@ -2,6 +2,7 @@
 {
 	using System.ComponentModel.DataAnnotations;
 	using System.ComponentModel.DataAnnotations.Schema;
+	using TravelBuddies.Domain.Enums;
 	using static DataConstants.PostConstants;
 
 	public class Post
@@ -10,12 +11,14 @@
 		public int Id { get; set; }
 
 		[Required]
-		[MaxLength(MaxLengthDestination)]
-		public required string FromDestination { get; set; }
+		[ForeignKey(nameof(FromDestinationCity))]
+		public int FromDestinationCityId { get; set; }
+		public required City FromDestinationCity {  get; set; }
 
 		[Required]
-		[MaxLength(MaxLengthDestination)]
-		public required string ToDestination { get; set;}
+		[ForeignKey(nameof(ToDestinationCity))]
+		public int ToDestinationCityId { get; set; }
+		public required City ToDestinationCity { get; set; }
 
 		[Required]
 		[MaxLength(MaxLengthDescription)]
@@ -37,9 +40,13 @@
 
 		public DateTime DateAndTime { get; set; }
 
+		public string? PaymentLink { get; set; }
+
+		public PaymentType PaymentType { get; set; }
+
 		[Required]
 		[ForeignKey(nameof(Creator))]
-		public int CreatorId { get; set; }
+		public required string CreatorId { get; set; }
 		public required User Creator { get; set; }
 
 		[ForeignKey(nameof(Group))]

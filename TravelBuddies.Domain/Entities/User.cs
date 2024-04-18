@@ -3,12 +3,12 @@
 	using System.ComponentModel.DataAnnotations;
 	using System.ComponentModel.DataAnnotations.Schema;
 	using static DataConstants.UserConstants;
+	using static DataConstants.Country;
+	using static DataConstants.City;
+	using Microsoft.AspNetCore.Identity;
 
-	public class User
+	public class User : IdentityUser
 	{
-		[Key]
-		public int Id { get; set; }
-
 		[Required]
 		[MaxLength(MaxLengthFirstName)]
 		public required string FirstName { get; set; }
@@ -18,19 +18,11 @@
 		public required string LastName { get; set; }
 
 		[Required]
-		[MaxLength(MaxLengthPhoneNumber)]
-		public required string PhoneNumber { get; set; }
+		public required string ProfilePictureLink { get; set; }
 
-		[Required]
-		[MaxLength(MaxLengthEmail)]
-		public required string Email { get; set; }
+		public string? DriverLicenseFrontPictureLink { get; set; }
 
-		public string? ProfilePictureLink { get; set; }
-
-		[Required]
-		public required string PasswordHashed { get; set; }
-
-		public List<byte> PasswordSalt { get; set; } = new List<byte>();
+		public string? DriverLicenseBackPictureLink { get; set; }
 
 		[MaxLength(MaxLengthCountryName)]
 		public string? Country { get; set; }
@@ -38,18 +30,9 @@
 		[MaxLength(MaxLengthCityName)]
 		public string? City { get; set; }
 
-		public bool IsEmailConfirmed { get; set; } = false;
-
-		public bool IsSubscriptionPaid { get; set; } = false;
-
 		[ForeignKey(nameof(Vehicle))]
 		public int? VehicleId { get; set; }
 		public Vehicle? Vehicle { get; set; }
-
-		[Required]
-		[ForeignKey(nameof(Role))]
-		public int RoleId { get; set; }
-		public required Role Role { get; set; }
 
 		public List<Review> RecivedReviews { get; set; } = new List<Review>();
 
@@ -58,8 +41,6 @@
 		public List<Message> Messages { get; set; } = new List<Message>();
 
 		public List<UserGroup> UsersGroups { get; set; } = new List<UserGroup>();
-
-		public List<Log> Logs { get; set; } = new List<Log>();
 
 		public List<Post> Posts { get; set; } = new List<Post>();
 
