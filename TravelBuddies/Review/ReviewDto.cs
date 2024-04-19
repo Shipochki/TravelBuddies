@@ -2,9 +2,9 @@
 {
 	public class ReviewDto : BaseDto<int>
 	{
-		public int CreatorId { get; set; }
+		public required string CreatorId { get; set; }
 
-		public int ReciverId { get; set; }
+		public required string ReciverId { get; set; }
 
 		public string? Text { get; set; }
 

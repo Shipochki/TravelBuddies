@@ -21,8 +21,6 @@
 		public int GroupId { get; set; }
 		public required Group Group { get; set; }
 
-		public DateTime SendTime { get; set; }
-
 		public bool IsDeleted { get; set; }
 
 		public DateTime DeletedOn { get; set; }

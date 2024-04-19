@@ -16,10 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Message\" />
     <Folder Include="Vehicle\" />
     <Folder Include="UserGroup\" />
-    <Folder Include="User\" />
   </ItemGroup>
 
 </Project>

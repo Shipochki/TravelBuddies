@@ -3,5 +3,5 @@
 	using MediatR;
 	using TravelBuddies.Domain.Entities;
 
-	public record GetCities : IRequest<IEnumerable<City>>;
+	public record GetCitiesQuery : IRequest<IEnumerable<City>>;
 }

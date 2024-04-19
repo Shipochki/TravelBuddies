@@ -7,7 +7,7 @@
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
 
-	public class GetPostBySearchHandler : BaseHandler, IRequestHandler<GetPostBySearchCommand, IEnumerable<Post>>
+	public class GetPostBySearchHandler : BaseHandler, IRequestHandler<GetPostBySearchQuery, IEnumerable<Post>>
 	{
 		private DateTime _minDate;
 
@@ -17,7 +17,7 @@
 			_minDate = DateTime.Parse("12/31/9999");
 		}
 
-		public async Task<IEnumerable<Post>> Handle(GetPostBySearchCommand request, CancellationToken cancellationToken)
+		public async Task<IEnumerable<Post>> Handle(GetPostBySearchQuery request, CancellationToken cancellationToken)
 		{
 			DateTime fromDate;
 			DateTime toDate;

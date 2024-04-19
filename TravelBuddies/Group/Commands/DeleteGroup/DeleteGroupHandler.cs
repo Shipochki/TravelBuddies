@@ -18,7 +18,7 @@
 
 			if (group == null)
 			{
-				throw new ArgumentNullException($"Non-extitent Group with Id {request.CreatorId}");
+				throw new ArgumentNullException($"Non-extitent Group with Id {request.Id}");
 			}
 
 			if (group.CreatorId != request.CreatorId)
@@ -28,6 +28,9 @@
 
 			group.IsDeleted = true;
 			group.DeletedOn = DateTime.Now;
+
+			_repository.Update(group);
+			await _repository.SaveChangesAsync();
 
 			return Task.CompletedTask;
 		}

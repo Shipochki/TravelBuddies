@@ -22,6 +22,11 @@
 				throw new ArgumentNullException($"Non-extitent Review with Id {request.CreatorId}");
 			}
 
+			if (review.CreatorId != request.CreatorId)
+			{
+				throw new ArgumentException($"User with Id {request.CreatorId} is not creator of review");
+			}
+
 			review.Text = request.Text;
 			review.Rating = request.Rating;
 			review.UpdatedOn = DateTime.Now;

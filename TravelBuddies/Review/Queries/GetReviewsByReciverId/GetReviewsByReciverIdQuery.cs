@@ -3,9 +3,9 @@
 	using MediatR;
 	using TravelBuddies.Domain.Entities;
 
-	public record GetReviewsByReciverIdCommand : IRequest<IEnumerable<Review>>
+	public record GetReviewsByReciverIdQuery : IRequest<IEnumerable<Review>>
 	{
-        public GetReviewsByReciverIdCommand(string id)
+        public GetReviewsByReciverIdQuery(string id)
         {
             Id = id;
         }
