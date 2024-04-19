@@ -20,7 +20,7 @@
 
 		public int SeatCount { get; set; }
 
-		public string? PictureLink { get; set; }
+		public required string PictureLink { get; set; }
 
 		public bool ACSystem { get; set; }
 

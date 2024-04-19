@@ -8,8 +8,5 @@
 		[Required]
 		[MaxLength(500)]
 		public required string Message { get; set; }
-
-		[Required]
-		public DateTime LogDateTime { get; set; } = DateTime.Now;
 	}
 }

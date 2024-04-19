@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TravelBuddies.Infrastructure;
 
@@ -11,9 +12,11 @@ using TravelBuddies.Infrastructure;
 namespace TravelBuddies.Infrastructure.Migrations
 {
     [DbContext(typeof(TravelBuddiesDbContext))]
-    partial class TravelBuddiesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240419072955_RenameBaseEntityProp")]
+    partial class RenameBaseEntityProp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,17 +54,17 @@ namespace TravelBuddies.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1ededb2c-7787-4683-b93e-5c79ec0ffdab",
+                            Id = "6bc2505c-76cf-4af3-90c1-21a96837386d",
                             Name = "Client"
                         },
                         new
                         {
-                            Id = "9e4281e2-70b7-4f8a-a47a-77c95e0872c4",
+                            Id = "bd35ad40-c738-49eb-a896-15ea0a718322",
                             Name = "Driver"
                         },
                         new
                         {
-                            Id = "1196f864-03bf-4336-9355-f83ce48a3a03",
+                            Id = "8a447303-8638-4fd8-85b0-76993239d37b",
                             Name = "Admin"
                         });
                 });

@@ -23,7 +23,7 @@
 		public required string Description { get; set; }
 
 		[Required]
-		public decimal PriceForSeat { get; set; }
+		public decimal PricePerSeat { get; set; }
 
 		[Required]
 		public int FreeSeats { get; set; }
