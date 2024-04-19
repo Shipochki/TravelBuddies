@@ -55,6 +55,12 @@
 				CreatedOn = DateTime.Now,
 			};
 
+			if(post.PaymentType == PaymentType.Card || post.PaymentType == PaymentType.CashOrCard)
+			{
+				//Create StripeLink
+				post.PaymentLink = string.Empty;
+			}
+
 			await _repository.AddAsync(post);
 			await _repository.SaveChangesAsync();
 

@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <Folder Include="Vehicle\" />
-    <Folder Include="UserGroup\" />
   </ItemGroup>
 
 </Project>
