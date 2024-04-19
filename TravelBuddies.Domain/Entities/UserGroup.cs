@@ -8,7 +8,7 @@
 		[Required]
 		[ForeignKey(nameof(User))]
 		public required string UserId { get; set; }
-		public required User User { get; set; }
+		public required ApplicationUser User { get; set; }
 
 		[Required]
 		[ForeignKey(nameof(Group))]

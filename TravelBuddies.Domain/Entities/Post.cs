@@ -3,13 +3,11 @@
 	using System.ComponentModel.DataAnnotations;
 	using System.ComponentModel.DataAnnotations.Schema;
 	using TravelBuddies.Domain.Enums;
+	using TravelBuddies.Domain.Models;
 	using static DataConstants.PostConstants;
 
-	public class Post
+	public class Post : BaseEntity<int>, ISoftDeleteEntity
 	{
-		[Key]
-		public int Id { get; set; }
-
 		[Required]
 		[ForeignKey(nameof(FromDestinationCity))]
 		public int FromDestinationCityId { get; set; }
@@ -47,12 +45,14 @@
 		[Required]
 		[ForeignKey(nameof(Creator))]
 		public required string CreatorId { get; set; }
-		public required User Creator { get; set; }
+		public required ApplicationUser Creator { get; set; }
 
 		[ForeignKey(nameof(Group))]
 		public int? GroupId { get; set; }
 		public Group? Group { get; set; }
 
-		public bool IsDeleted { get; set; } = false;
+		public bool IsDeleted { get; set; }
+
+		public DateTime DeletedOn { get; set; }
 	}
 }

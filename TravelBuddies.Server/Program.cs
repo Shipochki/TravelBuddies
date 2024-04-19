@@ -1,11 +1,9 @@
 namespace TravelBuddies.Server
 {
 	using Microsoft.AspNetCore.Identity;
-	using Microsoft.AspNetCore.Identity.UI.Services;
 	using Microsoft.EntityFrameworkCore;
 	using TravelBuddies.Domain.Entities;
 	using TravelBuddies.Infrastructure;
-	using TravelBuddies.Infrastructure.EmailSender;
 
 	public class Program
 	{
@@ -18,7 +16,7 @@ namespace TravelBuddies.Server
 				options.UseSqlServer(connectionString));
 
 			builder.Services
-				.AddIdentity<User, IdentityRole>()
+				.AddIdentity<ApplicationUser, IdentityRole>()
 				.AddEntityFrameworkStores<TravelBuddiesDbContext>()
 				.AddDefaultTokenProviders()
 				.AddDefaultUI();

@@ -1,20 +1,15 @@
 ﻿namespace TravelBuddies.Domain.Entities
 {
 	using System.ComponentModel.DataAnnotations;
-	using System.ComponentModel.DataAnnotations.Schema;
+	using TravelBuddies.Domain.Models;
 
-	public class Log
+	public class Log : BaseEntity<int>
 	{
-		[Key]
-		public int Id { get; set; }
-
 		[Required]
 		[MaxLength(500)]
-		public required string Text { get; set; }
+		public required string Message { get; set; }
 
 		[Required]
 		public DateTime LogDateTime { get; set; } = DateTime.Now;
-
-		public string? UserId { get; set; }
 	}
 }

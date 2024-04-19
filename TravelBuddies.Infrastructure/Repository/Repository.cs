@@ -8,6 +8,7 @@
 	using System.Linq.Expressions;
 	using System.Threading.Tasks;
 	using TravelBuddies.Application.Repository;
+	using TravelBuddies.Domain.Models;
 
 	public class Repository : IRepository
 	{
@@ -95,25 +96,7 @@
 		/// <param name="entity">Entity representing record to be deleted</param>
 		public void Delete<T>(T entity) where T : class
 		{
-			EntityEntry entry = this.Context.Entry(entity);
-
-			if (entry.State == EntityState.Detached)
-			{
-				this.DbSet<T>().Attach(entity);
-			}
-
-			entry.State = EntityState.Deleted;
-		}
-
-		/// <summary>
-		/// Detaches given entity from the context
-		/// </summary>
-		/// <param name="entity">Entity to be detached</param>
-		public void Detach<T>(T entity) where T : class
-		{
-			EntityEntry entry = this.Context.Entry(entity);
-
-			entry.State = EntityState.Detached;
+			this.Context.Remove(entity);
 		}
 
 		/// <summary>

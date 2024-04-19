@@ -15,4 +15,16 @@
     <ProjectReference Include="..\TravelBuddies.Domain\TravelBuddies.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Group\" />
+    <Folder Include="City\" />
+    <Folder Include="Logger\" />
+    <Folder Include="Message\" />
+    <Folder Include="Vehicle\" />
+    <Folder Include="UserGroup\" />
+    <Folder Include="User\" />
+    <Folder Include="Review\" />
+    <Folder Include="Post\" />
+  </ItemGroup>
+
 </Project>

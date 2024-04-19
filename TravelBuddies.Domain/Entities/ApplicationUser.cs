@@ -6,10 +6,16 @@
 	using static DataConstants.Country;
 	using static DataConstants.City;
 	using Microsoft.AspNetCore.Identity;
+	using TravelBuddies.Domain.Models;
 
-	public class User : IdentityUser
+	public class ApplicationUser : IdentityUser, ISoftDeleteEntity
 	{
-		[Required]
+        public ApplicationUser()
+        {
+			this.Id = new Guid().ToString();
+        }
+
+        [Required]
 		[MaxLength(MaxLengthFirstName)]
 		public required string FirstName { get; set; }
 
@@ -46,6 +52,8 @@
 
 		public List<Group> Groups { get; set; } = new List<Group>();
 
-		public bool IsDeleted { get; set; } = false;
+		public bool IsDeleted { get; set; }
+
+		public DateTime DeletedOn { get; set; }
 	}
 }

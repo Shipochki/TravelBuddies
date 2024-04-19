@@ -5,7 +5,7 @@
 	using Microsoft.EntityFrameworkCore;
     using TravelBuddies.Domain.Entities;
 
-    public class TravelBuddiesDbContext : IdentityDbContext<User>
+    public class TravelBuddiesDbContext : IdentityDbContext<ApplicationUser>
     {
         public TravelBuddiesDbContext(DbContextOptions<TravelBuddiesDbContext> options)
             : base(options)
@@ -13,7 +13,7 @@
             
         }
 
-		public override DbSet<User> Users { get => base.Users; set => base.Users = value; }
+		public override DbSet<ApplicationUser> Users { get => base.Users; set => base.Users = value; }
 
 		public DbSet<Review> Reviews { get; set; }
 

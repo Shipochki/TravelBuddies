@@ -1,14 +1,13 @@
 ﻿namespace TravelBuddies.Domain.Entities
 {
 	using System.ComponentModel.DataAnnotations;
+	using System.ComponentModel.DataAnnotations.Schema;
 	using TravelBuddies.Domain.Enums;
+	using TravelBuddies.Domain.Models;
 	using static DataConstants.VehicleConstants;
 
-	public class Vehicle
+	public class Vehicle : BaseEntity<int>
 	{
-		[Key]
-		public int Id { get; set; }
-
 		[Required]
 		[MaxLength(MaxLengthBrandName)]
 		public required string BrandName { get; set; }
@@ -24,5 +23,10 @@
 		public string? PictureLink { get; set; }
 
 		public bool ACSystem { get; set; }
+
+		[Required]
+		[ForeignKey(nameof(Owner))]
+		public required string OwnerId { get; set; }
+		public required ApplicationUser Owner { get; set; }
 	}
 }

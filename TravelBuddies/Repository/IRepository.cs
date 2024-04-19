@@ -80,13 +80,6 @@
 		void DeleteRange<T>(IEnumerable<T> entities) where T : class;
 		void DeleteRange<T>(Expression<Func<T, bool>> deleteWhereClause) where T : class;
 
-
-		/// <summary>
-		/// Detaches given entity from the context
-		/// </summary>
-		/// <param name="entity">Entity to be detached</param>
-		void Detach<T>(T entity) where T : class;
-
 		/// <summary>
 		/// Saves all made changes in trasaction
 		/// </summary>
