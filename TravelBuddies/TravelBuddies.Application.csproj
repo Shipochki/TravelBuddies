@@ -16,9 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Group\" />
     <Folder Include="Message\" />
-    <Folder Include="Post\Queries\" />
     <Folder Include="Vehicle\" />
     <Folder Include="UserGroup\" />
     <Folder Include="User\" />
