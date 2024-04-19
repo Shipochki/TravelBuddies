@@ -1,9 +1,7 @@
 ﻿namespace TravelBuddies.Application.Review
 {
-	public class ReviewDto
+	public class ReviewDto : BaseDto<int>
 	{
-		public int Id { get; set; }
-
 		public int CreatorId { get; set; }
 
 		public int ReciverId { get; set; }

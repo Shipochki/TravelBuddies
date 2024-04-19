@@ -21,6 +21,9 @@ namespace TravelBuddies.Server
 				.AddDefaultTokenProviders()
 				.AddDefaultUI();
 
+			builder.Services.AddScoped<UserManager<ApplicationUser>>();
+			builder.Services.AddScoped<SignInManager<ApplicationUser>>();
+
 			// Add services to the container.
 			builder.Services.AddAuthorization();
 

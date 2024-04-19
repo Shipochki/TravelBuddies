@@ -6,16 +6,14 @@
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
 
-	public class CreateReviewHandler : IRequestHandler<CreateReviewCommand, Review>
+	public class CreateReviewHandler : BaseHandler, IRequestHandler<CreateReviewCommand, Review>
 	{
-		private readonly IRepository _repository;
+		public CreateReviewHandler(IRepository repository) 
+			: base(repository)
+		{
+		}
 
-        public CreateReviewHandler(IRepository repository)
-        {
-            _repository = repository;
-        }
-
-        public async Task<Review> Handle(CreateReviewCommand request, CancellationToken cancellationToken)
+		public async Task<Review> Handle(CreateReviewCommand request, CancellationToken cancellationToken)
 		{
 			ApplicationUser? creator = await _repository.GetByIdAsync<ApplicationUser>(request.CreatorId);
 

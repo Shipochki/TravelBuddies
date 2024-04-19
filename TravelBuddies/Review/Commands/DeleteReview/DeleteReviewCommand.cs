@@ -4,11 +4,14 @@
 
 	public record DeleteReviewCommand : IRequest<Task>
 	{
-        public DeleteReviewCommand(int id)
+        public DeleteReviewCommand(int reviewId, string creatorId)
         {
-            Id = id;
+            ReviewId = reviewId;
+            CreatorId = creatorId;
         }
 
-        public int Id { get; set; }
+        public int ReviewId { get; set; }
+
+        public string CreatorId { get; set; }
 	}
 }

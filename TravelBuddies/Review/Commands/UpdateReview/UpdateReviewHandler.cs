@@ -6,16 +6,14 @@
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
 
-	public class UpdateReviewHandler : IRequestHandler<UpdateReviewCommand, Review>
+	public class UpdateReviewHandler : BaseHandler, IRequestHandler<UpdateReviewCommand, Review>
 	{
-		private readonly IRepository _repository;
+		public UpdateReviewHandler(IRepository repository) 
+			: base(repository)
+		{
+		}
 
-        public UpdateReviewHandler(IRepository repository)
-        {
-            _repository = repository;
-        }
-
-        public async Task<Review> Handle(UpdateReviewCommand request, CancellationToken cancellationToken)
+		public async Task<Review> Handle(UpdateReviewCommand request, CancellationToken cancellationToken)
 		{
 			Review? review = await _repository.GetByIdAsync<Review>(request.Id);
 
