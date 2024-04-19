@@ -3,7 +3,7 @@
 	using System;
 	using System.ComponentModel.DataAnnotations;
 	using System.ComponentModel.DataAnnotations.Schema;
-	using TravelBuddies.Domain.Models;
+	using TravelBuddies.Domain.EntityModels;
 	using static DataConstants.City;
 
 	public class City : BaseEntity<int>, ISoftDeleteEntity

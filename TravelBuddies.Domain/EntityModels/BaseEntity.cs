@@ -1,4 +1,4 @@
-﻿namespace TravelBuddies.Domain.Models
+﻿namespace TravelBuddies.Domain.EntityModels
 {
 	using System.ComponentModel.DataAnnotations;
 

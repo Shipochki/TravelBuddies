@@ -6,7 +6,7 @@
 	using static DataConstants.Country;
 	using static DataConstants.City;
 	using Microsoft.AspNetCore.Identity;
-	using TravelBuddies.Domain.Models;
+	using TravelBuddies.Domain.EntityModels;
 
 	public class ApplicationUser : IdentityUser, ISoftDeleteEntity
 	{

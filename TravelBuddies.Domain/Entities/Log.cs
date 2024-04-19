@@ -1,7 +1,7 @@
 ﻿namespace TravelBuddies.Domain.Entities
 {
 	using System.ComponentModel.DataAnnotations;
-	using TravelBuddies.Domain.Models;
+	using TravelBuddies.Domain.EntityModels;
 
 	public class Log : BaseEntity<int>
 	{

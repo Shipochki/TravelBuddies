@@ -2,7 +2,7 @@
 {
 	using System;
 	using System.ComponentModel.DataAnnotations;
-	using TravelBuddies.Domain.Models;
+	using TravelBuddies.Domain.EntityModels;
 	using static DataConstants.Country;
 
 	public class Country : BaseEntity<int>, ISoftDeleteEntity

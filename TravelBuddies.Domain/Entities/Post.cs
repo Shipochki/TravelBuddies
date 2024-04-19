@@ -3,7 +3,7 @@
 	using System.ComponentModel.DataAnnotations;
 	using System.ComponentModel.DataAnnotations.Schema;
 	using TravelBuddies.Domain.Enums;
-	using TravelBuddies.Domain.Models;
+	using TravelBuddies.Domain.EntityModels;
 	using static DataConstants.PostConstants;
 
 	public class Post : BaseEntity<int>, ISoftDeleteEntity
