@@ -2,6 +2,7 @@
 {
 	using MediatR;
 	using System.Threading;
+	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
 
@@ -18,7 +19,7 @@
 
 			if(userGroup == null)
 			{
-				throw new ArgumentNullException("Invalid UserGroup input");
+				throw new ApplicationUserNotInGroupException($"User with Id {request.UserId} not int Group with Id {request.GroupId}");
 			}
 
 			_repository.Delete(userGroup);

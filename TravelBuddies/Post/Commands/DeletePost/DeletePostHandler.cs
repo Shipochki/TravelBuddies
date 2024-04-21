@@ -2,6 +2,7 @@
 {
 	using MediatR;
 	using System.Threading;
+	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
 
@@ -18,12 +19,12 @@
 
 			if (post == null)
 			{
-				throw new ArgumentNullException($"Non-extitent Post with Id {request.PostId}");
+				throw new PostNotFoundException($"Non-extitent Post with Id {request.PostId}");
 			}
 
 			if (post.CreatorId != request.CreatorId)
 			{
-				throw new ArgumentException($"User with Id {request.CreatorId} is not creator of post");
+				throw new ApplicationUserNotCreatorException($"User with Id {request.CreatorId} is not creator of post");
 			}
 
 			post.IsDeleted = true;

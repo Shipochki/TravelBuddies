@@ -3,6 +3,7 @@
 	using MediatR;
 	using System.Threading;
 	using System.Threading.Tasks;
+	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
 
@@ -19,14 +20,14 @@
 
 			if (creator == null)
 			{
-				throw new ArgumentNullException($"Non-extitent User with Id {request.CreatorId}");
+				throw new ApplicationUserNotFoundException($"Non-extitent User with Id {request.CreatorId}");
 			}
 
 			Post? post = await _repository.GetByIdAsync<Post>(request.PostId);
 
 			if (post == null)
 			{
-				throw new ArgumentNullException($"Non-extitent Post with Id {request.PostId}");
+				throw new PostNotFoundException($"Non-extitent Post with Id {request.PostId}");
 			}
 
 			Group group = new Group()

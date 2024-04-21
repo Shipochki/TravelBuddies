@@ -3,6 +3,7 @@
 	using MediatR;
 	using System.Threading;
 	using System.Threading.Tasks;
+	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
 
@@ -19,14 +20,14 @@
 
 			if (creator == null)
 			{
-				throw new ArgumentNullException($"Non-extitent User with Id {request.CreatorId}");
+				throw new ApplicationUserNotFoundException($"Non-extitent User with Id {request.CreatorId}");
 			}
 
 			ApplicationUser? reciver = await _repository.GetByIdAsync<ApplicationUser>(request.ReciverId);
 
 			if (reciver == null)
 			{
-				throw new ArgumentNullException($"Non-extitent User with Id {request.ReciverId}");
+				throw new ApplicationUserNotFoundException($"Non-extitent User with Id {request.ReciverId}");
 			}
 
 			Review review = new Review()

@@ -5,7 +5,7 @@
 	using TravelBuddies.Domain.EntityModels;
 	using static DataConstants.MessageConstants;
 
-	public class Message : BaseEntity<int>, ISoftDeleteEntity
+	public class Message : BaseSoftDeleteModel<int>
 	{
 		[Required]
 		[MaxLength(MaxLengthText)]
@@ -20,10 +20,5 @@
 		[ForeignKey(nameof(Group))]
 		public int GroupId { get; set; }
 		public required Group Group { get; set; }
-
-		public bool IsDeleted { get; set; }
-
-		public DateTime DeletedOn { get; set; }
-
 	}
 }

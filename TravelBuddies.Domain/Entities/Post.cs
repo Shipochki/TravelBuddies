@@ -6,7 +6,7 @@
 	using TravelBuddies.Domain.EntityModels;
 	using static DataConstants.PostConstants;
 
-	public class Post : BaseEntity<int>, ISoftDeleteEntity
+	public class Post : BaseSoftDeleteModel<int>
 	{
 		[Required]
 		[ForeignKey(nameof(FromDestinationCity))]
@@ -50,9 +50,5 @@
 		[ForeignKey(nameof(Group))]
 		public int? GroupId { get; set; }
 		public Group? Group { get; set; }
-
-		public bool IsDeleted { get; set; }
-
-		public DateTime DeletedOn { get; set; }
 	}
 }

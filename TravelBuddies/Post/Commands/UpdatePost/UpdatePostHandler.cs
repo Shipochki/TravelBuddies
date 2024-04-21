@@ -2,6 +2,7 @@
 {
 	using MediatR;
 	using System.Threading;
+	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
 
@@ -17,21 +18,21 @@
 
 			if (post == null)
 			{
-				throw new ArgumentNullException($"Non-extitent Post with Id {request.Id}");
+				throw new PostNotFoundException($"Non-extitent Post with Id {request.Id}");
 			}
 
 			City? fromDestination = await _repository.GetByIdAsync<City>(request.FromDestinationCityId);
 
 			if (fromDestination == null)
 			{
-				throw new ArgumentNullException($"Non-extitent City with Id {request.FromDestinationCityId}");
+				throw new CityNotFoundException($"Non-extitent City with Id {request.FromDestinationCityId}");
 			}
 
 			City? toDestination = await _repository.GetByIdAsync<City>(request.ToDestinationCityId);
 
 			if (toDestination == null)
 			{
-				throw new ArgumentNullException($"Non-extitent City with Id {request.ToDestinationCityId}");
+				throw new CityNotFoundException($"Non-extitent City with Id {request.ToDestinationCityId}");
 			}
 
 			post.FromDestinationCity = fromDestination;

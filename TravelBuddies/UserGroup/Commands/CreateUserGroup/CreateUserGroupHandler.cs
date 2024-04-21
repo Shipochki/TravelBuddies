@@ -1,7 +1,9 @@
 ﻿namespace TravelBuddies.Application.UserGroup.Commands.CreateUserGroup
 {
 	using MediatR;
+	using Microsoft.EntityFrameworkCore;
 	using System.Threading;
+	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
 
@@ -17,14 +19,14 @@
 
 			if (user == null)
 			{
-				throw new ArgumentNullException($"Non-extitent User with Id {request.UserId}");
+				throw new ApplicationUserNotFoundException($"Non-extitent User with Id {request.UserId}");
 			}
 
 			Group? group = await _repository.GetByIdAsync<Group>(request.GroupId);
 
 			if (group == null)
 			{
-				throw new ArgumentNullException($"Non-extitent Group with Id {request.GroupId}");
+				throw new GroupNotFoundException($"Non-extitent Group with Id {request.GroupId}");
 			}
 
 			UserGroup? userGroup = await _repository
@@ -32,7 +34,18 @@
 
 			if (userGroup != null)
 			{
-				throw new ArgumentException($"User with Id {user.Id} is allready in Group with Id {group.Id}");
+				throw new ApplicationUserAllreadyInGroupException($"User with Id {user.Id} is allready in Group with Id {group.Id}");
+			}
+
+			Post? post = await _repository.GetByIdAsync<Post>(group.PostId);
+
+			List<UserGroup> userGroups = await _repository
+				.AllReadonly<UserGroup>(u => u.GroupId == request.GroupId)
+				.ToListAsync();
+
+			if(post.FreeSeats == userGroups.Count)
+			{
+				throw new NotAvailableSeatsInPostException($"No available seats in group with id {request.GroupId}");
 			}
 
 			userGroup = new UserGroup()

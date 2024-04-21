@@ -3,6 +3,7 @@
 	using MediatR;
 	using System.Threading;
 	using System.Threading.Tasks;
+	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
 
@@ -19,12 +20,12 @@
 
 			if (review == null)
 			{
-				throw new ArgumentNullException($"Non-extitent Review with Id {request.CreatorId}");
+				throw new ReviewNotFoundException($"Non-extitent Review with Id {request.CreatorId}");
 			}
 
 			if (review.CreatorId != request.CreatorId)
 			{
-				throw new ArgumentException($"User with Id {request.CreatorId} is not creator of review");
+				throw new ApplicationUserNotCreatorException($"User with Id {request.CreatorId} is not creator of review");
 			}
 
 			review.Text = request.Text;

@@ -3,6 +3,7 @@
 	using MediatR;
 	using System.Threading;
 	using System.Threading.Tasks;
+	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
 	using TravelBuddies.Domain.Enums;
@@ -20,21 +21,21 @@
 
 			if (creator == null)
 			{
-				throw new ArgumentNullException($"Non-extitent User with Id {request.CreatorId}");
+				throw new ApplicationUserNotFoundException($"Non-extitent User with Id {request.CreatorId}");
 			}
 
 			City? fromDestination = await _repository.GetByIdAsync<City>(request.FromDestinationCityId);
 
 			if (fromDestination == null)
 			{
-				throw new ArgumentNullException($"Non-extitent City with Id {request.FromDestinationCityId}");
+				throw new CityNotFoundException($"Non-extitent City with Id {request.FromDestinationCityId}");
 			}
 
 			City? toDestination = await _repository.GetByIdAsync<City>(request.ToDestinationCityId);
 
 			if (toDestination == null)
 			{
-				throw new ArgumentNullException($"Non-extitent City with Id {request.ToDestinationCityId}");
+				throw new CityNotFoundException($"Non-extitent City with Id {request.ToDestinationCityId}");
 			}
 
 			Post post = new Post()

@@ -27,6 +27,7 @@
 		[Required]
 		[ForeignKey(nameof(Owner))]
 		public required string OwnerId { get; set; }
+
 		public required ApplicationUser Owner { get; set; }
 	}
 }

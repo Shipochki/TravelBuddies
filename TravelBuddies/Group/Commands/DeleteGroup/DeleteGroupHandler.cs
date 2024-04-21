@@ -2,6 +2,7 @@
 {
 	using MediatR;
 	using System.Threading;
+	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
 
@@ -18,12 +19,12 @@
 
 			if (group == null)
 			{
-				throw new ArgumentNullException($"Non-extitent Group with Id {request.Id}");
+				throw new GroupNotFoundException($"Non-extitent Group with Id {request.Id}");
 			}
 
 			if (group.CreatorId != request.CreatorId)
 			{
-				throw new ArgumentException($"User with Id {request.CreatorId} is not creator of group");
+				throw new ApplicationUserNotCreatorException($"User with Id {request.CreatorId} is not creator of group");
 			}
 
 			group.IsDeleted = true;

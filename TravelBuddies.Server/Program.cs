@@ -15,19 +15,19 @@ namespace TravelBuddies.Server
 			builder.Services.AddDbContext<TravelBuddiesDbContext>(options =>
 				options.UseSqlServer(connectionString));
 
-			builder.Services
-				.AddIdentity<ApplicationUser, IdentityRole>()
-				.AddEntityFrameworkStores<TravelBuddiesDbContext>()
-				.AddDefaultTokenProviders()
-				.AddDefaultUI();
-
 			//builder.Services
-			//	.AddIdentityApiEndpoints<ApplicationUser>()
+			//	.AddIdentity<ApplicationUser, IdentityRole>()
 			//	.AddEntityFrameworkStores<TravelBuddiesDbContext>()
-			//	.AddDefaultTokenProviders();
+			//	.AddDefaultTokenProviders()
+			//	.AddDefaultUI();
 
-			//builder.Services.AddScoped<UserManager<ApplicationUser>>();
-			//builder.Services.AddScoped<SignInManager<ApplicationUser>>();
+			builder.Services
+				.AddIdentityApiEndpoints<ApplicationUser>()
+				.AddEntityFrameworkStores<TravelBuddiesDbContext>()
+				.AddDefaultTokenProviders();
+
+			builder.Services.AddScoped<UserManager<ApplicationUser>>();
+			builder.Services.AddScoped<SignInManager<ApplicationUser>>();
 
 			// Add services to the container.
 			builder.Services.AddAuthorization();
@@ -53,7 +53,9 @@ namespace TravelBuddies.Server
 			app.UseAuthorization();
 
 			app.MapFallbackToFile("/index.html");
-			app.MapIdentityApi<IdentityUser>();
+			app.MapIdentityApi<ApplicationUser>();
+			app.MapSwagger()
+				.RequireAuthorization();
 
 			app.Run();
 		}

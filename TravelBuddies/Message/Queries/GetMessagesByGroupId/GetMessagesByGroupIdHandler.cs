@@ -4,6 +4,7 @@
 	using Microsoft.EntityFrameworkCore;
 	using System.Threading;
 	using System.Threading.Tasks;
+	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
 
@@ -20,21 +21,21 @@
 
 			if (user == null)
 			{
-				throw new ArgumentNullException($"Non-extitent User with Id {request.UserId}");
+				throw new ApplicationUserNotFoundException($"Non-extitent User with Id {request.UserId}");
 			}
 
 			Group? group = await _repository.GetByIdAsync<Group>(request.GroupId);
 
 			if (group == null)
 			{
-				throw new ArgumentNullException($"Non-extitent Group with Id {request.GroupId}");
+				throw new GroupNotFoundException($"Non-extitent Group with Id {request.GroupId}");
 			}
 
 			UserGroup? userGroup = await _repository.FirstOrDefaultAsync<UserGroup>(u => u.UserId == request.UserId && u.GroupId == request.GroupId);
 
 			if(userGroup == null)
 			{
-				throw new ArgumentException($"User with Id {user.Id} is not in group with Id {group.Id}");
+				throw new ApplicationUserNotInGroupException($"User with Id {user.Id} is not in group with Id {group.Id}");
 			}
 
 			List<Message> messages = await _repository

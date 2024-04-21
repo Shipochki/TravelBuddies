@@ -13,8 +13,6 @@
             
         }
 
-		public override DbSet<ApplicationUser> Users { get => base.Users; set => base.Users = value; }
-
 		public DbSet<Review> Reviews { get; set; }
 
         public DbSet<Message> Messages { get; set; }
@@ -35,23 +33,13 @@
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            List<IdentityRole> roles = new List<IdentityRole>()
-            {
-                { new IdentityRole() { Name = "Client" } },
-                { new IdentityRole() { Name = "Driver" } },
-                { new IdentityRole () { Name = "Admin" } }
-            };
-
-            modelBuilder.Entity<IdentityRole>()
-                .HasData(roles);
-
             modelBuilder.Entity<UserGroup>()
                 .HasKey(u => new { u.UserId, u.GroupId });
 
             modelBuilder
                 .Entity<UserGroup>()
                 .HasOne(u => u.User)
-                .WithMany(u => u.UsersGroups)
+                .WithMany()
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder
@@ -62,7 +50,7 @@
 
             modelBuilder.Entity<Group>()
                 .HasOne(g => g.Creator)
-                .WithMany(g => g.Groups)
+                .WithMany()
                 .HasForeignKey(g => g.CreatorId)
                 .OnDelete(DeleteBehavior.Restrict);
 
@@ -73,13 +61,13 @@
 
             modelBuilder.Entity<Review>()
                 .HasOne(r => r.Creator)
-                .WithMany(r => r.CreatedReviews)
+                .WithMany()
                 .HasForeignKey(r => r.CreatorId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Review>()
                 .HasOne(r => r.Reciver)
-                .WithMany(r => r.RecivedReviews)
+                .WithMany()
                 .HasForeignKey(r => r.ReciverId)
                 .OnDelete(DeleteBehavior.Restrict);
 

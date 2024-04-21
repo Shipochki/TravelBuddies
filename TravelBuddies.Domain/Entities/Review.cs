@@ -1,12 +1,11 @@
 ﻿namespace TravelBuddies.Domain.Entities
 {
-	using System;
 	using System.ComponentModel.DataAnnotations;
 	using System.ComponentModel.DataAnnotations.Schema;
 	using TravelBuddies.Domain.EntityModels;
 	using static DataConstants.ReviewConstants;
 
-	public class Review : BaseEntity<int>, ISoftDeleteEntity
+	public class Review : BaseSoftDeleteModel<int>
 	{
 		[Required]
 		[ForeignKey(nameof(Creator))]
@@ -23,9 +22,5 @@
 		[ForeignKey(nameof(Reciver))]
 		public required string ReciverId { get; set; }
 		public required ApplicationUser Reciver { get; set; }
-
-		public bool IsDeleted { get; set; }
-
-		public DateTime DeletedOn { get; set; }
 	}
 }
