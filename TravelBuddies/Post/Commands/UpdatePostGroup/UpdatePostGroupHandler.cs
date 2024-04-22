@@ -24,14 +24,16 @@
 
 			if (post == null)
 			{
-				throw new PostNotFoundException(string.Format(PostNotFoundMessage, request.PostId));
+				throw new PostNotFoundException(
+					string.Format(PostNotFoundMessage, request.PostId));
 			}
 
 			Group? group = await _repository.GetByIdAsync<Group>(request.GroupId);
 
 			if (group == null)
 			{
-				throw new GroupNotFoundException(string.Format(GroupNotFoundMessage, request.GroupId));
+				throw new GroupNotFoundException(
+					string.Format(GroupNotFoundMessage, request.GroupId));
 			}
 
 			post.Group = group;

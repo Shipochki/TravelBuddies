@@ -3,6 +3,7 @@
 	using MediatR;
 	using Microsoft.AspNetCore.Identity;
 	using System.Threading;
+	using TravelBuddies.Application.Constants;
 	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
@@ -24,12 +25,23 @@
 
 			if (review == null)
 			{
-				throw new ReviewNotFoundException(string.Format(ReviewNotFoundMessage, request.ReviewId));
+				throw new ReviewNotFoundException(
+					string.Format(ReviewNotFoundMessage, request.ReviewId));
 			}
 
-			if(review.CreatorId != request.CreatorId)
+			ApplicationUser? user = await _userManager.FindByIdAsync(request.CreatorId);
+
+			if (user == null)
 			{
-				throw new ApplicationUserNotCreatorException(string.Format(ApplicationUserNotCreatorMessage, request.CreatorId));
+				throw new ApplicationUserNotFoundException(
+					string.Format(ApplicationUserNotFoundMessage, request.CreatorId));
+			}
+
+			if (review.CreatorId != request.CreatorId 
+				&& !await _userManager.IsInRoleAsync(user, ApplicationRoles.Admin))
+			{
+				throw new ApplicationUserNotCreatorException(
+					string.Format(ApplicationUserNotCreatorMessage, request.CreatorId));
 			}
 
 			review.IsDeleted = true;

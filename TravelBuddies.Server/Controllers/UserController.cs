@@ -6,7 +6,7 @@
     using Microsoft.AspNetCore.Mvc;
     using TravelBuddies.Domain.Entities;
     using TravelBuddies.Domain.Enums;
-    using TravelBuddies.Presentation.Constants;
+    using TravelBuddies.Application.Constants;
     using TravelBuddies.Presentation.DTOs.User;
 
     [Route("api/[controller]")]
@@ -16,7 +16,8 @@
 		private readonly UserManager<ApplicationUser> _userManager;
 		private readonly RoleManager<IdentityRole> _roleManager;
 
-		public UserController(IMediator mediator
+		public UserController(
+			IMediator mediator
 			, UserManager<ApplicationUser> userManager
 			, RoleManager<IdentityRole> roleManager) : base(mediator)
 		{

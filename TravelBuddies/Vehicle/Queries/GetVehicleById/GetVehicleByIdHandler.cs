@@ -25,7 +25,8 @@
 
 			if (vehicle == null)
 			{
-				throw new VehicleNotFoundException(string.Format(VehicleNotFoundMessage, request.VehicleId));
+				throw new VehicleNotFoundException(
+					string.Format(VehicleNotFoundMessage, request.VehicleId));
 			}
 
 			return await Task.FromResult(vehicle);

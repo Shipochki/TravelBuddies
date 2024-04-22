@@ -25,14 +25,16 @@
 
 			if (user == null)
 			{
-				throw new ApplicationUserNotFoundException(string.Format(ApplicationUserNotFoundMessage, request.UserId));
+				throw new ApplicationUserNotFoundException(
+					string.Format(ApplicationUserNotFoundMessage, request.UserId));
 			}
 
 			Group? group = await _repository.GetByIdAsync<Group>(request.GroupId);
 
 			if (group == null)
 			{
-				throw new GroupNotFoundException(string.Format(GroupNotFoundMessage, request.GroupId));
+				throw new GroupNotFoundException(
+					string.Format(GroupNotFoundMessage, request.GroupId));
 			}
 
 			UserGroup? userGroup = await _repository
@@ -46,13 +48,20 @@
 
 			Post? post = await _repository.GetByIdAsync<Post>(group.PostId);
 
+			if(post == null)
+			{
+				throw new PostNotFoundException(
+					string.Format(PostNotFoundMessage, group.PostId));
+			}
+
 			List<UserGroup> userGroups = await _repository
 				.AllReadonly<UserGroup>(u => u.GroupId == request.GroupId)
 				.ToListAsync();
 
 			if(post.FreeSeats == userGroups.Count)
 			{
-				throw new NotAvailableSeatsInPostException(string.Format(NotAvailableSeatsInPostMessage, post.Id));
+				throw new NotAvailableSeatsInPostException(
+					string.Format(NotAvailableSeatsInPostMessage, post.Id));
 			}
 
 			userGroup = new UserGroup()

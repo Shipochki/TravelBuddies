@@ -26,21 +26,24 @@
 
 			if (creator == null)
 			{
-				throw new ApplicationUserNotFoundException(string.Format(ApplicationUserNotFoundMessage, request.CreatorId));
+				throw new ApplicationUserNotFoundException(
+					string.Format(ApplicationUserNotFoundMessage, request.CreatorId));
 			}
 
 			City? fromDestination = await _repository.GetByIdAsync<City>(request.FromDestinationCityId);
 
 			if (fromDestination == null)
 			{
-				throw new CityNotFoundException(string.Format(CityNotFoundMessage, request.FromDestinationCityId));
+				throw new CityNotFoundException(
+					string.Format(CityNotFoundMessage, request.FromDestinationCityId));
 			}
 
 			City? toDestination = await _repository.GetByIdAsync<City>(request.ToDestinationCityId);
 
 			if (toDestination == null)
 			{
-				throw new CityNotFoundException(string.Format(CityNotFoundMessage, request.ToDestinationCityId));
+				throw new CityNotFoundException(
+					string.Format(CityNotFoundMessage, request.ToDestinationCityId));
 			}
 
 			Post post = new Post()

@@ -29,7 +29,8 @@
 
 			if (message.CreatorId != request.CreatorId)
 			{
-				throw new ApplicationUserNotCreatorException(string.Format(ApplicationUserNotCreatorMessage, request.CreatorId));
+				throw new ApplicationUserNotCreatorException(
+					string.Format(ApplicationUserNotCreatorMessage, request.CreatorId));
 			}
 
 			if(message.GroupId != request.GroupId)

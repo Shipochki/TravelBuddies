@@ -25,14 +25,16 @@
 
 			if (creator == null)
 			{
-				throw new ApplicationUserNotFoundException(string.Format(ApplicationUserNotFoundMessage, request.CreatorId));
+				throw new ApplicationUserNotFoundException(
+					string.Format(ApplicationUserNotFoundMessage, request.CreatorId));
 			}
 
 			Group? group = await _repository.GetByIdAsync<Group>(request.GroupId);
 
 			if (group == null)
 			{
-				throw new GroupNotFoundException(string.Format(GroupNotFoundMessage, request.GroupId));
+				throw new GroupNotFoundException(
+					string.Format(GroupNotFoundMessage, request.GroupId));
 			}
 
 			Message message = new Message()

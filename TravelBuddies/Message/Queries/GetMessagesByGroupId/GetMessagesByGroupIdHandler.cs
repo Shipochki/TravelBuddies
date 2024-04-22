@@ -26,14 +26,16 @@
 
 			if (user == null)
 			{
-				throw new ApplicationUserNotFoundException(string.Format(ApplicationUserNotFoundMessage, request.UserId));
+				throw new ApplicationUserNotFoundException(
+					string.Format(ApplicationUserNotFoundMessage, request.UserId));
 			}
 
 			Group? group = await _repository.GetByIdAsync<Group>(request.GroupId);
 
 			if (group == null)
 			{
-				throw new GroupNotFoundException(string.Format(GroupNotFoundMessage, request.GroupId));
+				throw new GroupNotFoundException(
+					string.Format(GroupNotFoundMessage, request.GroupId));
 			}
 
 			UserGroup? userGroup = await _repository
@@ -41,7 +43,8 @@
 
 			if(userGroup == null)
 			{
-				throw new ApplicationUserNotInGroupException(string.Format(ApplicationUserNotInGroupMessage, request.UserId, request.GroupId));
+				throw new ApplicationUserNotInGroupException(
+					string.Format(ApplicationUserNotInGroupMessage, request.UserId, request.GroupId));
 			}
 
 			List<Message> messages = await _repository

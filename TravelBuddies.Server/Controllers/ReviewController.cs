@@ -8,7 +8,7 @@
     using TravelBuddies.Domain.Entities;
     using TravelBuddies.Domain.Enums;
     using TravelBuddies.Application.Review.Commands.CreateReview;
-    using TravelBuddies.Presentation.Constants;
+    using TravelBuddies.Application.Constants;
     using TravelBuddies.Presentation.DTOs.Review;
 	using TravelBuddies.Application.Review.Commands.UpdateReview;
 
@@ -17,7 +17,8 @@
 	[Authorize]
 	public class ReviewController : BaseController
 	{
-		public ReviewController(IMediator mediator) : base(mediator)
+		public ReviewController(IMediator mediator)
+			: base(mediator)
 		{
 		}
 

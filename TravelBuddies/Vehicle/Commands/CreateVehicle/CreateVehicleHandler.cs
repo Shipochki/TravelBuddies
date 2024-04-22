@@ -26,7 +26,8 @@
 
 			if (owner == null)
 			{
-				throw new ApplicationUserNotFoundException(string.Format(ApplicationUserNotFoundMessage, request.OwnerId));
+				throw new ApplicationUserNotFoundException(
+					string.Format(ApplicationUserNotFoundMessage, request.OwnerId));
 			}
 
 			Vehicle vehicle = new Vehicle()

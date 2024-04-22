@@ -1,6 +1,6 @@
 ﻿namespace TravelBuddies.Presentation.Configurations
 {
-	using TravelBuddies.Presentation.Constants;
+	using TravelBuddies.Application.Constants;
 
 	public static class PolicyConfigurations
 	{

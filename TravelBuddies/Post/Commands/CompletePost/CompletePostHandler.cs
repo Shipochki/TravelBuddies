@@ -24,12 +24,14 @@
 
 			if (post == null)
 			{
-				throw new PostNotFoundException(string.Format(PostNotFoundMessage, request.PostId));
+				throw new PostNotFoundException(
+					string.Format(PostNotFoundMessage, request.PostId));
 			}
 
 			if (post.CreatorId != request.CreatorId)
 			{
-				throw new ApplicationUserNotCreatorException(string.Format(ApplicationUserNotCreatorMessage, request.CreatorId));
+				throw new ApplicationUserNotCreatorException(
+					string.Format(ApplicationUserNotCreatorMessage, request.CreatorId));
 			}
 
 			post.IsCompleted = true;

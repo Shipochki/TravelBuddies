@@ -4,7 +4,7 @@
     using Microsoft.AspNetCore.Mvc;
     using TravelBuddies.Infrastructure.CustomLogger;
     using TravelBuddies.Application.Interfaces.CustomLogger;
-    using TravelBuddies.Presentation.Constants;
+    using TravelBuddies.Application.Constants;
 
     [Route("api/[controller]")]
 	[ApiController]

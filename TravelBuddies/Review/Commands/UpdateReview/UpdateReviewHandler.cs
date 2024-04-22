@@ -25,12 +25,14 @@
 
 			if (review == null)
 			{
-				throw new ReviewNotFoundException(string.Format(ReviewNotFoundMessage, request.Id));
+				throw new ReviewNotFoundException(
+					string.Format(ReviewNotFoundMessage, request.Id));
 			}
 
 			if (review.CreatorId != request.CreatorId)
 			{
-				throw new ApplicationUserNotCreatorException(string.Format(ApplicationUserNotCreatorMessage, request.CreatorId));
+				throw new ApplicationUserNotCreatorException(
+					string.Format(ApplicationUserNotCreatorMessage, request.CreatorId));
 			}
 
 			review.Text = request.Text;

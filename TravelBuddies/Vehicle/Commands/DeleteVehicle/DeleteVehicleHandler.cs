@@ -2,6 +2,7 @@
 {
 	using MediatR;
 	using Microsoft.AspNetCore.Identity;
+	using TravelBuddies.Application.Constants;
 	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
@@ -23,10 +24,20 @@
 
 			if (vehicle == null)
 			{
-				throw new VehicleNotFoundException(string.Format(VehicleNotFoundMessage, request.VehicleId));
+				throw new VehicleNotFoundException(
+					string.Format(VehicleNotFoundMessage, request.VehicleId));
 			}
 
-			if(vehicle.OwnerId != request.OwnerId)
+			ApplicationUser? user = await _userManager.FindByIdAsync(request.OwnerId);
+
+			if (user == null)
+			{
+				throw new ApplicationUserNotFoundException(
+					string.Format(ApplicationUserNotFoundMessage, request.OwnerId));
+			}
+
+			if (vehicle.OwnerId != request.OwnerId 
+				&& !await _userManager.IsInRoleAsync(user, ApplicationRoles.Admin))
 			{
 				throw new ApplicationUserNotCreatorException(
 					string.Format(ApplicationUserNotCreatorMessage, request.OwnerId));

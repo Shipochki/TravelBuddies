@@ -24,14 +24,16 @@
 
 			if (creator == null)
 			{
-				throw new ApplicationUserNotFoundException(string.Format(ApplicationUserNotFoundMessage, request.CreatorId));
+				throw new ApplicationUserNotFoundException(
+					string.Format(ApplicationUserNotFoundMessage, request.CreatorId));
 			}
 
 			ApplicationUser? reciver = await _userManager.FindByIdAsync(request.ReciverId);
 
 			if (reciver == null)
 			{
-				throw new ApplicationUserNotFoundException(string.Format(ApplicationUserNotFoundMessage, request.ReciverId));
+				throw new ApplicationUserNotFoundException(
+					string.Format(ApplicationUserNotFoundMessage, request.ReciverId));
 			}
 
 			Review review = new Review()

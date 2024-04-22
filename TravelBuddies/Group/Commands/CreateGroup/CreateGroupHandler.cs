@@ -24,14 +24,16 @@
 
 			if (creator == null)
 			{
-				throw new ApplicationUserNotFoundException(string.Format(ApplicationUserNotFoundMessage, request.CreatorId));
+				throw new ApplicationUserNotFoundException(
+					string.Format(ApplicationUserNotFoundMessage, request.CreatorId));
 			}
 
 			Post? post = await _repository.GetByIdAsync<Post>(request.PostId);
 
 			if (post == null)
 			{
-				throw new PostNotFoundException(string.Format(PostNotFoundMessage, request.PostId));
+				throw new PostNotFoundException(
+					string.Format(PostNotFoundMessage, request.PostId));
 			}
 
 			Group group = new Group()
