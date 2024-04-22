@@ -2,8 +2,12 @@ namespace TravelBuddies.Server
 {
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
+	using TravelBuddies.Application;
+	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
 	using TravelBuddies.Infrastructure;
+	using TravelBuddies.Infrastructure.Repository;
+	using TravelBuddies.Presentation.Constants;
 
 	public class Program
 	{
@@ -15,23 +19,33 @@ namespace TravelBuddies.Server
 			builder.Services.AddDbContext<TravelBuddiesDbContext>(options =>
 				options.UseSqlServer(connectionString));
 
-			//builder.Services
-			//	.AddIdentity<ApplicationUser, IdentityRole>()
-			//	.AddEntityFrameworkStores<TravelBuddiesDbContext>()
-			//	.AddDefaultTokenProviders()
-			//	.AddDefaultUI();
+			builder.Services.AddMediatR(cf => cf.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly));
 
 			builder.Services
-				.AddIdentityApiEndpoints<ApplicationUser>()
+				.AddIdentity<ApplicationUser, IdentityRole>()
 				.AddEntityFrameworkStores<TravelBuddiesDbContext>()
-				.AddDefaultTokenProviders();
+				.AddDefaultTokenProviders()
+				.AddDefaultUI();
 
-			//builder.Services.AddScoped<UserManager<ApplicationUser>>();
+			//builder.Services
+			//	.AddIdentityApiEndpoints<ApplicationUser>()
+			//	.AddEntityFrameworkStores<TravelBuddiesDbContext>()
+			//	.AddDefaultTokenProviders();
+
+			builder.Services.AddScoped<UserManager<ApplicationUser>>();
+			builder.Services.AddScoped<IRepository, Repository>();
 			//builder.Services.AddScoped<SignInManager<ApplicationUser>>();
 
 			// Add services to the container.
-			builder.Services.AddAuthorization();
+			builder.Services.AddAuthorization(options =>
+			{
+				options.AddPolicy("AllowedForUsers", policy =>
+				{
+					policy.RequireRole(ApplicationRoles.Client, ApplicationRoles.Driver, ApplicationRoles.Admin);
+				});
+			});
 
+			builder.Services.AddControllers();
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
@@ -51,6 +65,11 @@ namespace TravelBuddies.Server
 			app.UseHttpsRedirection();
 
 			app.UseAuthorization();
+
+			app.MapControllers();
+			app.MapControllerRoute(
+				name: "default",
+				pattern: "{controller}/{action=Index}/{id?}");
 
 			app.MapFallbackToFile("/index.html");
 			app.MapIdentityApi<ApplicationUser>();

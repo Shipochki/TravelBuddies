@@ -4,8 +4,8 @@
 
 	public interface ILoggerFactory
 	{
-		public Task<FileLogger> CreateFileLoggerAsync(string categoryName);
+		public FileLogger CreateFileLoggerAsync(string categoryName);
 
-		public Task<DatabaseLogger> CreateDatabaseLoggerAsync(IMediator mediator);
+		public DatabaseLogger CreateDatabaseLoggerAsync();
 	}
 }

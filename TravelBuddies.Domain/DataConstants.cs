@@ -29,6 +29,12 @@
 
 		public static class UserConstants
 		{
+			public const int MinLengthEmail = 3;
+			public const int MaxLengthEmail = 345;
+
+			public const int MinLengthPassword = 8;
+			public const int MaxLengthPassword = 16;
+
 			public const int MaxLengthFirstName = 50;
 			public const int MinLengthFirstName = 3;
 

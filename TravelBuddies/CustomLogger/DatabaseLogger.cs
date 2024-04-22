@@ -17,8 +17,7 @@
 
         public async Task LogAsync(LogLevel level, string message)
 		{
-			CreateLogCommand command = new CreateLogCommand(message, level);
-			await _mediator.Send(command);
+			await _mediator.Send(new CreateLogCommand(message, level));
 		}
 	}
 }

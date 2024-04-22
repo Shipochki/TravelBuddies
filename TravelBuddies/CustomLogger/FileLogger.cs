@@ -25,7 +25,7 @@
 		{
 			try
 			{
-				string currentFilePath = $"{_filePath}\\Logs_{DateTime.Now.ToString("dd-MM-yyyy")}";
+				string currentFilePath = $"{_filePath}\\Logs_{DateTime.Now.ToString("dd-MM-yyyy")}.txt";
 				using (var writer = new StreamWriter(currentFilePath, append: true))
 				{
 					await writer.WriteLineAsync(logMessage);

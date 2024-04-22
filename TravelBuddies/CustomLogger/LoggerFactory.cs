@@ -6,20 +6,22 @@
 	public class LoggerFactory : ILoggerFactory
 	{
 		private readonly string _filePath;
+		private readonly IMediator _mediator;
 
-        public LoggerFactory(string filePath)
+        public LoggerFactory(string filePath, IMediator mediator)
         {
             _filePath = filePath;
+			_mediator = mediator;
         }
 
-		public Task<DatabaseLogger> CreateDatabaseLoggerAsync(IMediator mediator)
+		public DatabaseLogger CreateDatabaseLoggerAsync()
 		{
-			return Task.FromResult(new DatabaseLogger(mediator));
+			return new DatabaseLogger(_mediator);
 		}
 
-		public Task<FileLogger> CreateFileLoggerAsync(string categoryName)
+		public FileLogger CreateFileLoggerAsync(string categoryName)
 		{
-			return Task.FromResult(new FileLogger(categoryName, _filePath));
+			return new FileLogger(categoryName, _filePath);
 		}
 	}
 }
