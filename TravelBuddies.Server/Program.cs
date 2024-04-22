@@ -7,7 +7,7 @@ namespace TravelBuddies.Server
 	using TravelBuddies.Domain.Entities;
 	using TravelBuddies.Infrastructure;
 	using TravelBuddies.Infrastructure.Repository;
-	using TravelBuddies.Presentation.Constants;
+	using TravelBuddies.Presentation.Configurations;
 
 	public class Program
 	{
@@ -19,7 +19,7 @@ namespace TravelBuddies.Server
 			builder.Services.AddDbContext<TravelBuddiesDbContext>(options =>
 				options.UseSqlServer(connectionString));
 
-			builder.Services.AddMediatR(cf => cf.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly));
+			builder.Services.AddMediatR(cf => cf.RegisterServicesFromAssembly(typeof(BaseHandler).Assembly));
 
 			builder.Services
 				.AddIdentity<ApplicationUser, IdentityRole>()
@@ -37,13 +37,7 @@ namespace TravelBuddies.Server
 			//builder.Services.AddScoped<SignInManager<ApplicationUser>>();
 
 			// Add services to the container.
-			builder.Services.AddAuthorization(options =>
-			{
-				options.AddPolicy("AllowedForUsers", policy =>
-				{
-					policy.RequireRole(ApplicationRoles.Client, ApplicationRoles.Driver, ApplicationRoles.Admin);
-				});
-			});
+			builder.Services.PolicyConfigure();
 
 			builder.Services.AddControllers();
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

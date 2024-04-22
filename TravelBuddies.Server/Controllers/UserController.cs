@@ -1,6 +1,7 @@
 ﻿namespace TravelBuddies.Presentation.Controllers
 {
 	using MediatR;
+	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.AspNetCore.Mvc;
 	using TravelBuddies.Domain.Entities;
@@ -21,10 +22,11 @@
 		{
 			_userManager = userManager;
 			_roleManager = roleManager;
-			SeedDb().Wait();
+			//SeedDb().Wait();
 		}
 
 		[HttpPost]
+		[AllowAnonymous]
 		[Route("[action]")]
 		public async Task<IActionResult> Register([FromBody]UserRegisterDto userRegisterDto)
 		{
@@ -40,13 +42,16 @@
 
 			IdentityResult result = await _userManager.CreateAsync(applicationUser, userRegisterDto.Password);
 
+			LogLevel logLevel;
+			string message;
+
 			if(result.Succeeded)
 			{
-				LogLevel loglevel = LogLevel.Information;
-				string message = "User created successfuly.";
+				logLevel = LogLevel.Information;
+				message = "User created successfuly.";
 
-				await _fileLogger.LogAsync(loglevel, message);
-				await _databaseLogger.LogAsync(loglevel, message);
+				await _fileLogger.LogAsync(logLevel, message);
+				await _databaseLogger.LogAsync(logLevel, message);
 
 				await _userManager.AddToRoleAsync(applicationUser, ApplicationRoles.Client);
 
@@ -54,18 +59,48 @@
 			}
 			else
 			{
-				LogLevel loglevel = LogLevel.Error;
-				string message = "User is not created successfuly.";
+				logLevel = LogLevel.Error;
+				message = "User is not created successfuly.";
 
-				await _fileLogger.LogAsync(loglevel, message);
-				await _databaseLogger.LogAsync(loglevel, message);
+				await _fileLogger.LogAsync(logLevel, message);
+				await _databaseLogger.LogAsync(logLevel, message);
 
 				return BadRequest(result.Errors);
 			}
 		}
 
+		[HttpPost]
+		[Authorize(Policy = ApplicationPolicies.OnlyClient)]
+		[Route("[action]")]
+		public async Task<IActionResult> BecomeDriver(string userId)
+		{
+			ApplicationUser? applicationUser = await _userManager.FindByIdAsync(userId);
+
+			if(applicationUser == null)
+			{
+				return BadRequest("User does not exist");
+			}
+
+			IdentityRole? identityRole = await _roleManager.FindByNameAsync(ApplicationRoles.Driver);
+
+			if(identityRole == null)
+			{
+				return BadRequest("Something gone wrong");
+			}
+
+			var result = await _userManager.AddToRoleAsync(applicationUser, ApplicationRoles.Driver);
+
+			if(!result.Succeeded)
+			{
+				return BadRequest("Failed to become Driver");
+			}
+
+			return Ok("Succesfully became Driver");
+		}
+
 		private async Task SeedDb()
 		{
+			// Ensure "client" role exists
 			if (!await _roleManager.RoleExistsAsync(ApplicationRoles.Client))
 			{
 				await _roleManager.CreateAsync(new IdentityRole(ApplicationRoles.Client));
@@ -83,6 +118,7 @@
 				await _roleManager.CreateAsync(new IdentityRole(ApplicationRoles.Admin));
 			}
 
+			// Ensure "admin" user exists
 			if(await _userManager.FindByEmailAsync("admin@gmail.com") == null)
 			{
 				ApplicationUser applicationUser = new ApplicationUser()
@@ -93,7 +129,9 @@
 					LastName = "Administrator"
 				};
 
-				IdentityResult result = await _userManager.CreateAsync(applicationUser, "Password0!");
+				await _userManager.CreateAsync(applicationUser, "Password0!");
+
+				await _userManager.AddToRoleAsync(applicationUser, ApplicationRoles.Admin);
 			}
 		}
 	}
