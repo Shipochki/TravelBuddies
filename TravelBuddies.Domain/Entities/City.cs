@@ -5,7 +5,7 @@
 	using TravelBuddies.Domain.EntityModels;
 	using static DataConstants.City;
 
-	public class City : BaseSoftDeleteModel<int>
+	public class City : BaseSoftDeleteEntity<int>
 	{
 		[Required]
 		[MaxLength(MaxLengthCityName)]

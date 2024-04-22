@@ -5,7 +5,7 @@
 	using TravelBuddies.Domain.EntityModels;
 	using static DataConstants.MessageConstants;
 
-	public class Message : BaseSoftDeleteModel<int>
+	public class Message : BaseSoftDeleteEntity<int>
 	{
 		[Required]
 		[MaxLength(MaxLengthText)]

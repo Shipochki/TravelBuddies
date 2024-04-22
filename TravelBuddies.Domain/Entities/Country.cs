@@ -4,7 +4,7 @@
 	using TravelBuddies.Domain.EntityModels;
 	using static DataConstants.Country;
 
-	public class Country : BaseSoftDeleteModel<int>
+	public class Country : BaseSoftDeleteEntity<int>
 	{
 		[Required]
 		[MaxLength(MaxLengthCountryName)]

@@ -6,7 +6,7 @@
 	using TravelBuddies.Domain.EntityModels;
 	using static DataConstants.PostConstants;
 
-	public class Post : BaseSoftDeleteModel<int>
+	public class Post : BaseSoftDeleteEntity<int>
 	{
 		[Required]
 		[ForeignKey(nameof(FromDestinationCity))]

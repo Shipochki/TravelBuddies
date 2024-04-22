@@ -1,6 +1,6 @@
 ﻿namespace TravelBuddies.Domain.EntityModels
 {
-	public interface IChangeInfo
+	public interface IActionInfo
 	{
 		public DateTime CreatedOn { get; set; }
 

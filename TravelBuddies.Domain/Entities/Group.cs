@@ -4,7 +4,7 @@
 	using System.ComponentModel.DataAnnotations.Schema;
 	using TravelBuddies.Domain.EntityModels;
 
-	public class Group : BaseSoftDeleteModel<int>
+	public class Group : BaseSoftDeleteEntity<int>
 	{
 		[Required]
 		[ForeignKey(nameof(Post))]

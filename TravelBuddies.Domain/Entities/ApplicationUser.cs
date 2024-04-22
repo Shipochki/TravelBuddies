@@ -7,7 +7,7 @@
 	using Microsoft.AspNetCore.Identity;
 	using TravelBuddies.Domain.EntityModels;
 
-	public class ApplicationUser : IdentityUser, ISoftDeleteEntity, IChangeInfo
+	public class ApplicationUser : IdentityUser, ISoftDeleteEntity, IActionInfo
 	{
         public ApplicationUser()
         {

@@ -5,7 +5,7 @@
 	using TravelBuddies.Domain.EntityModels;
 	using static DataConstants.ReviewConstants;
 
-	public class Review : BaseSoftDeleteModel<int>
+	public class Review : BaseSoftDeleteEntity<int>
 	{
 		[Required]
 		[ForeignKey(nameof(Creator))]

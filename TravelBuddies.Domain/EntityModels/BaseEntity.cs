@@ -2,7 +2,7 @@
 {
 	using System.ComponentModel.DataAnnotations;
 
-	public abstract class BaseEntity<T> : IChangeInfo
+	public abstract class BaseEntity<T> : IActionInfo
 	{
 		[Key]
 		public T? Id { get; set; }

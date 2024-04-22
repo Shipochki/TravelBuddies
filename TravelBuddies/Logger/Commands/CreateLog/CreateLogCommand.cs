@@ -2,13 +2,13 @@
 {
     using MediatR;
 
-	public record CreateLogCommand : IRequest<Task>
+	public class CreateLogCommand : IRequest<Task>
 	{
         public CreateLogCommand(string message)
         {
             Message = message;
         }
 
-        public required string Message { get; set; }
+        public string Message { get; set; } 
     }
 }
