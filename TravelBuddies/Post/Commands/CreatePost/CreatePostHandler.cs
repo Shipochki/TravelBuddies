@@ -1,41 +1,46 @@
 ﻿namespace TravelBuddies.Application.Post.Commands.CreatePost
 {
 	using MediatR;
+	using Microsoft.AspNetCore.Identity;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
 	using TravelBuddies.Domain.Enums;
+	using static TravelBuddies.Application.Exceptions.ExceptionMessages;
 
 	public class CreatePostHandler : BaseHandler, IRequestHandler<CreatePostCommand, Post>
 	{
-		public CreatePostHandler(IRepository repository) 
-			: base(repository)
+		public CreatePostHandler(
+			IRepository repository
+			, UserManager<ApplicationUser> userManager
+			, RoleManager<IdentityRole> roleManager)
+			: base(repository, userManager, roleManager)
 		{
 		}
 
 		public async Task<Post> Handle(CreatePostCommand request, CancellationToken cancellationToken)
 		{
-			ApplicationUser? creator = await _repository.GetByIdAsync<ApplicationUser>(request.CreatorId);
+			ApplicationUser? creator = await _userManager.FindByIdAsync(request.CreatorId);
 
 			if (creator == null)
 			{
-				throw new ApplicationUserNotFoundException($"Non-extitent User with Id {request.CreatorId}");
+				throw new ApplicationUserNotFoundException(string.Format(ApplicationUserNotFoundMessage, request.CreatorId));
 			}
 
 			City? fromDestination = await _repository.GetByIdAsync<City>(request.FromDestinationCityId);
 
 			if (fromDestination == null)
 			{
-				throw new CityNotFoundException($"Non-extitent City with Id {request.FromDestinationCityId}");
+				throw new CityNotFoundException(string.Format(CityNotFoundMessage, request.FromDestinationCityId));
 			}
 
 			City? toDestination = await _repository.GetByIdAsync<City>(request.ToDestinationCityId);
 
 			if (toDestination == null)
 			{
-				throw new CityNotFoundException($"Non-extitent City with Id {request.ToDestinationCityId}");
+				throw new CityNotFoundException(string.Format(CityNotFoundMessage, request.ToDestinationCityId));
 			}
 
 			Post post = new Post()

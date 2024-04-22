@@ -1,16 +1,21 @@
 ﻿namespace TravelBuddies.Application.Review.Commands.UpdateReview
 {
 	using MediatR;
+	using Microsoft.AspNetCore.Identity;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
+	using static TravelBuddies.Application.Exceptions.ExceptionMessages;
 
 	public class UpdateReviewHandler : BaseHandler, IRequestHandler<UpdateReviewCommand, Review>
 	{
-		public UpdateReviewHandler(IRepository repository) 
-			: base(repository)
+		public UpdateReviewHandler(
+			IRepository repository
+			, UserManager<ApplicationUser> userManager
+			, RoleManager<IdentityRole> roleManager)
+			: base(repository, userManager, roleManager)
 		{
 		}
 
@@ -20,12 +25,12 @@
 
 			if (review == null)
 			{
-				throw new ReviewNotFoundException($"Non-extitent Review with Id {request.CreatorId}");
+				throw new ReviewNotFoundException(string.Format(ReviewNotFoundMessage, request.Id));
 			}
 
 			if (review.CreatorId != request.CreatorId)
 			{
-				throw new ApplicationUserNotCreatorException($"User with Id {request.CreatorId} is not creator of review");
+				throw new ApplicationUserNotCreatorException(string.Format(ApplicationUserNotCreatorMessage, request.CreatorId));
 			}
 
 			review.Text = request.Text;

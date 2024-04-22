@@ -1,15 +1,20 @@
 ﻿namespace TravelBuddies.Application.Post.Commands.DeletePost
 {
 	using MediatR;
+	using Microsoft.AspNetCore.Identity;
 	using System.Threading;
 	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
+	using static TravelBuddies.Application.Exceptions.ExceptionMessages;
 
 	public class DeletePostHandler : BaseHandler, IRequestHandler<DeletePostCommand, Task>
 	{
-		public DeletePostHandler(IRepository repository) 
-			: base(repository)
+		public DeletePostHandler(
+			IRepository repository
+			, UserManager<ApplicationUser> userManager
+			, RoleManager<IdentityRole> roleManager)
+			: base(repository, userManager, roleManager)
 		{
 		}
 
@@ -19,12 +24,12 @@
 
 			if (post == null)
 			{
-				throw new PostNotFoundException($"Non-extitent Post with Id {request.PostId}");
+				throw new PostNotFoundException(string.Format(PostNotFoundMessage, request.PostId));
 			}
 
 			if (post.CreatorId != request.CreatorId)
 			{
-				throw new ApplicationUserNotCreatorException($"User with Id {request.CreatorId} is not creator of post");
+				throw new ApplicationUserNotCreatorException(string.Format(ApplicationUserNotCreatorMessage, request.CreatorId));
 			}
 
 			post.IsDeleted = true;

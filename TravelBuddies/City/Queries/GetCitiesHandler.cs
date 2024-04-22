@@ -1,6 +1,7 @@
 ﻿namespace TravelBuddies.Application.City.Queries
 {
 	using MediatR;
+	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 	using System.Threading;
 	using System.Threading.Tasks;
@@ -12,8 +13,11 @@
 		private List<City> _cities;
 		private DateTime _loaded;
 
-		public GetCitiesHandler(IRepository repository) 
-			: base(repository)
+		public GetCitiesHandler(
+			IRepository repository
+			, UserManager<ApplicationUser> userManager
+			, RoleManager<IdentityRole> roleManager)
+			: base(repository, userManager, roleManager)
 		{
 			_cities = new List<City>();
 			_loaded = new DateTime();

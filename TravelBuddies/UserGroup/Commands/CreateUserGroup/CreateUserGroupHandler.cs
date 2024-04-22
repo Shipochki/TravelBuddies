@@ -1,32 +1,38 @@
 ﻿namespace TravelBuddies.Application.UserGroup.Commands.CreateUserGroup
 {
 	using MediatR;
+	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 	using System.Threading;
 	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
+	using static TravelBuddies.Application.Exceptions.ExceptionMessages;
 
 	public class CreateUserGroupHandler : BaseHandler, IRequestHandler<CreateUserGroupCommand, Task>
 	{
-		public CreateUserGroupHandler(IRepository repository) : base(repository)
+		public CreateUserGroupHandler(
+			IRepository repository
+			, UserManager<ApplicationUser> userManager
+			, RoleManager<IdentityRole> roleManager)
+			: base(repository, userManager, roleManager)
 		{
 		}
 
 		public async Task<Task> Handle(CreateUserGroupCommand request, CancellationToken cancellationToken)
 		{
-			ApplicationUser? user = await _repository.GetByIdAsync<ApplicationUser>(request.UserId);
+			ApplicationUser? user = await _userManager.FindByIdAsync(request.UserId);
 
 			if (user == null)
 			{
-				throw new ApplicationUserNotFoundException($"Non-extitent User with Id {request.UserId}");
+				throw new ApplicationUserNotFoundException(string.Format(ApplicationUserNotFoundMessage, request.UserId));
 			}
 
 			Group? group = await _repository.GetByIdAsync<Group>(request.GroupId);
 
 			if (group == null)
 			{
-				throw new GroupNotFoundException($"Non-extitent Group with Id {request.GroupId}");
+				throw new GroupNotFoundException(string.Format(GroupNotFoundMessage, request.GroupId));
 			}
 
 			UserGroup? userGroup = await _repository
@@ -34,7 +40,8 @@
 
 			if (userGroup != null)
 			{
-				throw new ApplicationUserAllreadyInGroupException($"User with Id {user.Id} is allready in Group with Id {group.Id}");
+				throw new ApplicationUserAllreadyInGroupException(
+					string.Format(ApplicationUserAllreadyInGroupMessage, request.UserId, request.GroupId));
 			}
 
 			Post? post = await _repository.GetByIdAsync<Post>(group.PostId);
@@ -45,7 +52,7 @@
 
 			if(post.FreeSeats == userGroups.Count)
 			{
-				throw new NotAvailableSeatsInPostException($"No available seats in group with id {request.GroupId}");
+				throw new NotAvailableSeatsInPostException(string.Format(NotAvailableSeatsInPostMessage, post.Id));
 			}
 
 			userGroup = new UserGroup()

@@ -1,6 +1,7 @@
 ﻿namespace TravelBuddies.Application.Review.Queries.GetReviewsByReciverId
 {
 	using MediatR;
+	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 	using System.Threading;
 	using System.Threading.Tasks;
@@ -9,8 +10,11 @@
 
 	public class GetReviewsByReciverIdHandler : BaseHandler, IRequestHandler<GetReviewsByReciverIdQuery, List<Review>>
 	{
-		public GetReviewsByReciverIdHandler(IRepository repository) 
-			: base(repository)
+		public GetReviewsByReciverIdHandler(
+			IRepository repository
+			, UserManager<ApplicationUser> userManager
+			, RoleManager<IdentityRole> roleManager)
+			: base(repository, userManager, roleManager)
 		{
 		}
 

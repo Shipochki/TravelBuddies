@@ -1,9 +1,9 @@
-﻿namespace TravelBuddies.Application.CustomLogger
+﻿namespace TravelBuddies.Infrastructure.CustomLogger
 {
-	using MediatR;
-	using TravelBuddies.Application.CustomLogger.Interfaces;
+    using MediatR;
+    using TravelBuddies.Application.Interfaces.CustomLogger;
 
-	public class LoggerFactory : ILoggerFactory
+    public class LoggerFactory : ILoggerFactory
 	{
 		private readonly string _filePath;
 		private readonly IMediator _mediator;
@@ -14,12 +14,12 @@
 			_mediator = mediator;
         }
 
-		public DatabaseLogger CreateDatabaseLoggerAsync()
+		public ILogger CreateDatabaseLoggerAsync()
 		{
 			return new DatabaseLogger(_mediator);
 		}
 
-		public FileLogger CreateFileLoggerAsync(string categoryName)
+		public ILogger CreateFileLoggerAsync(string categoryName)
 		{
 			return new FileLogger(categoryName, _filePath);
 		}

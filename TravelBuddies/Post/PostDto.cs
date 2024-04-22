@@ -24,7 +24,7 @@
 
 		public int PaymentType { get; set; }
 
-		public int CreatorId { get; set; }
+		public required string CreatorId { get; set; }
 
 		public int GroupId { get; set; }
 	}

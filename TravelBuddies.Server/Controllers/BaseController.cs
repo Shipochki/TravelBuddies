@@ -2,11 +2,11 @@
 {
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
-    using TravelBuddies.Application.CustomLogger;
-    using TravelBuddies.Application.CustomLogger.Interfaces;
-	using TravelBuddies.Presentation.Constants;
+    using TravelBuddies.Infrastructure.CustomLogger;
+    using TravelBuddies.Application.Interfaces.CustomLogger;
+    using TravelBuddies.Presentation.Constants;
 
-	[Route("api/[controller]")]
+    [Route("api/[controller]")]
 	[ApiController]
 	public abstract class BaseController : ControllerBase
 	{

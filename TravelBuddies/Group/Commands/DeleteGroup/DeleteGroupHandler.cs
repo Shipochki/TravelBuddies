@@ -1,15 +1,20 @@
 ﻿namespace TravelBuddies.Application.Group.Commands.DeleteGroup
 {
 	using MediatR;
+	using Microsoft.AspNetCore.Identity;
 	using System.Threading;
 	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
+	using static TravelBuddies.Application.Exceptions.ExceptionMessages;
 
 	public class DeleteGroupHandler : BaseHandler, IRequestHandler<DeleteGroupCommand, Task>
 	{
-		public DeleteGroupHandler(IRepository repository) 
-			: base(repository)
+		public DeleteGroupHandler(
+			IRepository repository
+			, UserManager<ApplicationUser> userManager
+			, RoleManager<IdentityRole> roleManager)
+			: base(repository, userManager, roleManager)
 		{
 		}
 
@@ -19,12 +24,12 @@
 
 			if (group == null)
 			{
-				throw new GroupNotFoundException($"Non-extitent Group with Id {request.Id}");
+				throw new GroupNotFoundException(string.Format(GroupNotFoundMessage, request.Id));
 			}
 
 			if (group.CreatorId != request.CreatorId)
 			{
-				throw new ApplicationUserNotCreatorException($"User with Id {request.CreatorId} is not creator of group");
+				throw new ApplicationUserNotCreatorException(string.Format(ApplicationUserNotCreatorMessage, request.CreatorId));
 			}
 
 			group.IsDeleted = true;

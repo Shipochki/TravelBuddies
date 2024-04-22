@@ -1,15 +1,15 @@
 ﻿namespace TravelBuddies.Presentation.Controllers
 {
-	using MediatR;
-	using Microsoft.AspNetCore.Authorization;
-	using Microsoft.AspNetCore.Identity;
-	using Microsoft.AspNetCore.Mvc;
-	using TravelBuddies.Domain.Entities;
-	using TravelBuddies.Domain.Enums;
-	using TravelBuddies.Presentation.Constants;
-	using TravelBuddies.Presentation.DTOs;
+    using MediatR;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using TravelBuddies.Domain.Entities;
+    using TravelBuddies.Domain.Enums;
+    using TravelBuddies.Presentation.Constants;
+    using TravelBuddies.Presentation.DTOs.User;
 
-	[Route("api/[controller]")]
+    [Route("api/[controller]")]
 	[ApiController]
 	public class UserController : BaseController
 	{

@@ -1,14 +1,20 @@
 ﻿namespace TravelBuddies.Application.Post.Commands.UpdatePost
 {
 	using MediatR;
+	using Microsoft.AspNetCore.Identity;
 	using System.Threading;
 	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
+	using static TravelBuddies.Application.Exceptions.ExceptionMessages;
 
 	public class UpdatePostHandler : BaseHandler, IRequestHandler<UpdatePostCommand, Task>
 	{
-		public UpdatePostHandler(IRepository repository) : base(repository)
+		public UpdatePostHandler(
+			IRepository repository
+			, UserManager<ApplicationUser> userManager
+			, RoleManager<IdentityRole> roleManager)
+			: base(repository, userManager, roleManager)
 		{
 		}
 
@@ -18,21 +24,21 @@
 
 			if (post == null)
 			{
-				throw new PostNotFoundException($"Non-extitent Post with Id {request.Id}");
+				throw new PostNotFoundException(string.Format(PostNotFoundMessage, request.Id));
 			}
 
 			City? fromDestination = await _repository.GetByIdAsync<City>(request.FromDestinationCityId);
 
 			if (fromDestination == null)
 			{
-				throw new CityNotFoundException($"Non-extitent City with Id {request.FromDestinationCityId}");
+				throw new CityNotFoundException(string.Format(CityNotFoundMessage, request.FromDestinationCityId));
 			}
 
 			City? toDestination = await _repository.GetByIdAsync<City>(request.ToDestinationCityId);
 
 			if (toDestination == null)
 			{
-				throw new CityNotFoundException($"Non-extitent City with Id {request.ToDestinationCityId}");
+				throw new CityNotFoundException(string.Format(CityNotFoundMessage, request.ToDestinationCityId));
 			}
 
 			post.FromDestinationCity = fromDestination;

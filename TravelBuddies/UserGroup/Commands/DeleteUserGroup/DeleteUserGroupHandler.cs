@@ -1,14 +1,20 @@
 ﻿namespace TravelBuddies.Application.UserGroup.Commands.DeleteUserGroup
 {
 	using MediatR;
+	using Microsoft.AspNetCore.Identity;
 	using System.Threading;
 	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
+	using static TravelBuddies.Application.Exceptions.ExceptionMessages;
 
 	public class DeleteUserGroupHandler : BaseHandler, IRequestHandler<DeleteUserGroupCommand, Task>
 	{
-		public DeleteUserGroupHandler(IRepository repository) : base(repository)
+		public DeleteUserGroupHandler(
+			IRepository repository
+			, UserManager<ApplicationUser> userManager
+			, RoleManager<IdentityRole> roleManager)
+			: base(repository, userManager, roleManager)
 		{
 		}
 
@@ -19,7 +25,8 @@
 
 			if(userGroup == null)
 			{
-				throw new ApplicationUserNotInGroupException($"User with Id {request.UserId} not int Group with Id {request.GroupId}");
+				throw new ApplicationUserNotInGroupException(
+					string.Format(ApplicationUserNotInGroupMessage, request.UserId, request.GroupId));
 			}
 
 			_repository.Delete(userGroup);

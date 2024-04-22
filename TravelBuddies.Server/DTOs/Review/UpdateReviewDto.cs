@@ -1,10 +1,13 @@
-﻿namespace TravelBuddies.Presentation.DTOs
+﻿namespace TravelBuddies.Presentation.DTOs.Review
 {
 	using System.ComponentModel.DataAnnotations;
 	using static TravelBuddies.Domain.DataConstants.ReviewConstants;
 
-	public class CreateReviewDto
+	public class UpdateReviewDto
 	{
+		[Required]
+		public int Id { get; set; }
+
 		public required string CreatorId { get; set; }
 
 		public required string ReciverId { get; set; }

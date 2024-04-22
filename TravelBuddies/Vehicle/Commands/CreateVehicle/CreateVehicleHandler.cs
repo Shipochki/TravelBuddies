@@ -1,26 +1,32 @@
 ﻿namespace TravelBuddies.Application.Vehicle.Commands.CreateVehicle
 {
 	using MediatR;
+	using Microsoft.AspNetCore.Identity;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
 	using TravelBuddies.Domain.Enums;
+	using static TravelBuddies.Application.Exceptions.ExceptionMessages;
 
 	public class CreateVehicleHandler : BaseHandler, IRequestHandler<CreateVehicleCommand, Vehicle>
 	{
-		public CreateVehicleHandler(IRepository repository) : base(repository)
+		public CreateVehicleHandler(
+			IRepository repository
+			, UserManager<ApplicationUser> userManager
+			, RoleManager<IdentityRole> roleManager)
+			: base(repository, userManager, roleManager)
 		{
 		}
 
 		public async Task<Vehicle> Handle(CreateVehicleCommand request, CancellationToken cancellationToken)
 		{
-			ApplicationUser? owner = await _repository.GetByIdAsync<ApplicationUser>(request.OwnerId);
+			ApplicationUser? owner = await _userManager.FindByIdAsync(request.OwnerId);
 
 			if (owner == null)
 			{
-				throw new ApplicationUserNotFoundException($"User with id {request.OwnerId} not found.");
+				throw new ApplicationUserNotFoundException(string.Format(ApplicationUserNotFoundMessage, request.OwnerId));
 			}
 
 			Vehicle vehicle = new Vehicle()

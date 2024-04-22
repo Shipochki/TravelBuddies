@@ -1,33 +1,37 @@
 ﻿namespace TravelBuddies.Application.Group.Commands.CreateGroup
 {
 	using MediatR;
+	using Microsoft.AspNetCore.Identity;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
+	using static TravelBuddies.Application.Exceptions.ExceptionMessages;
 
 	public class CreateGroupHandler : BaseHandler, IRequestHandler<CreateGroupCommand, Group>
 	{
-		public CreateGroupHandler(IRepository repository) 
-			: base(repository)
+		public CreateGroupHandler(IRepository repository
+			, UserManager<ApplicationUser> userManager
+			, RoleManager<IdentityRole> roleManager)
+			: base(repository, userManager, roleManager)
 		{
 		}
 
 		public async Task<Group> Handle(CreateGroupCommand request, CancellationToken cancellationToken)
 		{
-			ApplicationUser? creator = await _repository.GetByIdAsync<ApplicationUser>(request.CreatorId);
+			ApplicationUser? creator = await _userManager.FindByIdAsync(request.CreatorId);
 
 			if (creator == null)
 			{
-				throw new ApplicationUserNotFoundException($"Non-extitent User with Id {request.CreatorId}");
+				throw new ApplicationUserNotFoundException(string.Format(ApplicationUserNotFoundMessage, request.CreatorId));
 			}
 
 			Post? post = await _repository.GetByIdAsync<Post>(request.PostId);
 
 			if (post == null)
 			{
-				throw new PostNotFoundException($"Non-extitent Post with Id {request.PostId}");
+				throw new PostNotFoundException(string.Format(PostNotFoundMessage, request.PostId));
 			}
 
 			Group group = new Group()
