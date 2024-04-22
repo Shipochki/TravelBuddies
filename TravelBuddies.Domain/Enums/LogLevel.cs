@@ -1,4 +1,4 @@
-﻿namespace TravelBuddies.Application.CustomLogger.Enums
+﻿namespace TravelBuddies.Domain.Enums
 {
     public enum LogLevel
     {

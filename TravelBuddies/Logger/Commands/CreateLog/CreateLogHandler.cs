@@ -18,6 +18,7 @@
 			{
 				Message = request.Message,
 				CreatedOn = DateTime.Now,
+				LogLevel = request.Level,
 			};
 
 			await _repository.AddAsync(log);

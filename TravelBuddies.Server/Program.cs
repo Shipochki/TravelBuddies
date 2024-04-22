@@ -26,8 +26,8 @@ namespace TravelBuddies.Server
 				.AddEntityFrameworkStores<TravelBuddiesDbContext>()
 				.AddDefaultTokenProviders();
 
-			builder.Services.AddScoped<UserManager<ApplicationUser>>();
-			builder.Services.AddScoped<SignInManager<ApplicationUser>>();
+			//builder.Services.AddScoped<UserManager<ApplicationUser>>();
+			//builder.Services.AddScoped<SignInManager<ApplicationUser>>();
 
 			// Add services to the container.
 			builder.Services.AddAuthorization();

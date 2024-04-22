@@ -1,15 +1,15 @@
 ﻿namespace TravelBuddies.Application.CustomLogger
 {
 	using System.Threading.Tasks;
-    using TravelBuddies.Application.CustomLogger.Enums;
     using TravelBuddies.Application.CustomLogger.Interfaces;
+	using TravelBuddies.Domain.Enums;
 
-	public class Logger : ILogger
+	public class FileLogger : ILogger
 	{
         private readonly string _categoryName;
         private readonly string _filePath;
 
-        public Logger(string categoryName, string filePath)
+        public FileLogger(string categoryName, string filePath)
         {
             _categoryName = categoryName;
             _filePath = filePath;
