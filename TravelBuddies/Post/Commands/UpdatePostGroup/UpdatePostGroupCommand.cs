@@ -2,7 +2,7 @@
 {
 	using MediatR;
 
-	public class UpdatePostGroupCommand : IRequest<Task>
+	public record UpdatePostGroupCommand : IRequest<Task>
 	{
         public UpdatePostGroupCommand(int postId, int groupId)
         {

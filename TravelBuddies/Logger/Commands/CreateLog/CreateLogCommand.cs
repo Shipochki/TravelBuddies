@@ -3,7 +3,7 @@
     using MediatR;
 	using TravelBuddies.Domain.Enums;
 
-	public class CreateLogCommand : IRequest<Task>
+	public record CreateLogCommand : IRequest<Task>
 	{
         public CreateLogCommand(string message, LogLevel level)
         {

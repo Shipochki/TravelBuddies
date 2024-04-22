@@ -1,10 +1,10 @@
-﻿using TravelBuddies.Application.Repository;
-
-namespace TravelBuddies.Application
+﻿namespace TravelBuddies.Application
 {
+    using TravelBuddies.Application.Repository;
+
 	public abstract class BaseHandler
 	{
-		protected IRepository _repository { get; set; }
+        protected readonly IRepository _repository;
 
         protected BaseHandler(IRepository repository)
         {

@@ -18,6 +18,7 @@
 
 		public static class ReviewConstants
 		{
+			public const int MinLengthText = 3;
 			public const int MaxLengthText = 2000;
 		}
 

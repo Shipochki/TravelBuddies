@@ -90,12 +90,27 @@
 
 			var result = await _userManager.AddToRoleAsync(applicationUser, ApplicationRoles.Driver);
 
+			LogLevel logLevel;
+			string message;
+
 			if(!result.Succeeded)
 			{
-				return BadRequest("Failed to become Driver");
+				logLevel = LogLevel.Error;
+				message = "Failed to become Driver";
+
+				await _fileLogger.LogAsync(logLevel, message);
+				await _databaseLogger.LogAsync(logLevel, message);
+
+				return BadRequest(message);
 			}
 
-			return Ok("Succesfully became Driver");
+			logLevel = LogLevel.Information;
+			message = "Succesfully became Driver";
+
+			await _fileLogger.LogAsync(logLevel, message);
+			await _databaseLogger.LogAsync(logLevel, message);
+
+			return Ok(message);
 		}
 
 		private async Task SeedDb()

@@ -2,7 +2,7 @@
 {
     using MediatR;
 
-	public class DeleteVehicleCommand : IRequest<Task>
+	public record DeleteVehicleCommand : IRequest<Task>
 	{
         public DeleteVehicleCommand(int vehicleId, string ownerId)
         {

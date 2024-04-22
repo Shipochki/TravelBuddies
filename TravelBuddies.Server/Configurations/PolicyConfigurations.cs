@@ -16,6 +16,10 @@
 				{
 					policy.RequireRole(ApplicationRoles.Client);
 				});
+				options.AddPolicy(ApplicationPolicies.ClientAndDriver, policy =>
+				{
+					policy.RequireRole(ApplicationRoles.Client, ApplicationRoles.Driver);
+				});
 			});
 
 			return service;

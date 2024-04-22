@@ -2,7 +2,7 @@
 {
 	using MediatR;
 
-	public class CompletePostCommand : IRequest<Task>
+	public record CompletePostCommand : IRequest<Task>
 	{
         public CompletePostCommand(int postId, string creatorId)
         {

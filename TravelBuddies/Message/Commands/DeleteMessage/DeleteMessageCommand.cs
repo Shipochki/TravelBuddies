@@ -2,7 +2,7 @@
 {
 	using MediatR;
 
-	public class DeleteMessageCommand : IRequest<Task>
+	public record DeleteMessageCommand : IRequest<Task>
 	{
         public DeleteMessageCommand(int messageId, string creatorId)
         {
