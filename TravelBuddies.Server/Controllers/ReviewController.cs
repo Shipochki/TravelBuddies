@@ -1,16 +1,18 @@
 ﻿namespace TravelBuddies.Presentation.Controllers
 {
-    using MediatR;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Mvc;
-    using TravelBuddies.Application.Exceptions;
-    using TravelBuddies.Application.Review.Queries.GetReviewsByReciverId;
-    using TravelBuddies.Domain.Entities;
-    using TravelBuddies.Domain.Enums;
-    using TravelBuddies.Application.Review.Commands.CreateReview;
-    using TravelBuddies.Application.Constants;
-    using TravelBuddies.Presentation.DTOs.Review;
+	using MediatR;
+	using Microsoft.AspNetCore.Authorization;
+	using Microsoft.AspNetCore.Mvc;
+	using TravelBuddies.Application.Exceptions;
+	using TravelBuddies.Application.Review.Queries.GetReviewsByReciverId;
+	using TravelBuddies.Domain.Entities;
+	using TravelBuddies.Domain.Enums;
+	using TravelBuddies.Application.Review.Commands.CreateReview;
+	using TravelBuddies.Application.Constants;
+	using TravelBuddies.Presentation.DTOs.Review;
 	using TravelBuddies.Application.Review.Commands.UpdateReview;
+	using TravelBuddies.Application.Review.Commands.DeleteReview;
+	using TravelBuddies.Presentation.Configurations;
 
 	[Route("api/[controller]")]
 	[ApiController]
@@ -33,8 +35,13 @@
 		[HttpPost]
 		[Authorize(Policy = ApplicationPolicies.ClientAndDriver)]
 		[Route("[action]")]
-		public async Task<IActionResult> CreateReview([FromBody]CreateReviewDto createReviewDto)
+		public async Task<IActionResult> CreateReview([FromBody] CreateReviewDto createReviewDto)
 		{
+			if(!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
 			LogLevel logLevel;
 			string message;
 
@@ -72,8 +79,13 @@
 		[HttpPost]
 		[Authorize(Policy = ApplicationPolicies.ClientAndDriver)]
 		[Route("[action]")]
-		public async Task<IActionResult> UpdateReview([FromBody]UpdateReviewDto updateReviewDto)
+		public async Task<IActionResult> UpdateReview([FromBody] UpdateReviewDto updateReviewDto)
 		{
+			if(!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
 			LogLevel logLevel;
 			string message;
 
@@ -115,6 +127,54 @@
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
 				return Unauthorized(m.Message);
+			}
+		}
+
+		[HttpPost]
+		[Route("[action]")]
+		public async Task<IActionResult> DeleteReview(int reviewId)
+		{
+			LogLevel logLevel;
+			string message;
+
+			try
+			{
+				await _mediator.Send(new DeleteReviewCommand(reviewId, User.Id()));
+
+				logLevel = LogLevel.Information;
+				message = "Review deleted succesfully";
+
+				await _fileLogger.LogAsync(logLevel, message);
+				await _databaseLogger.LogAsync(logLevel, message);
+
+				return Ok();
+			}
+			catch (ReviewNotFoundException m)
+			{
+				logLevel = LogLevel.Error;
+
+				await _fileLogger.LogAsync(logLevel, m.Message);
+				await _databaseLogger.LogAsync(logLevel, m.Message);
+
+				return BadRequest(m.Message);
+			}
+			catch (ApplicationUserNotCreatorException m)
+			{
+				logLevel = LogLevel.Error;
+
+				await _fileLogger.LogAsync(logLevel, m.Message);
+				await _databaseLogger.LogAsync(logLevel, m.Message);
+
+				return Unauthorized();
+			}
+			catch (ApplicationUserNotFoundException m)
+			{
+				logLevel = LogLevel.Error;
+
+				await _fileLogger.LogAsync(logLevel, m.Message);
+				await _databaseLogger.LogAsync(logLevel, m.Message);
+
+				return BadRequest(m.Message);
 			}
 		}
 	}

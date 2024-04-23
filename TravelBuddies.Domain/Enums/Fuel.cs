@@ -2,8 +2,8 @@
 {
 	public enum Fuel
 	{
-		Diesel,
-		Gasoline,
-		Electric
+		Diesel = 0,
+		Gasoline = 1,
+		Electric = 3
 	}
 }

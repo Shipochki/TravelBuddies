@@ -2,31 +2,22 @@
 {
     using MediatR;
     using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-    using TravelBuddies.Domain.Entities;
     using TravelBuddies.Domain.Enums;
     using TravelBuddies.Application.Constants;
     using TravelBuddies.Presentation.DTOs.User;
 	using TravelBuddies.Application.User.Commands.CreateApplicationUser;
 	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.User.Commands.BecomeDriver;
+	using TravelBuddies.Application.User.Commands.DeleteApplicationUser;
 
 	[Route("api/[controller]")]
 	[ApiController]
 	public class UserController : BaseController
 	{
-		private readonly UserManager<ApplicationUser> _userManager;
-		private readonly RoleManager<IdentityRole> _roleManager;
-
-		public UserController(
-			IMediator mediator
-			, UserManager<ApplicationUser> userManager
-			, RoleManager<IdentityRole> roleManager) : base(mediator)
+		public UserController(IMediator mediator) 
+			: base(mediator)
 		{
-			_userManager = userManager;
-			_roleManager = roleManager;
-			//SeedDb().Wait();
 		}
 
 		[HttpPost]
@@ -43,6 +34,11 @@
 				Country = userRegisterDto.Country,
 				Password = userRegisterDto.Password,
 			};
+
+			if(!ModelState.IsValid) 
+			{
+				return BadRequest(ModelState);
+			}
 
 			LogLevel logLevel;
 			string message;
@@ -119,40 +115,34 @@
 			}
 		}
 
-		private async Task SeedDb()
+		[HttpPost]
+		[Authorize]
+		[Route("[action]")]
+		public async Task<IActionResult> Delete(string userId)
 		{
-			// Ensure "client" role exists
-			if (!await _roleManager.RoleExistsAsync(ApplicationRoles.Client))
+			LogLevel logLevel;
+			string message;
+
+			try
 			{
-				await _roleManager.CreateAsync(new IdentityRole(ApplicationRoles.Client));
+				await _mediator.Send(new DeleteApplicationUserCommand(userId));
+
+				logLevel = LogLevel.Information;
+				message = "Succesfully deleted user";
+
+				await _fileLogger.LogAsync(logLevel, message);
+				await _databaseLogger.LogAsync(logLevel, message);
+
+				return Ok(message);
 			}
-
-			// Ensure "driver" role exists
-			if (!await _roleManager.RoleExistsAsync(ApplicationRoles.Driver))
+			catch (ApplicationUserNotFoundException m)
 			{
-				await _roleManager.CreateAsync(new IdentityRole(ApplicationRoles.Driver));
-			}
+				logLevel = LogLevel.Error;
 
-			// Ensure "admin" role exists
-			if (!await _roleManager.RoleExistsAsync(ApplicationRoles.Admin))
-			{
-				await _roleManager.CreateAsync(new IdentityRole(ApplicationRoles.Admin));
-			}
+				await _fileLogger.LogAsync(logLevel, m.Message);
+				await _databaseLogger.LogAsync(logLevel, m.Message);
 
-			// Ensure "admin" user exists
-			if(await _userManager.FindByEmailAsync("admin@gmail.com") == null)
-			{
-				ApplicationUser applicationUser = new ApplicationUser()
-				{
-					UserName = "admin@gmail.com",
-					Email = "admin@gmail.com",
-					FirstName = "Admin",
-					LastName = "Administrator"
-				};
-
-				await _userManager.CreateAsync(applicationUser, "Password0!");
-
-				await _userManager.AddToRoleAsync(applicationUser, ApplicationRoles.Admin);
+				return BadRequest(m.Message);
 			}
 		}
 	}

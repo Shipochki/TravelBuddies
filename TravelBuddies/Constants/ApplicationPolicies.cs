@@ -7,5 +7,9 @@
 		public const string OnlyClient = "OnlyClient";
 
 		public const string ClientAndDriver = "ClientAndDriver";
+
+		public const string OnlyDriver = "OnlyDriver";
+
+		public const string DriverAndAdmin = "DriverAndAdmin";
 	}
 }

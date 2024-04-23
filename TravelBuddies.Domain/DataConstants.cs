@@ -50,6 +50,9 @@
 
 			public const int MaxLengthModelName = 70;
 			public const int MinLengthModelName = 1;
+
+			public const int MaxRangeFuel = 2;
+			public const int MinRangeFule = 1;
 		}
 
 		public static class VerificationEmail
