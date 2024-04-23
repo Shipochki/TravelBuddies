@@ -1,15 +1,15 @@
 ﻿namespace TravelBuddies.Application.Group.Commands.CreateGroup
 {
-	using MediatR;
-	using Microsoft.AspNetCore.Identity;
-	using System.Threading;
-	using System.Threading.Tasks;
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Repository;
-	using TravelBuddies.Domain.Entities;
-	using static TravelBuddies.Application.Exceptions.ExceptionMessages;
+    using MediatR;
+    using Microsoft.AspNetCore.Identity;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using TravelBuddies.Application.Exceptions;
+    using TravelBuddies.Application.Repository;
+    using TravelBuddies.Domain.Entities;
+    using static TravelBuddies.Application.Exceptions.Messages.ExceptionMessages;
 
-	public class CreateGroupHandler : BaseHandler, IRequestHandler<CreateGroupCommand, Group>
+    public class CreateGroupHandler : BaseHandler, IRequestHandler<CreateGroupCommand, Group>
 	{
 		public CreateGroupHandler(IRepository repository
 			, UserManager<ApplicationUser> userManager

@@ -1,16 +1,16 @@
 ﻿namespace TravelBuddies.Application.Post.Commands.CreatePost
 {
-	using MediatR;
-	using Microsoft.AspNetCore.Identity;
-	using System.Threading;
-	using System.Threading.Tasks;
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Repository;
-	using TravelBuddies.Domain.Entities;
-	using TravelBuddies.Domain.Enums;
-	using static TravelBuddies.Application.Exceptions.ExceptionMessages;
+    using MediatR;
+    using Microsoft.AspNetCore.Identity;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using TravelBuddies.Application.Exceptions;
+    using TravelBuddies.Application.Repository;
+    using TravelBuddies.Domain.Entities;
+    using TravelBuddies.Domain.Enums;
+    using static TravelBuddies.Application.Exceptions.Messages.ExceptionMessages;
 
-	public class CreatePostHandler : BaseHandler, IRequestHandler<CreatePostCommand, Post>
+    public class CreatePostHandler : BaseHandler, IRequestHandler<CreatePostCommand, Post>
 	{
 		public CreatePostHandler(
 			IRepository repository

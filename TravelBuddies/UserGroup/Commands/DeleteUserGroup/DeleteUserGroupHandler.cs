@@ -1,14 +1,14 @@
 ﻿namespace TravelBuddies.Application.UserGroup.Commands.DeleteUserGroup
 {
-	using MediatR;
-	using Microsoft.AspNetCore.Identity;
-	using System.Threading;
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Repository;
-	using TravelBuddies.Domain.Entities;
-	using static TravelBuddies.Application.Exceptions.ExceptionMessages;
+    using MediatR;
+    using Microsoft.AspNetCore.Identity;
+    using System.Threading;
+    using TravelBuddies.Application.Exceptions;
+    using TravelBuddies.Application.Repository;
+    using TravelBuddies.Domain.Entities;
+    using static TravelBuddies.Application.Exceptions.Messages.ExceptionMessages;
 
-	public class DeleteUserGroupHandler : BaseHandler, IRequestHandler<DeleteUserGroupCommand, Task>
+    public class DeleteUserGroupHandler : BaseHandler, IRequestHandler<DeleteUserGroupCommand, Task>
 	{
 		public DeleteUserGroupHandler(
 			IRepository repository

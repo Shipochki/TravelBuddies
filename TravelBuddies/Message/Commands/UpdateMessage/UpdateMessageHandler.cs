@@ -1,14 +1,14 @@
 ﻿namespace TravelBuddies.Application.Message.Commands.UpdateMessage
 {
-	using MediatR;
-	using Microsoft.AspNetCore.Identity;
-	using System.Threading;
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Repository;
-	using TravelBuddies.Domain.Entities;
-	using static TravelBuddies.Application.Exceptions.ExceptionMessages;
+    using MediatR;
+    using Microsoft.AspNetCore.Identity;
+    using System.Threading;
+    using TravelBuddies.Application.Exceptions;
+    using TravelBuddies.Application.Repository;
+    using TravelBuddies.Domain.Entities;
+    using static TravelBuddies.Application.Exceptions.Messages.ExceptionMessages;
 
-	public class UpdateMessageHandler : BaseHandler, IRequestHandler<UpdateMessageCommand, Task>
+    public class UpdateMessageHandler : BaseHandler, IRequestHandler<UpdateMessageCommand, Task>
 	{
 		public UpdateMessageHandler(
 			IRepository repository

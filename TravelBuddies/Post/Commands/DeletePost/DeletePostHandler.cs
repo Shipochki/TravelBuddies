@@ -1,15 +1,15 @@
 ﻿namespace TravelBuddies.Application.Post.Commands.DeletePost
 {
-	using MediatR;
-	using Microsoft.AspNetCore.Identity;
-	using System.Threading;
-	using TravelBuddies.Application.Constants;
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Repository;
-	using TravelBuddies.Domain.Entities;
-	using static TravelBuddies.Application.Exceptions.ExceptionMessages;
+    using MediatR;
+    using Microsoft.AspNetCore.Identity;
+    using System.Threading;
+    using TravelBuddies.Application.Constants;
+    using TravelBuddies.Application.Exceptions;
+    using TravelBuddies.Application.Repository;
+    using TravelBuddies.Domain.Entities;
+    using static TravelBuddies.Application.Exceptions.Messages.ExceptionMessages;
 
-	public class DeletePostHandler : BaseHandler, IRequestHandler<DeletePostCommand, Task>
+    public class DeletePostHandler : BaseHandler, IRequestHandler<DeletePostCommand, Task>
 	{
 		public DeletePostHandler(
 			IRepository repository

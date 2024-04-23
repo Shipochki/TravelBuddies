@@ -1,16 +1,16 @@
 ﻿namespace TravelBuddies.Application.Message.Queries.GetMessagesByGroupId
 {
-	using MediatR;
-	using Microsoft.AspNetCore.Identity;
-	using Microsoft.EntityFrameworkCore;
-	using System.Threading;
-	using System.Threading.Tasks;
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Repository;
-	using TravelBuddies.Domain.Entities;
-	using static TravelBuddies.Application.Exceptions.ExceptionMessages;
+    using MediatR;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using TravelBuddies.Application.Exceptions;
+    using TravelBuddies.Application.Repository;
+    using TravelBuddies.Domain.Entities;
+    using static TravelBuddies.Application.Exceptions.Messages.ExceptionMessages;
 
-	public class GetMessagesByGroupIdHandler : BaseHandler, IRequestHandler<GetMessagesByGroupIdQuery, IEnumerable<Message>>
+    public class GetMessagesByGroupIdHandler : BaseHandler, IRequestHandler<GetMessagesByGroupIdQuery, IEnumerable<Message>>
 	{
 		public GetMessagesByGroupIdHandler(
 			IRepository repository

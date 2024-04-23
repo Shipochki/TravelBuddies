@@ -1,15 +1,15 @@
 ﻿namespace TravelBuddies.Application.Message.Commands.CreateMessage
 {
-	using MediatR;
-	using Microsoft.AspNetCore.Identity;
-	using System.Threading;
-	using System.Threading.Tasks;
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Repository;
-	using TravelBuddies.Domain.Entities;
-	using static TravelBuddies.Application.Exceptions.ExceptionMessages;
+    using MediatR;
+    using Microsoft.AspNetCore.Identity;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using TravelBuddies.Application.Exceptions;
+    using TravelBuddies.Application.Repository;
+    using TravelBuddies.Domain.Entities;
+    using static TravelBuddies.Application.Exceptions.Messages.ExceptionMessages;
 
-	public class CreateMessageHandler : BaseHandler, IRequestHandler<CreateMessageCommand, Message>
+    public class CreateMessageHandler : BaseHandler, IRequestHandler<CreateMessageCommand, Message>
 	{
 		public CreateMessageHandler(
 			IRepository repository

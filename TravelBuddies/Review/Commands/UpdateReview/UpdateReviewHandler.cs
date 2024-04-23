@@ -1,15 +1,15 @@
 ﻿namespace TravelBuddies.Application.Review.Commands.UpdateReview
 {
-	using MediatR;
-	using Microsoft.AspNetCore.Identity;
-	using System.Threading;
-	using System.Threading.Tasks;
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Repository;
-	using TravelBuddies.Domain.Entities;
-	using static TravelBuddies.Application.Exceptions.ExceptionMessages;
+    using MediatR;
+    using Microsoft.AspNetCore.Identity;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using TravelBuddies.Application.Exceptions;
+    using TravelBuddies.Application.Repository;
+    using TravelBuddies.Domain.Entities;
+    using static TravelBuddies.Application.Exceptions.Messages.ExceptionMessages;
 
-	public class UpdateReviewHandler : BaseHandler, IRequestHandler<UpdateReviewCommand, Review>
+    public class UpdateReviewHandler : BaseHandler, IRequestHandler<UpdateReviewCommand, Review>
 	{
 		public UpdateReviewHandler(
 			IRepository repository

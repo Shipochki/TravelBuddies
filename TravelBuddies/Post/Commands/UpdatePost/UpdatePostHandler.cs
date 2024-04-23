@@ -1,14 +1,14 @@
 ﻿namespace TravelBuddies.Application.Post.Commands.UpdatePost
 {
-	using MediatR;
-	using Microsoft.AspNetCore.Identity;
-	using System.Threading;
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Repository;
-	using TravelBuddies.Domain.Entities;
-	using static TravelBuddies.Application.Exceptions.ExceptionMessages;
+    using MediatR;
+    using Microsoft.AspNetCore.Identity;
+    using System.Threading;
+    using TravelBuddies.Application.Exceptions;
+    using TravelBuddies.Application.Repository;
+    using TravelBuddies.Domain.Entities;
+    using static TravelBuddies.Application.Exceptions.Messages.ExceptionMessages;
 
-	public class UpdatePostHandler : BaseHandler, IRequestHandler<UpdatePostCommand, Task>
+    public class UpdatePostHandler : BaseHandler, IRequestHandler<UpdatePostCommand, Task>
 	{
 		public UpdatePostHandler(
 			IRepository repository

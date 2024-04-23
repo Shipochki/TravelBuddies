@@ -8,8 +8,11 @@
     using TravelBuddies.Domain.Enums;
     using TravelBuddies.Application.Constants;
     using TravelBuddies.Presentation.DTOs.User;
+	using TravelBuddies.Application.User.Commands.CreateApplicationUser;
+	using TravelBuddies.Application.Exceptions;
+	using TravelBuddies.Application.User.Commands.BecomeDriver;
 
-    [Route("api/[controller]")]
+	[Route("api/[controller]")]
 	[ApiController]
 	public class UserController : BaseController
 	{
@@ -31,42 +34,39 @@
 		[Route("[action]")]
 		public async Task<IActionResult> Register([FromBody]UserRegisterDto userRegisterDto)
 		{
-			ApplicationUser applicationUser = new ApplicationUser()
+			CreateApplicationUserCommand command = new CreateApplicationUserCommand()
 			{
-				UserName = userRegisterDto.Email,
 				Email = userRegisterDto.Email,
 				FirstName = userRegisterDto.FirstName,
 				LastName = userRegisterDto.LastName,
 				City = userRegisterDto.City,
 				Country = userRegisterDto.Country,
+				Password = userRegisterDto.Password,
 			};
-
-			IdentityResult result = await _userManager.CreateAsync(applicationUser, userRegisterDto.Password);
 
 			LogLevel logLevel;
 			string message;
 
-			if(result.Succeeded)
+			try
 			{
+				await _mediator.Send(command);
+
 				logLevel = LogLevel.Information;
 				message = "User created successfuly.";
 
 				await _fileLogger.LogAsync(logLevel, message);
 				await _databaseLogger.LogAsync(logLevel, message);
-
-				await _userManager.AddToRoleAsync(applicationUser, ApplicationRoles.Client);
-
+				
 				return Ok(message);
 			}
-			else
+			catch (UnableToCreateApplicationUserException m)
 			{
 				logLevel = LogLevel.Error;
-				message = "User is not created successfuly.";
 
-				await _fileLogger.LogAsync(logLevel, message);
-				await _databaseLogger.LogAsync(logLevel, message);
+				await _fileLogger.LogAsync(logLevel, m.Message);
+				await _databaseLogger.LogAsync(logLevel, m.Message);
 
-				return BadRequest(result.Errors);
+				return BadRequest(m.Message);
 			}
 		}
 
@@ -75,43 +75,48 @@
 		[Route("[action]")]
 		public async Task<IActionResult> BecomeDriver(string userId)
 		{
-			ApplicationUser? applicationUser = await _userManager.FindByIdAsync(userId);
-
-			if(applicationUser == null)
-			{
-				return BadRequest("User does not exist");
-			}
-
-			IdentityRole? identityRole = await _roleManager.FindByNameAsync(ApplicationRoles.Driver);
-
-			if(identityRole == null)
-			{
-				return BadRequest("Something gone wrong");
-			}
-
-			var result = await _userManager.AddToRoleAsync(applicationUser, ApplicationRoles.Driver);
-
 			LogLevel logLevel;
 			string message;
 
-			if(!result.Succeeded)
+			try
 			{
-				logLevel = LogLevel.Error;
-				message = "Failed to become Driver";
+				await _mediator.Send(new BecomeDriverCommand(userId));
+
+				logLevel = LogLevel.Information;
+				message = "Succesfully became Driver";
 
 				await _fileLogger.LogAsync(logLevel, message);
 				await _databaseLogger.LogAsync(logLevel, message);
 
-				return BadRequest(message);
+				return Ok(message);
 			}
+			catch (ApplicationUserNotFoundException m)
+			{
+				logLevel = LogLevel.Error;
 
-			logLevel = LogLevel.Information;
-			message = "Succesfully became Driver";
+				await _fileLogger.LogAsync(logLevel, m.Message);
+				await _databaseLogger.LogAsync(logLevel, m.Message);
 
-			await _fileLogger.LogAsync(logLevel, message);
-			await _databaseLogger.LogAsync(logLevel, message);
+				return BadRequest(m.Message);
+			}
+			catch (IdentityRoleNotFoundException m)
+			{
+				logLevel = LogLevel.Error;
 
-			return Ok(message);
+				await _fileLogger.LogAsync(logLevel, m.Message);
+				await _databaseLogger.LogAsync(logLevel, m.Message);
+
+				return BadRequest(m.Message);
+			}
+			catch (UnableToAddRoleToUserException m)
+			{
+				logLevel = LogLevel.Error;
+
+				await _fileLogger.LogAsync(logLevel, m.Message);
+				await _databaseLogger.LogAsync(logLevel, m.Message);
+
+				return BadRequest(m.Message);
+			}
 		}
 
 		private async Task SeedDb()
