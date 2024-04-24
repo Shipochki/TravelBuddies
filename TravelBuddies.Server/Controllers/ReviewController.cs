@@ -36,7 +36,7 @@
 		[HttpPost]
 		[Authorize(Policy = ApplicationPolicies.ClientAndDriver)]
 		[Route("[action]")]
-		public async Task<IActionResult> CreateReview([FromBody] CreateReviewDto createReviewDto)
+		public async Task<IActionResult> Create([FromBody] CreateReviewDto createReviewDto)
 		{
 			if(!ModelState.IsValid)
 			{
@@ -80,7 +80,7 @@
 		[HttpPost]
 		[Authorize(Policy = ApplicationPolicies.ClientAndDriver)]
 		[Route("[action]")]
-		public async Task<IActionResult> UpdateReview([FromBody] UpdateReviewDto updateReviewDto)
+		public async Task<IActionResult> Update([FromBody] UpdateReviewDto updateReviewDto)
 		{
 			if(!ModelState.IsValid)
 			{
@@ -127,13 +127,13 @@
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
-				return Unauthorized(m.Message);
+				return Forbid(m.Message);
 			}
 		}
 
 		[HttpPost]
 		[Route("[action]")]
-		public async Task<IActionResult> DeleteReview(int reviewId)
+		public async Task<IActionResult> Delete(int reviewId)
 		{
 			LogLevel logLevel;
 			string message;
@@ -166,7 +166,7 @@
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
-				return Unauthorized();
+				return Forbid();
 			}
 			catch (ApplicationUserNotFoundException m)
 			{

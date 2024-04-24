@@ -64,7 +64,7 @@
 				CreatedOn = DateTime.Now,
 			};
 
-			if(post.PaymentType == PaymentType.Card || post.PaymentType == PaymentType.CashOrCard)
+			if(post.PaymentType == PaymentType.Card || post.PaymentType == PaymentType.CashAndCard)
 			{
 				//Create StripeLink
 				post.PaymentLink = string.Empty;

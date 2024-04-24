@@ -191,7 +191,7 @@
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
-				return Unauthorized(m.Message);
+				return Forbid(m.Message);
 			}
 		}
 	}

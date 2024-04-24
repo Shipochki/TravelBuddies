@@ -4,6 +4,7 @@
 	{
 		public static class MessageConstants
 		{
+			public const int MinLengthText = 1;
 			public const int MaxLengthText = 5000;
 		}
 
@@ -13,7 +14,7 @@
 			public const int MinLengthDestination = 1;
 
 			public const int MaxLengthDescription = 5000;
-			public const int MinLengthDescription = 200;
+			public const int MinLengthDescription = 50;
 		}
 
 		public static class ReviewConstants

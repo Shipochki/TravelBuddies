@@ -12,6 +12,6 @@
 
         public int MessageId { get; set; }
 
-		public required string CreatorId { get; set; }
+		public string CreatorId { get; set; }
 	}
 }

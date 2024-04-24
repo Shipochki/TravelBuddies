@@ -39,7 +39,6 @@
 
 			IdentityResult result = await _userManager.AddToRoleAsync(applicationUser, ApplicationRoles.Driver);
 
-
 			if (!result.Succeeded)
 			{
 				throw new UnableToAddRoleToUserException(

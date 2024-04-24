@@ -3,7 +3,7 @@
 	using MediatR;
 	using TravelBuddies.Domain.Entities;
 
-	public record GetMessagesByGroupIdQuery : IRequest<IEnumerable<Message>>
+	public record GetMessagesByGroupIdQuery : IRequest<List<Message>>
 	{
         public GetMessagesByGroupIdQuery(int groupId, string userId)
         {
@@ -13,6 +13,6 @@
 
         public int GroupId { get; set; }
 
-		public required string UserId { get; set; }
+		public string UserId { get; set; }
 	}
 }

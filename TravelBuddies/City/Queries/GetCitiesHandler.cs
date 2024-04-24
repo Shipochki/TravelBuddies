@@ -8,7 +8,7 @@
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
 
-	public class GetCitiesHandler : BaseHandler, IRequestHandler<GetCitiesQuery, IEnumerable<City>>
+	public class GetCitiesHandler : BaseHandler, IRequestHandler<GetCitiesQuery, List<City>>
 	{
 		private List<City> _cities;
 		private DateTime _loaded;
@@ -23,7 +23,7 @@
 			_loaded = new DateTime();
 		}
 
-		public async Task<IEnumerable<City>> Handle(GetCitiesQuery request, CancellationToken cancellationToken)
+		public async Task<List<City>> Handle(GetCitiesQuery request, CancellationToken cancellationToken)
 		{
 			if (new DateTime(_loaded.Year,
 				_loaded.Month,

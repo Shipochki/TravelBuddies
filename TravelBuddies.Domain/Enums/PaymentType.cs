@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TravelBuddies.Domain.Enums
+﻿namespace TravelBuddies.Domain.Enums
 {
 	public enum PaymentType
 	{
 		Cash = 0,
 		Card = 1,
-		CashOrCard = 2,
+		CashAndCard = 2,
 	}
 }

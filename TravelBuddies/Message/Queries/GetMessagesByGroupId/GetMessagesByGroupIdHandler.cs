@@ -10,7 +10,7 @@
     using TravelBuddies.Domain.Entities;
     using static TravelBuddies.Application.Exceptions.Messages.ExceptionMessages;
 
-    public class GetMessagesByGroupIdHandler : BaseHandler, IRequestHandler<GetMessagesByGroupIdQuery, IEnumerable<Message>>
+    public class GetMessagesByGroupIdHandler : BaseHandler, IRequestHandler<GetMessagesByGroupIdQuery, List<Message>>
 	{
 		public GetMessagesByGroupIdHandler(
 			IRepository repository
@@ -20,7 +20,7 @@
 		{
 		}
 
-		public async Task<IEnumerable<Message>> Handle(GetMessagesByGroupIdQuery request, CancellationToken cancellationToken)
+		public async Task<List<Message>> Handle(GetMessagesByGroupIdQuery request, CancellationToken cancellationToken)
 		{
 			ApplicationUser? user = await _userManager.FindByIdAsync(request.UserId);
 
@@ -49,6 +49,7 @@
 
 			List<Message> messages = await _repository
 				.All<Message>(m => m.IsDeleted == false && m.GroupId == group.Id)
+				.Include(m => m.Creator)
 				.ToListAsync();
 
 			return await Task.FromResult(messages);

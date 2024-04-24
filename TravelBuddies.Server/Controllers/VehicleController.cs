@@ -7,6 +7,7 @@
 	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Vehicle.Commands.CreateVehicle;
 	using TravelBuddies.Application.Vehicle.Commands.DeleteVehicle;
+	using TravelBuddies.Application.Vehicle.Commands.UpdateVehicle;
 	using TravelBuddies.Application.Vehicle.Queries.GetVehicleById;
 	using TravelBuddies.Domain.Entities;
 	using TravelBuddies.Domain.Enums;
@@ -106,7 +107,7 @@
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
-				return Unauthorized(m.Message);
+				return Forbid(m.Message);
 			}
 			catch (ApplicationUserNotFoundException m)
 			{
@@ -118,6 +119,58 @@
 				return NotFound(m.Message);
 			}
 			
+		}
+
+		[HttpPost]
+		[Route("[action]")]
+		[Authorize(Policy = ApplicationPolicies.OnlyDriver)]
+		public async Task<IActionResult> Update([FromBody]UpdateVehicleDto updateVehicleDto)
+		{
+			LogLevel logLevel;
+			string message;
+
+			try
+			{
+				UpdateVehicleCommand command = new UpdateVehicleCommand()
+				{
+					Id = updateVehicleDto.Id,
+					BrandName = updateVehicleDto.BrandName,
+					ModelName = updateVehicleDto.ModelName,
+					Fuel = updateVehicleDto.Fuel,
+					SeatCount = updateVehicleDto.SeatCount,
+					ACSystem = updateVehicleDto.ACSystem,
+					OwnerId = User.Id(),
+					PictureLink = updateVehicleDto.PictureLink,
+				};
+
+				await _mediator.Send(command);
+
+				logLevel = LogLevel.Information;
+				message = "Succesfully updated vehicle";
+
+				await _fileLogger.LogAsync(logLevel, message);
+				await _databaseLogger.LogAsync(logLevel, message);
+
+				return Ok(message);
+			}
+			catch (VehicleNotFoundException m)
+			{
+				logLevel = LogLevel.Error;
+
+				await _fileLogger.LogAsync(logLevel, m.Message);
+				await _databaseLogger.LogAsync(logLevel, m.Message);
+
+				return NotFound(m.Message);
+			}
+			catch (ApplicationUserNotCreatorException m)
+			{
+				logLevel = LogLevel.Error;
+
+				await _fileLogger.LogAsync(logLevel, m.Message);
+				await _databaseLogger.LogAsync(logLevel, m.Message);
+
+				return Forbid(m.Message);
+			}
 		}
 
 		[HttpGet]
