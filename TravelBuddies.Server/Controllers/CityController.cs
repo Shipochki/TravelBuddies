@@ -2,11 +2,14 @@
 {
 	using MediatR;
 	using Microsoft.AspNetCore.Authorization;
+	using Microsoft.AspNetCore.Cors;
 	using Microsoft.AspNetCore.Mvc;
 	using TravelBuddies.Application.City.Queries;
+	using TravelBuddies.Application.Constants;
 	using TravelBuddies.Domain.Entities;
 	using TravelBuddies.Presentation.DTOs.City;
 
+	[EnableCors(ApplicationCorses.AllowOrigin)]
 	[Route("api/[controller]")]
 	[ApiController]
 	[Authorize]

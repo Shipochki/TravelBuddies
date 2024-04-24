@@ -13,7 +13,9 @@
 	using TravelBuddies.Application.Review.Commands.UpdateReview;
 	using TravelBuddies.Application.Review.Commands.DeleteReview;
 	using TravelBuddies.Presentation.Configurations;
+	using Microsoft.AspNetCore.Cors;
 
+	[EnableCors(ApplicationCorses.AllowOrigin)]
 	[Route("api/[controller]")]
 	[ApiController]
 	[Authorize]

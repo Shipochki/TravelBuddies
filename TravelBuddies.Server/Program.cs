@@ -3,6 +3,7 @@ namespace TravelBuddies.Server
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 	using TravelBuddies.Application;
+	using TravelBuddies.Application.Constants;
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
 	using TravelBuddies.Infrastructure;
@@ -27,17 +28,14 @@ namespace TravelBuddies.Server
 				.AddDefaultTokenProviders()
 				.AddDefaultUI();
 
-			//builder.Services
-			//	.AddIdentityApiEndpoints<ApplicationUser>()
-			//	.AddEntityFrameworkStores<TravelBuddiesDbContext>()
-			//	.AddDefaultTokenProviders();
-
 			builder.Services.AddScoped<UserManager<ApplicationUser>>();
 			builder.Services.AddScoped<IRepository, Repository>();
 			//builder.Services.AddScoped<SignInManager<ApplicationUser>>();
 
 			// Add services to the container.
 			builder.Services.PolicyConfigure();
+			
+			builder.Services.CorsesConfigure();
 
 			builder.Services.AddControllers();
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -55,6 +53,10 @@ namespace TravelBuddies.Server
 				app.UseSwagger();
 				app.UseSwaggerUI();
 			}
+
+			app.UseRouting();
+
+			app.UseCors(ApplicationCorses.AllowOrigin);
 
 			app.UseHttpsRedirection();
 

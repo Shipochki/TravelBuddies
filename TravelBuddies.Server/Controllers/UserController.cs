@@ -10,7 +10,9 @@
 	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.User.Commands.BecomeDriver;
 	using TravelBuddies.Application.User.Commands.DeleteApplicationUser;
+	using Microsoft.AspNetCore.Cors;
 
+	[EnableCors(ApplicationCorses.AllowOrigin)]
 	[Route("api/[controller]")]
 	[ApiController]
 	public class UserController : BaseController

@@ -32,5 +32,19 @@
 
 			return service;
 		}
+
+		public static IServiceCollection CorsesConfigure(this IServiceCollection service)
+		{
+			service.AddCors(options =>
+			{
+				options.AddPolicy(ApplicationCorses.AllowOrigin,
+					builder => builder.WithOrigins("https://localhost:5173")
+					.AllowAnyMethod()
+					.AllowAnyHeader()
+					.AllowCredentials());
+			});
+
+			return service;
+		}
 	}
 }
