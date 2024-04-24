@@ -29,7 +29,8 @@
 		public async Task<IActionResult> GetAllReviewByReciverId(string reciverId)
 		{
 			List<Review> reviews = await _mediator.Send(new GetReviewsByReciverIdQuery(reciverId));
-			return Ok(reviews);
+
+			return Ok(reviews.Select(GetAllReviewsByReciverIdDto.FromReview).ToList());
 		}
 
 		[HttpPost]
@@ -63,7 +64,7 @@
 				await _fileLogger.LogAsync(logLevel, message);
 				await _databaseLogger.LogAsync(logLevel, message);
 
-				return Ok(message);
+				return Created();
 			}
 			catch (ApplicationUserNotFoundException m)
 			{
@@ -72,7 +73,7 @@
 
 				await _fileLogger.LogAsync(logLevel, message);
 				await _databaseLogger.LogAsync(logLevel, message);
-				return BadRequest(m.Message);
+				return NotFound(m.Message);
 			}
 		}
 
@@ -108,7 +109,7 @@
 				await _fileLogger.LogAsync(logLevel, message);
 				await _databaseLogger.LogAsync(logLevel, message);
 
-				return Ok(message);
+				return Created();
 			}
 			catch (ReviewNotFoundException m)
 			{
@@ -117,7 +118,7 @@
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
-				return BadRequest(m.Message);
+				return NotFound(m.Message);
 			}
 			catch (ApplicationUserNotCreatorException m)
 			{
@@ -156,7 +157,7 @@
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
-				return BadRequest(m.Message);
+				return NotFound(m.Message);
 			}
 			catch (ApplicationUserNotCreatorException m)
 			{
@@ -174,7 +175,7 @@
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
-				return BadRequest(m.Message);
+				return NotFound(m.Message);
 			}
 		}
 	}

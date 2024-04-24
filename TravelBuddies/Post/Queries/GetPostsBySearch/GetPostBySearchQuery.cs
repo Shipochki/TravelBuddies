@@ -3,7 +3,7 @@
 	using MediatR;
 	using TravelBuddies.Domain.Entities;
 
-	public record GetPostBySearchQuery : IRequest<IEnumerable<Post>>
+	public record GetPostBySearchQuery : IRequest<List<Post>>
 	{
 		public string? FromDate { get; set; }
 

@@ -4,7 +4,8 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using System.Threading;
-    using TravelBuddies.Application.Exceptions;
+	using TravelBuddies.Application.Constants;
+	using TravelBuddies.Application.Exceptions;
     using TravelBuddies.Application.Repository;
     using TravelBuddies.Domain.Entities;
     using static TravelBuddies.Application.Exceptions.Messages.ExceptionMessages;
@@ -58,7 +59,8 @@
 				.AllReadonly<UserGroup>(u => u.GroupId == request.GroupId)
 				.ToListAsync();
 
-			if(post.FreeSeats == userGroups.Count)
+			if(post.FreeSeats <= userGroups.Count 
+				&& !await _userManager.IsInRoleAsync(user, ApplicationRoles.Admin))
 			{
 				throw new NotAvailableSeatsInPostException(
 					string.Format(NotAvailableSeatsInPostMessage, post.Id));

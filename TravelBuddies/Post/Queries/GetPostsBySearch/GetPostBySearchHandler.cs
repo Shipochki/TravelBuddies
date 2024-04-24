@@ -8,7 +8,7 @@
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
 
-	public class GetPostBySearchHandler : BaseHandler, IRequestHandler<GetPostBySearchQuery, IEnumerable<Post>>
+	public class GetPostBySearchHandler : BaseHandler, IRequestHandler<GetPostBySearchQuery, List<Post>>
 	{
 		private DateTime _minDate;
 
@@ -21,11 +21,12 @@
 			_minDate = DateTime.Parse("12/31/9999");
 		}
 
-		public async Task<IEnumerable<Post>> Handle(GetPostBySearchQuery request, CancellationToken cancellationToken)
+		public async Task<List<Post>> Handle(GetPostBySearchQuery request, CancellationToken cancellationToken)
 		{
 			DateTime fromDate;
 			DateTime toDate;
-			List<Post> posts = await _repository.All<Post>(
+			List<Post> posts = await _repository
+				.All<Post>(
 				p => p.IsCompleted == false && p.IsDeleted == false &&
 				(!DateTime.TryParse(request.FromDate, out fromDate) || p.DateAndTime >= fromDate) &&
 				(!DateTime.TryParse(request.ToDate, out toDate) || p.DateAndTime <= _minDate) &&
@@ -35,6 +36,8 @@
 				(request.PriceMax == null || p.PricePerSeat <= request.PriceMax) &&
 				(request.Baggage == null || p.Baggage == request.Baggage) &&
 				(request.Pets == null || p.Pets == request.Pets))
+				.Include(c => c.FromDestinationCity)
+				.Include(c => c.ToDestinationCity)
 				.ToListAsync();
 
 			return await Task.FromResult(posts);

@@ -53,7 +53,7 @@
 				await _fileLogger.LogAsync(logLevel, message);
 				await _databaseLogger.LogAsync(logLevel, message);
 				
-				return Ok(message);
+				return Created();
 			}
 			catch (UnableToCreateApplicationUserException m)
 			{
@@ -93,7 +93,7 @@
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
-				return BadRequest(m.Message);
+				return NotFound(m.Message);
 			}
 			catch (IdentityRoleNotFoundException m)
 			{
@@ -102,7 +102,7 @@
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
-				return BadRequest(m.Message);
+				return NotFound(m.Message);
 			}
 			catch (UnableToAddRoleToUserException m)
 			{
@@ -142,7 +142,7 @@
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
-				return BadRequest(m.Message);
+				return NotFound(m.Message);
 			}
 		}
 	}

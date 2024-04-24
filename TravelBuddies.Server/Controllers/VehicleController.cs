@@ -57,7 +57,7 @@
 				await _fileLogger.LogAsync(logLevel, message);
 				await _databaseLogger.LogAsync(logLevel, message);
 
-				return Ok(message);
+				return Created();
 			}
 			catch (ApplicationUserNotFoundException m)
 			{
@@ -66,7 +66,7 @@
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
-				return BadRequest(m.Message);
+				return NotFound(m.Message);
 			}
 		}
 
@@ -97,7 +97,7 @@
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
-				return BadRequest(m.Message);
+				return NotFound(m.Message);
 			}
 			catch (ApplicationUserNotCreatorException m)
 			{
@@ -115,7 +115,7 @@
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
-				return BadRequest(m.Message);
+				return NotFound(m.Message);
 			}
 			
 		}
@@ -146,7 +146,7 @@
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
-				return BadRequest(m.Message);
+				return NotFound(m.Message);
 			}
 		}
 	}
