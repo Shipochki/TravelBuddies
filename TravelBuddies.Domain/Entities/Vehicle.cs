@@ -1,12 +1,14 @@
-﻿namespace TravelBuddies.Domain.Entities
-{
-	using System.ComponentModel.DataAnnotations;
-	using System.ComponentModel.DataAnnotations.Schema;
-	using TravelBuddies.Domain.Enums;
-	using TravelBuddies.Domain.EntityModels;
-	using static DataConstants.VehicleConstants;
+﻿using TravelBuddies.Domain.Constants;
 
-	public class Vehicle : BaseEntity<int>
+namespace TravelBuddies.Domain.Entities
+{
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using TravelBuddies.Domain.Enums;
+    using TravelBuddies.Domain.EntityModels;
+    using static DataConstants.VehicleConstants;
+
+    public class Vehicle : BaseEntity<int>
 	{
 		[Required]
 		[MaxLength(MaxLengthBrandName)]

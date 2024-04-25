@@ -1,4 +1,6 @@
-﻿namespace TravelBuddies.Application.User
+﻿using Microsoft.AspNetCore.Http;
+
+namespace TravelBuddies.Application.User
 {
 	public class ApplicationUserDto : BaseDto<string>
 	{
@@ -13,5 +15,7 @@
 		public string? Country { get; set; }
 
 		public string? City { get; set; }
+
+		public IFormFile? ProfilePicture { get; set; }
 	}
 }

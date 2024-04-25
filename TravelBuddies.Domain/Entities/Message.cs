@@ -1,11 +1,13 @@
-﻿namespace TravelBuddies.Domain.Entities
-{
-	using System.ComponentModel.DataAnnotations;
-	using System.ComponentModel.DataAnnotations.Schema;
-	using TravelBuddies.Domain.EntityModels;
-	using static DataConstants.MessageConstants;
+﻿using TravelBuddies.Domain.Constants;
 
-	public class Message : BaseSoftDeleteEntity<int>
+namespace TravelBuddies.Domain.Entities
+{
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using TravelBuddies.Domain.EntityModels;
+    using static DataConstants.MessageConstants;
+
+    public class Message : BaseSoftDeleteEntity<int>
 	{
 		[Required]
 		[MaxLength(MaxLengthText)]

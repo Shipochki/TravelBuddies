@@ -1,9 +1,9 @@
 ﻿namespace TravelBuddies.Presentation.DTOs.Post
 {
-	using System.ComponentModel.DataAnnotations;
-	using static TravelBuddies.Domain.DataConstants.PostConstants;
+    using System.ComponentModel.DataAnnotations;
+    using static TravelBuddies.Domain.Constants.DataConstants.PostConstants;
 
-	public class CreatePostDto
+    public class CreatePostDto
 	{
 		public int FromDestinationCityId { get; set; }
 

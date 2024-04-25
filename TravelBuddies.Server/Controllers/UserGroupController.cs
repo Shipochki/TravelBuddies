@@ -4,7 +4,7 @@
 	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Cors;
 	using Microsoft.AspNetCore.Mvc;
-	using TravelBuddies.Application.Constants;
+	using TravelBuddies.Domain.Constants;
 	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.UserGroup.Commands.CreateUserGroup;
 	using TravelBuddies.Application.UserGroup.Commands.DeleteUserGroup;

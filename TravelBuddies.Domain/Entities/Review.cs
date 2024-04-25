@@ -1,11 +1,13 @@
-﻿namespace TravelBuddies.Domain.Entities
-{
-	using System.ComponentModel.DataAnnotations;
-	using System.ComponentModel.DataAnnotations.Schema;
-	using TravelBuddies.Domain.EntityModels;
-	using static DataConstants.ReviewConstants;
+﻿using TravelBuddies.Domain.Constants;
 
-	public class Review : BaseSoftDeleteEntity<int>
+namespace TravelBuddies.Domain.Entities
+{
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using TravelBuddies.Domain.EntityModels;
+    using static DataConstants.ReviewConstants;
+
+    public class Review : BaseSoftDeleteEntity<int>
 	{
 		[Required]
 		[ForeignKey(nameof(Creator))]

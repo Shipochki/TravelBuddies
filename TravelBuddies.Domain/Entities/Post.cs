@@ -1,12 +1,14 @@
-﻿namespace TravelBuddies.Domain.Entities
-{
-	using System.ComponentModel.DataAnnotations;
-	using System.ComponentModel.DataAnnotations.Schema;
-	using TravelBuddies.Domain.Enums;
-	using TravelBuddies.Domain.EntityModels;
-	using static DataConstants.PostConstants;
+﻿using TravelBuddies.Domain.Constants;
 
-	public class Post : BaseSoftDeleteEntity<int>
+namespace TravelBuddies.Domain.Entities
+{
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using TravelBuddies.Domain.Enums;
+    using TravelBuddies.Domain.EntityModels;
+    using static DataConstants.PostConstants;
+
+    public class Post : BaseSoftDeleteEntity<int>
 	{
 		[Required]
 		[ForeignKey(nameof(FromDestinationCity))]

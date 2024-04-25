@@ -2,26 +2,38 @@
 {
 	using MediatR;
 	using Microsoft.AspNetCore.Identity;
-	using System;
 	using System.Threading;
-	using TravelBuddies.Application.Constants;
+	using TravelBuddies.Domain.Constants;
 	using TravelBuddies.Application.Exceptions;
+	using TravelBuddies.Application.Interfaces.BlobService;
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
 	using static TravelBuddies.Application.Exceptions.Messages.ExceptionMessages;
+	using Microsoft.Extensions.Configuration;
 
 	public class CreateApplicationUserHandler : BaseHandler, IRequestHandler<CreateApplicationUserCommand, Task>
 	{
+		private readonly IBlobService _blobService;
+
 		public CreateApplicationUserHandler(
 			IRepository repository
 			, UserManager<ApplicationUser> userManager
-			, RoleManager<IdentityRole> roleManager)
+			, RoleManager<IdentityRole> roleManager
+			, IBlobService blobService)
 			: base(repository, userManager, roleManager)
 		{
+			_blobService = blobService;
 		}
 
 		public async Task<Task> Handle(CreateApplicationUserCommand request, CancellationToken cancellationToken)
 		{
+			string profilePictureLink = string.Empty;
+
+			if(request.ProfilePicture != null)
+			{
+				profilePictureLink = await _blobService.UploadImageAsync(request.ProfilePicture);
+			}
+
 			ApplicationUser applicationUser = new ApplicationUser()
 			{
 				UserName = request.Email,
@@ -30,6 +42,7 @@
 				LastName = request.LastName,
 				City = request.City,
 				Country = request.Country,
+				ProfilePictureLink = profilePictureLink
 			};
 
 			IdentityResult result = await _userManager.CreateAsync(applicationUser, request.Password);

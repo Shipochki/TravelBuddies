@@ -1,7 +1,7 @@
 ﻿namespace TravelBuddies.Presentation.Configurations
 {
 	using Microsoft.AspNetCore.Identity;
-	using TravelBuddies.Application.Constants;
+	using TravelBuddies.Domain.Constants;
 	using TravelBuddies.Domain.Entities;
 
 	public static class ApplicationBuilderExtensions

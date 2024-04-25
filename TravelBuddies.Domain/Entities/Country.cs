@@ -1,10 +1,12 @@
-﻿namespace TravelBuddies.Domain.Entities
-{
-	using System.ComponentModel.DataAnnotations;
-	using TravelBuddies.Domain.EntityModels;
-	using static DataConstants.Country;
+﻿using TravelBuddies.Domain.Constants;
 
-	public class Country : BaseSoftDeleteEntity<int>
+namespace TravelBuddies.Domain.Entities
+{
+    using System.ComponentModel.DataAnnotations;
+    using TravelBuddies.Domain.EntityModels;
+    using static DataConstants.Country;
+
+    public class Country : BaseSoftDeleteEntity<int>
 	{
 		[Required]
 		[MaxLength(MaxLengthCountryName)]

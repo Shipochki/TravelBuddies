@@ -1,9 +1,9 @@
 ﻿namespace TravelBuddies.Presentation.DTOs.Vehicle
 {
-	using System.ComponentModel.DataAnnotations;
-	using static TravelBuddies.Domain.DataConstants.VehicleConstants;
+    using System.ComponentModel.DataAnnotations;
+    using static TravelBuddies.Domain.Constants.DataConstants.VehicleConstants;
 
-	public class UpdateVehicleDto
+    public class UpdateVehicleDto
 	{
 		public int Id { get; set; }
 

@@ -3,12 +3,14 @@ namespace TravelBuddies.Server
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 	using TravelBuddies.Application;
-	using TravelBuddies.Application.Constants;
+	using TravelBuddies.Domain.Constants;
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
 	using TravelBuddies.Infrastructure;
 	using TravelBuddies.Infrastructure.Repository;
 	using TravelBuddies.Presentation.Configurations;
+	using TravelBuddies.Application.Interfaces.BlobService;
+	using TravelBuddies.Infrastructure.ExternalVendors.BlobStorage;
 
 	public class Program
 	{
@@ -30,6 +32,7 @@ namespace TravelBuddies.Server
 
 			builder.Services.AddScoped<UserManager<ApplicationUser>>();
 			builder.Services.AddScoped<IRepository, Repository>();
+			builder.Services.AddScoped<IBlobService, BlobService>();
 			//builder.Services.AddScoped<SignInManager<ApplicationUser>>();
 
 			// Add services to the container.
@@ -37,7 +40,7 @@ namespace TravelBuddies.Server
 			
 			builder.Services.CorsesConfigure();
 
-			builder.Services.AddToken();
+			builder.Services.AddToken(builder.Configuration);
 
 			builder.Services.AddControllers();
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

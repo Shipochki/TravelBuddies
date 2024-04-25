@@ -1,13 +1,15 @@
-﻿namespace TravelBuddies.Domain.Entities
-{
-	using System.ComponentModel.DataAnnotations;
-	using static DataConstants.UserConstants;
-	using static DataConstants.Country;
-	using static DataConstants.City;
-	using Microsoft.AspNetCore.Identity;
-	using TravelBuddies.Domain.EntityModels;
+﻿using TravelBuddies.Domain.Constants;
 
-	public class ApplicationUser : IdentityUser, ISoftDeleteEntity, IActionInfo
+namespace TravelBuddies.Domain.Entities
+{
+    using System.ComponentModel.DataAnnotations;
+    using static DataConstants.UserConstants;
+    using static DataConstants.Country;
+    using static DataConstants.City;
+    using Microsoft.AspNetCore.Identity;
+    using TravelBuddies.Domain.EntityModels;
+
+    public class ApplicationUser : IdentityUser, ISoftDeleteEntity, IActionInfo
 	{
         public ApplicationUser()
         {

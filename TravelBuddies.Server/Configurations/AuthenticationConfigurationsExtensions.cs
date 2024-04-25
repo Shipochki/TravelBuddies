@@ -1,13 +1,12 @@
 ﻿namespace TravelBuddies.Presentation.Configurations
 {
 	using Microsoft.AspNetCore.Authentication.JwtBearer;
-	using Microsoft.AspNetCore.Identity;
 	using Microsoft.IdentityModel.Tokens;
 	using System.Text;
 
 	public static class AuthenticationConfigurationsExtensions
 	{
-		public static IServiceCollection AddToken(this IServiceCollection services)
+		public static IServiceCollection AddToken(this IServiceCollection services, IConfiguration configuration)
 		{
 			services.AddAuthentication(options =>
 			{
@@ -21,9 +20,9 @@
 					ValidateIssuer = true,
 					ValidateAudience = true,
 					ValidateIssuerSigningKey = true,
-					ValidAudience = "https://localhost:7005",
-					ValidIssuer = "https://localhost:7005",
-					IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ee442f33-e195-4896-85b7-f6ce18bfdcab"))
+					ValidAudience = configuration["Jwt:Issuer"],
+					ValidIssuer = configuration["Jwt:Issuer"],
+					IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]))
 				};
 			});
 

@@ -4,7 +4,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using TravelBuddies.Domain.Enums;
-    using TravelBuddies.Application.Constants;
+    using TravelBuddies.Domain.Constants;
     using TravelBuddies.Presentation.DTOs.User;
 	using TravelBuddies.Application.User.Commands.CreateApplicationUser;
 	using TravelBuddies.Application.Exceptions;

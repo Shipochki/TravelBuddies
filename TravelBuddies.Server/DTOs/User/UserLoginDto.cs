@@ -1,9 +1,9 @@
 ﻿namespace TravelBuddies.Presentation.DTOs.User
 {
-	using System.ComponentModel.DataAnnotations;
-	using static TravelBuddies.Domain.DataConstants.UserConstants;
+    using System.ComponentModel.DataAnnotations;
+    using static TravelBuddies.Domain.Constants.DataConstants.UserConstants;
 
-	public class UserLoginDto
+    public class UserLoginDto
 	{
 		[Required]
 		[MinLength(MinLengthEmail)]

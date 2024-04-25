@@ -1,4 +1,4 @@
-﻿namespace TravelBuddies.Application.Constants
+﻿namespace TravelBuddies.Domain.Constants
 {
 	public class ApplicationLogsFilePaths
 	{

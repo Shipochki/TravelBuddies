@@ -1,9 +1,9 @@
 ﻿namespace TravelBuddies.Presentation.DTOs.User
 {
     using System.ComponentModel.DataAnnotations;
-    using static TravelBuddies.Domain.DataConstants.UserConstants;
-    using static TravelBuddies.Domain.DataConstants.City;
-    using static TravelBuddies.Domain.DataConstants.Country;
+    using static TravelBuddies.Domain.Constants.DataConstants.UserConstants;
+    using static TravelBuddies.Domain.Constants.DataConstants.City;
+    using static TravelBuddies.Domain.Constants.DataConstants.Country;
 
     public class UserRegisterDto
     {
@@ -34,5 +34,7 @@
         [MinLength(MinLengthCityName)]
         [MaxLength(MaxLengthCityName)]
         public string? City { get; set; }
+
+        public IFormFile? ProfilePicture { get; set; }
     }
 }
