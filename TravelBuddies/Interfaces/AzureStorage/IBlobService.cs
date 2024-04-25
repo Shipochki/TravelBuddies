@@ -1,7 +1,6 @@
-﻿namespace TravelBuddies.Application.Interfaces.BlobService
+﻿namespace TravelBuddies.Application.Interfaces.AzureStorage
 {
 	using Microsoft.AspNetCore.Http;
-	using Microsoft.Extensions.Configuration;
 
 	public interface IBlobService
 	{

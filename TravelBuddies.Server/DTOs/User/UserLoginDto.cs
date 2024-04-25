@@ -1,7 +1,7 @@
 ﻿namespace TravelBuddies.Presentation.DTOs.User
 {
     using System.ComponentModel.DataAnnotations;
-    using static TravelBuddies.Domain.Constants.DataConstants.UserConstants;
+    using static TravelBuddies.Domain.Common.DataConstants.UserConstants;
 
     public class UserLoginDto
 	{

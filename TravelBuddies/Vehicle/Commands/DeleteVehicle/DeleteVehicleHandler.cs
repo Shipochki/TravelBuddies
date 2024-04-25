@@ -2,7 +2,7 @@
 {
     using MediatR;
     using Microsoft.AspNetCore.Identity;
-    using TravelBuddies.Domain.Constants;
+    using TravelBuddies.Domain.Common;
     using TravelBuddies.Application.Exceptions;
     using TravelBuddies.Application.Repository;
     using TravelBuddies.Domain.Entities;

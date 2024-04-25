@@ -5,7 +5,7 @@
 	using Microsoft.AspNetCore.Cors;
 	using Microsoft.AspNetCore.Mvc;
 	using TravelBuddies.Application.City.Queries;
-	using TravelBuddies.Domain.Constants;
+	using TravelBuddies.Domain.Common;
 	using TravelBuddies.Domain.Entities;
 	using TravelBuddies.Presentation.DTOs.City;
 

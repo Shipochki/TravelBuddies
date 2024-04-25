@@ -3,13 +3,12 @@
 	using MediatR;
 	using Microsoft.AspNetCore.Identity;
 	using System.Threading;
-	using TravelBuddies.Domain.Constants;
+	using TravelBuddies.Domain.Common;
 	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Interfaces.BlobService;
+	using TravelBuddies.Application.Interfaces.AzureStorage;
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
 	using static TravelBuddies.Application.Exceptions.Messages.ExceptionMessages;
-	using Microsoft.Extensions.Configuration;
 
 	public class CreateApplicationUserHandler : BaseHandler, IRequestHandler<CreateApplicationUserCommand, Task>
 	{

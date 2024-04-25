@@ -3,14 +3,14 @@ namespace TravelBuddies.Server
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 	using TravelBuddies.Application;
-	using TravelBuddies.Domain.Constants;
+	using TravelBuddies.Domain.Common;
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
 	using TravelBuddies.Infrastructure;
 	using TravelBuddies.Infrastructure.Repository;
 	using TravelBuddies.Presentation.Configurations;
-	using TravelBuddies.Application.Interfaces.BlobService;
-	using TravelBuddies.Infrastructure.ExternalVendors.BlobStorage;
+	using TravelBuddies.Application.Interfaces.AzureStorage;
+	using TravelBuddies.Infrastructure.ExternalVendors.AzureStorage;
 
 	public class Program
 	{

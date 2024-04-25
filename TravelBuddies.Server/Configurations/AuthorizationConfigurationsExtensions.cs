@@ -1,6 +1,6 @@
 ﻿namespace TravelBuddies.Presentation.Configurations
 {
-	using TravelBuddies.Domain.Constants;
+	using TravelBuddies.Domain.Common;
 
 	public static class AuthorizationConfigurationsExtensions
 	{

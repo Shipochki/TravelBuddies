@@ -1,9 +1,9 @@
-﻿namespace TravelBuddies.Infrastructure.ExternalVendors.BlobStorage
+﻿namespace TravelBuddies.Infrastructure.ExternalVendors.AzureStorage
 {
     using Azure.Storage.Blobs;
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.Configuration;
-    using TravelBuddies.Application.Interfaces.BlobService;
+    using TravelBuddies.Application.Interfaces.AzureStorage;
 
     public class BlobService : IBlobService
     {

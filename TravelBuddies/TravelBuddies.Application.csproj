@@ -18,4 +18,9 @@
     <ProjectReference Include="..\TravelBuddies.Domain\TravelBuddies.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Interfaces\MailSender\" />
+    <Folder Include="Interfaces\Stripe\" />
+  </ItemGroup>
+
 </Project>

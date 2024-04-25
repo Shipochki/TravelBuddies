@@ -4,7 +4,7 @@
 	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Cors;
 	using Microsoft.AspNetCore.Mvc;
-	using TravelBuddies.Domain.Constants;
+	using TravelBuddies.Domain.Common;
 	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Group.Commands.CreateGroup;
 	using TravelBuddies.Application.Post.Commands.CreatePost;

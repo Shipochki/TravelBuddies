@@ -1,7 +1,7 @@
 ﻿namespace TravelBuddies.Presentation.DTOs.Vehicle
 {
     using System.ComponentModel.DataAnnotations;
-    using static TravelBuddies.Domain.Constants.DataConstants.VehicleConstants;
+    using static TravelBuddies.Domain.Common.DataConstants.VehicleConstants;
 
     public class CreateVehicleDto
 	{

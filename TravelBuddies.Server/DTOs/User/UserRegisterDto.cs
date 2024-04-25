@@ -1,9 +1,9 @@
 ﻿namespace TravelBuddies.Presentation.DTOs.User
 {
     using System.ComponentModel.DataAnnotations;
-    using static TravelBuddies.Domain.Constants.DataConstants.UserConstants;
-    using static TravelBuddies.Domain.Constants.DataConstants.City;
-    using static TravelBuddies.Domain.Constants.DataConstants.Country;
+    using static TravelBuddies.Domain.Common.DataConstants.UserConstants;
+    using static TravelBuddies.Domain.Common.DataConstants.City;
+    using static TravelBuddies.Domain.Common.DataConstants.Country;
 
     public class UserRegisterDto
     {

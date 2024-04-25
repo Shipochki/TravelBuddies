@@ -4,7 +4,7 @@
 	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Cors;
 	using Microsoft.AspNetCore.Mvc;
-	using TravelBuddies.Domain.Constants;
+	using TravelBuddies.Domain.Common;
 	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Vehicle.Commands.CreateVehicle;
 	using TravelBuddies.Application.Vehicle.Commands.DeleteVehicle;
@@ -48,7 +48,7 @@
 					SeatCount = createVehicleDto.SeatCount,
 					PictureLink = createVehicleDto.PictureLink,
 					ACSystem = createVehicleDto.ACSystem,
-					OwnerId = createVehicleDto.OwnerId,
+					OwnerId = User.Id(),
 				};
 
 				await _mediator.Send(command);

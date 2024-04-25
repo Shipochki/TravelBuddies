@@ -1,7 +1,7 @@
 ﻿namespace TravelBuddies.Presentation.DTOs.Post
 {
     using System.ComponentModel.DataAnnotations;
-    using static TravelBuddies.Domain.Constants.DataConstants.PostConstants;
+    using static TravelBuddies.Domain.Common.DataConstants.PostConstants;
 
     public class UpdatePostDto
 	{

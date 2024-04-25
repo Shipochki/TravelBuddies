@@ -1,4 +1,4 @@
-﻿namespace TravelBuddies.Domain.Constants
+﻿namespace TravelBuddies.Domain.Common
 {
 	public class ApplicationCategoryNames
 	{

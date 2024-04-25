@@ -8,7 +8,7 @@
 	using TravelBuddies.Domain.Entities;
 	using TravelBuddies.Domain.Enums;
 	using TravelBuddies.Application.Review.Commands.CreateReview;
-	using TravelBuddies.Domain.Constants;
+	using TravelBuddies.Domain.Common;
 	using TravelBuddies.Presentation.DTOs.Review;
 	using TravelBuddies.Application.Review.Commands.UpdateReview;
 	using TravelBuddies.Application.Review.Commands.DeleteReview;
@@ -51,7 +51,7 @@
 			{
 				CreateReviewCommand command = new CreateReviewCommand()
 				{
-					CreatorId = createReviewDto.CreatorId,
+					CreatorId = User.Id(),
 					ReciverId = createReviewDto.ReciverId,
 					Text = createReviewDto.Text,
 					Rating = createReviewDto.Rating,
@@ -93,7 +93,7 @@
 				UpdateReviewCommand command = new UpdateReviewCommand()
 				{
 					Id = updateReviewDto.Id,
-					CreatorId = updateReviewDto.CreatorId,
+					CreatorId = User.Id(),
 					ReciverId = updateReviewDto.ReciverId,
 					Text = updateReviewDto.Text,
 					Rating = updateReviewDto.Rating,

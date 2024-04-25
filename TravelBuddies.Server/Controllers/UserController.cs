@@ -4,7 +4,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using TravelBuddies.Domain.Enums;
-    using TravelBuddies.Domain.Constants;
+    using TravelBuddies.Domain.Common;
     using TravelBuddies.Presentation.DTOs.User;
 	using TravelBuddies.Application.User.Commands.CreateApplicationUser;
 	using TravelBuddies.Application.Exceptions;
@@ -12,6 +12,7 @@
 	using TravelBuddies.Application.User.Commands.DeleteApplicationUser;
 	using Microsoft.AspNetCore.Cors;
 	using TravelBuddies.Application.User.Commands.LoginApplicationUser;
+	using TravelBuddies.Presentation.Configurations;
 
 	[EnableCors(ApplicationCorses.AllowOrigin)]
 	[Route("api/[controller]")]
@@ -69,13 +70,13 @@
 		[HttpPost]
 		[Authorize(Policy = ApplicationPolicies.OnlyClient)]
 		[Route("[action]")]
-		public async Task<IActionResult> BecomeDriver(string userId)
+		public async Task<IActionResult> BecomeDriver()
 		{
 			LogLevel logLevel = LogLevel.Error;
 
 			try
 			{
-				await _mediator.Send(new BecomeDriverCommand(userId));
+				await _mediator.Send(new BecomeDriverCommand(User.Id()));
 
 				logLevel = LogLevel.Information;
 				string message = "Succesfully became Driver";
@@ -111,13 +112,13 @@
 		[HttpPost]
 		[Authorize]
 		[Route("[action]")]
-		public async Task<IActionResult> Delete(string userId)
+		public async Task<IActionResult> Delete()
 		{
 			LogLevel logLevel = LogLevel.Error;
 
 			try
 			{
-				await _mediator.Send(new DeleteApplicationUserCommand(userId));
+				await _mediator.Send(new DeleteApplicationUserCommand(User.Id()));
 
 				logLevel = LogLevel.Information;
 				string message = "Succesfully deleted user";

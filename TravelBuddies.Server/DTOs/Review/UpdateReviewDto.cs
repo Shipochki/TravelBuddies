@@ -1,7 +1,7 @@
 ﻿namespace TravelBuddies.Presentation.DTOs.Review
 {
     using System.ComponentModel.DataAnnotations;
-    using static TravelBuddies.Domain.Constants.DataConstants.ReviewConstants;
+    using static TravelBuddies.Domain.Common.DataConstants.ReviewConstants;
 
     public class UpdateReviewDto
 	{

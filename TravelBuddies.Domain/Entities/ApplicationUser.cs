@@ -1,4 +1,4 @@
-﻿using TravelBuddies.Domain.Constants;
+﻿using TravelBuddies.Domain.Common;
 
 namespace TravelBuddies.Domain.Entities
 {
