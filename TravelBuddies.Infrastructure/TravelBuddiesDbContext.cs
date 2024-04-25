@@ -3,8 +3,9 @@
 	using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 	using Microsoft.EntityFrameworkCore;
     using TravelBuddies.Domain.Entities;
+	using TravelBuddies.Infrastructure.EntityConfigurations;
 
-    public class TravelBuddiesDbContext : IdentityDbContext<ApplicationUser>
+	public class TravelBuddiesDbContext : IdentityDbContext<ApplicationUser>
     {
         public TravelBuddiesDbContext(DbContextOptions<TravelBuddiesDbContext> options)
             : base(options)
@@ -32,55 +33,15 @@
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserGroup>()
-                .HasKey(u => new { u.UserId, u.GroupId });
+            modelBuilder.ApplyConfiguration(new UserGroupEntityTypeConfiguration());
 
-            modelBuilder
-                .Entity<UserGroup>()
-                .HasOne(u => u.User)
-                .WithMany()
-                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.ApplyConfiguration(new GroupEntityTypeConfiguration());
 
-            modelBuilder
-                .Entity<UserGroup>()
-                .HasOne(u => u.Group)
-                .WithMany(u => u.UsersGroups)
-                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.ApplyConfiguration(new ReviewEntityTypeConfiguration());
 
-            modelBuilder.Entity<Group>()
-                .HasOne(g => g.Creator)
-                .WithMany()
-                .HasForeignKey(g => g.CreatorId)
-                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.ApplyConfiguration(new PostEntityTypeConfiguration());
 
-            modelBuilder.Entity<Group>()
-                .HasOne(g => g.Post)
-                .WithOne(g => g.Group)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Review>()
-                .HasOne(r => r.Creator)
-                .WithMany()
-                .HasForeignKey(r => r.CreatorId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Review>()
-                .HasOne(r => r.Reciver)
-                .WithMany()
-                .HasForeignKey(r => r.ReciverId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Post>()
-                .HasOne(p => p.FromDestinationCity)
-                .WithMany()
-                .HasForeignKey(p => p.FromDestinationCityId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Post>()
-                .HasOne(p => p.ToDestinationCity)
-                .WithMany()
-                .HasForeignKey(p => p.ToDestinationCityId)
-                .OnDelete(DeleteBehavior.Restrict);
+            //modelBuilder.Seed();
 
             base.OnModelCreating(modelBuilder);
         }

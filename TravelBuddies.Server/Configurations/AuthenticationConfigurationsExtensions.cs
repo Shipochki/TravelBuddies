@@ -18,8 +18,8 @@
 			{
 				options.TokenValidationParameters = new TokenValidationParameters
 				{
-					ValidateIssuer = false,
-					ValidateAudience = false,
+					ValidateIssuer = true,
+					ValidateAudience = true,
 					ValidateIssuerSigningKey = true,
 					ValidAudience = "https://localhost:7005",
 					ValidIssuer = "https://localhost:7005",
