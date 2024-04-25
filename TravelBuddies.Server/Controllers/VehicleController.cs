@@ -36,8 +36,7 @@
 				return BadRequest(ModelState);
 			}
 
-			LogLevel logLevel;
-			string message;
+			LogLevel logLevel = LogLevel.Error;
 
 			try
 			{
@@ -55,7 +54,7 @@
 				await _mediator.Send(command);
 
 				logLevel = LogLevel.Information;
-				message = "Succesfully created vehicle";
+				string message = "Succesfully created vehicle";
 
 				await _fileLogger.LogAsync(logLevel, message);
 				await _databaseLogger.LogAsync(logLevel, message);
@@ -64,8 +63,6 @@
 			}
 			catch (ApplicationUserNotFoundException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -78,15 +75,14 @@
 		[Authorize(Policy = ApplicationPolicies.DriverAndAdmin)]
 		public async Task<IActionResult> Delete(int vehicleId)
 		{
-			LogLevel logLevel;
-			string message;
+			LogLevel logLevel = LogLevel.Error;
 
 			try
 			{
 				await _mediator.Send(new DeleteVehicleCommand(vehicleId, User.Id()));
 
 				logLevel = LogLevel.Information;
-				message = "Succesfully deleted vehhicle";
+				string message = "Succesfully deleted vehhicle";
 
 				await _fileLogger.LogAsync(logLevel, message);
 				await _databaseLogger.LogAsync(logLevel, message);
@@ -95,8 +91,6 @@
 			}
 			catch (VehicleNotFoundException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -104,8 +98,6 @@
 			}
 			catch (ApplicationUserNotCreatorException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -113,8 +105,6 @@
 			}
 			catch (ApplicationUserNotFoundException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -128,8 +118,7 @@
 		[Authorize(Policy = ApplicationPolicies.OnlyDriver)]
 		public async Task<IActionResult> Update([FromBody]UpdateVehicleDto updateVehicleDto)
 		{
-			LogLevel logLevel;
-			string message;
+			LogLevel logLevel = LogLevel.Error;
 
 			try
 			{
@@ -148,7 +137,7 @@
 				await _mediator.Send(command);
 
 				logLevel = LogLevel.Information;
-				message = "Succesfully updated vehicle";
+				 string message = "Succesfully updated vehicle";
 
 				await _fileLogger.LogAsync(logLevel, message);
 				await _databaseLogger.LogAsync(logLevel, message);
@@ -157,8 +146,6 @@
 			}
 			catch (VehicleNotFoundException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -166,8 +153,6 @@
 			}
 			catch (ApplicationUserNotCreatorException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -179,15 +164,14 @@
 		[Route("[action]")]
 		public async Task<IActionResult> GetVehicleById(int vehicleId)
 		{
-			LogLevel logLevel;
-			string message;
+			LogLevel logLevel = LogLevel.Error;
 
 			try
 			{
 				Vehicle vehicle = await _mediator.Send(new GetVehicleByIdQuery(vehicleId));
 
 				logLevel = LogLevel.Information;
-				message = "Succesfully get vehicle";
+				string message = "Succesfully get vehicle";
 
 				await _fileLogger.LogAsync(logLevel, message);
 				await _databaseLogger.LogAsync(logLevel, message);
@@ -196,8 +180,6 @@
 			}
 			catch (VehicleNotFoundException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 

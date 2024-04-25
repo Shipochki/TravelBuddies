@@ -11,6 +11,7 @@
 	using TravelBuddies.Application.User.Commands.BecomeDriver;
 	using TravelBuddies.Application.User.Commands.DeleteApplicationUser;
 	using Microsoft.AspNetCore.Cors;
+	using TravelBuddies.Application.User.Commands.LoginApplicationUser;
 
 	[EnableCors(ApplicationCorses.AllowOrigin)]
 	[Route("api/[controller]")]
@@ -42,15 +43,14 @@
 				return BadRequest(ModelState);
 			}
 
-			LogLevel logLevel;
-			string message;
+			LogLevel logLevel = LogLevel.Error;
 
 			try
 			{
 				await _mediator.Send(command);
 
 				logLevel = LogLevel.Information;
-				message = "User created successfuly.";
+				string message = "User created successfuly.";
 
 				await _fileLogger.LogAsync(logLevel, message);
 				await _databaseLogger.LogAsync(logLevel, message);
@@ -59,8 +59,6 @@
 			}
 			catch (UnableToCreateApplicationUserException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -73,15 +71,14 @@
 		[Route("[action]")]
 		public async Task<IActionResult> BecomeDriver(string userId)
 		{
-			LogLevel logLevel;
-			string message;
+			LogLevel logLevel = LogLevel.Error;
 
 			try
 			{
 				await _mediator.Send(new BecomeDriverCommand(userId));
 
 				logLevel = LogLevel.Information;
-				message = "Succesfully became Driver";
+				string message = "Succesfully became Driver";
 
 				await _fileLogger.LogAsync(logLevel, message);
 				await _databaseLogger.LogAsync(logLevel, message);
@@ -90,8 +87,6 @@
 			}
 			catch (ApplicationUserNotFoundException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -99,8 +94,6 @@
 			}
 			catch (IdentityRoleNotFoundException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -108,8 +101,6 @@
 			}
 			catch (UnableToAddRoleToUserException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -122,15 +113,14 @@
 		[Route("[action]")]
 		public async Task<IActionResult> Delete(string userId)
 		{
-			LogLevel logLevel;
-			string message;
+			LogLevel logLevel = LogLevel.Error;
 
 			try
 			{
 				await _mediator.Send(new DeleteApplicationUserCommand(userId));
 
 				logLevel = LogLevel.Information;
-				message = "Succesfully deleted user";
+				string message = "Succesfully deleted user";
 
 				await _fileLogger.LogAsync(logLevel, message);
 				await _databaseLogger.LogAsync(logLevel, message);
@@ -139,12 +129,44 @@
 			}
 			catch (ApplicationUserNotFoundException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
 				return NotFound(m.Message);
+			}
+		}
+
+		[HttpPost]
+		[AllowAnonymous]
+		[Route("[action]")]
+		public async Task<IActionResult> Login([FromBody] UserLoginDto userLoginDto)
+		{
+			if(!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
+			LogLevel logLevel = LogLevel.Error;
+
+			try
+			{
+				string token = await _mediator.Send(
+					new LoginApplicationUserCommand(userLoginDto.Email, userLoginDto.Password));
+
+				logLevel = LogLevel.Information;
+				string message = "Succesfully login user";
+
+				await _fileLogger.LogAsync(logLevel, message);
+				await _databaseLogger.LogAsync(logLevel, message);
+
+				return Ok(new { token });
+			}
+			catch (InvalidLoginException m)
+			{
+				await _fileLogger.LogAsync(logLevel, m.Message);
+				await _databaseLogger.LogAsync(logLevel, m.Message);
+
+				return BadRequest(m.Message);
 			}
 		}
 	}

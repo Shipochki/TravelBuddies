@@ -34,7 +34,6 @@
 		public async Task<IActionResult> GetAllPostBySearch([FromBody] PostSearchDto postSearchDto)
 		{
 			LogLevel logLevel;
-			string message;
 
 			GetPostBySearchQuery command = new GetPostBySearchQuery()
 			{
@@ -51,7 +50,7 @@
 			List<Post> posts = await _mediator.Send(command);
 
 			logLevel = LogLevel.Information;
-			message = "Succesfully get all posts by search";
+			string message = "Succesfully get all posts by search";
 
 			await _fileLogger.LogAsync(logLevel, message);
 			await _databaseLogger.LogAsync(logLevel, message);
@@ -69,8 +68,7 @@
 				return BadRequest(ModelState);
 			}
 
-			LogLevel logLevel;
-			string message;
+			LogLevel logLevel = LogLevel.Error;
 
 			try
 			{
@@ -111,7 +109,7 @@
 				await _mediator.Send(userGroupCommand);
 
 				logLevel = LogLevel.Information;
-				message = "Succesfully created post with group and creator joined group";
+				string message = "Succesfully created post with group and creator joined group";
 
 				await _fileLogger.LogAsync(logLevel, message);
 				await _databaseLogger.LogAsync(logLevel, message);
@@ -120,8 +118,6 @@
 			}
 			catch (ApplicationUserNotFoundException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -129,8 +125,6 @@
 			}
 			catch (CityNotFoundException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -138,8 +132,6 @@
 			}
 			catch (PostNotFoundException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -152,15 +144,14 @@
 		[Authorize(Policy = ApplicationPolicies.DriverAndAdmin)]
 		public async Task<IActionResult> Delete(int postId)
 		{
-			LogLevel logLevel;
-			string message;
+			LogLevel logLevel = LogLevel.Error;
 
 			try
 			{
 				await _mediator.Send(new DeletePostCommand(postId, User.Id()));
 
 				logLevel = LogLevel.Information;
-				message = "Succesfully deleted post";
+				string message = "Succesfully deleted post";
 
 				await _fileLogger.LogAsync(logLevel, message);
 				await _databaseLogger.LogAsync(logLevel, message);
@@ -169,8 +160,6 @@
 			}
 			catch (PostNotFoundException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -178,8 +167,6 @@
 			}
 			catch (ApplicationUserNotFoundException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -187,8 +174,6 @@
 			}
 			catch (ApplicationUserNotCreatorException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -206,8 +191,7 @@
 				return BadRequest(ModelState);
 			}
 
-			LogLevel logLevel;
-			string message;
+			LogLevel logLevel = LogLevel.Error;
 
 			try
 			{
@@ -229,7 +213,7 @@
 				await _mediator.Send(command);
 
 				logLevel = LogLevel.Information;
-				message = "Succesfully updated post";
+				string message = "Succesfully updated post";
 
 				await _fileLogger.LogAsync(logLevel, message);
 				await _databaseLogger.LogAsync(logLevel, message);
@@ -238,8 +222,6 @@
 			}
 			catch (PostNotFoundException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -247,8 +229,6 @@
 			}
 			catch (ApplicationUserNotFoundException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -256,8 +236,6 @@
 			}
 			catch (ApplicationUserNotCreatorException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 

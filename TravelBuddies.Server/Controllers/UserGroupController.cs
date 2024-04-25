@@ -28,8 +28,7 @@
 		[Route("[action]")]
 		public async Task<IActionResult> JoinGroup(int groupId)
 		{
-			LogLevel logLevel;
-			string message;
+			LogLevel logLevel = LogLevel.Error;
 
 			try
 			{
@@ -42,7 +41,7 @@
 				await _mediator.Send(command);
 
 				logLevel = LogLevel.Information;
-				message = "Succesfully joined in group";
+				string message = "Succesfully joined in group";
 
 				await _fileLogger.LogAsync(logLevel, message);
 				await _databaseLogger.LogAsync(logLevel, message);
@@ -51,8 +50,6 @@
 			}
 			catch (ApplicationUserNotFoundException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -60,8 +57,6 @@
 			}
 			catch (GroupNotFoundException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -69,8 +64,6 @@
 			}
 			catch (ApplicationUserAllreadyInGroupException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -78,8 +71,6 @@
 			}
 			catch (PostNotFoundException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -87,8 +78,6 @@
 			}
 			catch (NotAvailableSeatsInPostException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -100,8 +89,7 @@
 		[Route("[action]")]
 		public async Task<IActionResult> LeaveGroup(int groupId)
 		{
-			LogLevel logLevel;
-			string message;
+			LogLevel logLevel = LogLevel.Error;
 
 			try
 			{
@@ -114,7 +102,7 @@
 				await _mediator.Send(command);
 
 				logLevel = LogLevel.Information;
-				message = "Succesfully leave group";
+				string message = "Succesfully leave group";
 
 				await _fileLogger.LogAsync(logLevel, message);
 				await _databaseLogger.LogAsync(logLevel, message);
@@ -123,8 +111,6 @@
 			}
 			catch (ApplicationUserNotInGroupException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -137,8 +123,7 @@
 		[Authorize(Policy = ApplicationPolicies.DriverAndAdmin)]
 		public async Task<IActionResult> RemoveUserFromGroup([FromBody] RemoveUserGroupDto removeUserGroupDto)
 		{
-			LogLevel logLevel;
-			string message;
+			LogLevel logLevel = LogLevel.Error;
 
 			try
 			{
@@ -152,7 +137,7 @@
 				await _mediator.Send(command);
 
 				logLevel = LogLevel.Information;
-				message = "Succesfully leave group";
+				string message = "Succesfully leave group";
 
 				await _fileLogger.LogAsync(logLevel, message);
 				await _databaseLogger.LogAsync(logLevel, message);
@@ -161,8 +146,6 @@
 			}
 			catch (ApplicationUserNotInGroupException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -170,8 +153,6 @@
 			}
 			catch (ApplicationUserNotFoundException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -179,8 +160,6 @@
 			}
 			catch (GroupNotFoundException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -188,8 +167,6 @@
 			}
 			catch (ApplicationUserNotCreatorException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 

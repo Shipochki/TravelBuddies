@@ -23,10 +23,10 @@ namespace TravelBuddies.Server
 			builder.Services.AddMediatR(cf => cf.RegisterServicesFromAssembly(typeof(BaseHandler).Assembly));
 
 			builder.Services
-				.AddIdentity<ApplicationUser, IdentityRole>()
+				.AddIdentity<ApplicationUser, IdentityRole>(options =>
+			options.SignIn.RequireConfirmedAccount = false)
 				.AddEntityFrameworkStores<TravelBuddiesDbContext>()
-				.AddDefaultTokenProviders()
-				.AddDefaultUI();
+				.AddDefaultTokenProviders();
 
 			builder.Services.AddScoped<UserManager<ApplicationUser>>();
 			builder.Services.AddScoped<IRepository, Repository>();
@@ -36,6 +36,8 @@ namespace TravelBuddies.Server
 			builder.Services.PolicyConfigure();
 			
 			builder.Services.CorsesConfigure();
+
+			builder.Services.AddToken();
 
 			builder.Services.AddControllers();
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -60,6 +62,7 @@ namespace TravelBuddies.Server
 
 			app.UseHttpsRedirection();
 
+			app.UseAuthentication();
 			app.UseAuthorization();
 
 			app.MapControllers();
@@ -68,7 +71,7 @@ namespace TravelBuddies.Server
 				pattern: "{controller}/{action=Index}/{id?}");
 
 			app.MapFallbackToFile("/index.html");
-			app.MapIdentityApi<ApplicationUser>();
+
 			app.MapSwagger()
 				.RequireAuthorization();
 

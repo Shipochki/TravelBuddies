@@ -8,6 +8,7 @@
         public const string ApplicationUserAllreadyInGroupMessage = "User with Id {0} is allready in Group with Id {1}";
         public const string UnableToCreateApplicationUserMessage = "Unable to create user";
         public const string UnableToAddRoleToUserMessage = "Unable to add role to user with Id {0}";
+        public const string InvalidLoginMessage = "Unable to login";
 
 		public const string IdentityRoleNotFoundMessage = "Role with name: {0} not found";
 

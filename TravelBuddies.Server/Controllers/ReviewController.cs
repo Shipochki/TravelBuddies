@@ -45,8 +45,7 @@
 				return BadRequest(ModelState);
 			}
 
-			LogLevel logLevel;
-			string message;
+			LogLevel logLevel = LogLevel.Error;
 
 			try
 			{
@@ -61,7 +60,7 @@
 				await _mediator.Send(command);
 
 				logLevel = LogLevel.Information;
-				message = "Review created succesfully";
+				string message = "Review created succesfully";
 
 				await _fileLogger.LogAsync(logLevel, message);
 				await _databaseLogger.LogAsync(logLevel, message);
@@ -70,11 +69,9 @@
 			}
 			catch (ApplicationUserNotFoundException m)
 			{
-				logLevel = LogLevel.Error;
-				message = "Review not created succesfully";
+				await _fileLogger.LogAsync(logLevel, m.Message);
+				await _databaseLogger.LogAsync(logLevel, m.Message);
 
-				await _fileLogger.LogAsync(logLevel, message);
-				await _databaseLogger.LogAsync(logLevel, message);
 				return NotFound(m.Message);
 			}
 		}
@@ -89,8 +86,7 @@
 				return BadRequest(ModelState);
 			}
 
-			LogLevel logLevel;
-			string message;
+			LogLevel logLevel = LogLevel.Error;
 
 			try
 			{
@@ -106,7 +102,7 @@
 				await _mediator.Send(command);
 
 				logLevel = LogLevel.Information;
-				message = "Review updated succesfully";
+				string message = "Review updated succesfully";
 
 				await _fileLogger.LogAsync(logLevel, message);
 				await _databaseLogger.LogAsync(logLevel, message);
@@ -115,8 +111,6 @@
 			}
 			catch (ReviewNotFoundException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -124,8 +118,6 @@
 			}
 			catch (ApplicationUserNotCreatorException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -137,15 +129,14 @@
 		[Route("[action]")]
 		public async Task<IActionResult> Delete(int reviewId)
 		{
-			LogLevel logLevel;
-			string message;
+			LogLevel logLevel = LogLevel.Error;
 
 			try
 			{
 				await _mediator.Send(new DeleteReviewCommand(reviewId, User.Id()));
 
 				logLevel = LogLevel.Information;
-				message = "Review deleted succesfully";
+				string message = "Review deleted succesfully";
 
 				await _fileLogger.LogAsync(logLevel, message);
 				await _databaseLogger.LogAsync(logLevel, message);
@@ -154,8 +145,6 @@
 			}
 			catch (ReviewNotFoundException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -163,8 +152,6 @@
 			}
 			catch (ApplicationUserNotCreatorException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -172,8 +159,6 @@
 			}
 			catch (ApplicationUserNotFoundException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 

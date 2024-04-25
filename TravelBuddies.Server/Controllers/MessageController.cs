@@ -35,8 +35,7 @@
 				return BadRequest(ModelState);
 			}
 
-			LogLevel logLevel;
-			string message;
+			LogLevel logLevel = LogLevel.Error;
 
 			try
 			{
@@ -50,7 +49,7 @@
 				await _mediator.Send(command);
 
 				logLevel = LogLevel.Information;
-				message = "Succesfully created message";
+				string message = "Succesfully created message";
 
 				await _fileLogger.LogAsync(logLevel, message);
 				await _databaseLogger.LogAsync(logLevel, message);
@@ -59,8 +58,6 @@
 			}
 			catch (ApplicationUserNotFoundException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -68,8 +65,6 @@
 			}
 			catch (GroupNotFoundException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -87,7 +82,6 @@
 			}
 
 			LogLevel logLevel = LogLevel.Error;
-			string message;
 
 			try
 			{
@@ -102,7 +96,7 @@
 				await _mediator.Send(command);
 
 				logLevel = LogLevel.Information;
-				message = "Succesfully update message";
+				string message = "Succesfully update message";
 
 				await _fileLogger.LogAsync(logLevel, message);
 				await _databaseLogger.LogAsync(logLevel, message);
@@ -136,15 +130,14 @@
 		[Route("[action]")]
 		public async Task<IActionResult> Delete(int messageId)
 		{
-			LogLevel logLevel;
-			string message;
+			LogLevel logLevel = LogLevel.Error;
 
 			try
 			{
 				await _mediator.Send(new DeleteMessageCommand(messageId, User.Id()));
 
 				logLevel = LogLevel.Information;
-				message = "Succesful delete message";
+				string message = "Succesful delete message";
 
 				await _fileLogger.LogAsync(logLevel, message);
 				await _databaseLogger.LogAsync(logLevel, message);
@@ -153,8 +146,6 @@
 			}
 			catch (MessageNotFoundException m)
 			{
-				logLevel= LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -162,8 +153,6 @@
 			}
 			catch (ApplicationUserNotFoundException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -171,8 +160,6 @@
 			}
 			catch (ApplicationUserNotCreatorException m)
 			{
-				logLevel = LogLevel.Error;
-
 				await _fileLogger.LogAsync(logLevel, m.Message);
 				await _databaseLogger.LogAsync(logLevel, m.Message);
 
@@ -184,25 +171,40 @@
 		[Route("[action]")]
 		public async Task<IActionResult> GetMessagesByGroupId(int groupId)
 		{
-			LogLevel logLevel;
-			string message;
+			LogLevel logLevel = LogLevel.Error;
 
 			try
 			{
 				List<Message> messages = await _mediator.Send(new GetMessagesByGroupIdQuery(groupId, User.Id()));
 
 				logLevel = LogLevel.Information;
-				message = "Succesfully get messages by group id";
+				string message = "Succesfully get messages by group id";
 
 				await _fileLogger.LogAsync(logLevel, message);
 				await _databaseLogger.LogAsync(logLevel, message);
 
 				return Ok(messages.Select(GetMessagesByGroupIdDto.FromMessage));
 			}
-			catch (Exception)
+			catch (ApplicationUserNotFoundException m)
 			{
+				await _fileLogger.LogAsync(logLevel, m.Message);
+				await _databaseLogger.LogAsync(logLevel, m.Message);
 
-				throw;
+				return NotFound(m.Message);
+			}
+			catch (GroupNotFoundException m)
+			{
+				await _fileLogger.LogAsync(logLevel, m.Message);
+				await _databaseLogger.LogAsync(logLevel, m.Message);
+
+				return NotFound(m.Message);
+			}
+			catch(ApplicationUserNotInGroupException m)
+			{
+				await _fileLogger.LogAsync(logLevel, m.Message);
+				await _databaseLogger.LogAsync(logLevel, m.Message);
+
+				return Forbid(m.Message);
 			}
 		}
 	}
