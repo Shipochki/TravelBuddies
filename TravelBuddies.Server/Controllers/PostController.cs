@@ -29,9 +29,9 @@
 		{
 		}
 
-		[HttpGet]
+		[HttpPost]
 		[Route("[action]")]
-		public async Task<IActionResult> GetAllPostBySearch([FromBody] PostSearchDto postSearchDto)
+		public async Task<IActionResult> AllPostBySearch([FromBody] PostSearchDto postSearchDto)
 		{
 			LogLevel logLevel;
 

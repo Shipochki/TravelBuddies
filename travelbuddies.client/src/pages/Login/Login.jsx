@@ -1,5 +1,7 @@
-import { Link } from "react-router-dom";
-import { useForm } from "../../hooks/useForm";
+import './Login.css'
+
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "../../utils/hooks/useForm";
 import { OnLoginSubmit } from "../../services/UserService";
 
 const LoginFromKeys = {
@@ -8,15 +10,23 @@ const LoginFromKeys = {
 };
 
 export const Login = () => {
+    const navigate = useNavigate();
+
     const { values, changeHandler, onSubmit } = useForm({
         [LoginFromKeys.Email]: '',
         [LoginFromKeys.Password]: '',
-    }, OnLoginSubmit)
+    })
+
+    const onClick = () => {
+        OnLoginSubmit(values);
+
+        navigate('/');
+    }
 
     return (
         <div className="login-main">
             <div className="login-content">
-                <form id="login" method="POST" onSubmit={onSubmit}>
+                <form id="login" method="POST" onSubmit={onClick}>
                     <input
                         type="email"
                         id="email"

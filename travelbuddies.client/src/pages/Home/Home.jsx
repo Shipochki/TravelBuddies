@@ -5,7 +5,6 @@ export const Home = () => {
     return(
         <div className='home-main'>
             <div className='home-content'>
-                <Link to={'/login'}>Login</Link>
             </div>
         </div>
     )
