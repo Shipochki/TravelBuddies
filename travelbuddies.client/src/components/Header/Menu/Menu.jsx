@@ -10,6 +10,9 @@ export const Menu = () => {
                     {localStorage.role == 'client' ? (
                         <Link to={'/becomeDriver'}>Become Driver</Link>
                     ): (<></>)}
+                    {localStorage.role == 'driver' ? (
+                        <Link to={'/createPost'}>Add Post</Link>
+                    ): (<></>)}
                     <Link to={'/logout'}>Logout</Link>
                 </>
             ) : (

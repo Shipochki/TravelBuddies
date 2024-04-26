@@ -183,7 +183,7 @@
 
 		[HttpPost]
 		[Route("[action]")]
-		[Authorize(Policy =ApplicationPolicies.OnlyDriver)]
+		[Authorize(Policy = ApplicationPolicies.OnlyDriver)]
 		public async Task<IActionResult> Update([FromBody] UpdatePostDto updatePostDto)
 		{
 			if (!ModelState.IsValid)

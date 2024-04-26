@@ -1,10 +1,10 @@
 import { parseJwt } from "../utils/common/parsers";
 
-const Url = 'https://localhost:7005/api';
+const Url = 'https://localhost:7005/api/user';
 
 export const OnLoginSubmit = async (loginFromKeys) => {
     try {
-      const response = await fetch(Url + `/user/login`, {
+      const response = await fetch(Url + `/login`, {
         method: "POST", // GET, POST, PUT, DELETE, etc.
         mode: "cors", // no-cors,cors, same-origin
         headers: {
@@ -30,7 +30,7 @@ export const OnLoginSubmit = async (loginFromKeys) => {
 
 export const OnRegisterSubmit = async (registerFromKeys) => {
     try {
-      const response = await fetch(Url + `/user/register`, {
+      const response = await fetch(Url + `/register`, {
         method: "POST", // GET, POST, PUT, DELETE, etc.
         mode: "cors", // no-cors,cors, same-origin
         headers: {
@@ -45,9 +45,9 @@ export const OnRegisterSubmit = async (registerFromKeys) => {
     }
   }
 
-export const OnBecomeDriver = async () => {
+export const OnBecomeDriverSubmit = async () => {
   try{
-    const response = await fetch(Url + `/user/becomeDriver`, {
+    const response = await fetch(Url + `/becomedriver`, {
       method: "POST", // GET, POST, PUT, DELETE, etc.
       mode: "cors", // no-cors,cors, same-origin
       headers: {

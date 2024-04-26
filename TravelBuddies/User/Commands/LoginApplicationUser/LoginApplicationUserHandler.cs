@@ -65,7 +65,7 @@
 
             foreach (var role in _userManager.GetRolesAsync(user).Result)
             {
-                claims.Add(new Claim(ClaimTypes.Role, role));
+                claims.Add(new Claim("role", role));
             }
 
             var token = new JwtSecurityToken(

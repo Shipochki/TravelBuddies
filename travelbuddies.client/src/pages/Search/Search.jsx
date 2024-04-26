@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './Search.css'
-import Calendar from './Calendar/Calendar';
+import Calendar from '../../components/Calendar/Calendar';
 import { useForm } from '../../utils/hooks/useForm';
 import { OnSearchSubmit } from '../../services/PostService';
 import { useNavigate } from 'react-router-dom';
@@ -35,6 +35,10 @@ export const Search = ({cities}) => {
   const clickHandler = () => {
     const fromdes = cities.filter(c => c.name == values[searchFromKeys.FromDestination])[0];
     const todes = cities.filter(c => c.name == values[searchFromKeys.ToDestination])[0];
+
+    if(fromdes == '' || todes == ''){
+      return;
+    }
 
     values[searchFromKeys.FromDestination] = fromdes.id;
     values[searchFromKeys.ToDestination] = todes.id;

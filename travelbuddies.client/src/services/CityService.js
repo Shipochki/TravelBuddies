@@ -1,8 +1,8 @@
-const Url = 'https://localhost:7005/api';
+const Url = 'https://localhost:7005/api/city';
 
 export const GetAllCities = async () => {
     try {
-      const response = await fetch(Url + '/City/GetCities', {
+      const response = await fetch(Url + '/getcities', {
         method: 'GET',
         mode: "cors",
         headers: {

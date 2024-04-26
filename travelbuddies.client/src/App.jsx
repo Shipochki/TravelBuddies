@@ -11,20 +11,17 @@ import { BecomeDriver } from './pages/BecomeDriver/BecomeDriver'
 import { Catalog } from './pages/Catalog/Catalog';
 import { GlobalContext } from './utils/contexts/GlobalContext';
 import { Search } from './pages/Search/Search'
+import { CreatePost } from './pages/CreatePost/CreatePost';
 
 function App() {
     const [cities, setCities] = useState([]);
     const [posts, setPosts] = useState([]);
-
-    //useEffect(() => {
-    //    const result = GetAllCities();
-    //    setCities(result);
-    //}, []);
+    const [groups, setGroups] = useState([]);
 
     useEffect(() => {
         const GetAllCities = async () => {
           try {
-            const response = await fetch('https://localhost:7005/api/City/GetCities', {
+            const response = await fetch('https://localhost:7005/api/city/getcities', {
                 method: 'GET',
                 mode: "cors",
                 headers: {
@@ -36,9 +33,30 @@ function App() {
           } catch (error) {
             console.error('Error fetching cities:', error);
           }
-        }; GetAllCities()
+        }; GetAllCities();
         }, []);
     
+    useEffect(() => {
+        const GetAllGroupByUserId = async () => {
+            try {
+                const response = await fetch('https://localhost:7005/api/group/getusergroupsbyuserid', {
+                  method: 'GET',
+                  mode: "cors",
+                  headers: {
+                      'Authorization': `Bearer ${localStorage.accessToken}`,
+                      'Content-Type': 'application/json'
+                  },
+                });
+
+                const groups = await response.json()
+                setGroups(groups);
+                
+              } catch (error) {
+                console.error('Error fetching join group:', error);
+              }}
+              ; GetAllGroupByUserId()
+    }, [])
+
     const globalContext = {
         setPosts,
     }
@@ -55,6 +73,9 @@ function App() {
                             <Route path='/logout' element={<Logout/>}/>
                             {localStorage.role == 'client' ? (
                                 <Route path={'/becomeDriver'} element={<BecomeDriver/>}/>
+                            ): ''}
+                            {localStorage.role == 'driver' ? (
+                                <Route path={'/createPost'} element={<CreatePost cities={cities}/>}/>
                             ): ''}
                             <Route path='/Catalog' element={<Catalog/>}/>
                         </>
