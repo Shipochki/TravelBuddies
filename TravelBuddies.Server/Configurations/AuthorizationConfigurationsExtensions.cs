@@ -38,7 +38,8 @@
 			service.AddCors(options =>
 			{
 				options.AddPolicy(ApplicationCorses.AllowOrigin,
-					builder => builder.WithOrigins("https://localhost:5173")
+					builder => builder
+					.WithOrigins("https://localhost:5173")
 					.AllowAnyMethod()
 					.AllowAnyHeader()
 					.AllowCredentials());

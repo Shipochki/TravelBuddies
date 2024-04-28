@@ -9,7 +9,7 @@ export const Header = () => {
         <div className="header">
             <div className="logo-content">
                 
-                <Link to={'/'} className="logo"><img src={mainLogo} alt="logo" />Buddies</Link>
+                <Link to={'/'} className="logo">TravelBuddies</Link>
            
             </div>
             <div className="navigation">

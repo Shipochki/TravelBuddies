@@ -10,17 +10,8 @@ export const OnLoginSubmit = async (loginFromKeys) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(loginFromKeys),
+        body: JSON.stringify(loginFromKeys)
       });
-
-      if (!response.ok) {
-        if (response.status === 400) {
-          console.log('Invalid username or password.');
-        } else {
-          console.log('An error occurred while logging in.');
-        }
-        return;
-      }
 
       const { token: accessToken } = await response.json();
 
@@ -31,7 +22,7 @@ export const OnLoginSubmit = async (loginFromKeys) => {
       localStorage.setItem('userId', userId);
       localStorage.setItem('role', role)
 
-      window.location.reload();
+      window.location.assign('/')
     } catch (error) {
       console.log("Error with login");
     }

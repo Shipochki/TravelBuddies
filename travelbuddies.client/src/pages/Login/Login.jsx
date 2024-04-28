@@ -18,27 +18,13 @@ export const Login = () => {
     const { values, changeHandler, onSubmit } = useForm({
         [LoginFromKeys.Email]: '',
         [LoginFromKeys.Password]: '',
-    })
-
-    const onClick = () => {
-        OnLoginSubmit(values);
-
-        if(localStorage.accessToken){
-            navigate('/');
-        } else {
-            setInvalidLogin(!invalidLogin);
-        }
-    }
+    }, OnLoginSubmit)
 
     return (
         <div className="login-main">
-            {invalidLogin &&
-            <div className='invalid-login'>
-                <p>Invalid Login</p>
-            </div>}
             <div id='container' className="login-content">
                 <h2>Log In</h2>
-                <form id="login" method="POST" onSubmit={onClick}>
+                <form id="login" method="POST" onSubmit={onSubmit}>
                     <div className='input-field'>
                         <label>Email</label>
                         <input

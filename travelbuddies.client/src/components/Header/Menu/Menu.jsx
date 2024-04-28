@@ -41,14 +41,9 @@ export const Menu = () => {
     return (
         <div>
             <div className={`menuLines`}>
-                {menuVisible ? (
-                    <div className='icon'>
-                        <FontAwesomeIcon icon={faX}/>
-                    </div>
-                ) : (
                 <div onClick={toggleMenu}>
-                    👤
-                </div>)}
+                    👤⚬ ⚬ ⚬
+                </div>
             </div>
             <div className="menu-content">
                 <div ref={menuRef} className={`menu ${menuVisible ? 'open' : ''}`}>

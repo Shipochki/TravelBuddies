@@ -1,5 +1,7 @@
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import "./Home.css"
 import { Link } from "react-router-dom";
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export const Home = () => {
     return (
@@ -29,7 +31,9 @@ export const Home = () => {
                 <h2>What Makes Us Special</h2>
                 <div className="third-layer-content">
                     <div className="third-layer-card">
-                        <img src={'https://sttravelbuddies001.blob.core.windows.net/web/austin-distel-wD1LRb9OeEo-unsplash.jpg'} alt="community" />
+                        <LazyLoadImage 
+                        effect="blur"
+                        src={'https://sttravelbuddies001.blob.core.windows.net/web/austin-distel-wD1LRb9OeEo-unsplash.jpg'} alt="community" />
                         <h3>Community-Centric Approach</h3>
                         <p>Our application isn't just about facilitating 
                         travel plans; it's about cultivating a vibrant 
@@ -37,7 +41,9 @@ export const Home = () => {
                         a passion for exploration and connection.</p>
                     </div>
                     <div className="third-layer-card">
-                        <img src={'https://sttravelbuddies001.blob.core.windows.net/web/austin-kehmeier-lyiKExA4zQA-unsplash.jpg'} alt="Emphasis" />
+                        <LazyLoadImage
+                        effect="blur"
+                        src={'https://sttravelbuddies001.blob.core.windows.net/web/austin-kehmeier-lyiKExA4zQA-unsplash.jpg'} alt="Emphasis" />
                         <h3>Emphasis on Safety and Inclusivity</h3>
                         <p>We prioritize the safety and well-being of our 
                         users above all else, implementing robust safety 
@@ -49,7 +55,9 @@ export const Home = () => {
                         world one journey at a time.</p>
                     </div>
                     <div className="third-layer-card">
-                        <img src={'https://sttravelbuddies001.blob.core.windows.net/web/girl-with-red-hat-gL3-jTs_Q7g-unsplash.jpg'} alt="Focus " />
+                        <LazyLoadImage
+                        effect="blur"
+                        src={'https://sttravelbuddies001.blob.core.windows.net/web/girl-with-red-hat-gL3-jTs_Q7g-unsplash.jpg'} alt="Focus " />
                         <h3>Focus on Authentic Experiences</h3>
                         <p>Through cutting-edge algorithms and user-friendly 
                         interfaces, we strive to make the process of finding 
@@ -62,10 +70,18 @@ export const Home = () => {
                 </div>
             </div>
             <div className="fourth-layer">
-                <img src={'https://sttravelbuddies001.blob.core.windows.net/web/felix-rostig-UmV2wr-Vbq8-unsplash.jpg'} alt="people" />
-                <img src={'https://sttravelbuddies001.blob.core.windows.net/web/jorge-saavedra-94qZsII4kN8-unsplash.jpg'} alt="two girls" />
-                <img src={'https://sttravelbuddies001.blob.core.windows.net/web/helena-lopes-PGnqT0rXWLs-unsplash.jpg'} alt="friends" />
-                <img src={'https://sttravelbuddies001.blob.core.windows.net/web/scott-dukette-1HpQU1evGK8-unsplash.jpg'} alt="car" />
+                <LazyLoadImage
+                effect="blur"
+                src={'https://sttravelbuddies001.blob.core.windows.net/web/felix-rostig-UmV2wr-Vbq8-unsplash.jpg'} alt="people" />
+                <LazyLoadImage 
+                effect="blur"
+                src={'https://sttravelbuddies001.blob.core.windows.net/web/jorge-saavedra-94qZsII4kN8-unsplash.jpg'} alt="two girls" />
+                <LazyLoadImage
+                effect="blur" 
+                src={'https://sttravelbuddies001.blob.core.windows.net/web/helena-lopes-PGnqT0rXWLs-unsplash.jpg'} alt="friends" />
+                <LazyLoadImage
+                effect="blur" 
+                src={'https://sttravelbuddies001.blob.core.windows.net/web/scott-dukette-1HpQU1evGK8-unsplash.jpg'} alt="car" />
             </div>
             <div className="fifth-layer">
                 <h3>“Not all those who wander are lost.”</h3>

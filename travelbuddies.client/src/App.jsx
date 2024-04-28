@@ -71,7 +71,7 @@ function App() {
                 <Routes>
                     {localStorage.accessToken ? (
                         <>
-                            <Route path='/' element={<Search cities={cities}/>}/>
+                            <Route path='/search' element={<Search cities={cities}/>}/>
                             <Route path='/logout' element={<Logout/>}/>
                             {localStorage.role == 'client' ? (
                                 <Route path={'/becomeDriver'} element={<BecomeDriver/>}/>
@@ -83,12 +83,12 @@ function App() {
                         </>
                     ) : (
                         <>
-                            <Route path='/' element={<Home/>}/>
                             <Route path='/login' element={<Login/>}/>
                             <Route path='/register' element={<Regiser/>}/>
-                            <Route path='/about' element={<About/>}/>
                         </>
-                    )}
+                    )} 
+                    <Route path='/' element={<Home/>}/>
+                    <Route path='/about' element={<About/>}/>
                 </Routes>
 
                 <Footer/>

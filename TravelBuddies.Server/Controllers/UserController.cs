@@ -84,9 +84,9 @@
 		}
 
 		[HttpPost]
-		[AllowAnonymous]
 		[Route("[action]")]
 		[ModelStateValidation]
+		[AllowAnonymous]
 		public async Task<IActionResult> Login([FromBody] UserLoginDto userLoginDto)
 		{
 			string token = await _mediator.Send(

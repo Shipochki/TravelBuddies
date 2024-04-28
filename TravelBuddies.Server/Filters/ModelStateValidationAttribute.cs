@@ -3,16 +3,15 @@
 	using Microsoft.AspNetCore.Mvc;
 	using Microsoft.AspNetCore.Mvc.Filters;
 
-	public class ModelStateValidationAttribute : Attribute, IAsyncActionFilter
+	public class ModelStateValidationAttribute : ActionFilterAttribute
 	{
-		public Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
+		public override void OnResultExecuting(ResultExecutingContext context)
 		{
 			if(!context.ModelState.IsValid)
 			{
-				context.Result = new BadRequestResult();
+				context.Result = new BadRequestObjectResult(context.ModelState);
 			}
-
-			return Task.CompletedTask;
 		}
+
 	}
 }
