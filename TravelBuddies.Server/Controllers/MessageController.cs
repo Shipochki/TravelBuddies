@@ -5,7 +5,6 @@
 	using Microsoft.AspNetCore.Cors;
 	using Microsoft.AspNetCore.Mvc;
 	using TravelBuddies.Domain.Common;
-	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Message.Commands.CreateMessage;
 	using TravelBuddies.Application.Message.Commands.DeleteMessage;
 	using TravelBuddies.Application.Message.Commands.UpdateMessage;
@@ -14,6 +13,7 @@
 	using TravelBuddies.Domain.Enums;
 	using TravelBuddies.Presentation.Configurations;
 	using TravelBuddies.Presentation.DTOs.Message;
+	using TravelBuddies.Presentation.Filters;
 
 	[EnableCors(ApplicationCorses.AllowOrigin)]
 	[Route("api/[controller]")]
@@ -28,184 +28,79 @@
 
 		[HttpPost]
 		[Route("[action]")]
+		[ModelStateValidation]
 		public async Task<IActionResult> Create([FromBody] CreateMessageDto createMessageDto)
 		{
-			if (!ModelState.IsValid)
+			CreateMessageCommand command = new CreateMessageCommand()
 			{
-				return BadRequest(ModelState);
-			}
+				Text = createMessageDto.Text,
+				GroupId = createMessageDto.GroupId,
+				CreatorId = User.Id(),
+			};
 
-			LogLevel logLevel = LogLevel.Error;
+			await _mediator.Send(command);
 
-			try
-			{
-				CreateMessageCommand command = new CreateMessageCommand()
-				{
-					Text = createMessageDto.Text,
-					GroupId = createMessageDto.GroupId,
-					CreatorId = User.Id(),
-				};
+			LogLevel logLevel = LogLevel.Information;
+			string message = "Succesfully created message";
 
-				await _mediator.Send(command);
+			await _fileLogger.LogAsync(logLevel, message);
+			await _databaseLogger.LogAsync(logLevel, message);
 
-				logLevel = LogLevel.Information;
-				string message = "Succesfully created message";
-
-				await _fileLogger.LogAsync(logLevel, message);
-				await _databaseLogger.LogAsync(logLevel, message);
-
-				return Created();
-			}
-			catch (ApplicationUserNotFoundException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return NotFound(m.Message);
-			}
-			catch (GroupNotFoundException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return NotFound(m.Message);
-			}
+			return Created();
 		}
 
 		[HttpPost]
 		[Route("[action]")]
+		[ModelStateValidation]
 		public async Task<IActionResult> Update([FromBody] UpdateMessageDto updateMessageDto)
 		{
-			if(!ModelState.IsValid)
+			UpdateMessageCommand command = new UpdateMessageCommand()
 			{
-				return BadRequest(ModelState);
-			}
+				Id = updateMessageDto.Id,
+				Text = updateMessageDto.Text,
+				GroupId = updateMessageDto.GroupId,
+				CreatorId = User.Id()
+			};
 
-			LogLevel logLevel = LogLevel.Error;
+			await _mediator.Send(command);
 
-			try
-			{
-				UpdateMessageCommand command = new UpdateMessageCommand()
-				{
-					Id = updateMessageDto.Id,
-					Text = updateMessageDto.Text,
-					GroupId = updateMessageDto.GroupId,
-					CreatorId = User.Id()
-				};
+			LogLevel logLevel = LogLevel.Information;
+			string message = "Succesfully update message";
 
-				await _mediator.Send(command);
+			await _fileLogger.LogAsync(logLevel, message);
+			await _databaseLogger.LogAsync(logLevel, message);
 
-				logLevel = LogLevel.Information;
-				string message = "Succesfully update message";
-
-				await _fileLogger.LogAsync(logLevel, message);
-				await _databaseLogger.LogAsync(logLevel, message);
-
-				return Ok(message);
-			}
-			catch (MessageNotFoundException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return NotFound(m.Message);
-			}
-			catch (ApplicationUserNotFoundException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return NotFound(m.Message);
-			}
-			catch (ApplicationUserNotCreatorException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return Forbid(m.Message);
-			}
+			return Ok(message);
 		}
 
 		[HttpPost]
 		[Route("[action]")]
 		public async Task<IActionResult> Delete(int messageId)
 		{
-			LogLevel logLevel = LogLevel.Error;
+			await _mediator.Send(new DeleteMessageCommand(messageId, User.Id()));
 
-			try
-			{
-				await _mediator.Send(new DeleteMessageCommand(messageId, User.Id()));
+			LogLevel logLevel = LogLevel.Information;
+			string message = "Succesful delete message";
 
-				logLevel = LogLevel.Information;
-				string message = "Succesful delete message";
+			await _fileLogger.LogAsync(logLevel, message);
+			await _databaseLogger.LogAsync(logLevel, message);
 
-				await _fileLogger.LogAsync(logLevel, message);
-				await _databaseLogger.LogAsync(logLevel, message);
-
-				return Ok(message);
-			}
-			catch (MessageNotFoundException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return NotFound(m.Message);
-			}
-			catch (ApplicationUserNotFoundException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return NotFound(m.Message);
-			}
-			catch (ApplicationUserNotCreatorException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return Forbid(m.Message);
-			}
+			return Ok(message);
 		}
 
 		[HttpGet]
 		[Route("[action]")]
 		public async Task<IActionResult> GetMessagesByGroupId(int groupId)
 		{
-			LogLevel logLevel = LogLevel.Error;
+			List<Message> messages = await _mediator.Send(new GetMessagesByGroupIdQuery(groupId, User.Id()));
 
-			try
-			{
-				List<Message> messages = await _mediator.Send(new GetMessagesByGroupIdQuery(groupId, User.Id()));
+			LogLevel logLevel = LogLevel.Information;
+			string message = "Succesfully get messages by group id";
 
-				logLevel = LogLevel.Information;
-				string message = "Succesfully get messages by group id";
+			await _fileLogger.LogAsync(logLevel, message);
+			await _databaseLogger.LogAsync(logLevel, message);
 
-				await _fileLogger.LogAsync(logLevel, message);
-				await _databaseLogger.LogAsync(logLevel, message);
-
-				return Ok(messages.Select(GetMessagesByGroupIdDto.FromMessage));
-			}
-			catch (ApplicationUserNotFoundException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return NotFound(m.Message);
-			}
-			catch (GroupNotFoundException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return NotFound(m.Message);
-			}
-			catch(ApplicationUserNotInGroupException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return Forbid(m.Message);
-			}
+			return Ok(messages.Select(GetMessagesByGroupIdDto.FromMessage));
 		}
 	}
 }

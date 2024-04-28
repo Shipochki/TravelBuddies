@@ -5,7 +5,6 @@
 	using Microsoft.AspNetCore.Cors;
 	using Microsoft.AspNetCore.Mvc;
 	using TravelBuddies.Domain.Common;
-	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Group.Commands.CreateGroup;
 	using TravelBuddies.Application.Post.Commands.CreatePost;
 	using TravelBuddies.Application.Post.Commands.DeletePost;
@@ -17,6 +16,7 @@
 	using TravelBuddies.Domain.Enums;
 	using TravelBuddies.Presentation.Configurations;
 	using TravelBuddies.Presentation.DTOs.Post;
+	using TravelBuddies.Presentation.Filters;
 
 	[EnableCors(ApplicationCorses.AllowOrigin)]
 	[Route("api/[controller]")]
@@ -61,82 +61,52 @@
 		[HttpPost]
 		[Route("[action]")]
 		[Authorize(Policy = ApplicationPolicies.OnlyDriver)]
+		[ModelStateValidation]
 		public async Task<IActionResult> Create([FromBody] CreatePostDto createPostDto)
 		{
-			if (!ModelState.IsValid)
+			CreatePostCommand postCommand = new CreatePostCommand()
 			{
-				return BadRequest(ModelState);
-			}
+				FromDestinationCityId = createPostDto.FromDestinationCityId,
+				ToDestinationCityId = createPostDto.ToDestinationCityId,
+				Description = createPostDto.Description,
+				PricePerSeat = createPostDto.PricePerSeat,
+				FreeSeats = createPostDto.FreeSeats,
+				Baggage = createPostDto.Baggage,
+				Pets = createPostDto.Pets,
+				DateAndTime = $"{createPostDto.Date} {createPostDto.Time}",
+				PaymentType = createPostDto.PaymentType,
+				CreatorId = User.Id()
+			};
 
-			LogLevel logLevel = LogLevel.Error;
+			Post post = await _mediator.Send(postCommand);
 
-			try
+			CreateGroupCommand groupCommand = new CreateGroupCommand()
 			{
-				CreatePostCommand postCommand = new CreatePostCommand()
-				{
-					FromDestinationCityId = createPostDto.FromDestinationCityId,
-					ToDestinationCityId = createPostDto.ToDestinationCityId,
-					Description = createPostDto.Description,
-					PricePerSeat = createPostDto.PricePerSeat,
-					FreeSeats = createPostDto.FreeSeats,
-					Baggage = createPostDto.Baggage,
-					Pets = createPostDto.Pets,
-					DateAndTime = $"{createPostDto.Date} {createPostDto.Time}",
-					PaymentType = createPostDto.PaymentType,
-					CreatorId = User.Id()
-				};
+				CreatorId = post.CreatorId,
+				PostId = post.Id,
+			};
 
-				Post post = await _mediator.Send(postCommand);
+			Group group = await _mediator.Send(groupCommand);
 
-				CreateGroupCommand groupCommand = new CreateGroupCommand()
-				{
-					CreatorId = post.CreatorId,
-					PostId = post.Id,
-				};
+			UpdatePostGroupCommand updatePostGroupCommand = new UpdatePostGroupCommand(post.Id, group.Id);
 
-				Group group = await _mediator.Send(groupCommand);
+			await _mediator.Send(updatePostGroupCommand);
 
-				UpdatePostGroupCommand updatePostGroupCommand = new UpdatePostGroupCommand(post.Id, group.Id);
-
-				await _mediator.Send(updatePostGroupCommand);
-
-				CreateUserGroupCommand userGroupCommand = new CreateUserGroupCommand()
-				{
-					GroupId = group.Id,
-					UserId = group.CreatorId,
-				};
-
-				await _mediator.Send(userGroupCommand);
-
-				logLevel = LogLevel.Information;
-				string message = "Succesfully created post with group and creator joined group";
-
-				await _fileLogger.LogAsync(logLevel, message);
-				await _databaseLogger.LogAsync(logLevel, message);
-
-				return Created();
-			}
-			catch (ApplicationUserNotFoundException m)
+			CreateUserGroupCommand userGroupCommand = new CreateUserGroupCommand()
 			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
+				GroupId = group.Id,
+				UserId = group.CreatorId,
+			};
 
-				return NotFound(m.Message);
-			}
-			catch (CityNotFoundException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
+			await _mediator.Send(userGroupCommand);
 
-				return NotFound(m.Message);
-			}
-			catch (PostNotFoundException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
+			LogLevel logLevel = LogLevel.Information;
+			string message = "Succesfully created post with group and creator joined group";
 
-				return NotFound(m.Message);
-			}
+			await _fileLogger.LogAsync(logLevel, message);
+			await _databaseLogger.LogAsync(logLevel, message);
+
+			return Created();
 		}
 
 		[HttpPost]
@@ -144,103 +114,47 @@
 		[Authorize(Policy = ApplicationPolicies.DriverAndAdmin)]
 		public async Task<IActionResult> Delete(int postId)
 		{
-			LogLevel logLevel = LogLevel.Error;
+			await _mediator.Send(new DeletePostCommand(postId, User.Id()));
 
-			try
-			{
-				await _mediator.Send(new DeletePostCommand(postId, User.Id()));
+			LogLevel logLevel = LogLevel.Information;
+			string message = "Succesfully deleted post";
 
-				logLevel = LogLevel.Information;
-				string message = "Succesfully deleted post";
+			await _fileLogger.LogAsync(logLevel, message);
+			await _databaseLogger.LogAsync(logLevel, message);
 
-				await _fileLogger.LogAsync(logLevel, message);
-				await _databaseLogger.LogAsync(logLevel, message);
-
-				return Ok(message);
-			}
-			catch (PostNotFoundException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return NotFound(m.Message);
-			}
-			catch (ApplicationUserNotFoundException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return NotFound(m.Message);
-			}
-			catch (ApplicationUserNotCreatorException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return Forbid(m.Message);
-			}
+			return Ok(message);
 		}
 
 		[HttpPost]
 		[Route("[action]")]
 		[Authorize(Policy = ApplicationPolicies.OnlyDriver)]
+		[ModelStateValidation]
 		public async Task<IActionResult> Update([FromBody] UpdatePostDto updatePostDto)
 		{
-			if (!ModelState.IsValid)
+			UpdatePostCommand command = new UpdatePostCommand()
 			{
-				return BadRequest(ModelState);
-			}
+				Id = updatePostDto.Id,
+				FromDestinationCityId = updatePostDto.FromDestinationCityId,
+				ToDestinationCityId = updatePostDto.ToDestinationCityId,
+				Description = updatePostDto.Description,
+				PricePerSeat = updatePostDto.PricePerSeat,
+				FreeSeats = updatePostDto.FreeSeats,
+				Baggage = updatePostDto.Baggage,
+				Pets = updatePostDto.Pets,
+				DateAndTime = updatePostDto.DateAndTime,
+				PaymentType = updatePostDto.PaymentType,
+				CreatorId = User.Id()
+			};
 
-			LogLevel logLevel = LogLevel.Error;
+			await _mediator.Send(command);
 
-			try
-			{
-				UpdatePostCommand command = new UpdatePostCommand()
-				{
-					Id = updatePostDto.Id,
-					FromDestinationCityId = updatePostDto.FromDestinationCityId,
-					ToDestinationCityId = updatePostDto.ToDestinationCityId,
-					Description = updatePostDto.Description,
-					PricePerSeat = updatePostDto.PricePerSeat,
-					FreeSeats = updatePostDto.FreeSeats,
-					Baggage = updatePostDto.Baggage,
-					Pets = updatePostDto.Pets,
-					DateAndTime = updatePostDto.DateAndTime,
-					PaymentType = updatePostDto.PaymentType,
-					CreatorId = User.Id()
-				};
+			LogLevel logLevel = LogLevel.Information;
+			string message = "Succesfully updated post";
 
-				await _mediator.Send(command);
+			await _fileLogger.LogAsync(logLevel, message);
+			await _databaseLogger.LogAsync(logLevel, message);
 
-				logLevel = LogLevel.Information;
-				string message = "Succesfully updated post";
-
-				await _fileLogger.LogAsync(logLevel, message);
-				await _databaseLogger.LogAsync(logLevel, message);
-
-				return Ok(message);
-			}
-			catch (PostNotFoundException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return NotFound(m.Message);
-			}
-			catch (ApplicationUserNotFoundException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return NotFound(m.Message);
-			}
-			catch (ApplicationUserNotCreatorException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return Forbid(m.Message);
-			}
+			return Ok(message);
 		}
 	}
 }

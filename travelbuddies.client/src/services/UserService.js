@@ -13,6 +13,15 @@ export const OnLoginSubmit = async (loginFromKeys) => {
         body: JSON.stringify(loginFromKeys),
       });
 
+      if (!response.ok) {
+        if (response.status === 400) {
+          console.log('Invalid username or password.');
+        } else {
+          console.log('An error occurred while logging in.');
+        }
+        return;
+      }
+
       const { token: accessToken } = await response.json();
 
       const { nameId: userId, sub: username, role: role } = parseJwt(accessToken);

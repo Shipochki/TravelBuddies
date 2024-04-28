@@ -3,7 +3,6 @@
 	using MediatR;
 	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Mvc;
-	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Review.Queries.GetReviewsByReciverId;
 	using TravelBuddies.Domain.Entities;
 	using TravelBuddies.Domain.Enums;
@@ -14,6 +13,7 @@
 	using TravelBuddies.Application.Review.Commands.DeleteReview;
 	using TravelBuddies.Presentation.Configurations;
 	using Microsoft.AspNetCore.Cors;
+	using TravelBuddies.Presentation.Filters;
 
 	[EnableCors(ApplicationCorses.AllowOrigin)]
 	[Route("api/[controller]")]
@@ -38,132 +38,67 @@
 		[HttpPost]
 		[Authorize(Policy = ApplicationPolicies.ClientAndDriver)]
 		[Route("[action]")]
+		[ModelStateValidation]
 		public async Task<IActionResult> Create([FromBody] CreateReviewDto createReviewDto)
 		{
-			if(!ModelState.IsValid)
+			CreateReviewCommand command = new CreateReviewCommand()
 			{
-				return BadRequest(ModelState);
-			}
+				CreatorId = User.Id(),
+				ReciverId = createReviewDto.ReciverId,
+				Text = createReviewDto.Text,
+				Rating = createReviewDto.Rating,
+			};
 
-			LogLevel logLevel = LogLevel.Error;
+			await _mediator.Send(command);
 
-			try
-			{
-				CreateReviewCommand command = new CreateReviewCommand()
-				{
-					CreatorId = User.Id(),
-					ReciverId = createReviewDto.ReciverId,
-					Text = createReviewDto.Text,
-					Rating = createReviewDto.Rating,
-				};
+			LogLevel logLevel = LogLevel.Information;
+			string message = "Review created succesfully";
 
-				await _mediator.Send(command);
+			await _fileLogger.LogAsync(logLevel, message);
+			await _databaseLogger.LogAsync(logLevel, message);
 
-				logLevel = LogLevel.Information;
-				string message = "Review created succesfully";
-
-				await _fileLogger.LogAsync(logLevel, message);
-				await _databaseLogger.LogAsync(logLevel, message);
-
-				return Created();
-			}
-			catch (ApplicationUserNotFoundException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return NotFound(m.Message);
-			}
+			return Created();
 		}
 
 		[HttpPost]
 		[Authorize(Policy = ApplicationPolicies.ClientAndDriver)]
 		[Route("[action]")]
+		[ModelStateValidation]
 		public async Task<IActionResult> Update([FromBody] UpdateReviewDto updateReviewDto)
 		{
-			if(!ModelState.IsValid)
+			UpdateReviewCommand command = new UpdateReviewCommand()
 			{
-				return BadRequest(ModelState);
-			}
+				Id = updateReviewDto.Id,
+				CreatorId = User.Id(),
+				ReciverId = updateReviewDto.ReciverId,
+				Text = updateReviewDto.Text,
+				Rating = updateReviewDto.Rating,
+			};
 
-			LogLevel logLevel = LogLevel.Error;
+			await _mediator.Send(command);
 
-			try
-			{
-				UpdateReviewCommand command = new UpdateReviewCommand()
-				{
-					Id = updateReviewDto.Id,
-					CreatorId = User.Id(),
-					ReciverId = updateReviewDto.ReciverId,
-					Text = updateReviewDto.Text,
-					Rating = updateReviewDto.Rating,
-				};
+			LogLevel logLevel = LogLevel.Information;
+			string message = "Review updated succesfully";
 
-				await _mediator.Send(command);
+			await _fileLogger.LogAsync(logLevel, message);
+			await _databaseLogger.LogAsync(logLevel, message);
 
-				logLevel = LogLevel.Information;
-				string message = "Review updated succesfully";
-
-				await _fileLogger.LogAsync(logLevel, message);
-				await _databaseLogger.LogAsync(logLevel, message);
-
-				return Created();
-			}
-			catch (ReviewNotFoundException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return NotFound(m.Message);
-			}
-			catch (ApplicationUserNotCreatorException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return Forbid(m.Message);
-			}
+			return Created();
 		}
 
 		[HttpPost]
 		[Route("[action]")]
 		public async Task<IActionResult> Delete(int reviewId)
 		{
-			LogLevel logLevel = LogLevel.Error;
+			await _mediator.Send(new DeleteReviewCommand(reviewId, User.Id()));
 
-			try
-			{
-				await _mediator.Send(new DeleteReviewCommand(reviewId, User.Id()));
+			LogLevel logLevel = LogLevel.Information;
+			string message = "Review deleted succesfully";
 
-				logLevel = LogLevel.Information;
-				string message = "Review deleted succesfully";
+			await _fileLogger.LogAsync(logLevel, message);
+			await _databaseLogger.LogAsync(logLevel, message);
 
-				await _fileLogger.LogAsync(logLevel, message);
-				await _databaseLogger.LogAsync(logLevel, message);
-
-				return Ok();
-			}
-			catch (ReviewNotFoundException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return NotFound(m.Message);
-			}
-			catch (ApplicationUserNotCreatorException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return Forbid();
-			}
-			catch (ApplicationUserNotFoundException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return NotFound(m.Message);
-			}
+			return Ok();
 		}
 	}
 }

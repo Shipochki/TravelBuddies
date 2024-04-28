@@ -11,6 +11,7 @@ namespace TravelBuddies.Server
 	using TravelBuddies.Presentation.Configurations;
 	using TravelBuddies.Application.Interfaces.AzureStorage;
 	using TravelBuddies.Infrastructure.ExternalVendors.AzureStorage;
+	using TravelBuddies.Presentation.Filters;
 
 	public class Program
 	{
@@ -42,7 +43,10 @@ namespace TravelBuddies.Server
 
 			builder.Services.AddToken(builder.Configuration);
 
-			builder.Services.AddControllers();
+			builder.Services.AddControllers(cfg =>
+			{
+				cfg.Filters.Add(typeof(ExceptionHandler));
+			});
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
@@ -69,11 +73,6 @@ namespace TravelBuddies.Server
 			app.UseAuthorization();
 
 			app.MapControllers();
-			app.MapControllerRoute(
-				name: "default",
-				pattern: "{controller}/{action=Index}/{id?}");
-
-			app.MapFallbackToFile("/index.html");
 
 			app.MapSwagger()
 				.RequireAuthorization();

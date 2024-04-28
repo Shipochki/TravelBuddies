@@ -5,7 +5,6 @@
 	using Microsoft.AspNetCore.Cors;
 	using Microsoft.AspNetCore.Mvc;
 	using TravelBuddies.Domain.Common;
-	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.UserGroup.Commands.CreateUserGroup;
 	using TravelBuddies.Application.UserGroup.Commands.DeleteUserGroup;
 	using TravelBuddies.Application.UserGroup.Commands.RemoveUserGroup;
@@ -28,94 +27,42 @@
 		[Route("[action]")]
 		public async Task<IActionResult> JoinGroup(int groupId)
 		{
-			LogLevel logLevel = LogLevel.Error;
-
-			try
+			CreateUserGroupCommand command = new CreateUserGroupCommand()
 			{
-				CreateUserGroupCommand command = new CreateUserGroupCommand()
-				{
-					GroupId = groupId,
-					UserId = User.Id(),
-				};
+				GroupId = groupId,
+				UserId = User.Id(),
+			};
 
-				await _mediator.Send(command);
+			await _mediator.Send(command);
 
-				logLevel = LogLevel.Information;
-				string message = "Succesfully joined in group";
+			LogLevel logLevel = LogLevel.Information;
+			string message = "Succesfully joined in group";
 
-				await _fileLogger.LogAsync(logLevel, message);
-				await _databaseLogger.LogAsync(logLevel, message);
+			await _fileLogger.LogAsync(logLevel, message);
+			await _databaseLogger.LogAsync(logLevel, message);
 
-				return Created();
-			}
-			catch (ApplicationUserNotFoundException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return NotFound(m.Message);
-			}
-			catch (GroupNotFoundException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return NotFound(m.Message);
-			}
-			catch (ApplicationUserAllreadyInGroupException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return BadRequest(m.Message);
-			}
-			catch (PostNotFoundException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return NotFound(m.Message);
-			}
-			catch (NotAvailableSeatsInPostException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return BadRequest(m.Message);
-			}
+			return Created();
 		}
 
 		[HttpPost]
 		[Route("[action]")]
 		public async Task<IActionResult> LeaveGroup(int groupId)
 		{
-			LogLevel logLevel = LogLevel.Error;
-
-			try
+			DeleteUserGroupCommand command = new DeleteUserGroupCommand()
 			{
-				DeleteUserGroupCommand command = new DeleteUserGroupCommand()
-				{
-					GroupId = groupId,
-					UserId = User.Id(),
-				};
+				GroupId = groupId,
+				UserId = User.Id(),
+			};
 
-				await _mediator.Send(command);
+			await _mediator.Send(command);
 
-				logLevel = LogLevel.Information;
-				string message = "Succesfully leave group";
+			LogLevel logLevel = LogLevel.Information;
+			string message = "Succesfully leave group";
 
-				await _fileLogger.LogAsync(logLevel, message);
-				await _databaseLogger.LogAsync(logLevel, message);
+			await _fileLogger.LogAsync(logLevel, message);
+			await _databaseLogger.LogAsync(logLevel, message);
 
-				return Ok(message);
-			}
-			catch (ApplicationUserNotInGroupException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return BadRequest(m.Message);
-			}
+			return Ok(message);
 		}
 
 		[HttpPost]
@@ -123,55 +70,22 @@
 		[Authorize(Policy = ApplicationPolicies.DriverAndAdmin)]
 		public async Task<IActionResult> RemoveUserFromGroup([FromBody] RemoveUserGroupDto removeUserGroupDto)
 		{
-			LogLevel logLevel = LogLevel.Error;
-
-			try
+			RemoveUserGroupCommand command = new RemoveUserGroupCommand()
 			{
-				RemoveUserGroupCommand command = new RemoveUserGroupCommand()
-				{
-					GroupId = removeUserGroupDto.GroupId,
-					UserIdForRemove = removeUserGroupDto.UserId,
-					OwnerId = User.Id()
-				};
+				GroupId = removeUserGroupDto.GroupId,
+				UserIdForRemove = removeUserGroupDto.UserId,
+				OwnerId = User.Id()
+			};
 
-				await _mediator.Send(command);
+			await _mediator.Send(command);
 
-				logLevel = LogLevel.Information;
-				string message = "Succesfully leave group";
+			LogLevel logLevel = LogLevel.Information;
+			string message = "Succesfully leave group";
 
-				await _fileLogger.LogAsync(logLevel, message);
-				await _databaseLogger.LogAsync(logLevel, message);
+			await _fileLogger.LogAsync(logLevel, message);
+			await _databaseLogger.LogAsync(logLevel, message);
 
-				return Ok(message);
-			}
-			catch (ApplicationUserNotInGroupException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return BadRequest(m.Message);
-			}
-			catch (ApplicationUserNotFoundException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return NotFound(m.Message);
-			}
-			catch (GroupNotFoundException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return NotFound(m.Message);
-			}
-			catch (ApplicationUserNotCreatorException m)
-			{
-				await _fileLogger.LogAsync(logLevel, m.Message);
-				await _databaseLogger.LogAsync(logLevel, m.Message);
-
-				return Forbid(m.Message);
-			}
+			return Ok(message);
 		}
 	}
 }

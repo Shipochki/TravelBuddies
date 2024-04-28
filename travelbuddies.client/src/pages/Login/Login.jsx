@@ -3,6 +3,7 @@ import './Login.css'
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "../../utils/hooks/useForm";
 import { OnLoginSubmit } from "../../services/UserService";
+import { useState } from 'react';
 
 const LoginFromKeys = {
     Email: 'email',
@@ -12,6 +13,8 @@ const LoginFromKeys = {
 export const Login = () => {
     const navigate = useNavigate();
 
+    const [invalidLogin, setInvalidLogin] = useState(false);
+
     const { values, changeHandler, onSubmit } = useForm({
         [LoginFromKeys.Email]: '',
         [LoginFromKeys.Password]: '',
@@ -20,11 +23,19 @@ export const Login = () => {
     const onClick = () => {
         OnLoginSubmit(values);
 
-        navigate('/');
+        if(localStorage.accessToken){
+            navigate('/');
+        } else {
+            setInvalidLogin(!invalidLogin);
+        }
     }
 
     return (
         <div className="login-main">
+            {invalidLogin &&
+            <div className='invalid-login'>
+                <p>Invalid Login</p>
+            </div>}
             <div id='container' className="login-content">
                 <h2>Log In</h2>
                 <form id="login" method="POST" onSubmit={onClick}>
