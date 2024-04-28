@@ -12,6 +12,8 @@ import { Catalog } from './pages/Catalog/Catalog';
 import { GlobalContext } from './utils/contexts/GlobalContext';
 import { Search } from './pages/Search/Search'
 import { CreatePost } from './pages/CreatePost/CreatePost';
+import { About } from './pages/About/About';
+import { Footer } from './components/Footer/Footer';
 
 function App() {
     const [cities, setCities] = useState([]);
@@ -84,9 +86,12 @@ function App() {
                             <Route path='/' element={<Home/>}/>
                             <Route path='/login' element={<Login/>}/>
                             <Route path='/register' element={<Regiser/>}/>
+                            <Route path='/about' element={<About/>}/>
                         </>
                     )}
                 </Routes>
+
+                <Footer/>
             </div>
         </GlobalContext.Provider>
     )

@@ -37,7 +37,7 @@ export const OnCreatePostSubmit = async (createPostFromKeys) => {
     });
 
     if(response.ok){
-      return response.json();
+      return await response.json();
     } else {
       console.error('Error:', response.statusText);
     }

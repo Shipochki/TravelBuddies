@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+15&display=swap');
+
+.first-layer {
+    width: 100vw;
+    height: 940px;
+    background-position: top;
+    background-size: cover;
+    background-image: url("https://sttravelbuddies001.blob.core.windows.net/web/jonatan-pie-h8nxGssjQXs-unsplash.jpg");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.first-layer-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.first-layer-content p{
+    font-size: 50px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 25px;
+    letter-spacing: 3px;
+}
+
+.first-layer-content a{
+    color: white;
+    font-size: 1.5vw;
+    padding: 5px;
+    font-weight: lighter;
+    width: 10vw;
+    display: flex;
+    border: 1px solid white;
+    justify-content: center;
+    background-color: rgb(255, 255, 255, 0);
+    transition: 0.3s;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.first-layer-content a:hover{
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+
+.second-layer{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    width: 100vw;
+    height: 27vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2vw 15vw;
+    background-color: rgb(219, 215, 215);
+}
+
+.second-layer h2{
+    font-size: 3vw;
+    font-weight: lighter;
+    margin-bottom: 20px;
+}
+
+.second-layer p{
+    padding: 0px 70px;
+    font-size: 1.2vw;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.second-layer a{
+    text-decoration: none;
+    color: black;
+    border: 1px solid black;
+    padding: 10px;
+    font-size: 1.2vw;
+    background-color: rgba(0, 0, 0, 0);
+    transition: 0.3s;
+}
+
+.second-layer a:hover{
+    background-color: black;
+    cursor: pointer;
+    color: white;
+}
+
+.third-layer{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
+
+.third-layer h2{
+    font-size: 2vw;
+}
+
+.third-layer-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.third-layer-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 25vw;
+    padding: 40px;
+}
+
+.third-layer-card img{
+    max-width: 200px;
+    max-height: 200px;
+    margin-bottom: 30px;
+}
+
+.third-layer-card h3{
+    text-align: center;
+}
+
+.third-layer-card p{
+    text-align: center;
+}
+
+.fourth-layer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100vw;
+    height: 500px;
+}
+
+.fourth-layer img{
+    max-width: 400px;
+    max-height: 300px;
+    margin-right: 15px;
+}
+
+.fifth-layer{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    height: 500px;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    background-color: #ffffff;
+
+    background: rgb(255, 255, 255, 0.5) url('https://sttravelbuddies001.blob.core.windows.net/web/86cb94_2aab507a4a174fa7914ff41583146c13~mv2_d_5472_3648_s_4_2.webp') no-repeat fixed;
+}
+
+.fifth-layer h3{
+    font-size: 3vw;
+}
+
+.fifth-layer p{
+    font-size: 1vw;
+}

@@ -33,20 +33,23 @@ export const CreatePost = ({cities}) => {
         const todes = cities.filter(c => c.name == values[createPostFromKeys.ToDestination])[0];
     
         if(fromdes == '' || todes == ''
-            || [createPostFromKeys.Description] == ''
-            || [createPostFromKeys.PricePerSeat] == ''
-            || [createPostFromKeys.FreeSeats] == ''
-            || [createPostFromKeys.FreeSeats] <= 0
-            || [createPostFromKeys.Baggage] == ''
-            || [createPostFromKeys.Pets] == ''
-            || [createPostFromKeys.DataAndTime] == ''){
+            || values[createPostFromKeys.Description] == ''
+            || values[createPostFromKeys.PricePerSeat] == ''
+            || values[createPostFromKeys.FreeSeats] == ''
+            || values[createPostFromKeys.FreeSeats] <= 0
+            || values[createPostFromKeys.Baggage] == ''
+            || values[createPostFromKeys.Pets] == ''
+            || values[createPostFromKeys.Date] == ''
+            || values[createPostFromKeys.Time] == ''){
           return;
         }
     
         values[createPostFromKeys.FromDestination] = fromdes.id;
         values[createPostFromKeys.ToDestination] = todes.id;
-        
-        setPosts(OnCreatePostSubmit(values));
+        values[createPostFromKeys.FreeSeats] = Number(values[createPostFromKeys.FreeSeats]);
+        values[createPostFromKeys.PricePerSeat] = Number(values[createPostFromKeys.PricePerSeat]);
+
+        OnCreatePostSubmit(values);
     
         navigate('/driverHome');
       }
@@ -170,13 +173,17 @@ export const CreatePost = ({cities}) => {
                     <button type='button' onClick={toggleCalendar}>Date</button>
                     {calendarVisible && 
                         <div>
-                            <Calendar handle={handleDate}/>
+                            <input 
+                                type="date"
+                                name={createPostFromKeys.Date}
+                                value={values[createPostFromKeys.Date]}
+                                onChange={changeHandler}
+                            />
                             <input 
                                 type="time"
                                 name={createPostFromKeys.Time}
                                 value={values[createPostFromKeys.Time]}
                                 onChange={changeHandler}
-                                placeholder="Time..."
                             />
                         </div>}
                 </div>
@@ -218,6 +225,7 @@ export const CreatePost = ({cities}) => {
                         placeholder="3"
                     />
                 </div>
+                <button type="submit">Submit</button>
             </form>
         </div>
     )

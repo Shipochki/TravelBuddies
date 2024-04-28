@@ -25,26 +25,33 @@ export const Login = () => {
 
     return (
         <div className="login-main">
-            <div className="login-content">
+            <div id='container' className="login-content">
+                <h2>Log In</h2>
                 <form id="login" method="POST" onSubmit={onClick}>
-                    <input
-                        type="email"
-                        id="email"
-                        placeholder="Email..."
-                        name={LoginFromKeys.Email}
-                        value={values[LoginFromKeys.Email]}
-                        onChange={changeHandler}
-                        required
-                    />
-                    <input
-                        type="password"
-                        id="password"
-                        placeholder="********"
-                        name={LoginFromKeys.Password}
-                        value={values[LoginFromKeys.Password]}
-                        onChange={changeHandler}
-                        required
-                    />
+                    <div className='input-field'>
+                        <label>Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="example@gmail.com"
+                            name={LoginFromKeys.Email}
+                            value={values[LoginFromKeys.Email]}
+                            onChange={changeHandler}
+                            required
+                        />
+                    </div>
+                    <div className='input-field'>
+                    <label>Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="********"
+                            name={LoginFromKeys.Password}
+                            value={values[LoginFromKeys.Password]}
+                            onChange={changeHandler}
+                            required
+                        />
+                    </div>
                     <button>Submit</button>
                 </form>
                 <div className="signup-link">

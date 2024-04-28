@@ -1,0 +1,78 @@
+.login-main{
+    padding-top: 150px;
+    background-image: url('https://sttravelbuddies001.blob.core.windows.net/web/luke-porter-rg1Z9NtEa80-unsplash.jpg');
+    height: 45vw;
+    background-position: center;
+    background-size: 100vw;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-content{
+    height: 17vw;
+    width: 30vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: rgb(255, 255, 255, 0.8);
+    border-radius: 32px;
+}
+
+#login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login-content h2{
+    margin-bottom: 1.1vw;
+    font-size: 1.8vw;
+}
+
+.login-content form input{
+    height: 2.5vw;
+    border-radius: 32px;
+    border: 0;
+    padding: 10px;
+    width: 13vw;
+    font-size: 1vw;
+}
+
+.input-field{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1vw;
+    width: 20vw;
+}
+
+.input-field label{
+    width: 5vw;
+    font-size: 1.1vw;
+}
+
+#login button {
+        border-radius: 16px;
+        height: 2.5vw;
+        width: 6vw;
+        background-color: white;
+        transition: 0.3s;
+        margin-bottom: 1vw;
+        font-size: 1vw;
+}
+
+#login button:hover{
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+
+.signup-link{
+    font-size: 1vw;
+}
+
+

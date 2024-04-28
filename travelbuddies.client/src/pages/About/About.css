@@ -1,0 +1,33 @@
+.about-content{
+    padding-top: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-content h3{
+    font-size: 2.5vw;
+    width: 100vw;
+    text-align: center;
+    height: 10vw;
+    background-color: rgb(219, 215, 215);
+    padding: 50px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.about-content img{
+    width: 100vw;
+    height: 50vw;
+}
+
+.topic{
+    font-size: 2vw;
+    margin: 30px;
+}
+
+.topic-content{
+    font-size: 1.4vw;
+    padding: 0 14vw;
+    margin-bottom: 40px;
+}
