@@ -28,7 +28,7 @@
 
 		[HttpPost]
 		[Route("[action]")]
-		[ModelStateValidation]
+		//[ModelStateValidation]
 		public async Task<IActionResult> Create([FromBody] CreateMessageDto createMessageDto)
 		{
 			CreateMessageCommand command = new CreateMessageCommand()
@@ -51,7 +51,7 @@
 
 		[HttpPost]
 		[Route("[action]")]
-		[ModelStateValidation]
+		//[ModelStateValidation]
 		public async Task<IActionResult> Update([FromBody] UpdateMessageDto updateMessageDto)
 		{
 			UpdateMessageCommand command = new UpdateMessageCommand()

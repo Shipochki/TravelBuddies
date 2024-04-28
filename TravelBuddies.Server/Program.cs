@@ -12,6 +12,8 @@ namespace TravelBuddies.Server
 	using TravelBuddies.Application.Interfaces.AzureStorage;
 	using TravelBuddies.Infrastructure.ExternalVendors.AzureStorage;
 	using TravelBuddies.Presentation.Filters;
+	using Microsoft.AspNetCore.Mvc;
+	using TravelBuddies.Presentation.Contract;
 
 	public class Program
 	{
@@ -43,10 +45,16 @@ namespace TravelBuddies.Server
 
 			builder.Services.AddToken(builder.Configuration);
 
-			builder.Services.AddControllers(cfg =>
+			builder.Services.AddControllers(options =>
 			{
-				cfg.Filters.Add(typeof(ExceptionHandler));
+				options.Filters.Add(typeof(ExceptionHandler));
 			});
+
+			builder.Services.Configure<ApiBehaviorOptions>(options =>
+			{
+				options.InvalidModelStateResponseFactory = ErrorResponse.GenerateErrorResponse;
+			});
+
 			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();

@@ -17,14 +17,6 @@
     align-items: center;
 }
 
-.header div img{
-    height: 6vw;
-    max-width: 100px;
-    max-height: 100px;
-    display: inline;
-    width: 6vw;
-}
-
 .header div a{
     text-decoration: none;
     display: flex;
@@ -48,13 +40,14 @@
 
 .navigation ul {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 0;
     width: 100%;
     justify-items: center;
     list-style: none;
     margin: 10px 20px;
     padding-right: 10vw;
+    align-items: center;
 }
 
 .navigation ul li a{

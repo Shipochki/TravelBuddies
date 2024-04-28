@@ -29,6 +29,7 @@
 		{
 			LogLevel logLevel = LogLevel.Error;
 			int status = 500;
+			string statusPhrase = "Internal Server Error";
 			string message = context.Exception.Message;
 
 			if(context.Exception is ApplicationUserNotFoundException
@@ -43,10 +44,12 @@
 				)
 			{
 				status = 404;
+				statusPhrase = "Not Found";
 			}
 			else if(context.Exception is ApplicationUserNotCreatorException)
 			{
 				status = 403;
+				statusPhrase = "Forbidden";
 			}
 			else if(context.Exception is UnableToCreateApplicationUserException
 				|| context.Exception is UnableToAddRoleToUserException
@@ -56,12 +59,15 @@
 				|| context.Exception is GroupNotMatchException)
 			{
 				status = 400;
+				statusPhrase = "Bad Request";
 			}
 
-			Error error = new Error()
+			ErrorResponse error = new ErrorResponse()
 			{
-				StatusCode = status.ToString(),
-				Message = message
+				StatusCode = status,
+				StatusPhrase = statusPhrase,
+				Timestamp = DateTime.Now,
+				ErrorMessage = new List<string> { message }
 			};
 
 			_fileLogger.LogAsync(logLevel, message);

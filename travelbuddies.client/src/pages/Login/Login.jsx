@@ -52,7 +52,7 @@ export const Login = () => {
                     <button>Submit</button>
                 </form>
                 <div className="signup-link">
-                  Not a client <Link to={"/register"}>SignUp now</Link>
+                  Not a client? <Link to={"/register"}>SignUp now</Link>
                 </div>
             </div>
         </div>

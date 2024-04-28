@@ -61,7 +61,7 @@
 		[HttpPost]
 		[Route("[action]")]
 		[Authorize(Policy = ApplicationPolicies.OnlyDriver)]
-		[ModelStateValidation]
+		//[ModelStateValidation]
 		public async Task<IActionResult> Create([FromBody] CreatePostDto createPostDto)
 		{
 			CreatePostCommand postCommand = new CreatePostCommand()
@@ -128,7 +128,7 @@
 		[HttpPost]
 		[Route("[action]")]
 		[Authorize(Policy = ApplicationPolicies.OnlyDriver)]
-		[ModelStateValidation]
+		//[ModelStateValidation]
 		public async Task<IActionResult> Update([FromBody] UpdatePostDto updatePostDto)
 		{
 			UpdatePostCommand command = new UpdatePostCommand()

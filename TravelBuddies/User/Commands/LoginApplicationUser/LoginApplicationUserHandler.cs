@@ -51,16 +51,17 @@
 
         private string GenerateJwtToken(ApplicationUser user)
         {
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+            SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            var claims = new List<Claim>()
+            List<Claim> claims = new List<Claim>()
             {
 
-            new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-            new Claim(JwtRegisteredClaimNames.NameId, user.Id),
-            // Add additional claims as needed (e.g., roles, custom claims)
+                new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.NameId, user.Id),
+                new Claim("fullname", $"{user.FirstName} {user.LastName}"),
+                // Add additional claims as needed (e.g., roles, custom claims)
             };
 
             foreach (var role in _userManager.GetRolesAsync(user).Result)

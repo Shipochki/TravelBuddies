@@ -27,7 +27,7 @@
 		[HttpPost]
 		[AllowAnonymous]
 		[Route("[action]")]
-		[ModelStateValidation]
+		//[ModelStateValidation]
 		public async Task<IActionResult> Register([FromBody] UserRegisterDto userRegisterDto)
 		{
 			CreateApplicationUserCommand command = new CreateApplicationUserCommand()
@@ -85,7 +85,7 @@
 
 		[HttpPost]
 		[Route("[action]")]
-		[ModelStateValidation]
+		//[ModelStateValidation]
 		[AllowAnonymous]
 		public async Task<IActionResult> Login([FromBody] UserLoginDto userLoginDto)
 		{

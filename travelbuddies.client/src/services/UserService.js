@@ -15,14 +15,20 @@ export const OnLoginSubmit = async (loginFromKeys) => {
 
       const { token: accessToken } = await response.json();
 
-      const { nameId: userId, sub: username, role: role } = parseJwt(accessToken);
+      const { 
+        nameId: userId, 
+        sub: username, 
+        role: role,
+        fullname: fullname
+      } = parseJwt(accessToken);
 
       localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('username', username);
       localStorage.setItem('userId', userId);
-      localStorage.setItem('role', role)
+      localStorage.setItem('role', role);
+      localStorage.setItem('fullname', fullname);
 
-      window.location.assign('/')
+      window.location.assign('/search')
     } catch (error) {
       console.log("Error with login");
     }
