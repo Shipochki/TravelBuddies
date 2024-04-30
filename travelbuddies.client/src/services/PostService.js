@@ -1,3 +1,5 @@
+import { useContext } from "react";
+
 const Url = 'https://localhost:7005/api/post';
 
 export const OnSearchSubmit = async (searchFromKeys) => {
@@ -11,14 +13,10 @@ export const OnSearchSubmit = async (searchFromKeys) => {
         },
         body: JSON.stringify(searchFromKeys)
       });
-
-        if (response.ok) {
-          // Handle successful response
-          return response.json();
-      }  else {
-          // Handle other errors
-          console.error('Error:', response.statusText);
-      }
+      
+      const result = await response.json();
+      console.log(result);
+      return result;
     } catch (error) {
       console.error('Error fetching get all post by search:', error);
     }

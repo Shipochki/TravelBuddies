@@ -10,12 +10,8 @@ namespace TravelBuddies.Domain.Entities
 
     public class Vehicle : BaseEntity<int>
 	{
-		[Required]
-		[MaxLength(MaxLengthBrandName)]
 		public required string BrandName { get; set; }
 
-		[Required]
-		[MaxLength(MaxLengthModelName)]
 		public required string ModelName { get; set; }
 
 		public Fuel Fuel { get; set; }
@@ -26,8 +22,6 @@ namespace TravelBuddies.Domain.Entities
 
 		public bool ACSystem { get; set; }
 
-		[Required]
-		[ForeignKey(nameof(Owner))]
 		public required string OwnerId { get; set; }
 
 		public required ApplicationUser Owner { get; set; }

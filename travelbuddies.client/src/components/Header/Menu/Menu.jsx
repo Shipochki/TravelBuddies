@@ -1,20 +1,14 @@
 import './Menu.css'
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-import { useContext, useEffect, useRef, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faX } from '@fortawesome/free-solid-svg-icons';
+import { useEffect, useRef, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export const Menu = () => {
-    const navigate = useNavigate();
-
     const OnLogout = () => {
         localStorage.clear();
 
-        window.location.reload()
-
-        navigate('/');
+        window.location.assign('/')
     }
 
     const [menuVisible, setMenuVisible] = useState(false);
@@ -49,31 +43,24 @@ export const Menu = () => {
             </div>
             <div className="menu-content">
                 <div ref={menuRef} className={`menu ${menuVisible ? 'open' : ''}`}>
-                 {localStorage.accessToken ? (
-                <div>
-                    <div className='profile-info'>
-                        <p>Name: {localStorage.fullname}</p>
-                        <p>Mail: {localStorage.username}</p>
-                        <p>Role: {localStorage.role}</p>
-                    </div>
-                    <div className='navLinks'>
-                        <Link to={'/profile'}>My Profile</Link>
-                        <Link to={'/search'}>Search</Link>
-                        {localStorage.role == 'client' ? (
-                        <Link to={'/becomeDriver'}>Become Driver</Link>
-                        ) : ''}
+                    <div>
+                        <div className='profile-info'>
+                            <p>Name: {localStorage.fullname}</p>
+                            <p>Mail: {localStorage.username}</p>
+                            <p>Role: {localStorage.role}</p>
+                        </div>
+                        <div className='navLinks'>
+                            <Link to={'/profile'}>My Profile</Link>
+                            <Link to={'/search'}>Search</Link>
+                            {localStorage.role == 'client' ? (
+                                <Link to={'/becomeDriver'}>Become Driver</Link>
+                            ) : ''}
                             {localStorage.role == 'driver' ? (
-                            <Link to={'/createPost'}>Add Post</Link>
-                        ) : ''}
-                        <a onClick={() => {OnLogout()}}>Logout</a>
+                                <Link to={'/createPost'}>Add Post</Link>
+                            ) : ''}
+                            <a onClick={() => {OnLogout()}}>Logout</a>
+                        </div>
                     </div>
-                </div>
-            ): (
-                <div>
-                    <Link to={'/login'}>Login</Link>
-                    <Link to={'/register'}>Register</Link>
-                </div>
-            )}
                 </div>
             </div>
         </div>

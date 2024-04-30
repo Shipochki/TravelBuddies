@@ -1,18 +1,12 @@
 ﻿namespace TravelBuddies.Domain.Entities
 {
-	using System.ComponentModel.DataAnnotations;
-	using System.ComponentModel.DataAnnotations.Schema;
 	using TravelBuddies.Domain.EntityModels;
 
 	public class Group : BaseSoftDeleteEntity<int>
 	{
-		[Required]
-		[ForeignKey(nameof(Post))]
 		public int PostId { get; set; }
 		public required Post Post { get; set; }
 
-		[Required]
-		[ForeignKey(nameof(Creator))]
 		public required string CreatorId { get; set; }
 		public required ApplicationUser Creator { get; set; }
 

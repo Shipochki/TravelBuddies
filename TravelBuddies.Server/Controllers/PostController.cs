@@ -17,6 +17,7 @@
 	using TravelBuddies.Presentation.Configurations;
 	using TravelBuddies.Presentation.DTOs.Post;
 	using TravelBuddies.Presentation.Filters;
+	using System.Text.Json;
 
 	[EnableCors(ApplicationCorses.AllowOrigin)]
 	[Route("api/[controller]")]
@@ -55,7 +56,10 @@
 			await _fileLogger.LogAsync(logLevel, message);
 			await _databaseLogger.LogAsync(logLevel, message);
 
-			return Ok(posts.Select(GetAllPostsBySearchDto.FromPost));
+			var result = posts.Select(GetAllPostsBySearchDto.FromPost).ToList();
+			var response = JsonSerializer.Serialize(result);
+
+			return Ok(response);
 		}
 
 		[HttpPost]

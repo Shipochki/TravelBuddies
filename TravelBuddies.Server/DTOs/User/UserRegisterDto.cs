@@ -2,8 +2,8 @@
 {
     using System.ComponentModel.DataAnnotations;
     using static TravelBuddies.Domain.Common.DataConstants.UserConstants;
-    using static TravelBuddies.Domain.Common.DataConstants.City;
-    using static TravelBuddies.Domain.Common.DataConstants.Country;
+    using static TravelBuddies.Domain.Common.DataConstants.CityConstants;
+    using static TravelBuddies.Domain.Common.DataConstants.CountryConstants;
 
     public class UserRegisterDto
     {

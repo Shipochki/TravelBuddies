@@ -3,7 +3,6 @@ import './Search.css'
 import Calendar from '../../components/Calendar/Calendar';
 import { useForm } from '../../utils/hooks/useForm';
 import { OnSearchSubmit } from '../../services/PostService';
-import { useNavigate } from 'react-router-dom';
 import { GlobalContext } from '../../utils/contexts/GlobalContext'
 
 const searchFromKeys = {
@@ -18,8 +17,7 @@ const searchFromKeys = {
 }
 
 export const Search = ({cities}) => {
-  const navigate = useNavigate();
-  const { setPosts } = useContext(GlobalContext);
+  const {OnSetPosts} = useContext(GlobalContext);
 
   const { values, changeHandler, onSubmit } = useForm({
     [searchFromKeys.FromDestination]: '',
@@ -30,9 +28,9 @@ export const Search = ({cities}) => {
     [searchFromKeys.Pets]: null,
     [searchFromKeys.PriceMin]: null,
     [searchFromKeys.PriceMax]: null,
-  });
+  }, OnSearchSubmit);
 
-  const clickHandler = () => {
+  const clickSubmit = async (e) => {
     const fromdes = cities.filter(c => c.name == values[searchFromKeys.FromDestination])[0];
     const todes = cities.filter(c => c.name == values[searchFromKeys.ToDestination])[0];
 
@@ -43,9 +41,11 @@ export const Search = ({cities}) => {
     values[searchFromKeys.FromDestination] = fromdes.id;
     values[searchFromKeys.ToDestination] = todes.id;
     
-    setPosts(OnSearchSubmit(values));
+    e.preventDefault();
 
-    navigate('/catalog')
+    const result = await OnSearchSubmit(values);
+
+    OnSetPosts(result);
   }
 
   const [filteredCities, setFilteredCities] = useState([]);
@@ -134,7 +134,7 @@ export const Search = ({cities}) => {
 
   return (
     <div className='search-menu'>
-      <form id="search" method="POST" onSubmit={clickHandler}>
+      <form id="search" method="POST" onSubmit={clickSubmit}>
         <div className='cities-inputs'>
         <div className='city-input'>
       <input

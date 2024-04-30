@@ -35,14 +35,22 @@ export const OnLoginSubmit = async (loginFromKeys) => {
   }
 
 export const OnRegisterSubmit = async (registerFromKeys) => {
+  console.log(document.querySelector("#profilepicture"));
+    const formData = new FormData();
+    formData.append('firstname', registerFromKeys.firstname);
+    formData.append('lastname', registerFromKeys.lastname);
+    formData.append('email', registerFromKeys.email);
+    formData.append('city', registerFromKeys.city);
+    formData.append('country', registerFromKeys.country);
+    formData.append('password', registerFromKeys.password);
+    formData.append('profilepicture', document.querySelector("#profilepicture").files[0])
+
     try {
       const response = await fetch(Url + `/register`, {
         method: "POST", // GET, POST, PUT, DELETE, etc.
         mode: "cors", // no-cors,cors, same-origin
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(registerFromKeys),
+        body: formData,
+
       });
 
       const result = await response.json();

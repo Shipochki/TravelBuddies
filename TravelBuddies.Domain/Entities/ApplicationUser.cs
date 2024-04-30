@@ -1,12 +1,6 @@
-﻿using TravelBuddies.Domain.Common;
-
-namespace TravelBuddies.Domain.Entities
+﻿namespace TravelBuddies.Domain.Entities
 {
-    using System.ComponentModel.DataAnnotations;
-    using static DataConstants.UserConstants;
-    using static DataConstants.Country;
-    using static DataConstants.City;
-    using Microsoft.AspNetCore.Identity;
+	using Microsoft.AspNetCore.Identity;
     using TravelBuddies.Domain.EntityModels;
 
     public class ApplicationUser : IdentityUser, ISoftDeleteEntity, IActionInfo
@@ -16,10 +10,8 @@ namespace TravelBuddies.Domain.Entities
 			this.Id = Guid.NewGuid().ToString();	
         }
 
-		[MaxLength(MaxLengthFirstName)]
 		public string? FirstName { get; set; }
 
-		[MaxLength(MaxLengthLastName)]
 		public string? LastName { get; set; }
 
 		public string? ProfilePictureLink { get; set; }
@@ -28,10 +20,8 @@ namespace TravelBuddies.Domain.Entities
 
 		public string? DriverLicenseBackPictureLink { get; set; }
 
-		[MaxLength(MaxLengthCountryName)]
 		public string? Country { get; set; }
 
-		[MaxLength(MaxLengthCityName)]
 		public string? City { get; set; }
 
 		public bool IsDeleted { get; set; }

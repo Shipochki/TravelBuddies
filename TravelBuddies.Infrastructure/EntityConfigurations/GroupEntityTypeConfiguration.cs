@@ -12,11 +12,14 @@
 				.HasOne(g => g.Creator)
 				.WithMany()
 				.HasForeignKey(g => g.CreatorId)
+				.IsRequired()
 				.OnDelete(DeleteBehavior.Restrict);
 
 			builder
 				.HasOne(g => g.Post)
-				.WithOne(g => g.Group)
+				.WithOne()
+				.HasForeignKey<Post>(p => p.Id)
+				.IsRequired()
 				.OnDelete(DeleteBehavior.Restrict);
 		}
 	}

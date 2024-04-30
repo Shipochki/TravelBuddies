@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import { Route, Router, Routes } from 'react-router-dom';
+import { Route, Router, Routes, useNavigate } from 'react-router-dom';
 import { GetAllCities } from './services/CityService';
 import { Home } from './pages/Home/Home';
 import { Login } from './pages/Login/Login';
@@ -16,8 +16,9 @@ import { About } from './pages/About/About';
 import { Footer } from './components/Footer/Footer';
 
 function App() {
+    const navigate = useNavigate();
     const [cities, setCities] = useState([]);
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState([{}]);
     const [groups, setGroups] = useState([]);
 
     useEffect(() => {
@@ -59,8 +60,15 @@ function App() {
               ; GetAllGroupByUserId()
     }, [])
 
+    const OnSetPosts = (posts) => {
+        console.log(posts);
+        setPosts(posts);
+
+        navigate('/catalog')
+    }
+
     const globalContext = {
-        setPosts,
+        OnSetPosts,
     }
 
     return (
@@ -79,7 +87,7 @@ function App() {
                             {localStorage.role == 'driver' ? (
                                 <Route path={'/createPost'} element={<CreatePost cities={cities}/>}/>
                             ): ''}
-                            <Route path='/Catalog' element={<Catalog/>}/>
+                            <Route path='/catalog' element={<Catalog posts={posts}/>}/>
                         </>
                     ) : (
                         <>

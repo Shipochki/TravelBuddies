@@ -19,6 +19,6 @@ export const GetAllGroupByUserId = async () => {
             console.error('Error:', response.statusText);
         }
       } catch (error) {
-        console.error('Error fetching join group:', error);
+        console.error('Error fetching get all group by user id:', error);
       };
 }

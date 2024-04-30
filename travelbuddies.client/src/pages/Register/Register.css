@@ -1,0 +1,108 @@
+.register-main{
+    background-image: url('https://sttravelbuddies001.blob.core.windows.net/web/luke-porter-rg1Z9NtEa80-unsplash.jpg');
+    height: 45vw;
+    background-position: center;
+    background-size: 100vw;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-content{
+    width: 50vw;
+    padding: 1vw;
+    background: rgb(255, 255, 255, 0.8);
+    border-radius: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.register-content h2{
+    font-size: 1.8vw;
+    margin-bottom: 1.1vw;
+}
+
+.register-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.register-form-content{
+    display: grid;
+    grid-template-columns: auto auto;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    grid-row-gap: 0.8vw;
+    column-gap: 3vw;
+    margin-bottom: 2vw;
+}
+
+.register-label-input{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.3vw;
+    font-size: 1.1vw;
+    width: 19vw;
+}
+
+.register-label-input input{
+    height: 2.5vw;
+    border-radius: 32px;
+    border: 0;
+    width: 13vw;
+    padding: 10px;
+    font-size: 1vw;
+}
+
+.register-upload{
+    display: flex;
+    flex-direction: column;
+}
+
+.register-upload label {
+    border: 0;
+    background-color: white;
+    color: black;
+    height: 2.5vw;
+    padding: 0.5vw 1vw;
+    border-radius: 32px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.register-upload label span{
+    display: block;
+    text-overflow: ellipsis; /* Truncate text with ellipsis */
+    overflow: hidden;
+    white-space: nowrap;
+    width: 8vw;
+}
+
+.register-upload label:hover {
+    border: 1px solid;
+}
+
+.register-content button {
+    border-radius: 16px;
+    height: 2.5vw;
+    width: 6vw;
+    background-color: white;
+    transition: 0.3s;
+    margin-bottom: 1vw;
+    font-size: 1vw;
+}
+
+.register-content button:hover{
+cursor: pointer;
+background-color: black;
+color: white;
+}
+

@@ -33,13 +33,16 @@
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new UserGroupEntityTypeConfiguration());
-
+            modelBuilder.ApplyConfiguration(new ApplicationUserEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new CityEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new CountryEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new GroupEntityTypeConfiguration());
-
-            modelBuilder.ApplyConfiguration(new ReviewEntityTypeConfiguration());
-
+            modelBuilder.ApplyConfiguration(new LogEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new MessageEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new PostEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new ReviewEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new UserGroupEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new VehicleEntityTypeConfiguration());
 
             //modelBuilder.Seed();
 

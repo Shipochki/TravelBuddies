@@ -28,8 +28,10 @@
 		[AllowAnonymous]
 		[Route("[action]")]
 		//[ModelStateValidation]
-		public async Task<IActionResult> Register([FromBody] UserRegisterDto userRegisterDto)
+		public async Task<IActionResult> Register([FromForm] UserRegisterDto userRegisterDto)
 		{
+			var formCollection = Request.Form["profilepicture"];
+
 			CreateApplicationUserCommand command = new CreateApplicationUserCommand()
 			{
 				Email = userRegisterDto.Email,
@@ -38,6 +40,7 @@
 				City = userRegisterDto.City,
 				Country = userRegisterDto.Country,
 				Password = userRegisterDto.Password,
+				ProfilePicture = userRegisterDto.ProfilePicture,
 			};
 
 			await _mediator.Send(command);
