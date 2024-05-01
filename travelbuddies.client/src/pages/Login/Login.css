@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 .login-main{
-    background-image: url('https://sttravelbuddies001.blob.core.windows.net/web/luke-porter-rg1Z9NtEa80-unsplash.jpg');
+    /* background-image: url('https://sttravelbuddies001.blob.core.windows.net/web/luke-porter-rg1Z9NtEa80-unsplash.jpg'); */
     height: 45vw;
     background-position: center;
     background-size: 100vw;
@@ -7,17 +9,36 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: azure;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
 }
 
 .login-content{
-    height: 17vw;
-    width: 30vw;
+    height: 25vw;
+    width: 45vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
     background: rgb(255, 255, 255, 0.8);
     border-radius: 32px;
+    box-shadow: 8px 5px 12px 0px gray;
+    column-gap: 32px;
+}
+
+.login-content img{
+    width: 50%;
+    height: 100%;
+    border-radius: 32px 0 0 32px;
+}
+
+.container-right{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 1vw;
 }
 
 #login{
@@ -30,6 +51,7 @@
 .login-content h2{
     margin-bottom: 1.1vw;
     font-size: 1.8vw;
+    color: #2979ff;
 }
 
 .login-content form input{
@@ -39,6 +61,7 @@
     padding: 10px;
     width: 13vw;
     font-size: 1vw;
+    border: 1px solid #2979ff;
 }
 
 .input-field{
@@ -47,6 +70,7 @@
     align-items: center;
     margin-bottom: 1vw;
     width: 20vw;
+    column-gap: 1vw;
 }
 
 .input-field label{
@@ -61,12 +85,14 @@
         background-color: white;
         transition: 0.3s;
         margin-bottom: 1vw;
-        font-size: 1vw;
+        font-size: 1.1vw;
+        border: 2px solid #2979ff;
+        color: #2979ff;
 }
 
 #login button:hover{
     cursor: pointer;
-    background-color: black;
+    background-color: #2979ff;
     color: white;
 }
 
@@ -74,4 +100,7 @@
     font-size: 1vw;
 }
 
-
+.signup-link a{
+    color: #2979ff;
+    text-decoration: none;
+}

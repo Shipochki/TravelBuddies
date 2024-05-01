@@ -27,7 +27,7 @@
 			builder
 				.HasOne(v => v.Owner)
 				.WithOne()
-				.HasForeignKey<ApplicationUser>(a => a.Id)
+				.HasPrincipalKey<ApplicationUser>(a => a.Id)
 				.IsRequired();
 		}
 	}

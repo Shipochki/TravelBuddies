@@ -1,5 +1,5 @@
 .about-content{
-    padding-top: 7vw;
+    padding-top: 6vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -11,7 +11,6 @@
     width: 100vw;
     text-align: center;
     height: 10vw;
-    background-color: rgb(219, 215, 215);
     padding: 50px;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }

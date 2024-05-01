@@ -1,5 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 .search-menu{
-    padding-top: 100px;
+    padding-top: 10vh;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: url(https://sttravelbuddies001.blob.core.windows.net/web/dariusz-sankowski-3OiYMgDKJ6k-unsplash.jpg) no-repeat;
+    font-family: "Roboto", sans-serif;
+    color: #2979ff;
 }
 
 .search-menu form{
@@ -7,34 +17,163 @@
 }
 
 #search{
-    width: 40%;
-    margin-left: 30%;
-    margin-top: 11%;
     padding: 2%;
     border-radius: 16px;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 35vw;
+    background-color: rgb(255, 255, 255, 0.8);
+    border: 1px solid #2979ff;;
+    row-gap: 1vw;
+}
+
+#search input{
+    border: 1px solid #2979ff;
 }
 
 .cities-inputs{
     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 2vw;
 }
 
-.city-input{
-    padding: 3% 9%;
-}
 
 .city-input input{
-    width: 220px;
-    height: 50px;
+    width: 12vw;
+    height: 3vw;
     border: 0;
     border-radius: 32px;
-    background: aliceblue;
-    padding-left: 20px;
+    background: white;
+    padding-left: 1.5vw;
     font-size: 18px;
+}
+
+.city-input input:focus{
+    border: none;
 }
 
 .city-input ul{
     position: absolute;
     list-style: none;
+    padding: 0;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+    width: 12vw;
+    background: white;
+    margin: 0;
+    row-gap: 1vw;
+    overflow: auto;
+    max-height: 10vw;
 }
 
+.city-input ul li{
+    width: 100%;
+    text-align: center;
+    height: 2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.city-input ul li:hover{
+    border: 1px solid;
+    cursor: pointer;
+}
+
+.more-options{
+    display: grid;
+    align-items: center;
+    row-gap: 1vw;
+    justify-items: center;
+}
+
+.more-options-a{
+    font-size: 1.2vw;
+}
+
+.more-options-a:hover{
+    cursor: pointer;
+}
+
+.more-options-content{
+    display: grid;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    column-gap: 10vw;
+    row-gap: 1vw;
+    grid-template-columns: auto auto;
+    font-size: 16px;
+}
+
+.more-option-price{
+    height: 2vw;
+    width: 8vw;
+    border: 0;
+    padding: 0.5vw;
+    border-radius: 32px;
+}
+
+.more-options-boolean{
+    display: flex;
+    column-gap: 0.5vw;
+}
+
+.more-options-boolean input{
+    width: 1vw;
+}
+
+.more-options-calendar{
+    display: grid;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+}
+
+.options-calendar-input-button{
+    display: flex;
+    align-items: center;
+    grid-column: auto;
+}
+
+.options-calendar-input-button button{
+    border: 0;
+    background: transparent;
+    color: #2979ff;
+}
+
+.options-calendar-input-button button:hover{
+    cursor: pointer;
+}
+
+.options-calendar-input{
+    height: 2vw;
+    width: 9vw;
+    border: 0;
+    padding: 0.5vw;
+    border-radius: 32px;
+}
+
+.submit-button {
+    border-radius: 16px;
+    height: 2.5vw;
+    width: 6vw;
+    background-color: white;
+    border: 2px solid #2979ff;;
+    transition: 0.3s;
+    margin-bottom: 1vw;
+    font-size: 1vw;
+    color: #2979ff;
+}
+
+.submit-button:hover{
+cursor: pointer;
+background-color: #2979ff;
+color: white;
+}

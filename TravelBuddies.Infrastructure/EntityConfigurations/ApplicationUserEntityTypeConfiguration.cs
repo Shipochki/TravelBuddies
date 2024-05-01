@@ -12,11 +12,6 @@
 		public void Configure(EntityTypeBuilder<ApplicationUser> builder)
 		{
 			builder
-				.Property(a => a.Id)
-				.IsRequired()
-				.UseIdentityColumn();
-
-			builder
 				.Property(a => a.FirstName)
 				.HasMaxLength(MaxLengthFirstName);
 

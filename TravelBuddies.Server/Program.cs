@@ -90,8 +90,6 @@ namespace TravelBuddies.Server
 			app.MapSwagger()
 				.RequireAuthorization();
 
-			//app.SeedData().Wait();
-
 			app.Run();
 		}
 	}

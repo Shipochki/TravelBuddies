@@ -3,6 +3,8 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     font-family: Arial, sans-serif;
+    position: absolute;
+    top: 28vw;
   }
   
   .calendar-header {
@@ -21,6 +23,7 @@
   
   .calendar-body {
     padding: 10px;
+    background: white;
   }
   
   .weekdays {

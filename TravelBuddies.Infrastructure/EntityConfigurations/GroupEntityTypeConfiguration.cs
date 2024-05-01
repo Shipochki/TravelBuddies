@@ -17,7 +17,7 @@
 
 			builder
 				.HasOne(g => g.Post)
-				.WithOne()
+				.WithOne(g => g.Group)
 				.HasForeignKey<Post>(p => p.Id)
 				.IsRequired()
 				.OnDelete(DeleteBehavior.Restrict);

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import { Route, Router, Routes, useNavigate } from 'react-router-dom';
-import { GetAllCities } from './services/CityService';
 import { Home } from './pages/Home/Home';
 import { Login } from './pages/Login/Login';
 import { Regiser } from './pages/Register/Register';
@@ -18,7 +17,7 @@ import { Footer } from './components/Footer/Footer';
 function App() {
     const navigate = useNavigate();
     const [cities, setCities] = useState([]);
-    const [posts, setPosts] = useState([{}]);
+    const [posts, setPosts] = useState([]);
     const [groups, setGroups] = useState([]);
 
     useEffect(() => {
@@ -79,7 +78,9 @@ function App() {
                 <Routes>
                     {localStorage.accessToken ? (
                         <>
+                            <Route path='/' element={<Search cities={cities}/>}/>
                             <Route path='/search' element={<Search cities={cities}/>}/>
+                            <Route path='/home' element={<Home />}/>
                             <Route path='/logout' element={<Logout/>}/>
                             {localStorage.role == 'client' ? (
                                 <Route path={'/becomeDriver'} element={<BecomeDriver/>}/>
@@ -91,11 +92,12 @@ function App() {
                         </>
                     ) : (
                         <>
+                            <Route path='/' element={<Home/>}/>
+                            <Route path='/home' element={<Home/>}/>
                             <Route path='/login' element={<Login/>}/>
                             <Route path='/register' element={<Regiser/>}/>
                         </>
                     )} 
-                    <Route path='/' element={<Home/>}/>
                     <Route path='/about' element={<About/>}/>
                 </Routes>
 

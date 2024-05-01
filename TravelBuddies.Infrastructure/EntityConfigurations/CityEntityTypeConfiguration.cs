@@ -22,7 +22,7 @@
 			builder
 				.HasOne(c => c.Country)
 				.WithMany()
-				.HasForeignKey(c => c.Country);
+				.HasForeignKey(c => c.CountryId);
 		}
 	}
 }

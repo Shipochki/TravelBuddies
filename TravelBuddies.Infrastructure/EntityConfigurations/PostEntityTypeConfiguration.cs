@@ -56,7 +56,7 @@
 
 			builder
 				.HasOne(p => p.Group)
-				.WithOne()
+				.WithOne(g => g.Post)
 				.HasForeignKey<Post>(p => p.Id);
 		}
 	}

@@ -4,6 +4,8 @@ import Calendar from '../../components/Calendar/Calendar';
 import { useForm } from '../../utils/hooks/useForm';
 import { OnSearchSubmit } from '../../services/PostService';
 import { GlobalContext } from '../../utils/contexts/GlobalContext'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight, faCalendar, faCalendarDays, faCarSide, faCheck, faSliders, faX } from '@fortawesome/free-solid-svg-icons';
 
 const searchFromKeys = {
   FromDestination: 'fromDestinationCityId',
@@ -143,6 +145,7 @@ export const Search = ({cities}) => {
         value={values[searchFromKeys.FromDestination]}
         onChange={handleInputChange}
         placeholder="From destination..."
+        autoComplete='off'
       />
       {filteredCities.length > 0 && (
         <ul>
@@ -153,14 +156,16 @@ export const Search = ({cities}) => {
           )).slice(0, 10)}
         </ul>
       )}
-      </div>
-      <div className='city-input'>
+        </div>
+        {<FontAwesomeIcon icon={faArrowRight}/>}
+        <div className='city-input'>
       <input
         type="text"
         name={searchFromKeys.ToDestination}
         value={values[searchFromKeys.ToDestination]}
         onChange={handleToDesChange}
         placeholder="To destination..."
+        autoComplete='off'
       />
       {filteredToDesCities.length > 0 && (
         <ul>
@@ -171,18 +176,19 @@ export const Search = ({cities}) => {
           )).slice(0, 10)}
         </ul>
       )}
+        </div>
       </div>
-      </div>
-      <div>
-        <a onClick={toggleMoreOptions}>More options</a>
+      <div className='more-options'>
+        <a className='more-options-a' onClick={toggleMoreOptions}>{<FontAwesomeIcon icon={faSliders}/>}</a>
         {moreOptionsVisible &&
-        <div>
+        <div className='more-options-content'>
           <input 
           type="number"
           name={searchFromKeys.PriceMin}
           value={values[searchFromKeys.PriceMin]}
           onChange={changeHandler}
           placeholder='Min Price'
+          className='more-option-price'
           />
           <input
           type='number'
@@ -190,37 +196,57 @@ export const Search = ({cities}) => {
           value={values[searchFromKeys.PriceMax]}
           onChange={changeHandler}
           placeholder='Max Price'
+          className='more-option-price'
           />
-        <div>
-          <button type='button' onClick={toggleCalendar}>From Date</button>
+        <div className='more-options-calendar'>
+          <div className='options-calendar-input-button'>
+            <input
+            type='text'
+            name={searchFromKeys.FromDate}
+            value={values[searchFromKeys.FromDate]}
+            placeholder='From Date: 05.21.2024'
+            onChange={changeHandler}
+            className='options-calendar-input'
+            />
+            <button type='button' onClick={toggleCalendar}><FontAwesomeIcon icon={!calendarVisible ? faCalendarDays : faCheck}/></button>
+          </div>
           {calendarVisible && <Calendar handle={handleFromDate} />}
         </div>
-        <div>
-          <button type='button' onClick={toggleToDateCalendar}>To Date</button>
-          {calendarToDateVisible && <Calendar handle={handleToDate} />}
+        <div className='more-options-calendar'>
+        <div className='options-calendar-input-button'>
+          <input
+            type='text'
+            name={searchFromKeys.ToDate}
+            value={values[searchFromKeys.ToDate]}
+            placeholder='To Date: 05.29.2024'
+            onChange={changeHandler}
+            className='options-calendar-input'
+            />
+            <button type='button' onClick={toggleToDateCalendar}><FontAwesomeIcon icon={!calendarToDateVisible ? faCalendarDays : faCheck}/></button>
+            </div>
+            {calendarToDateVisible && <Calendar handle={handleToDate} />}
+          
         </div>
-        <div>
+        <div className='more-options-boolean'>
           <p>Baggage</p>
           <input
             type="checkbox"
             checked={isBaggage}
             onChange={handleIsBaggage}
           />
-          <label>{isBaggage ? 'Checked' : 'Unchecked'}</label>
         </div>
-        <div>
+        <div className='more-options-boolean'>
           <p>Pets</p>
           <input
             type="checkbox"
             checked={isPets}
             onChange={handleIsPets}
           />
-          <label>{isPets ? 'Checked' : 'Unchecked'}</label>
         </div>
         </div>}
       </div>
         <div>
-          <button type='submit'>Submit</button>
+          <button className='submit-button' type='submit'>Search</button>
         </div>
       </form>
     </div>
