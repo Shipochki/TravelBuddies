@@ -38,6 +38,7 @@
 				(request.Pets == null || p.Pets == request.Pets))
 				.Include(c => c.FromDestinationCity)
 				.Include(c => c.ToDestinationCity)
+				.Include(c => c.Creator)
 				.ToListAsync();
 
 			return await Task.FromResult(posts);

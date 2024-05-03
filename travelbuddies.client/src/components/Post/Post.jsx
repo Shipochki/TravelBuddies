@@ -2,6 +2,10 @@ import { faArrowRight, faCalendar, faCheck, faCircleXmark } from '@fortawesome/f
 import './Post.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { OnJoinGroupSubmit } from '../../services/UserGroupService';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import MapContainer from '../Map/Map'
 
 export const Post = ({
     FromDestinationName,
@@ -12,19 +16,39 @@ export const Post = ({
     Baggage,
     Pets,
     DateAndTime,
-    GroupId
+    GroupId,
+    Creator,
 }) => {
-    console.log(FromDestinationName);
+    const [groupId, setGroupId] = useState(GroupId);
+
+    const onSubmit = () => {
+        OnJoinGroupSubmit(groupId);
+    }
+
     return (
         <div className='post-component'>
-            <p className='post-cities'>{FromDestinationName} {<FontAwesomeIcon icon={faArrowRight}/>} {ToDestinationName}</p>
-            <p className='post-decription'>{Description}</p>
-            <p className='post-priceperseat'>{PricePerSeat}$</p>
-            <p className='post-freeseats'>Free seats: {FreeSeats}</p>
-            <p className='post-bool'>Baggage <FontAwesomeIcon icon={Baggage ? faCheck : faCircleXmark} /></p>
-            <p className='post-bool'>Pets <FontAwesomeIcon icon={Pets ? faCheck : faCircleXmark} /></p>
+            <div className='post-creator'>
+                <Link to={`/profile?id:${Creator.Id}`}>
+                    <LazyLoadImage src={Creator.ProfilePictureLink ?? 'https://sttravelbuddies001.blob.core.windows.net/web/blank-profile-picture-973460_960_720.png'}/>
+                </Link>
+                <p>{Creator.FullName}</p>
+            </div>
+            {/* <MapContainer originCity={FromDestinationName} destinationCity={ToDestinationName}/> */}
+            <div className='post-cities'>
+                <p>{FromDestinationName}</p>
+                <FontAwesomeIcon icon={faArrowRight}/>
+                <p>{ToDestinationName}</p>
+            </div>
             <p className='post-dateandtime'><FontAwesomeIcon icon={faCalendar}/> {DateAndTime}</p>
-            <button type='submit' onClick={OnJoinGroupSubmit(GroupId)}>Join</button>
+            <p className='post-decription'>{Description}</p>
+            <div className='post-more-info'>
+                <p className='post-priceperseat'>{PricePerSeat}$</p>
+                <p className='post-freeseats'>Seats available: {FreeSeats}</p>
+                <p className='post-bool'>Baggage <FontAwesomeIcon icon={Baggage ? faCheck : faCircleXmark} /></p>
+                <p className='post-bool'>Pets <FontAwesomeIcon icon={Pets ? faCheck : faCircleXmark} /></p>
+            </div>
+            
+            <button type='submit' onClick={onSubmit}>Join</button>
         </div>
     )
 }

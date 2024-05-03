@@ -2,14 +2,13 @@ const Url = 'https://localhost:7005/api/usergroup';
 
 export const OnJoinGroupSubmit = async (groupId) => {
     try {
-        const response = await fetch(Url + '/joingroup', {
+        const response = await fetch(Url + `/joingroup/${groupId}`, {
           method: 'POST',
           mode: "cors",
           headers: {
               'Authorization': `Bearer ${localStorage.accessToken}`,
               'Content-Type': 'application/json'
-          },
-          body: (groupId)
+          }
         });
   
           if (response.ok) {

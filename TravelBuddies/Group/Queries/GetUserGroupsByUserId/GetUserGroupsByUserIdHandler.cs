@@ -31,8 +31,12 @@
 			}
 
 			List<Group> groups = await _repository
-				.All<Group>(g => g.UsersGroups.All(u => u.UserId == request.UserId))
+				.All<Group>(g => g.UsersGroups.Any(u => u.UserId == request.UserId))
 				.Include(g => g.UsersGroups)
+				.Include(g => g.Post)
+				.ThenInclude(g => g.FromDestinationCity)
+				.Include(g => g.Post)
+				.ThenInclude(g => g.ToDestinationCity)
 				.ToListAsync();
 
 			return await Task.FromResult(groups);

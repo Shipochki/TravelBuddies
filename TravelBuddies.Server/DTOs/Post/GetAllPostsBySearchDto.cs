@@ -1,6 +1,7 @@
 ﻿namespace TravelBuddies.Presentation.DTOs.Post
 {
 	using TravelBuddies.Domain.Entities;
+	using TravelBuddies.Presentation.DTOs.User;
 
 	public class GetAllPostsBySearchDto
 	{
@@ -22,6 +23,10 @@
 
 		public required string DateAndTime { get; set; }
 
+		public int? GroupId { get; set; }
+
+		public required PostCreatorDto Creator { get; set; }
+
 		public static GetAllPostsBySearchDto FromPost(Post post)
 		{
 			return new GetAllPostsBySearchDto()
@@ -35,6 +40,8 @@
 				Baggage = post.Baggage,
 				Pets = post.Pets,
 				DateAndTime = post.DateAndTime.ToString(),
+				GroupId = post.GroupId,
+				Creator = PostCreatorDto.FromUser(post.Creator),
 			};
 		}
 	}

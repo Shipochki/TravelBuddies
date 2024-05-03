@@ -1,0 +1,29 @@
+
+.groups-main{
+    position: fixed;
+    top: 6vw;
+    display: flex;
+    flex-direction: column;
+    right: 0vw;
+    background-color: rgb(41, 121, 255, 1);
+    width: 17vw;
+    padding: 5px;
+    align-items: center;
+    font-family: "Roboto", sans-serif;
+    height: 100vh;
+    color: white;
+    row-gap: 15px;
+    overflow: auto;
+}
+
+.groups-main-group{
+    padding: 10px 20px;
+    border: 1px solid;
+    border-radius: 32px;
+}
+
+.groups-main-group:hover{
+    background-color: white;
+    color: #2979ff;
+    cursor: pointer;  
+}

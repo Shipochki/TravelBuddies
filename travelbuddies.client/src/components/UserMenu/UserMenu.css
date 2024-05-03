@@ -2,7 +2,7 @@
     position: absolute;
     height: 100vw;
     left: 100%;
-    top: 6vw;
+    top: 5.5vw;
 }
 
 .menu-content a{
@@ -12,19 +12,20 @@
 
 .menu {
     position: absolute;
-    width: 12vw;
+    width: 17vw;
     min-width: 120px;
-    background-color: white;
     transition: right 0.3s ease;
     display: flex;
     justify-content: center;
-    background-color: rgb(255, 255, 255, 0.9);
-    height: 10vw;
+    background-color: rgb(255, 255, 255, 1);
+    height: 13vw;
     padding-top: 1vw;
+    border-radius: 8px;
+    box-shadow: 0px 1px 6px 0px;
   }
 
   .menu.open {
-    right: 11vw; /* Slide the menu into view when open */
+    right: 2vw; /* Slide the menu into view when open */
   }
 
   .menuLines{
@@ -44,15 +45,17 @@
 
 .menuLines:hover{
     cursor: pointer;
+    width: 2.8vw;
 }
 
 .menu-content a{
     width: 12vw;
+    border-radius: 8px;
 }
 
 .menu-content a:hover{
     cursor: pointer;
-    background-color: white;
+    background-color: rgb(41, 121, 255, 0.2);
 }
 
 .icon{
@@ -61,14 +64,19 @@
 }
 
 .profile-info{
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #2979ff;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
     margin-bottom: 1vw;
-    padding: 1vw;
-    display: none;
+    padding: 5px;
+    column-gap: 10px;
+}
+
+.profile-info img {
+    max-width: 2.5vw;
+    border-radius: 32px;
 }
 
 .profile-info p{

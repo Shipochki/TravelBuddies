@@ -24,7 +24,7 @@
 		}
 
 		[HttpPost]
-		[Route("[action]")]
+		[Route("[action]/{groupId}")]
 		public async Task<IActionResult> JoinGroup(int groupId)
 		{
 			CreateUserGroupCommand command = new CreateUserGroupCommand()

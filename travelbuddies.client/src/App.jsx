@@ -13,12 +13,14 @@ import { Search } from './pages/Search/Search'
 import { CreatePost } from './pages/CreatePost/CreatePost';
 import { About } from './pages/About/About';
 import { Footer } from './components/Footer/Footer';
+import { Groups } from './components/Groups/Groups';
 
 function App() {
     const navigate = useNavigate();
     const [cities, setCities] = useState([]);
     const [posts, setPosts] = useState([]);
     const [groups, setGroups] = useState([]);
+    const [messages, setMessages] = useState([]);
 
     useEffect(() => {
         const GetAllCities = async () => {
@@ -63,24 +65,32 @@ function App() {
         console.log(posts);
         setPosts(posts);
 
-        navigate('/catalog')
+        navigate('/catalog');
+    }
+
+    const OnSetMessages = (messages) => {
+        setMessages(messages);
+
+        navigate('/group');
     }
 
     const globalContext = {
         OnSetPosts,
+        OnSetMessages
     }
 
     return (
         <GlobalContext.Provider value={globalContext}>
             <div className='box'>
                 <Header/>
-
+                {localStorage.accessToken && (
+                    <Groups groups={groups}/>
+                )}
                 <Routes>
                     {localStorage.accessToken ? (
                         <>
                             <Route path='/' element={<Search cities={cities}/>}/>
                             <Route path='/search' element={<Search cities={cities}/>}/>
-                            <Route path='/home' element={<Home />}/>
                             <Route path='/logout' element={<Logout/>}/>
                             {localStorage.role == 'client' ? (
                                 <Route path={'/becomeDriver'} element={<BecomeDriver/>}/>
@@ -93,7 +103,6 @@ function App() {
                     ) : (
                         <>
                             <Route path='/' element={<Home/>}/>
-                            <Route path='/home' element={<Home/>}/>
                             <Route path='/login' element={<Login/>}/>
                             <Route path='/register' element={<Regiser/>}/>
                         </>

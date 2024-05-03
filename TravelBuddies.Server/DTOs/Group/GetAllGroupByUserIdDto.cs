@@ -10,6 +10,10 @@
 
 		public int PostId { get; set; }
 
+		public required string Name { get; set; }
+
+		public required string Date { get; set; }
+
 		public static GetAllGroupByUserIdDto FromGroup(Group group)
 		{
 			return new GetAllGroupByUserIdDto()
@@ -17,6 +21,8 @@
 				Id = group.Id,
 				CreatorId = group.CreatorId,
 				PostId = group.PostId,
+				Name = $"{group.Post.FromDestinationCity.Name} - {group.Post.ToDestinationCity.Name}",
+				Date = group.Post.DateAndTime.ToString(),
 			};
 		}
 	}

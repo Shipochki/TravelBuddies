@@ -1,12 +1,12 @@
-import './Menu.css'
+import './UserMenu.css'
 import { Link } from "react-router-dom";
 
 import { useEffect, useRef, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDriversLicense, faPlus, faSearch, faSignOut, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faPencil, faSignOut, faUser } from '@fortawesome/free-solid-svg-icons';
 
-export const Menu = () => {
+export const UserMenu = () => {
     const OnLogout = () => {
         localStorage.clear();
 
@@ -25,11 +25,11 @@ export const Menu = () => {
       const handleOutsideClick = (event) => {
         if (menuRef.current 
             && !menuRef.current.contains(event.target) 
-            && event.target != document.getElementsByClassName('menuLines')[0]) {
+            && event.target != document.getElementsByClassName('clicked')[0]) {
             setMenuVisible(false);
-        } else if (event.target == document.getElementsByClassName('menuLines')[0] && menuVisible == true){
+        } else if (event.target == document.getElementsByClassName('clicked')[0] && menuVisible == true){
             setMenuVisible(false);
-        } else if (event.target == document.getElementsByClassName('menuLines')[0] && menuVisible == false){
+        } else if (event.target == document.getElementsByClassName('clicked')[0] && menuVisible == false){
             setMenuVisible(true);
         }
       };
@@ -43,27 +43,33 @@ export const Menu = () => {
 
     return (
         <div>
-            <LazyLoadImage
-                className='menuLines'
-                src={'https://sttravelbuddies001.blob.core.windows.net/web/blank-profile-picture-973460_960_720.png'}/>
+            {menuVisible ? (
+                <LazyLoadImage
+                    className='menuLines'
+                    src={'https://sttravelbuddies001.blob.core.windows.net/web/blank-profile-picture-973460_960_720.png'}/>
+            ): (
+                <LazyLoadImage
+                    className='menuLines clicked'
+                    src={'https://sttravelbuddies001.blob.core.windows.net/web/blank-profile-picture-973460_960_720.png'}/>
+            )}
             
             <div className="menu-content">
                 <div ref={menuRef} className={`menu ${menuVisible ? 'open' : ''}`}>
                     <div>
                         <div className='profile-info'>
-                            <p>Name: {localStorage.fullname}</p>
-                            <p>Mail: {localStorage.username}</p>
-                            <p>Role: {localStorage.role}</p>
+                            <LazyLoadImage
+                            src={'https://sttravelbuddies001.blob.core.windows.net/web/blank-profile-picture-973460_960_720.png'}/>
+                            <p>{localStorage.fullname}</p>
                         </div>
                         <div className='navLinks'>
                             <Link to={'/profile'}>{<FontAwesomeIcon icon={faUser}/>} Profile</Link>
-                            <Link to={'/'}>{<FontAwesomeIcon icon={faSearch}/>} Search</Link>
-                            {localStorage.role == 'client' ? (
+                            <Link to={'/edit'}>{<FontAwesomeIcon icon={faPencil}/>} Edit</Link>
+                            {/* {localStorage.role == 'client' ? (  
                                 <Link to={'/becomeDriver'}>{<FontAwesomeIcon icon={faDriversLicense}/>}Become Driver</Link>
                             ) : ''}
                             {localStorage.role == 'driver' ? (
                                 <Link to={'/createPost'}>{<FontAwesomeIcon icon={faPlus}/>}Add Post</Link>
-                            ) : ''}
+                            ) : ''} */}
                             <a onClick={() => {OnLogout()}}><FontAwesomeIcon icon={faSignOut}/> Logout</a>
                         </div>
                     </div>

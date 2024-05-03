@@ -33,10 +33,13 @@
 
 .logo {
     font-size: 2vw;
-    padding: 30px 90px 30px 0;
     color: #2979ff;
     letter-spacing: 1px;
     font-weight: bold;
+}
+
+.logo img{
+    max-width: 8vw;
 }
 
 .navigation {
