@@ -3,6 +3,7 @@
     height: 5vw;
     text-align: center;
     padding: 1.5vw;
-    background-color: rgb(219, 215, 215);
+    background-color: white;
     position: absolute;
+    box-shadow: 0px 0px 2px 0px black;
 }

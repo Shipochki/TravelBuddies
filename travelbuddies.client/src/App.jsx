@@ -14,6 +14,7 @@ import { CreatePost } from './pages/CreatePost/CreatePost';
 import { About } from './pages/About/About';
 import { Footer } from './components/Footer/Footer';
 import { Groups } from './components/Groups/Groups';
+import { Menu } from './components/Menu/Menu';
 
 function App() {
     const navigate = useNavigate();
@@ -84,7 +85,10 @@ function App() {
             <div className='box'>
                 <Header/>
                 {localStorage.accessToken && (
-                    <Groups groups={groups}/>
+                    <>
+                        <Groups groups={groups}/>
+                        <Menu />
+                    </>
                 )}
                 <Routes>
                     {localStorage.accessToken ? (

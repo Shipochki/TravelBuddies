@@ -72,6 +72,8 @@
     margin-bottom: 1vw;
     padding: 5px;
     column-gap: 10px;
+    box-shadow: 0 0 3px 0 black;
+    border-radius: 8px;
 }
 
 .profile-info img {

@@ -4,7 +4,8 @@
     border-radius: 5px;
     font-family: Arial, sans-serif;
     position: absolute;
-    top: 28vw;
+    top: 30vw;
+    z-index: 1;
   }
   
   .calendar-header {

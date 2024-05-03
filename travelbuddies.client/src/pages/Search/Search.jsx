@@ -136,6 +136,9 @@ export const Search = ({cities}) => {
 
   return (
     <div className='search-menu'>
+      <div className='search-header'>
+        <h2>You can search your trip here</h2>
+      </div>
       <form id="search" method="POST" onSubmit={clickSubmit}>
         <div className='cities-inputs'>
         <div className='city-input'>
@@ -153,7 +156,7 @@ export const Search = ({cities}) => {
             <li key={city.id} onClick={() => handleSelectCity(city.name)}>
               {city.name}
             </li>
-          )).slice(0, 10)}
+          )).slice(0, 8)}
         </ul>
       )}
         </div>
@@ -173,13 +176,16 @@ export const Search = ({cities}) => {
             <li key={city.id} onClick={() => handleToDesSelectCity(city.name)}>
               {city.name}
             </li>
-          )).slice(0, 10)}
+          )).slice(0, 8)}
         </ul>
       )}
         </div>
       </div>
       <div className='more-options'>
-        <a className='more-options-a' onClick={toggleMoreOptions}>{<FontAwesomeIcon icon={faSliders}/>}</a>
+        <a className='more-options-a' onClick={toggleMoreOptions}>
+            {<FontAwesomeIcon icon={faSliders}/>}
+            <p>More options</p>
+          </a>
         {moreOptionsVisible &&
         <div className='more-options-content'>
           <input 

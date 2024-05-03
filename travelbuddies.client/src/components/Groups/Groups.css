@@ -5,25 +5,25 @@
     display: flex;
     flex-direction: column;
     right: 0vw;
-    background-color: rgb(41, 121, 255, 1);
     width: 17vw;
     padding: 5px;
     align-items: center;
     font-family: "Roboto", sans-serif;
     height: 100vh;
-    color: white;
     row-gap: 15px;
     overflow: auto;
+    background: #F5F6F7;
+    color: #8D949E;
+    padding: 2vw 0;
 }
 
 .groups-main-group{
-    padding: 10px 20px;
-    border: 1px solid;
-    border-radius: 32px;
+    padding: 10px 20px;    
+    color: black;
+    border-radius: 8px;
 }
 
 .groups-main-group:hover{
     background-color: white;
-    color: #2979ff;
     cursor: pointer;  
 }

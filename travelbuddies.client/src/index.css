@@ -81,3 +81,7 @@ select {
   overflow: hidden;
   width: 100vw;
 }
+
+textarea:focus, input:focus{
+  outline: none;
+}

@@ -73,7 +73,7 @@
                 _configuration["Jwt:Issuer"],
                 _configuration["Jwt:Issuer"],
                 claims,
-				expires: DateTime.UtcNow.AddHours(1),
+				expires: DateTime.UtcNow.AddHours(12),
 				signingCredentials: creds
             );
 

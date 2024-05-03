@@ -42,13 +42,14 @@ export const Post = ({
             <p className='post-dateandtime'><FontAwesomeIcon icon={faCalendar}/> {DateAndTime}</p>
             <p className='post-decription'>{Description}</p>
             <div className='post-more-info'>
-                <p className='post-priceperseat'>{PricePerSeat}$</p>
+                <p className='post-priceperseat'>Price: {PricePerSeat}$</p>
                 <p className='post-freeseats'>Seats available: {FreeSeats}</p>
                 <p className='post-bool'>Baggage <FontAwesomeIcon icon={Baggage ? faCheck : faCircleXmark} /></p>
                 <p className='post-bool'>Pets <FontAwesomeIcon icon={Pets ? faCheck : faCircleXmark} /></p>
             </div>
-            
-            <button type='submit' onClick={onSubmit}>Join</button>
+            <div className='join-button'>
+                <button type='submit' onClick={onSubmit}>Join</button>
+            </div>
         </div>
     )
 }
