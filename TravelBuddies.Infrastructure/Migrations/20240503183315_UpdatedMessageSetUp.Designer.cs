@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TravelBuddies.Infrastructure;
 
@@ -11,9 +12,11 @@ using TravelBuddies.Infrastructure;
 namespace TravelBuddies.Infrastructure.Migrations
 {
     [DbContext(typeof(TravelBuddiesDbContext))]
-    partial class TravelBuddiesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240503183315_UpdatedMessageSetUp")]
+    partial class UpdatedMessageSetUp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

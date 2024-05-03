@@ -24,6 +24,7 @@ function App() {
     const [groups, setGroups] = useState([]);
     const [group, setGroup] = useState([]);
     const [expiry, setExpiry] = useState(null);
+    const [isOnGroupPage, setIsOnGroupPage] = useState(false);
 
     useEffect(() => {
         const GetAllCities = async () => {
@@ -86,7 +87,6 @@ function App() {
     }
 
     const OnSetPosts = (posts) => {
-        console.log(posts);
         setPosts(posts);
 
         navigate('/catalog');
@@ -94,9 +94,7 @@ function App() {
 
     const OnSetGroup = (group) => {
         setGroup(group);
-
-        console.log(group);
-
+        setIsOnGroupPage(true);
         navigate('/group');
     }
 

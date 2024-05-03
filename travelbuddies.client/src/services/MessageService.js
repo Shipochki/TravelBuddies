@@ -14,7 +14,7 @@ export const OnCreateMessageSubmit = async (createMessageFromKeys) => {
   
           if (response.ok) {
             // Handle successful response
-            return response.json();
+            return await response.json();
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);
@@ -38,7 +38,7 @@ export const OnUpdateMessageSubmit = async (updateMessageFromKeys) => {
   
           if (response.ok) {
             // Handle successful response
-            return response.json();
+            return  response.json();
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);

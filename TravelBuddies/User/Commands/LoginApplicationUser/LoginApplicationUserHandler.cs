@@ -61,9 +61,14 @@
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.NameId, user.Id),
                 new Claim("fullname", $"{user.FirstName} {user.LastName}"),
-                new Claim("profilePictureLink", user.ProfilePictureLink),
+                
                 // Add additional claims as needed (e.g., roles, custom claims)
             };
+
+            if(user.ProfilePictureLink != null)
+            {
+                claims.Add(new Claim("profilePictureLink", user.ProfilePictureLink));
+            }
 
             foreach (var role in _userManager.GetRolesAsync(user).Result)
             {

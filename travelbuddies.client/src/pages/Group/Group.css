@@ -51,6 +51,11 @@
     box-shadow: 0px 0px 1px 0px black;
     border-radius: 8px;
     background: white;
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 2vw;
+    row-gap: 5px;
+    overflow: auto;
 }
 
 .member{
@@ -103,4 +108,30 @@
 .message-form form button:hover{
     color: #2979ff;
     cursor: pointer;
+}
+
+.message{
+    display: flex;
+    align-items: center;
+}
+
+.my-message{
+    flex-direction: row-reverse;
+}
+
+.message-content{
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    height: 3vw;
+    background-color: #F5F6F7;
+    border-radius: 8px;
+    box-shadow: 0 0 1px 0;
+    padding: 10px;
+    width: fit-content;
+}
+
+.message-creator-info img{
+    max-width: 40px;
+    border-radius: 32px;
 }

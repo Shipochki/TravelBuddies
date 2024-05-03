@@ -43,7 +43,8 @@
 				Creator = creator,
 				CreatorId = creator.Id,
 				Group = group,
-				GroupId = group.Id
+				GroupId = group.Id,
+				CreatedOn = DateTime.Now
 			};
 
 			await _repository.AddAsync(message);
