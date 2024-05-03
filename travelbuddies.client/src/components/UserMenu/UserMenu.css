@@ -55,7 +55,7 @@
 
 .menu-content a:hover{
     cursor: pointer;
-    background-color: rgb(41, 121, 255, 0.2);
+    font-size: 1.3vw;
 }
 
 .icon{

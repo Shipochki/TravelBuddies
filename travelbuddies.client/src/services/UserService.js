@@ -19,7 +19,9 @@ export const OnLoginSubmit = async (loginFromKeys) => {
         nameId: userId, 
         sub: username, 
         role: role,
-        fullname: fullname
+        fullname: fullname,
+        exp: exp,
+        profilePictureLink: profilePictureLink,
       } = parseJwt(accessToken);
 
       localStorage.setItem('accessToken', accessToken);
@@ -27,6 +29,8 @@ export const OnLoginSubmit = async (loginFromKeys) => {
       localStorage.setItem('userId', userId);
       localStorage.setItem('role', role);
       localStorage.setItem('fullname', fullname);
+      localStorage.setItem('exp', exp);
+      localStorage.setItem('profilePictureLink', profilePictureLink);
 
       window.location.assign('/search')
     } catch (error) {

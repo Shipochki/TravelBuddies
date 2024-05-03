@@ -36,7 +36,7 @@
     width: 40vw;
     row-gap: 1vw;
     background: white;
-    box-shadow: 0px 0px 2px 0px black;
+    box-shadow: 0px 0px 1px 0px black;
 }
 
 #search input{
@@ -61,7 +61,7 @@
     background: white;
     padding-left: 1.5vw;
     font-size: 18px;
-    box-shadow: 0px 0px 2px 0px black;
+    box-shadow: 0px 0px 1px 0px black;
 }
 
 .city-input input:focus{
@@ -136,7 +136,7 @@
     border: 0;
     padding: 0.5vw;
     border-radius: 32px;
-    box-shadow: 0px 0px 2px 0px black;  
+    box-shadow: 0px 0px 1px 0px black;  
 }
 
 .more-options-boolean{
@@ -177,7 +177,7 @@
     border: 0;
     padding: 0.5vw;
     border-radius: 32px;
-    box-shadow: 0px 0px 2px 0px black;
+    box-shadow: 0px 0px 1px 0px black;
 }
 
 .submit-button {

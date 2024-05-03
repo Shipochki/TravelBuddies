@@ -6,6 +6,8 @@ export function parseJwt(token) {
         nameId: payload.nameid, 
         sub: payload.sub, 
         role: payload.role,
-        fullname: payload.fullname
+        fullname: payload.fullname,
+        exp: payload.exp,
+        profilePictureLink: payload.profilePictureLink,
      };
 }

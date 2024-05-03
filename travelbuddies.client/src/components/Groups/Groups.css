@@ -21,9 +21,17 @@
     padding: 10px 20px;    
     color: black;
     border-radius: 8px;
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
 }
 
 .groups-main-group:hover{
     background-color: white;
     cursor: pointer;  
+}
+
+.picture-group img{
+    max-width: 40px;
+    border-radius: 32px;
 }

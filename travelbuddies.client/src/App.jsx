@@ -15,13 +15,15 @@ import { About } from './pages/About/About';
 import { Footer } from './components/Footer/Footer';
 import { Groups } from './components/Groups/Groups';
 import { Menu } from './components/Menu/Menu';
+import { Group } from './pages/Group/Group';
 
 function App() {
     const navigate = useNavigate();
     const [cities, setCities] = useState([]);
     const [posts, setPosts] = useState([]);
     const [groups, setGroups] = useState([]);
-    const [messages, setMessages] = useState([]);
+    const [group, setGroup] = useState([]);
+    const [expiry, setExpiry] = useState(null);
 
     useEffect(() => {
         const GetAllCities = async () => {
@@ -62,6 +64,27 @@ function App() {
               ; GetAllGroupByUserId()
     }, [])
 
+    useEffect(() => {
+        if(localStorage.accessToken){
+            setExpiry(localStorage.exp * 1000);
+        }
+    })
+
+    useEffect(() => {
+        const interval = setInterval(checkTokenExpiry, 60000); // Check every minute
+        return () => clearInterval(interval); // Cleanup on unmount
+      }, [expiry]);
+    
+      function checkTokenExpiry() {
+        if (expiry) {
+          const currentTime = new Date().getTime();
+          if (currentTime >= expiry.getTime()) {
+            localStorage.clear();
+            navigate('/');
+          }
+        }
+    }
+
     const OnSetPosts = (posts) => {
         console.log(posts);
         setPosts(posts);
@@ -69,15 +92,17 @@ function App() {
         navigate('/catalog');
     }
 
-    const OnSetMessages = (messages) => {
-        setMessages(messages);
+    const OnSetGroup = (group) => {
+        setGroup(group);
+
+        console.log(group);
 
         navigate('/group');
     }
 
     const globalContext = {
         OnSetPosts,
-        OnSetMessages
+        OnSetGroup
     }
 
     return (
@@ -103,6 +128,7 @@ function App() {
                                 <Route path={'/createPost'} element={<CreatePost cities={cities}/>}/>
                             ): ''}
                             <Route path='/catalog' element={<Catalog posts={posts}/>}/>
+                            <Route path='/group' element={<Group group={group}/>}/>
                         </>
                     ) : (
                         <>

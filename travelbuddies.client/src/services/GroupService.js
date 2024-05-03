@@ -22,3 +22,27 @@ export const GetAllGroupByUserId = async () => {
         console.error('Error fetching get all group by user id:', error);
       };
 }
+
+
+export const GetGroupById = async (id) => {
+  try {
+      const response = await fetch(Url + `/getgroupbyid/${id}`, {
+        method: 'GET',
+        mode: "cors",
+        headers: {
+            'Authorization': `Bearer ${localStorage.accessToken}`,
+            'Content-Type': 'application/json'
+        },
+      });
+
+        if (response.ok) {
+          // Handle successful response
+          return response.json();
+      }  else {
+          // Handle other errors
+          console.error('Error:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error fetching get all group by user id:', error);
+    };
+}

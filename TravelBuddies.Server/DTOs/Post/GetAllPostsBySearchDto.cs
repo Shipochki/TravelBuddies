@@ -25,7 +25,7 @@
 
 		public int? GroupId { get; set; }
 
-		public required PostCreatorDto Creator { get; set; }
+		public required UserDto Creator { get; set; }
 
 		public static GetAllPostsBySearchDto FromPost(Post post)
 		{
@@ -41,7 +41,7 @@
 				Pets = post.Pets,
 				DateAndTime = post.DateAndTime.ToString(),
 				GroupId = post.GroupId,
-				Creator = PostCreatorDto.FromUser(post.Creator),
+				Creator = UserDto.FromUser(post.Creator),
 			};
 		}
 	}

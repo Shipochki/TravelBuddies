@@ -14,6 +14,8 @@
 
 		public int GroupId { get; set; }
 
+		public string? CreatorProfileLink { get; set; }
+
 		public static GetMessagesByGroupIdDto FromMessage(Message message)
 		{
 			return new GetMessagesByGroupIdDto()
@@ -23,6 +25,7 @@
 				CreatorId = message.CreatorId,
 				CreatorName = $"{message.Creator.FirstName} {message.Creator.LastName}",
 				GroupId = message.GroupId,
+				CreatorProfileLink = message.Creator.ProfilePictureLink
 			};
 		}
 	}

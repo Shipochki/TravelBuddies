@@ -14,6 +14,8 @@
 
 		public required string Date { get; set; }
 
+		public string? CreatorProfileLink { get; set; }
+
 		public static GetAllGroupByUserIdDto FromGroup(Group group)
 		{
 			return new GetAllGroupByUserIdDto()
@@ -23,6 +25,7 @@
 				PostId = group.PostId,
 				Name = $"{group.Post.FromDestinationCity.Name} - {group.Post.ToDestinationCity.Name}",
 				Date = group.Post.DateAndTime.ToString(),
+				CreatorProfileLink = group.Creator.ProfilePictureLink,
 			};
 		}
 	}

@@ -3,6 +3,7 @@
 	using MediatR;
 	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Mvc;
+	using TravelBuddies.Application.Group.Queries.GetGroupById;
 	using TravelBuddies.Application.Group.Queries.GetUserGroupsByUserId;
 	using TravelBuddies.Domain.Entities;
 	using TravelBuddies.Domain.Enums;
@@ -32,6 +33,21 @@
 			await _databaseLogger.LogAsync(logLevel, message);
 
 			return Ok(groups.Select(GetAllGroupByUserIdDto.FromGroup));
+		}
+
+		[HttpGet]
+		[Route("[action]/{id}")]
+		public async Task<IActionResult> GetGroupById(int id)
+		{
+			Group group = await _mediator.Send(new GetGroupByIdQuery(id, User.Id()));
+
+			LogLevel logLevel = LogLevel.Information;
+			string message = "Succesfull get group";
+
+			await _fileLogger.LogAsync(logLevel, message);
+			await _databaseLogger.LogAsync(logLevel, message);
+
+			return Ok(GetGroupByIdDto.FromGroup(group));
 		}
 	}
 }

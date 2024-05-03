@@ -27,7 +27,7 @@
 
 			builder
 				.HasOne(m => m.Group)
-				.WithMany()
+				.WithMany(m => m.Messages)
 				.HasForeignKey(m => m.GroupId)
 				.IsRequired();
 		}

@@ -89,7 +89,7 @@
 		}
 
 		[HttpGet]
-		[Route("[action]")]
+		[Route("[action]/{groupId}")]
 		public async Task<IActionResult> GetMessagesByGroupId(int groupId)
 		{
 			List<Message> messages = await _mediator.Send(new GetMessagesByGroupIdQuery(groupId, User.Id()));

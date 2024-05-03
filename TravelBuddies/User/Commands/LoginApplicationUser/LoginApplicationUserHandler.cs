@@ -61,6 +61,7 @@
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.NameId, user.Id),
                 new Claim("fullname", $"{user.FirstName} {user.LastName}"),
+                new Claim("profilePictureLink", user.ProfilePictureLink),
                 // Add additional claims as needed (e.g., roles, custom claims)
             };
 
@@ -73,7 +74,7 @@
                 _configuration["Jwt:Issuer"],
                 _configuration["Jwt:Issuer"],
                 claims,
-				expires: DateTime.UtcNow.AddHours(12),
+				expires: DateTime.UtcNow.AddHours(24),
 				signingCredentials: creds
             );
 

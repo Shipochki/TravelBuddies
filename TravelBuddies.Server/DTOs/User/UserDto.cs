@@ -2,7 +2,7 @@
 
 namespace TravelBuddies.Presentation.DTOs.User
 {
-	public class PostCreatorDto
+	public class UserDto
 	{
 		public required string Id { get; set; }
 
@@ -10,9 +10,9 @@ namespace TravelBuddies.Presentation.DTOs.User
 
 		public string? ProfilePictureLink { get; set; }
 
-		public static PostCreatorDto FromUser(ApplicationUser user)
+		public static UserDto FromUser(ApplicationUser user)
 		{
-			return new PostCreatorDto()
+			return new UserDto()
 			{
 				Id = user.Id,
 				FullName = $"{user.FirstName} {user.LastName}",
