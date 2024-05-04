@@ -1,6 +1,4 @@
-﻿using TravelBuddies.Domain.Common;
-
-namespace TravelBuddies.Domain.Entities
+﻿namespace TravelBuddies.Domain.Entities
 {
     using TravelBuddies.Domain.Enums;
     using TravelBuddies.Domain.EntityModels;

@@ -7,6 +7,8 @@ import { useContext } from "react"
 import { GlobalContext } from "../../utils/contexts/GlobalContext"
 import { GetGroupById } from "../../services/GroupService"
 import { useEffect } from "react"
+import { Link } from "react-router-dom"
+import { GetUserById } from "../../services/UserService"
 
 const MessageFromKeys = {
     Text: 'text',
@@ -14,7 +16,7 @@ const MessageFromKeys = {
 }
 
 export const Group = ({group}) => {
-    const { OnSetGroup } = useContext(GlobalContext);
+    const { OnSetGroup, OnSetUser } = useContext(GlobalContext);
 
     const { values, changeHandler, onSubmit } = useForm({
         [MessageFromKeys.Text]: '',
@@ -52,7 +54,12 @@ export const Group = ({group}) => {
                 <div className="group-info">
                     <p onClick={onClickVisable}>Members</p>
                     {membersVisable && group.members.map((m) => (
-                        <div  className="member">
+                        <div className="member" 
+                            onClick={async (e) => {
+                                e.preventDefault();
+                                const result = await GetUserById(m.id);
+                                OnSetUser(result);
+                                }}>
                             <LazyLoadImage 
                             src={m.profilePictureLink 
                             ? m.profilePictureLink 
@@ -67,10 +74,16 @@ export const Group = ({group}) => {
                         <div className="message-content">
                             <div className="message-creator-info">
                                 {m.creatorId != localStorage.userId && (
-                                <LazyLoadImage 
-                                    src={m.creatorProfileLink 
-                                    ? m.creatorProfileLink 
-                                    : 'https://sttravelbuddies001.blob.core.windows.net/web/blank-profile-picture-973460_960_720.png'}/> )}
+                                    <Link onClick={async (e) => {
+                                        e.preventDefault();
+                                        const result = await GetUserById(m.creatorId);
+                                        OnSetUser(result);
+                                        }}>
+                                    <LazyLoadImage
+                                        src={m.creatorProfileLink 
+                                        ? m.creatorProfileLink 
+                                        : 'https://sttravelbuddies001.blob.core.windows.net/web/blank-profile-picture-973460_960_720.png'}/> 
+                                    </Link>)}
                             </div>
                             <div className="message-text">
                                 <p>{m.text}</p>

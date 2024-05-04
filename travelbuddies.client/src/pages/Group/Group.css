@@ -133,6 +133,10 @@
     border-radius: 32px;
 }
 
+.message-creator-info img:hover{
+    cursor: pointer;
+}
+
 .message-text{
     background-color: #F5F6F7;
     border-radius: 8px;

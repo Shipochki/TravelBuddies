@@ -16,6 +16,7 @@ import { Footer } from './components/Footer/Footer';
 import { Groups } from './components/Groups/Groups';
 import { Menu } from './components/Menu/Menu';
 import { Group } from './pages/Group/Group';
+import { Profile } from './pages/Profile/Profile';
 
 function App() {
     const navigate = useNavigate();
@@ -23,8 +24,8 @@ function App() {
     const [posts, setPosts] = useState([]);
     const [groups, setGroups] = useState([]);
     const [group, setGroup] = useState([]);
+    const [user, setUser] = useState([]);
     const [expiry, setExpiry] = useState(null);
-    const [isOnGroupPage, setIsOnGroupPage] = useState(false);
 
     useEffect(() => {
         const GetAllCities = async () => {
@@ -94,13 +95,18 @@ function App() {
 
     const OnSetGroup = (group) => {
         setGroup(group);
-        setIsOnGroupPage(true);
         navigate('/group');
+    }
+
+    const OnSetUser = (user) => {
+        setUser(user);
+        navigate('/profile')
     }
 
     const globalContext = {
         OnSetPosts,
-        OnSetGroup
+        OnSetGroup,
+        OnSetUser
     }
 
     return (
@@ -127,6 +133,7 @@ function App() {
                             ): ''}
                             <Route path='/catalog' element={<Catalog posts={posts}/>}/>
                             <Route path='/group' element={<Group group={group}/>}/>
+                            <Route path='/profile' element={<Profile user={user}/>}/>
                         </>
                     ) : (
                         <>

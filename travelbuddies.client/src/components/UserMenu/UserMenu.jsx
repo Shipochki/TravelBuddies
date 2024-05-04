@@ -1,12 +1,16 @@
 import './UserMenu.css'
 import { Link } from "react-router-dom";
 
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil, faSignOut, faUser } from '@fortawesome/free-solid-svg-icons';
+import { GetUserById } from '../../services/UserService';
+import { GlobalContext } from '../../utils/contexts/GlobalContext';
 
 export const UserMenu = () => {
+    const { OnSetUser } = useContext(GlobalContext);
+
     const OnLogout = () => {
         localStorage.clear();
 
@@ -62,7 +66,11 @@ export const UserMenu = () => {
                             <p>{localStorage.fullname}</p>
                         </div>
                         <div className='navLinks'>
-                            <Link to={'/profile'}>{<FontAwesomeIcon icon={faUser}/>} Profile</Link>
+                            <Link onClick={async (e) => {
+                                e.preventDefault();
+                                const result = await GetUserById(localStorage.userId);
+                                OnSetUser(result);
+                            }}>{<FontAwesomeIcon icon={faUser}/>} Profile</Link>
                             <Link to={'/edit'}>{<FontAwesomeIcon icon={faPencil}/>} Edit</Link>
                             {/* {localStorage.role == 'client' ? (  
                                 <Link to={'/becomeDriver'}>{<FontAwesomeIcon icon={faDriversLicense}/>}Become Driver</Link>

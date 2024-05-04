@@ -13,6 +13,12 @@
 	using TravelBuddies.Application.User.Commands.LoginApplicationUser;
 	using TravelBuddies.Presentation.Configurations;
 	using TravelBuddies.Presentation.Filters;
+	using TravelBuddies.Domain.Entities;
+	using TravelBuddies.Application.User.Queries.GetUserById;
+	using TravelBuddies.Application.Review.Queries.GetReviewsByReciverId;
+	using TravelBuddies.Presentation.DTOs.Review;
+	using TravelBuddies.Application.Vehicle.Queries.GetVehicleByOwnerId;
+	using TravelBuddies.Presentation.DTOs.Vehicle;
 
 	[EnableCors(ApplicationCorses.AllowOrigin)]
 	[Route("api/[controller]")]
@@ -102,6 +108,35 @@
 			await _databaseLogger.LogAsync(logLevel, message);
 
 			return Ok(new { token });
+		}
+
+		[HttpGet]
+		[Authorize]
+		[Route("[action]/{id}")]
+		public async Task<IActionResult> GetUserById(string id)
+		{
+			ApplicationUser user = await _mediator.Send(new GetUserByIdQuery(id));
+
+			GetUserByIdDto userDto = GetUserByIdDto.FromUser(user);
+
+			List<Review> reviews = await _mediator.Send(new GetReviewsByReciverIdQuery(id));
+
+			userDto.Reviews = reviews.Select(ReviewDto.FromReview).ToList();
+			
+			Vehicle? vehicle = await _mediator.Send(new GetVehicleByOwnerIdQuery(id));
+
+			if(vehicle != null)
+			{
+				userDto.Vehicle = VehicleDto.FromVehicle(vehicle);
+			}
+			
+			LogLevel logLevel = LogLevel.Information;
+			string message = "Succesfully get user";
+
+			await _fileLogger.LogAsync(logLevel, message);
+			await _databaseLogger.LogAsync(logLevel, message);
+
+			return Ok(userDto);
 		}
 	}
 }

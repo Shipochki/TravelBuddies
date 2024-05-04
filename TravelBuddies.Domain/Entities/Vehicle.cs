@@ -1,12 +1,7 @@
-﻿using TravelBuddies.Domain.Common;
-
-namespace TravelBuddies.Domain.Entities
+﻿namespace TravelBuddies.Domain.Entities
 {
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
     using TravelBuddies.Domain.Enums;
     using TravelBuddies.Domain.EntityModels;
-    using static DataConstants.VehicleConstants;
 
     public class Vehicle : BaseEntity<int>
 	{

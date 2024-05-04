@@ -2,7 +2,7 @@
 {
 	using TravelBuddies.Domain.Entities;
 
-	public class GetVehicleByIdDto
+	public class VehicleDto
 	{
 		public int Id { get; set; }
 
@@ -20,9 +20,9 @@
 
 		public required string OwnerId { get; set; }
 
-		public static GetVehicleByIdDto FromVehicle(Vehicle vehicle)
+		public static VehicleDto FromVehicle(Vehicle vehicle)
 		{
-			return new GetVehicleByIdDto()
+			return new VehicleDto()
 			{
 				Id = vehicle.Id,
 				BrandName = vehicle.BrandName,

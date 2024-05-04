@@ -22,6 +22,7 @@
 		{
 			List<Review> reviews = await _repository
 				.All<Review>(r => r.IsDeleted == false && r.ReciverId == request.Id)
+				.Include(r => r.Creator)
 				.ToListAsync();
 
 			return await Task.FromResult(reviews);

@@ -150,7 +150,7 @@ export const Regiser = () => {
                 <div className='register-upload-icon'>
                     <FontAwesomeIcon icon={faUpload}/>
                     <div className="register-upload">
-                    <label>Upload Img
+                    <label>Upload Profile Img
                     <input 
                         type="file"
                         id='profilepicture'

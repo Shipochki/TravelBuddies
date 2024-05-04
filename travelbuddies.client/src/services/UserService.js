@@ -82,3 +82,26 @@ export const OnBecomeDriverSubmit = async () => {
 export const OnLogout = () => {
     localStorage.clear();
   }
+
+export const GetUserById = async (id) => {
+  try {
+    const response = await fetch(Url + `/getuserbyid/${id}`, {
+      method: 'GET',
+      mode: "cors",
+      headers: {
+          'Authorization': `Bearer ${localStorage.accessToken}`,
+          'Content-Type': 'application/json'
+      },
+    });
+
+      if (response.ok) {
+        // Handle successful response
+        return response.json();
+    }  else {
+        // Handle other errors
+        console.error('Error:', response.statusText);
+    }
+  } catch (error) {
+    console.error('Error fetching get user by id:', error);
+  };
+}
