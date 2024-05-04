@@ -71,20 +71,20 @@ function App() {
         }
     })
 
-    useEffect(() => {
-        const interval = setInterval(checkTokenExpiry, 60000); // Check every minute
-        return () => clearInterval(interval); // Cleanup on unmount
-      }, [expiry]);
+    // useEffect(() => {
+    //     const interval = setInterval(checkTokenExpiry, 60000); // Check every minute
+    //     return () => clearInterval(interval); // Cleanup on unmount
+    //   }, [expiry]);
     
-      function checkTokenExpiry() {
-        if (expiry) {
-          const currentTime = new Date().getTime();
-          if (currentTime >= expiry.getTime()) {
-            localStorage.clear();
-            navigate('/');
-          }
-        }
-    }
+    //   function checkTokenExpiry() {
+    //     if (expiry) {
+    //       const currentTime = new Date().getTime();
+    //       if (currentTime >= expiry.getTime()) {
+    //         localStorage.clear();
+    //         navigate('/');
+    //       }
+    //     }
+    // }
 
     const OnSetPosts = (posts) => {
         setPosts(posts);

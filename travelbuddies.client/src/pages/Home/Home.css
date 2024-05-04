@@ -4,7 +4,7 @@
 .first-layer {
     width: 100vw;
     height: 940px;
-    background-position: top;
+    background-position: bottom;
     background-size: cover;
     background-image: url("https://sttravelbuddies001.blob.core.windows.net/web/jonatan-pie-h8nxGssjQXs-unsplash.jpg");
     display: flex;
@@ -57,7 +57,7 @@
     justify-content: center;
     align-items: center;
     padding: 2vw 15vw;
-    background-color: rgb(219, 215, 215);
+    background: #F5F6F7;
 }
 
 .second-layer h2{

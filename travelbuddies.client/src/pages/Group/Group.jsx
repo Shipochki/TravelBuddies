@@ -66,10 +66,11 @@ export const Group = ({group}) => {
                     <div className={`message ${m.creatorId == localStorage.userId && 'my-message'}`}>
                         <div className="message-content">
                             <div className="message-creator-info">
+                                {m.creatorId != localStorage.userId && (
                                 <LazyLoadImage 
                                     src={m.creatorProfileLink 
                                     ? m.creatorProfileLink 
-                                    : 'https://sttravelbuddies001.blob.core.windows.net/web/blank-profile-picture-973460_960_720.png'}/>
+                                    : 'https://sttravelbuddies001.blob.core.windows.net/web/blank-profile-picture-973460_960_720.png'}/> )}
                             </div>
                             <div className="message-text">
                                 <p>{m.text}</p>

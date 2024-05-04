@@ -123,15 +123,19 @@
     display: flex;
     align-items: center;
     column-gap: 10px;
-    height: 3vw;
-    background-color: #F5F6F7;
-    border-radius: 8px;
-    box-shadow: 0 0 1px 0;
+    height: 2.5vw;
     padding: 10px;
     width: fit-content;
 }
 
 .message-creator-info img{
-    max-width: 40px;
+    max-width: 30px;
     border-radius: 32px;
+}
+
+.message-text{
+    background-color: #F5F6F7;
+    border-radius: 8px;
+    box-shadow: 0 0 1px 0;
+    padding: 5px 15px;
 }

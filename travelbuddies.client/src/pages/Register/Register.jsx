@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { OnRegisterSubmit } from '../../services/UserService'
 import { useForm } from '../../utils/hooks/useForm'
 import './Register.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCarSide, faCity, faEnvelope, faGlobe, faLock, faPerson, faUpload, faUser } from '@fortawesome/free-solid-svg-icons';
 
 const RegisterFromKeys = {
     FirstName: 'firstname',
@@ -54,16 +56,21 @@ export const Regiser = () => {
 
     return(
         <div className="register-main">
-            <div className='register-content'>
-            <h2>Register</h2>
-            <form className="register-form" id='register' onSubmit={clickSubmit}>
+            <div className='register-background-content'>
+                <div className='register-welcome'> 
+                    <FontAwesomeIcon icon={faCarSide}/>
+                    <h2>Welcome</h2>
+                </div>
+                <div className='register-content'>
+                <h2>Register</h2>
+                <form className="register-form" id='register' onSubmit={clickSubmit}>
                 <div className='register-form-content'>
                 <div className="register-label-input">
-                    <label>First Name</label>
+                    <FontAwesomeIcon icon={faUser}/>
                     <input 
                         type="text"
                         id='firstname'
-                        placeholder='James'
+                        placeholder='FirstName'
                         name={RegisterFromKeys.FirstName}
                         value={values[RegisterFromKeys.FirstName]}
                         onChange={changeHandler}
@@ -71,11 +78,11 @@ export const Regiser = () => {
                     />
                 </div>
                 <div className="register-label-input">
-                    <label>Last Name</label>
+                    <FontAwesomeIcon icon={faUser}/>
                     <input 
                         type="text"
                         id='lastname'
-                        placeholder='Fill'
+                        placeholder='LastName'
                         name={RegisterFromKeys.LastName}
                         value={values[RegisterFromKeys.LastName]}
                         onChange={changeHandler}
@@ -83,7 +90,7 @@ export const Regiser = () => {
                     />
                 </div>
                 <div className="register-label-input">
-                    <label>Email</label>
+                    <FontAwesomeIcon icon={faEnvelope}/>
                     <input 
                         type="email"
                         id='email'
@@ -95,29 +102,29 @@ export const Regiser = () => {
                     />
                 </div>
                 <div className="register-label-input">
-                    <label>City</label>
+                    <FontAwesomeIcon icon={faCity}/>
                     <input 
                         type="text"
                         id='city'
-                        placeholder='Sofia'
+                        placeholder='City'
                         name={RegisterFromKeys.City}
                         value={values[RegisterFromKeys.City]}
                         onChange={changeHandler}
                     />
                 </div>
                 <div className="register-label-input">
-                    <label>Country</label>
+                    <FontAwesomeIcon icon={faGlobe}/>
                     <input 
                         type="text"
                         id='Country'
-                        placeholder='Bulgaria'
+                        placeholder='Country'
                         name={RegisterFromKeys.Country}
                         value={values[RegisterFromKeys.Country]}
                         onChange={changeHandler}
                     />
                 </div>
                 <div className="register-label-input">
-                    <label>Password</label>
+                    <FontAwesomeIcon icon={faLock}/>
                     <input 
                         type="password"
                         id='password'
@@ -129,18 +136,20 @@ export const Regiser = () => {
                     />
                 </div>
                 <div className="register-label-input">
-                    <label>Confirm Password</label>
+                    <FontAwesomeIcon icon={faLock}/>
                     <input 
                         type="password"
                         id='repassword'
-                        placeholder='********'
+                        placeholder='Confirm password'
                         name='repassword'
                         value={repass}
                         onChange={changeHandlerPassword}
                         required
                     />
                 </div>
-                <div className="register-upload">
+                <div className='register-upload-icon'>
+                    <FontAwesomeIcon icon={faUpload}/>
+                    <div className="register-upload">
                     <label>Upload Img
                     <input 
                         type="file"
@@ -150,13 +159,16 @@ export const Regiser = () => {
                         onChange={onChangeFile}
                         hidden
                     />
-                    <span>{nameFile}</span>
                     </label>
+                    <span>{nameFile}</span>
+                    </div>
                 </div>
                 </div>
                 <button>Submit</button>     
-        </form>
+                </form>
+            </div>
+            </div>
+            
         </div>
-    </div>
     )
 }
