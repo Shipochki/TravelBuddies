@@ -1,6 +1,6 @@
 import './Login.css'
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useForm } from "../../utils/hooks/useForm";
 import { OnLoginSubmit } from "../../services/UserService";
 import { useState } from 'react';
@@ -14,8 +14,6 @@ const LoginFromKeys = {
 };
 
 export const Login = () => {
-    const navigate = useNavigate();
-
     const [invalidLogin, setInvalidLogin] = useState(false);
 
     const { values, changeHandler, onSubmit } = useForm({

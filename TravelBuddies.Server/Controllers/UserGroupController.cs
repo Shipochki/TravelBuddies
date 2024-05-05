@@ -45,7 +45,7 @@
 		}
 
 		[HttpPost]
-		[Route("[action]")]
+		[Route("[action]/{groupId}")]
 		public async Task<IActionResult> LeaveGroup(int groupId)
 		{
 			DeleteUserGroupCommand command = new DeleteUserGroupCommand()

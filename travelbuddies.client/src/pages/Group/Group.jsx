@@ -48,6 +48,11 @@ export const Group = ({group}) => {
         return () => clearInterval(interval);
     }, []);
 
+    const LoadProfile = async (id) => {
+        const result = await GetUserById(id);
+        OnSetUser(result);
+    }
+
     return (
         <div className="group-main">
             <div className="group-content">
@@ -57,8 +62,7 @@ export const Group = ({group}) => {
                         <div className="member" 
                             onClick={async (e) => {
                                 e.preventDefault();
-                                const result = await GetUserById(m.id);
-                                OnSetUser(result);
+                                LoadProfile(m.id);
                                 }}>
                             <LazyLoadImage 
                             src={m.profilePictureLink 
@@ -76,8 +80,7 @@ export const Group = ({group}) => {
                                 {m.creatorId != localStorage.userId && (
                                     <Link onClick={async (e) => {
                                         e.preventDefault();
-                                        const result = await GetUserById(m.creatorId);
-                                        OnSetUser(result);
+                                        LoadProfile(m.creatorId);
                                         }}>
                                     <LazyLoadImage
                                         src={m.creatorProfileLink 

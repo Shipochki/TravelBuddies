@@ -86,7 +86,7 @@
 		}
 
 		[HttpPost]
-		[Route("[action]")]
+		[Route("[action]/{reviewId}")]
 		public async Task<IActionResult> Delete(int reviewId)
 		{
 			await _mediator.Send(new DeleteReviewCommand(reviewId, User.Id()));

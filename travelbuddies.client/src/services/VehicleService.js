@@ -71,3 +71,26 @@ export const OnDeleteVehicleSubmit = async (vehicleId) => {
         console.error('Error fetching create vehicle:', error);
       }
 }
+
+export const GetVehicleByOwnerId = async (ownerId) => {
+  try {
+    const response = await fetch(Url + `/getvehiclebyownerid/${ownerId}`, {
+      method: 'GET',
+      mode: "cors",
+      headers: {
+          'Authorization': `Bearer ${localStorage.accessToken}`,
+          'Content-Type': 'application/json'
+      },
+    });
+
+      if (response.ok) {
+        // Handle successful response
+        return response.json();
+    }  else {
+        // Handle other errors
+        console.error('Error:', response.statusText);
+    }
+  } catch (error) {
+    console.error('Error fetching get vehicle by owner id:', error);
+  };
+}

@@ -26,13 +26,16 @@ export const Post = ({
         OnJoinGroupSubmit(GroupId);
     }
 
+    const LoadProfile = async (e) => {
+        e.preventDefault();
+        const result = await GetUserById(Creator.Id);
+        OnSetUser(result);
+    }
+
     return (
         <div className='post-component'>
             <div className='post-creator'>
-                <Link onClick={async (e) => {
-                                e.preventDefault();
-                                const result = await GetUserById(Creator.Id);
-                                OnSetUser(result);}}>
+                <Link onClick={LoadProfile}>
                     <LazyLoadImage src={Creator.ProfilePictureLink ?? 'https://sttravelbuddies001.blob.core.windows.net/web/blank-profile-picture-973460_960_720.png'}/>
                 </Link>
                 <p>{Creator.FullName}</p>

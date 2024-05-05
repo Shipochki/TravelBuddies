@@ -45,6 +45,12 @@ export const UserMenu = () => {
       };
     }, []);
 
+    const LoadProfile = async (e) => {
+        e.preventDefault();
+        const result = await GetUserById(localStorage.userId);
+        OnSetUser(result);
+    }
+
     return (
         <div>
             {menuVisible ? (
@@ -66,11 +72,9 @@ export const UserMenu = () => {
                             <p>{localStorage.fullname}</p>
                         </div>
                         <div className='navLinks'>
-                            <Link onClick={async (e) => {
-                                e.preventDefault();
-                                const result = await GetUserById(localStorage.userId);
-                                OnSetUser(result);
-                            }}>{<FontAwesomeIcon icon={faUser}/>} Profile</Link>
+                            <Link 
+                            onClick={LoadProfile
+                            }>{<FontAwesomeIcon icon={faUser}/>} Profile</Link>
                             <Link to={'/edit'}>{<FontAwesomeIcon icon={faPencil}/>} Edit</Link>
                             {/* {localStorage.role == 'client' ? (  
                                 <Link to={'/becomeDriver'}>{<FontAwesomeIcon icon={faDriversLicense}/>}Become Driver</Link>

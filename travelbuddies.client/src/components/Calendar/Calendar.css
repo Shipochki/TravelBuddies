@@ -52,7 +52,9 @@
   }
   
   .day-cell:hover{
-   background-color:lavenderblush;
+   background-color: #2979ff;
+   color: white;
+   cursor: pointer;
   }
 
   .empty-cell {

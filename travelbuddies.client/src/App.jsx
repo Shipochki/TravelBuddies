@@ -18,6 +18,7 @@ import { Menu } from './components/Menu/Menu';
 import { Group } from './pages/Group/Group';
 import { Profile } from './pages/Profile/Profile';
 import { Reviews } from './pages/Reviews/Reviews';
+import { CreateVehicle } from './pages/CreateVehicle/CreateVehicle';
 
 function App() {
     const navigate = useNavigate();
@@ -28,6 +29,7 @@ function App() {
     const [user, setUser] = useState([]);
     const [expiry, setExpiry] = useState(null);
     const [reviews, setReviews] = useState([]);
+    const [vehicle, setVehicle] = useState([]);
 
     useEffect(() => {
         const GetAllCities = async () => {
@@ -110,11 +112,17 @@ function App() {
         navigate('/reviews')
     }
 
+    const OnSetVehicle = (vehicle) => {
+        setVehicle(vehicle);
+        navigate('/vehicle')
+    }
+
     const globalContext = {
         OnSetPosts,
         OnSetGroup,
         OnSetUser,
-        OnSetReviews
+        OnSetReviews,
+        OnSetVehicle
     }
 
     return (
@@ -133,16 +141,13 @@ function App() {
                             <Route path='/' element={<Search cities={cities}/>}/>
                             <Route path='/search' element={<Search cities={cities}/>}/>
                             <Route path='/logout' element={<Logout/>}/>
-                            {localStorage.role == 'client' ? (
-                                <Route path={'/becomeDriver'} element={<BecomeDriver/>}/>
-                            ): ''}
-                            {localStorage.role == 'driver' ? (
-                                <Route path={'/createPost'} element={<CreatePost cities={cities}/>}/>
-                            ): ''}
+                            <Route path='/becomeDriver' element={<BecomeDriver/>}/>
+                            <Route path='/createPost' element={<CreatePost cities={cities}/>}/>
                             <Route path='/catalog' element={<Catalog posts={posts}/>}/>
                             <Route path='/group' element={<Group group={group}/>}/>
                             <Route path='/profile' element={<Profile user={user}/>}/>
                             <Route path='/reviews' element={<Reviews reviews={reviews}/>}/>
+                            <Route path='/createVehicle' element={<CreateVehicle />}/>
                         </>
                     ) : (
                         <>

@@ -9,8 +9,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 export const Groups = ({groups}) => {
     const { OnSetGroup } = useContext(GlobalContext);
 
-
-    const onClick = async (id) => {
+    const LoadGroup = async (id) => {
         const result = await GetGroupById(id);
 
         OnSetGroup(result);
@@ -25,7 +24,7 @@ export const Groups = ({groups}) => {
             {groups.map((g, i) => (
                 <div key={i} id={g.id} onClick={(e) => {
                     e.preventDefault();
-                    onClick(g.id);
+                    LoadGroup(g.id);
                 }} className="groups-main-group">
                     <div className="picture-group">
                         <LazyLoadImage src={g.creatorProifileLink ? g.creatorProifileLink : 'https://sttravelbuddies001.blob.core.windows.net/web/blank-profile-picture-973460_960_720.png'}/>

@@ -13,7 +13,7 @@
 	using TravelBuddies.Domain.Enums;
 	using TravelBuddies.Presentation.Configurations;
 	using TravelBuddies.Presentation.DTOs.Vehicle;
-	using TravelBuddies.Presentation.Filters;
+	using TravelBuddies.Application.Vehicle.Queries.GetVehicleByOwnerId;
 
 	[EnableCors(ApplicationCorses.AllowOrigin)]
 	[Route("api/[controller]")]
@@ -55,7 +55,7 @@
 		}
 
 		[HttpPost]
-		[Route("[action]")]
+		[Route("[action]/{vehicleId}")]
 		[Authorize(Policy = ApplicationPolicies.DriverAndAdmin)]
 		public async Task<IActionResult> Delete(int vehicleId)
 		{
@@ -101,7 +101,7 @@
 		}
 
 		[HttpGet]
-		[Route("[action]")]
+		[Route("[action]/{vehicleId}")]
 		public async Task<IActionResult> GetVehicleById(int vehicleId)
 		{
 			Vehicle vehicle = await _mediator.Send(new GetVehicleByIdQuery(vehicleId));
@@ -111,6 +111,26 @@
 
 			await _fileLogger.LogAsync(logLevel, message);
 			await _databaseLogger.LogAsync(logLevel, message);
+
+			return Ok(VehicleDto.FromVehicle(vehicle));
+		}
+
+		[HttpGet]
+		[Route("[action]/{ownerId}")]
+		public async Task<IActionResult> GetVehicleByOwnerId(string ownerId)
+		{
+			Vehicle? vehicle = await _mediator.Send(new GetVehicleByOwnerIdQuery(ownerId));
+
+			LogLevel logLevel = LogLevel.Information;
+			string message = "Succesfully get vehicle by onwer id";
+
+			await _fileLogger.LogAsync(logLevel, message);
+			await _databaseLogger.LogAsync(logLevel, message);
+
+			if(vehicle == null)
+			{
+				return Ok();
+			}
 
 			return Ok(VehicleDto.FromVehicle(vehicle));
 		}
