@@ -2,14 +2,13 @@ const Url = 'https://localhost:7005/api/review';
 
 export const GetAllReviewByReciverId = async (reciverId) => {
     try {
-        const response = await fetch(Url + '/getallreviewbyreciverid', {
-          method: 'POST',
+        const response = await fetch(Url + `/getallreviewbyreciverid/${reciverId}`, {
+          method: 'GET',
           mode: "cors",
           headers: {
               'Authorization': `Bearer ${localStorage.accessToken}`,
               'Content-Type': 'application/json'
-          },
-          body: (reciverId)
+          }
         });
   
           if (response.ok) {

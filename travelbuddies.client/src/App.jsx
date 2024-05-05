@@ -17,6 +17,7 @@ import { Groups } from './components/Groups/Groups';
 import { Menu } from './components/Menu/Menu';
 import { Group } from './pages/Group/Group';
 import { Profile } from './pages/Profile/Profile';
+import { Reviews } from './pages/Reviews/Reviews';
 
 function App() {
     const navigate = useNavigate();
@@ -26,6 +27,7 @@ function App() {
     const [group, setGroup] = useState([]);
     const [user, setUser] = useState([]);
     const [expiry, setExpiry] = useState(null);
+    const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
         const GetAllCities = async () => {
@@ -103,10 +105,16 @@ function App() {
         navigate('/profile')
     }
 
+    const OnSetReviews = (reviews) => {
+        setReviews(reviews);
+        navigate('/reviews')
+    }
+
     const globalContext = {
         OnSetPosts,
         OnSetGroup,
-        OnSetUser
+        OnSetUser,
+        OnSetReviews
     }
 
     return (
@@ -134,6 +142,7 @@ function App() {
                             <Route path='/catalog' element={<Catalog posts={posts}/>}/>
                             <Route path='/group' element={<Group group={group}/>}/>
                             <Route path='/profile' element={<Profile user={user}/>}/>
+                            <Route path='/reviews' element={<Reviews reviews={reviews}/>}/>
                         </>
                     ) : (
                         <>

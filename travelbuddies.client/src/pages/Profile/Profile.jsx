@@ -2,8 +2,26 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import './Profile.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faX } from '@fortawesome/free-solid-svg-icons';
+import { Review } from '../../components/Review/Review';
+import { StarSelector } from '../../components/StarSelector/StarSelector';
+import { useForm } from '../../utils/hooks/useForm';
+import { OnCreateReviewSubmit } from '../../services/ReviewService';
+
+const ReviewFromKeys = {
+    Text: 'text',
+    Rating: 'rating'
+}
 
 export const Profile = ({user}) => {
+    const {values, changeHandler, onSubmit} = useForm({
+        [ReviewFromKeys.Text]: '',
+        [ReviewFromKeys.Rating]: 0,
+    }, OnCreateReviewSubmit)
+
+    const onChangeStar = (star) => {
+        values[ReviewFromKeys.Rating] = star;
+        changeHandler;
+    }
 
     return (
         <div className='profile-main'>
@@ -24,6 +42,7 @@ export const Profile = ({user}) => {
                     </div>
                 </div>
                 <div className='profile-vehicle'>
+                    <h4>Vehicle</h4>
                     {user.vehicle ? (
                         <div className='vehicle'>
                             <div className='vehicle-info'>
@@ -42,18 +61,28 @@ export const Profile = ({user}) => {
                     )}
                 </div>
                 <div className='profile-reviews'>
+                    <h4>Reviews</h4>
                     {user.reviews.length > 0 ? (
                         user.reviews.map((r) => {
-                            <div className='profile-review'>
-                                <LazyLoadImage src={r.creator.profilePictureLink}/>
-                                <p>Rating: {r.rating}</p>
-                                <p>Text: {r.text}</p>
-                            </div>
+                            <Review review={r}/>
                         })
                     ): (
                         <div>
                             User don't have any reviews
                         </div>
+                    )}
+                    {user.id != localStorage.userId && (
+                        <form className='review-form' onSubmit={onSubmit}>
+                            <StarSelector totalStars={5} onSelect={onChangeStar}/>
+                            <input 
+                            type='text'
+                            placeholder='Your review here'
+                            name={[ReviewFromKeys.Text]}
+                            value={values[ReviewFromKeys.Text]}
+                            onChange={changeHandler}
+                            />
+                            <button>Submit</button>
+                        </form>
                     )}
                 </div>
             </div>

@@ -13,7 +13,6 @@
 	using TravelBuddies.Application.Review.Commands.DeleteReview;
 	using TravelBuddies.Presentation.Configurations;
 	using Microsoft.AspNetCore.Cors;
-	using TravelBuddies.Presentation.Filters;
 
 	[EnableCors(ApplicationCorses.AllowOrigin)]
 	[Route("api/[controller]")]
@@ -26,8 +25,8 @@
 		{
 		}
 
-		[HttpPost]
-		[Route("[action]")]
+		[HttpGet]
+		[Route("[action]/{reciverId}")]
 		public async Task<IActionResult> GetAllReviewByReciverId(string reciverId)
 		{
 			List<Review> reviews = await _mediator.Send(new GetReviewsByReciverIdQuery(reciverId));
