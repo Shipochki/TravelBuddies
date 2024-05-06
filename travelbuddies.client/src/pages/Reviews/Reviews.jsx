@@ -8,7 +8,7 @@ export const Reviews = ({reviews}) => {
             <div className='reviews-content'>
                 {reviews.length > 0 ? (
                     reviews.map((r) => (
-                        <Review review={r}/>
+                        <Review key={r.id} review={r}/>
                     ))): (
                     <p>No reviews</p>
                 )}

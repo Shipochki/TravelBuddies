@@ -29,12 +29,11 @@
   }
 
   .menuLines{
-    width: 4vw;
     border: black;
     max-width: 3vw;
     max-height: 3vw;
+    height: 3vw;
     border-radius: 3vw;
-    height: 4vw;
     object-fit: cover;
 }
 
@@ -48,6 +47,7 @@
 .menuLines:hover{
     cursor: pointer;
     width: 2.8vw;
+    height: 2.8vw;
 }
 
 .menu-content a{

@@ -1,0 +1,23 @@
+
+.profile-review{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 10px;
+    background: #F5F6F7;
+    min-width: 35vw;
+    padding: 10px;
+    border-radius: 16px;
+    box-shadow: 0 0 1px 0;
+}
+
+.profile-review img{
+    max-width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 32px;
+}
+
+.profile-review img:hover{
+    cursor: pointer;
+}

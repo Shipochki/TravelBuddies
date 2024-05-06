@@ -137,7 +137,7 @@ export const Search = ({cities}) => {
   return (
     <div className='search-menu'>
       <div className='search-header'>
-        <h2>You can search your trip here</h2>
+        <h2>You can search your travel here</h2>
       </div>
       <form id="search" method="POST" onSubmit={clickSubmit}>
         <div className='cities-inputs'>

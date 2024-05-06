@@ -19,6 +19,7 @@ import { Group } from './pages/Group/Group';
 import { Profile } from './pages/Profile/Profile';
 import { Reviews } from './pages/Reviews/Reviews';
 import { CreateVehicle } from './pages/CreateVehicle/CreateVehicle';
+import { MyPosts } from './pages/MyPosts/MyPosts';
 
 function App() {
     const navigate = useNavigate();
@@ -148,6 +149,7 @@ function App() {
                             <Route path='/profile' element={<Profile user={user}/>}/>
                             <Route path='/reviews' element={<Reviews reviews={reviews}/>}/>
                             <Route path='/createVehicle' element={<CreateVehicle />}/>
+                            <Route path='/myPosts' element={<MyPosts posts={posts}/>}/>
                         </>
                     ) : (
                         <>

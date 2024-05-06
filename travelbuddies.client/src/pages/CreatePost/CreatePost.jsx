@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useForm } from "../../utils/hooks/useForm";
 import { OnCreatePostSubmit } from "../../services/PostService";
-import Calendar from "../../components/Calendar/Calendar";
+import { Link } from "react-router-dom";
+import './CreatePost.css'
 
 const createPostFromKeys = {
     FromDestination: 'fromDestinationCityId',
@@ -123,7 +124,8 @@ export const CreatePost = ({cities}) => {
 
     return(
         <div className="createPost-main">
-            <form id="search" method="POST" onSubmit={clickHandler}>
+            {localStorage.role == 'driver' ? (
+                <form id="search" method="POST" onSubmit={clickHandler}>
                 <div className='cities-inputs'>
                     <div className='city-input'>
                         <input
@@ -227,6 +229,13 @@ export const CreatePost = ({cities}) => {
                 </div>
                 <button type="submit">Submit</button>
             </form>
+            ) : (
+                <div>
+                    <h3>You are not Driver</h3>
+                    <Link to={'/becomeDriver'}>Bceome Driver</Link>
+                </div>
+            )}
+            
         </div>
     )
 }
