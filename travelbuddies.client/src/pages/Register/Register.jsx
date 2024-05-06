@@ -157,6 +157,7 @@ export const Regiser = () => {
                         name={RegisterFromKeys.ProfilePicture}
                         value={values[RegisterFromKeys.ProfilePicture]}
                         onChange={onChangeFile}
+                        required
                         hidden
                     />
                     </label>

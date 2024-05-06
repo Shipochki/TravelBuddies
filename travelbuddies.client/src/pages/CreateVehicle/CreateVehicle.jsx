@@ -1,7 +1,8 @@
 import './CreateVehicle.css'
-import { OnCreateVehicleSubmit } from "../../services/VehicleService"
+import { GetVehicleByOwnerId, OnCreateVehicleSubmit } from "../../services/VehicleService"
 import { useForm } from "../../utils/hooks/useForm"
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { GlobalContext } from '../../utils/contexts/GlobalContext'
 
 const VehicleFromKeys = {
     BrandName: 'brandname',
@@ -13,6 +14,8 @@ const VehicleFromKeys = {
 }
 
 export const CreateVehicle = () => {
+    const { OnSetVehicle } = useContext(GlobalContext);
+
     const {values, changeHandler, onSubmit} = useForm({
         [VehicleFromKeys.BrandName]: '',
         [VehicleFromKeys.ModelName]: '',
@@ -22,10 +25,12 @@ export const CreateVehicle = () => {
         [VehicleFromKeys.ACSystem]: false,
     }, OnCreateVehicleSubmit);
 
-    const OnClickSubmit = (e) => {
-
-
+    const OnClickSubmit = async (e) => {
         onSubmit(e);
+
+        const result = await GetVehicleByOwnerId(localStorage.userId);
+        
+        OnSetVehicle(result);
     }
 
     const [nameFile, setNameFile] = useState('');
@@ -50,12 +55,16 @@ export const CreateVehicle = () => {
     return(
         <div className="create-vehicle-main">
             <div className='create-vehicle-content'>
-                <h2>Add your Vehicle</h2>
+                <div className='create-vehicle-header'>
+                    <h2>Add your Vehicle</h2>
+                </div>
                 <form className="create-vehicle-form" onSubmit={OnClickSubmit}>
                 <div className='vehicle-brandname'>
                     <input 
                         type='text'
                         id='brandname'
+                        placeholder='BrandName'
+                        className='inputModel'
                         name={VehicleFromKeys.BrandName}
                         value={values[VehicleFromKeys.BrandName]}
                         onChange={changeHandler}
@@ -66,6 +75,8 @@ export const CreateVehicle = () => {
                     <input
                         type='text'
                         id='modelname'
+                        placeholder='ModelName'
+                        className='inputModel'
                         name={VehicleFromKeys.ModelName}
                         value={values[VehicleFromKeys.ModelName]}
                         onChange={changeHandler}
@@ -74,13 +85,18 @@ export const CreateVehicle = () => {
                 </div>
                 <div className='vehicle-fuel'>
                     <label for="fuel">Choose a Fuel:</label>
-                    <select name="fuel" id="fuel">
+                    <select 
+                        value={values[VehicleFromKeys.Fuel]} 
+                        onChange={changeHandler} 
+                        name="fuel" 
+                        id="fuel">
                         <option value={0}>Diesel</option>
                         <option value={1}>Gasoline</option>
                         <option value={2}>Electric</option>
                     </select>
                 </div>
                 <div className='vehicle-seatcount'>
+                    <label>SeatCount</label>
                     <input
                         type='number'
                         id='seatcount'

@@ -5,19 +5,23 @@
     using System.Threading;
     using System.Threading.Tasks;
     using TravelBuddies.Application.Exceptions;
-    using TravelBuddies.Application.Repository;
-    using TravelBuddies.Domain.Entities;
+	using TravelBuddies.Application.Interfaces.AzureStorage;
+	using TravelBuddies.Application.Repository;
+	using TravelBuddies.Domain.Entities;
     using TravelBuddies.Domain.Enums;
     using static TravelBuddies.Application.Exceptions.Messages.ExceptionMessages;
 
     public class CreateVehicleHandler : BaseHandler, IRequestHandler<CreateVehicleCommand, Vehicle>
 	{
+		private readonly IBlobService _blobService;
 		public CreateVehicleHandler(
 			IRepository repository
 			, UserManager<ApplicationUser> userManager
-			, RoleManager<IdentityRole> roleManager)
+			, RoleManager<IdentityRole> roleManager
+			, IBlobService blobService)
 			: base(repository, userManager, roleManager)
 		{
+			_blobService = blobService;
 		}
 
 		public async Task<Vehicle> Handle(CreateVehicleCommand request, CancellationToken cancellationToken)
@@ -30,13 +34,15 @@
 					string.Format(ApplicationUserNotFoundMessage, request.OwnerId));
 			}
 
+			string pictureLink = await _blobService.UploadImageAsync(request.PictureLink);
+
 			Vehicle vehicle = new Vehicle()
 			{
 				BrandName = request.BrandName,
 				ModelName = request.ModelName,
 				Fuel = (Fuel)request.Fuel,
 				SeatCount = request.SeatCount,
-				PictureLink = request.PictureLink,
+				PictureLink = pictureLink,
 				ACSystem = request.ACSystem,
 				Owner = owner,
 				OwnerId = request.OwnerId,

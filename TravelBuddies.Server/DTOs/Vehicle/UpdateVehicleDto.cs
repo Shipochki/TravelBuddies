@@ -23,7 +23,7 @@
 		public int SeatCount { get; set; }
 
 		[Required]
-		public required string PictureLink { get; set; }
+		public IFormFile? PictureLink { get; set; }
 
 		public bool ACSystem { get; set; }
 	}

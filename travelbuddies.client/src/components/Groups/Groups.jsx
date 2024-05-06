@@ -27,7 +27,7 @@ export const Groups = ({groups}) => {
                     LoadGroup(g.id);
                 }} className="groups-main-group">
                     <div className="picture-group">
-                        <LazyLoadImage src={g.creatorProifileLink ? g.creatorProifileLink : 'https://sttravelbuddies001.blob.core.windows.net/web/blank-profile-picture-973460_960_720.png'}/>
+                        <LazyLoadImage src={g.creatorProfileLink ? g.creatorProfileLink : 'https://sttravelbuddies001.blob.core.windows.net/web/blank-profile-picture-973460_960_720.png'}/>
                     </div>
                     <div>  
                         <p>{g.name}</p>

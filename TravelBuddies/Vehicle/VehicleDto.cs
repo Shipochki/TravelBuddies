@@ -1,4 +1,6 @@
-﻿namespace TravelBuddies.Application.Vehicle
+﻿using Microsoft.AspNetCore.Http;
+
+namespace TravelBuddies.Application.Vehicle
 {
 	public class VehicleDto : BaseDto<int>
 	{
@@ -10,7 +12,7 @@
 
 		public int SeatCount { get; set; }
 
-		public required string PictureLink { get; set; }
+		public IFormFile? PictureLink { get; set; }
 
 		public bool ACSystem { get; set; }
 

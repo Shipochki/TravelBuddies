@@ -2,14 +2,21 @@ const Url = 'https://localhost:7005/api/vehicle';
 
 export const OnCreateVehicleSubmit = async (createVehicleFromKeys) => {
     try {
+      const formData = new FormData();
+      formData.append('brandname', createVehicleFromKeys.brandname);
+      formData.append('modelname', createVehicleFromKeys.modelname);
+      formData.append('fuel', createVehicleFromKeys.fuel);
+      formData.append('seatcount', createVehicleFromKeys.seatcount);
+      formData.append('acsystem', createVehicleFromKeys.acsystem);
+      formData.append('picturelink', document.querySelector("#picturelink").files[0])
+
         const response = await fetch(Url + '/create', {
           method: 'POST',
           mode: "cors",
           headers: {
               'Authorization': `Bearer ${localStorage.accessToken}`,
-              'Content-Type': 'application/json'
           },
-          body: JSON.stringify(createVehicleFromKeys)
+          body: formData
         });
   
           if (response.ok) {

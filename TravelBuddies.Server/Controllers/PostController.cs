@@ -114,7 +114,7 @@
 		}
 
 		[HttpPost]
-		[Route("[action]")]
+		[Route("[action]/{postId}")]
 		[Authorize(Policy = ApplicationPolicies.DriverAndAdmin)]
 		public async Task<IActionResult> Delete(int postId)
 		{

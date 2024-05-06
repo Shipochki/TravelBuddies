@@ -6,7 +6,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     background: #F5F6F7;
 }
 
@@ -71,6 +71,8 @@
 .member img{
     max-width: 40px;
     border-radius: 32px;
+    object-fit: cover;
+    height: 40px;
 }
 
 .message-form{
@@ -131,6 +133,8 @@
 .message-creator-info img{
     max-width: 30px;
     border-radius: 32px;
+    height: 30px;
+    object-fit: cover;
 }
 
 .message-creator-info img:hover{

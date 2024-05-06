@@ -3,6 +3,7 @@
 	using MediatR;
 	using Microsoft.AspNetCore.Identity;
 	using TravelBuddies.Application.Exceptions;
+	using TravelBuddies.Application.Interfaces.AzureStorage;
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
 	using TravelBuddies.Domain.Enums;
@@ -10,12 +11,16 @@
 
 	public class UpdateVehicleHandler : BaseHandler, IRequestHandler<UpdateVehicleCommand, Task>
 	{
+		private readonly IBlobService _blobService;
+
 		public UpdateVehicleHandler(
 			IRepository repository
 			, UserManager<ApplicationUser> userManager
-			, RoleManager<IdentityRole> roleManager)
+			, RoleManager<IdentityRole> roleManager
+			, IBlobService blobService)
 			: base(repository, userManager, roleManager)
 		{
+			_blobService = blobService;
 		}
 
 		public async Task<Task> Handle(UpdateVehicleCommand request, CancellationToken cancellationToken)
@@ -34,11 +39,18 @@
 					string.Format(ApplicationUserNotCreatorMessage, request.OwnerId));
 			}
 
+			if(request.PictureLink != null)
+			{
+				string pictureLink = await _blobService.UploadImageAsync(request.PictureLink);
+				
+				vehicle.PictureLink = pictureLink;
+			}
+
 			vehicle.BrandName = request.BrandName;
 			vehicle.ModelName = request.ModelName;
 			vehicle.Fuel = (Fuel)request.Fuel;
 			vehicle.SeatCount = request.SeatCount;
-			vehicle.PictureLink = request.PictureLink;
+			
 			vehicle.ACSystem = request.ACSystem;
 
 			_repository.Update(vehicle);

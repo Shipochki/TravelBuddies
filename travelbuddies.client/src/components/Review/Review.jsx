@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { GetUserById } from '../../services/UserService';
 import './Review.css';
 import { GlobalContext } from '../../utils/contexts/GlobalContext';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export const Review = ({review}) => {
     const { OnSetUser } = useContext(GlobalContext);

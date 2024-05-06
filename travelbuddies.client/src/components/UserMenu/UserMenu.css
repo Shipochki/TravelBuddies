@@ -34,6 +34,8 @@
     max-width: 3vw;
     max-height: 3vw;
     border-radius: 3vw;
+    height: 4vw;
+    object-fit: cover;
 }
 
 .menuLines hr{
@@ -79,6 +81,8 @@
 .profile-info img {
     max-width: 2.5vw;
     border-radius: 32px;
+    height: 2.5vw;
+    object-fit: cover;
 }
 
 .profile-info p{

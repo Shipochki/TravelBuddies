@@ -54,7 +54,6 @@ export const OnRegisterSubmit = async (registerFromKeys) => {
         method: "POST", // GET, POST, PUT, DELETE, etc.
         mode: "cors", // no-cors,cors, same-origin
         body: formData,
-
       });
 
       const result = await response.json();

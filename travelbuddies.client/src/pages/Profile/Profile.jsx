@@ -9,13 +9,15 @@ import { OnCreateReviewSubmit } from '../../services/ReviewService';
 
 const ReviewFromKeys = {
     Text: 'text',
-    Rating: 'rating'
+    Rating: 'rating',
+    ReciverId: 'reciverId',
 }
 
 export const Profile = ({user}) => {
     const {values, changeHandler, onSubmit} = useForm({
         [ReviewFromKeys.Text]: '',
         [ReviewFromKeys.Rating]: 0,
+        [ReviewFromKeys.ReciverId]: user.id,
     }, OnCreateReviewSubmit)
 
     const onChangeStar = (star) => {
@@ -46,11 +48,11 @@ export const Profile = ({user}) => {
                     {user.vehicle ? (
                         <div className='vehicle'>
                             <div className='vehicle-info'>
-                                <p>{user.vehicle.brandName}</p>
-                                <p>{user.vehicle.modelName}</p>
-                                <p>{user.vehicle.fuel}</p>
-                                <p>{user.vehicle.seatCount}</p>
-                                <p>ACSystem <FontAwesomeIcon icon={user.vehicle.aCSystem == true ? faCheck : faX}/></p>
+                                <p>Brand: {user.vehicle.brandName}</p>
+                                <p>Model: {user.vehicle.modelName}</p>
+                                <p>Fuel: {user.vehicle.fuel}</p>
+                                <p>Seat count: {user.vehicle.seatCount}</p>
+                                <p>ACSystem <FontAwesomeIcon icon={user.vehicle.acSystem ? faCheck : faX}/></p>
                             </div>
                             <LazyLoadImage src={user.vehicle.pictureLink}/>
                         </div>
@@ -63,9 +65,9 @@ export const Profile = ({user}) => {
                 <div className='profile-reviews'>
                     <h4>Reviews</h4>
                     {user.reviews.length > 0 ? (
-                        user.reviews.map((r) => {
-                            <Review review={r}/>
-                        })
+                        user.reviews.map((r) => (
+                            <Review key={r.id} review={r}/>
+                        ))
                     ): (
                         <div>
                             User don't have any reviews

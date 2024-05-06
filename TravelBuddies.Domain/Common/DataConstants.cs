@@ -53,7 +53,7 @@
             public const int MinLengthModelName = 1;
 
             public const int MaxRangeFuel = 2;
-            public const int MinRangeFule = 1;
+            public const int MinRangeFule = 0;
         }
 
         public static class CountryConstants

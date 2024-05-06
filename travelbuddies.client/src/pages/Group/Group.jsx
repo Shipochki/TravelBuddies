@@ -73,8 +73,8 @@ export const Group = ({group}) => {
                     ))}
             </div>
             <div className="group-messages">
-                {group.messages.map((m) => (
-                    <div className={`message ${m.creatorId == localStorage.userId && 'my-message'}`}>
+                {group.messages.map((m, i) => (
+                    <div key={i} id={i} className={`message ${m.creatorId == localStorage.userId && 'my-message'}`}>
                         <div className="message-content">
                             <div className="message-creator-info">
                                 {m.creatorId != localStorage.userId && (

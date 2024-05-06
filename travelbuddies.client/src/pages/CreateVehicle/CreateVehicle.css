@@ -6,18 +6,26 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
     background: #F5F6F7;
     font-family: "Roboto", sans-serif;
 }
 
 .create-vehicle-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 2vw;
+}
+
+.create-vehicle-header{
+    height: 4vw;
     width: 40vw;
-    height: 20vw;
-    background-color: white;
-    box-shadow: 0 0 1px 0;
-    border-radius: 8px;
     text-align: center;
+    align-content: center;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 1px 0 black;
 }
 
 .create-vehicle-content h2{
@@ -26,22 +34,37 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    color: #2979ff;
 }
 
 .create-vehicle-form{
+    width: 40vw;
+    height: 20vw;
+    background-color: white;
+    box-shadow: 0 0 1px 0;
+    border-radius: 8px;
+    text-align: center;
     display: grid;
     align-items: center;
     justify-content: center;
-    justify-items: stretch;
+    justify-items: center;
     column-gap: 3vw;
-    width: 100%;
-    height: 75%;
     grid-template-areas: 
     'brandname modelname'
     'fuel seatcount'
     'acsystem upload'
     'button button';
     padding: 10px
+}
+
+.inputModel{
+    background: #F5F6F7;
+    border: 0;
+    height: 3vw;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 18px;
+    box-shadow: 0px 0px 1px 0px black;
 }
 
 .vehicle-brandname{
@@ -54,20 +77,84 @@
 
 .vehicle-fuel{
     grid-area: fuel;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .vehicle-seatcount{
     grid-area: seatcount;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.vehicle-seatcount input{
+    width: 4vw;
 }
 
 .vehicle-acsystme{
     grid-area: acsystem;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.vehicle-acsystme input{
+    width: 1vw;
+    height: 1vw;
+}
+
+.vehicle-acsystme input:hover{
+    cursor: pointer;
 }
 
 .vehicle-upload{
     grid-area: upload;
 }
 
+.vehicle-upload label{  
+    height: 2vw;
+    width: 15vw;
+    border: 1px solid #2979ff;
+    background-color: #F5F6F7;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vehicle-upload label:hover{
+    cursor: pointer;
+    color: #2979ff;
+}
+
+.vehicle-upload span{
+    display: block;
+    text-overflow: ellipsis; /* Truncate text with ellipsis */
+    overflow: hidden;
+    white-space: nowrap;
+    width: 15vw;
+}
+
 .vehicle-submit-button{
     grid-area: button;
+    border-radius: 16px;
+    height: 2.5vw;
+    width: 6vw;
+    background-color: white;
+    border: 2px solid #2979ff;;
+    transition: 0.3s;
+    margin-bottom: 1vw;
+    font-size: 1vw;
+    color: #2979ff;
+}
+
+.vehicle-submit-button:hover{
+cursor: pointer;
+background-color: #2979ff;
+color: white;
 }
