@@ -9,3 +9,9 @@
     background: #F5F6F7;
     font-family: "Roboto", sans-serif;
 }
+
+.myposts-post{
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+}

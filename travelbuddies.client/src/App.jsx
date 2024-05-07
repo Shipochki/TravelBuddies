@@ -148,12 +148,18 @@ function App() {
         navigate('/myVehicle')
     }
 
+    const OnSetPostsByOwner = (posts) => {
+        setPosts(posts);
+        navigate('/myPosts')
+    }
+
     const globalContext = {
         OnSetPosts,
         OnSetGroup,
         OnSetUser,
         OnSetReviews,
-        OnSetVehicle
+        OnSetVehicle,
+        OnSetPostsByOwner
     }
 
     return (

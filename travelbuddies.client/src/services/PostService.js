@@ -87,3 +87,22 @@ export const OnUpdatePostSubmit = async (updatePostFromKeys) => {
     console.error('Error fetching update post', error)
   }
 }
+
+export const GetPostsByOwnerId = async (ownerId) => {
+  try {
+    const response = await fetch(Url + `/getpostsbyownerid/${ownerId}`, {
+      method: 'GET',
+      mode: "cors",
+      headers: {
+          'Authorization': `Bearer ${localStorage.accessToken}`,
+          'Content-Type': 'application/json'
+      },
+    });
+    
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.error('Error fetching get all post by search:', error);
+  }
+};

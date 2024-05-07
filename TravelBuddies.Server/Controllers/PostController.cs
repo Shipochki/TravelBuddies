@@ -18,6 +18,7 @@
 	using TravelBuddies.Presentation.DTOs.Post;
 	using TravelBuddies.Presentation.Filters;
 	using System.Text.Json;
+	using TravelBuddies.Application.Post.Queries.GetPostsByOwnerId;
 
 	[EnableCors(ApplicationCorses.AllowOrigin)]
 	[Route("api/[controller]")]
@@ -159,6 +160,22 @@
 			await _databaseLogger.LogAsync(logLevel, message);
 
 			return Ok(message);
+		}
+
+		[HttpGet]
+		[Route("[action]/{ownerId}")]
+		[Authorize(Policy = ApplicationPolicies.OnlyDriver)]
+		public async Task<IActionResult> GetPostsByOwnerId(string ownerId)
+		{
+			List<Post> posts = await _mediator.Send(new GetPostsByOwnerIdQuery(ownerId));
+
+			LogLevel logLevel = LogLevel.Information;
+			string message = "Succesfully get posts by owner id";
+
+			await _fileLogger.LogAsync(logLevel, message);
+			await _databaseLogger.LogAsync(logLevel, message);
+
+			return Ok(posts.Select(PostDto.FromPost));
 		}
 	}
 }
