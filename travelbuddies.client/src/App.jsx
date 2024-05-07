@@ -20,6 +20,8 @@ import { Profile } from './pages/Profile/Profile';
 import { Reviews } from './pages/Reviews/Reviews';
 import { CreateVehicle } from './pages/CreateVehicle/CreateVehicle';
 import { MyPosts } from './pages/MyPosts/MyPosts';
+import { EditVehicle } from './pages/EditVehicle/EditVehicle';
+import { MyVehicle } from './pages/MyVehicle/MyVehicle';
 
 function App() {
     const navigate = useNavigate();
@@ -47,7 +49,8 @@ function App() {
           } catch (error) {
             console.error('Error fetching cities:', error);
           }
-        }; GetAllCities();
+        }; 
+        GetAllCities();
         }, []);
     
     useEffect(() => {
@@ -67,8 +70,35 @@ function App() {
                 
               } catch (error) {
                 console.error('Error fetching join group:', error);
-              }}
-              ; GetAllGroupByUserId()
+              }};
+              GetAllGroupByUserId()
+    }, [])
+
+    useEffect(() => {
+        const GetVehicleByOwnerId = async () => {
+            try {
+              const response = await fetch(`https://localhost:7005/api/vehicle/getvehiclebyownerid/${localStorage.userId}`, {
+                method: 'GET',
+                mode: "cors",
+                headers: {
+                    'Authorization': `Bearer ${localStorage.accessToken}`,
+                    'Content-Type': 'application/json'
+                },
+              });
+          
+                if (response.ok) {
+                  // Handle successful response
+                  const result = await response.json();
+                  setVehicle(result);
+              }  else {
+                  // Handle other errors
+                  console.error('Error:', response.statusText);
+              }
+            } catch (error) {
+              console.error('Error fetching get vehicle by owner id:', error);
+            };
+          }
+          GetVehicleByOwnerId();
     }, [])
 
     useEffect(() => {
@@ -115,7 +145,7 @@ function App() {
 
     const OnSetVehicle = (vehicle) => {
         setVehicle(vehicle);
-        navigate('/vehicle')
+        navigate('/myVehicle')
     }
 
     const globalContext = {
@@ -148,7 +178,9 @@ function App() {
                             <Route path='/group' element={<Group group={group}/>}/>
                             <Route path='/profile' element={<Profile user={user}/>}/>
                             <Route path='/reviews' element={<Reviews reviews={reviews}/>}/>
-                            <Route path='/createVehicle' element={<CreateVehicle />}/>
+                            <Route path='/createVehicle' element={<CreateVehicle vehicle={vehicle} />}/>
+                            <Route path='/editVehicle' element={<EditVehicle vehicle={vehicle}/>}/>
+                            <Route path='/myVehicle' element={<MyVehicle vehicle={vehicle}/>}/>
                             <Route path='/myPosts' element={<MyPosts posts={posts}/>}/>
                         </>
                     ) : (

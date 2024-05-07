@@ -5,19 +5,24 @@
     using System.Threading;
     using System.Threading.Tasks;
     using TravelBuddies.Application.Exceptions;
-    using TravelBuddies.Application.Repository;
+	using TravelBuddies.Application.Interfaces.Stripe;
+	using TravelBuddies.Application.Repository;
     using TravelBuddies.Domain.Entities;
     using TravelBuddies.Domain.Enums;
     using static TravelBuddies.Application.Exceptions.Messages.ExceptionMessages;
 
     public class CreatePostHandler : BaseHandler, IRequestHandler<CreatePostCommand, Post>
 	{
+		private readonly IStripeService _stripeService;
+
 		public CreatePostHandler(
 			IRepository repository
 			, UserManager<ApplicationUser> userManager
-			, RoleManager<IdentityRole> roleManager)
+			, RoleManager<IdentityRole> roleManager
+			, IStripeService stripeService)
 			: base(repository, userManager, roleManager)
 		{
+			_stripeService = stripeService;
 		}
 
 		public async Task<Post> Handle(CreatePostCommand request, CancellationToken cancellationToken)
@@ -66,8 +71,7 @@
 
 			if(post.PaymentType == PaymentType.Card || post.PaymentType == PaymentType.CashAndCard)
 			{
-				//Create StripeLink
-				post.PaymentLink = string.Empty;
+				post.PaymentLink = _stripeService.CreateProduct(post);
 			}
 
 			await _repository.AddAsync(post);

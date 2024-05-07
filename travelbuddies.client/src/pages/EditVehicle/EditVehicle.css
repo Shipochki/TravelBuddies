@@ -1,0 +1,10 @@
+
+.vehicle-upload{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.vehicle-upload img{
+    max-width: 100px;
+}

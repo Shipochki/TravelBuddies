@@ -16,10 +16,10 @@ export const Menu = () => {
         OnSetReviews(result);
     }
 
-    const LoadVehicle = async (e) => {
+    const LoadMyVehicle = async (e) => {
         e.preventDefault();
         const result = await GetVehicleByOwnerId(localStorage.userId);
-        OnSetVehicle(result);
+        OnSetVehicle(result, '/vehicle');
     }
 
     return(
@@ -32,9 +32,7 @@ export const Menu = () => {
             </div>
             <div className="vehicle-links">
                 <h4>{<FontAwesomeIcon icon={faCarSide}/>} Vehicle</h4>
-                <Link
-                onClick={LoadVehicle} 
-                >My Vehicle</Link>
+                <Link to={'/myVehicle'}>My Vehicle</Link>
                 <Link to={'/createVehicle'}>Add Vehicle</Link>
                 <Link to={'/editVehicle'}>Edit Vehicle</Link>
             </div>

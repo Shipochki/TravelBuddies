@@ -97,7 +97,7 @@
 			await _fileLogger.LogAsync(logLevel, message);
 			await _databaseLogger.LogAsync(logLevel, message);
 
-			return Ok(message);
+			return Ok();
 		}
 
 		[HttpGet]

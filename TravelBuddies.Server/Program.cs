@@ -14,6 +14,11 @@ namespace TravelBuddies.Server
 	using TravelBuddies.Presentation.Filters;
 	using Microsoft.AspNetCore.Mvc;
 	using TravelBuddies.Presentation.Contract;
+	using TravelBuddies.Application.Interfaces.MailSender;
+	using TravelBuddies.Infrastructure.ExternalVendors.MailSender;
+	using TravelBuddies.Application.Interfaces.Stripe;
+	using TravelBuddies.Infrastructure.ExternalVendors.Stripe;
+	using Stripe;
 
 	public class Program
 	{
@@ -33,9 +38,13 @@ namespace TravelBuddies.Server
 				.AddEntityFrameworkStores<TravelBuddiesDbContext>()
 				.AddDefaultTokenProviders();
 
+			StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
+
 			builder.Services.AddScoped<UserManager<ApplicationUser>>();
 			builder.Services.AddScoped<IRepository, Repository>();
 			builder.Services.AddScoped<IBlobService, BlobService>();
+			builder.Services.AddScoped<IMailSender, MailSender>();
+			builder.Services.AddScoped<IStripeService, StripeService>();
 			//builder.Services.AddScoped<SignInManager<ApplicationUser>>();
 
 			// Add services to the container.

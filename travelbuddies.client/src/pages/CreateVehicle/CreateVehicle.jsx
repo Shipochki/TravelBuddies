@@ -1,8 +1,8 @@
 import './CreateVehicle.css'
 import { GetVehicleByOwnerId, OnCreateVehicleSubmit } from "../../services/VehicleService"
 import { useForm } from "../../utils/hooks/useForm"
-import { useContext, useState } from 'react'
-import { GlobalContext } from '../../utils/contexts/GlobalContext'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const VehicleFromKeys = {
     BrandName: 'brandname',
@@ -13,9 +13,7 @@ const VehicleFromKeys = {
     ACSystem: 'acsystem',
 }
 
-export const CreateVehicle = () => {
-    const { OnSetVehicle } = useContext(GlobalContext);
-
+export const CreateVehicle = ({vehicle}) => {
     const {values, changeHandler, onSubmit} = useForm({
         [VehicleFromKeys.BrandName]: '',
         [VehicleFromKeys.ModelName]: '',
@@ -29,8 +27,6 @@ export const CreateVehicle = () => {
         onSubmit(e);
 
         const result = await GetVehicleByOwnerId(localStorage.userId);
-        
-        OnSetVehicle(result);
     }
 
     const [nameFile, setNameFile] = useState('');
@@ -54,7 +50,8 @@ export const CreateVehicle = () => {
 
     return(
         <div className="create-vehicle-main">
-            <div className='create-vehicle-content'>
+            {vehicle.length == 0 ? (
+                <div className='create-vehicle-content'>
                 <div className='create-vehicle-header'>
                     <h2>Add your Vehicle</h2>
                 </div>
@@ -131,6 +128,16 @@ export const CreateVehicle = () => {
                 <button className='vehicle-submit-button'>Submit</button>
                 </form>
             </div>
+            ) : (
+                <div className='allready-have-vehicle'>
+                    <h3>You allready have added vehicle</h3>
+                    <div className='vehicle-links'>
+                        <Link to={'/myVehicle'}>My Vehicle</Link>
+                        <Link to={'/editVehicle'}>Edit Vehicle</Link>
+                    </div>
+                </div>
+            )}
+            
         </div>
     )
 }

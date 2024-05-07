@@ -33,14 +33,22 @@ export const OnCreateVehicleSubmit = async (createVehicleFromKeys) => {
 
 export const OnUpdateVehicleSubmit = async (updateVehicleFromKeys) => {
     try {
+      const formData = new FormData();
+      formData.append('id', updateVehicleFromKeys.id);
+      formData.append('brandname', updateVehicleFromKeys.brandname);
+      formData.append('modelname', updateVehicleFromKeys.modelname);
+      formData.append('fuel', updateVehicleFromKeys.fuel);
+      formData.append('seatcount', updateVehicleFromKeys.seatcount);
+      formData.append('acsystem', updateVehicleFromKeys.acsystem);
+      formData.append('picturelink', document.querySelector("#picturelink").files[0])
+
         const response = await fetch(Url + '/update', {
           method: 'POST',
           mode: "cors",
           headers: {
               'Authorization': `Bearer ${localStorage.accessToken}`,
-              'Content-Type': 'application/json'
           },
-          body: JSON.stringify(updateVehicleFromKeys)
+          body: formData
         });
   
           if (response.ok) {
