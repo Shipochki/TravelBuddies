@@ -7,7 +7,10 @@ export const Catalog = ({posts}) => {
         <div className="catalog-main">
             <div className='catalog-center'>
                 {posts.map((x, i) => (
+                    <div>
                     <Post key={i} {...x}/>
+                    <Post {...x}/>
+                    </div>
                 ))}
             </div>
         </div>

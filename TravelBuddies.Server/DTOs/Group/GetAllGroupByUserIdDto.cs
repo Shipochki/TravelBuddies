@@ -23,7 +23,7 @@
 				Id = group.Id,
 				CreatorId = group.CreatorId,
 				PostId = group.PostId,
-				Name = $"{group.Post.FromDestinationCity.Name} - {group.Post.ToDestinationCity.Name}",
+				Name = $"{group.Post.FromDestinationCity.Name} -> {group.Post.ToDestinationCity.Name}",
 				Date = group.Post.DateAndTime.ToString(),
 				CreatorProfileLink = group.Creator.ProfilePictureLink,
 			};

@@ -52,7 +52,7 @@ export const Login = () => {
                             required
                         />
                     </div>
-                    <button>Submit</button>
+                    <button>LogIn</button>
                     </form>
                     <div className="signup-link">
                   Not a client? <Link to={"/register"}>SignUp now</Link>

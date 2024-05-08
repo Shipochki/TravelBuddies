@@ -138,7 +138,7 @@ export const EditVehicle = ({vehicle}) => {
                     </label>
                     <span>{nameFile}</span>
                 </div>
-                <button className='vehicle-submit-button'>Submit</button>
+                <button className='vehicle-submit-button'>Edit</button>
                 </form>
             </div>
             ) : (

@@ -18,6 +18,11 @@ export const MyPosts = ({posts}) => {
                             <p>{p.baggage}</p>
                             <p>{p.pets}</p>
                             <p>{p.dateAndTime}</p>
+                            <div>
+                                <Link to={'/editPost'}>Edit Post</Link>
+                                <Link to={'/deletePost'}>Delete Post</Link>
+                                <Link to={'/completePost'}>Complete Post</Link>
+                            </div>
                         </div>
                     ))}
                 </div>

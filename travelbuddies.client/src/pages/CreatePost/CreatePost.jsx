@@ -3,6 +3,7 @@ import { useForm } from "../../utils/hooks/useForm";
 import { OnCreatePostSubmit } from "../../services/PostService";
 import { Link } from "react-router-dom";
 import './CreatePost.css'
+import Calendar from "../../components/Calendar/Calendar";
 
 const createPostFromKeys = {
     FromDestination: 'fromDestinationCityId',
@@ -166,6 +167,7 @@ export const CreatePost = ({cities}) => {
                 </div>
                 <input 
                     type="textbox"
+                    className="createpost-description"
                     name={createPostFromKeys.Description}
                     value={values[createPostFromKeys.Description]}
                     onChange={changeHandler}
@@ -175,12 +177,7 @@ export const CreatePost = ({cities}) => {
                     <button type='button' onClick={toggleCalendar}>Date</button>
                     {calendarVisible && 
                         <div>
-                            <input 
-                                type="date"
-                                name={createPostFromKeys.Date}
-                                value={values[createPostFromKeys.Date]}
-                                onChange={changeHandler}
-                            />
+                            <Calendar handle={handleDate}/>
                             <input 
                                 type="time"
                                 name={createPostFromKeys.Time}
@@ -227,7 +224,7 @@ export const CreatePost = ({cities}) => {
                         placeholder="3"
                     />
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit">Add</button>
             </form>
             ) : (
                 <div>

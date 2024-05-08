@@ -216,7 +216,9 @@ export const Search = ({cities}) => {
             />
             <button type='button' onClick={toggleCalendar}><FontAwesomeIcon icon={!calendarVisible ? faCalendarDays : faCheck}/></button>
           </div>
-          {calendarVisible && <Calendar handle={handleFromDate} />}
+          <div className='search-calendar'>
+            {calendarVisible && <Calendar handle={handleFromDate} />}
+          </div>
         </div>
         <div className='more-options-calendar'>
         <div className='options-calendar-input-button'>
@@ -230,8 +232,9 @@ export const Search = ({cities}) => {
             />
             <button type='button' onClick={toggleToDateCalendar}><FontAwesomeIcon icon={!calendarToDateVisible ? faCalendarDays : faCheck}/></button>
             </div>
-            {calendarToDateVisible && <Calendar handle={handleToDate} />}
-          
+            <div className='search-calendar'>
+              {calendarToDateVisible && <Calendar handle={handleToDate} />}
+            </div>
         </div>
         <div className='more-options-boolean'>
           <p>Baggage</p>

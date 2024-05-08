@@ -11,7 +11,11 @@
 }
 
 .myposts-post{
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 1px 0;
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 30vw;
 }

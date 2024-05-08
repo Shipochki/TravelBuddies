@@ -180,6 +180,12 @@
     box-shadow: 0px 0px 1px 0px black;
 }
 
+.search-calendar{
+    position: absolute;
+    top: 30vw;
+    z-index: 1;
+}
+
 .submit-button {
     border-radius: 16px;
     height: 2.5vw;

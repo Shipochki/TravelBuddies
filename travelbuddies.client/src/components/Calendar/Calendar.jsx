@@ -50,6 +50,8 @@ const Calendar = (props) => {
   const setReturnDate = (event) => {
     const value = event.target.textContent;
     handle(new Date(date.getFullYear(), date.getMonth(), Number(value)));
+    const reuslt = document.getElementsByClassName('clickedCell');
+    event.target.className += ' clickedCell';
   };
 
   return (
