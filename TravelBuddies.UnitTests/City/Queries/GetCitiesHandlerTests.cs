@@ -3,9 +3,7 @@
 	using Microsoft.AspNetCore.Identity;
 	using Microsoft.EntityFrameworkCore;
 	using NSubstitute;
-	using System.Xml.Linq;
 	using TravelBuddies.Application.City.Queries.GetCities;
-	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
 	using TravelBuddies.Infrastructure;
 	using TravelBuddies.Infrastructure.Repository;
@@ -62,6 +60,10 @@
             {
                 Assert.Equal(expectedResult[i].Name, actualResult[i].Name);
                 Assert.Equal(expectedResult[i].Id, actualResult[i].Id);
+                Assert.Equal(expectedResult[i].CountryId, actualResult[i].CountryId);
+                Assert.Equal(expectedResult[i].Country, actualResult[i].Country);
+                Assert.Equal(expectedResult[i].Country.Name, actualResult[i].Country.Name);
+                Assert.Equal(expectedResult[i].Country.Id, actualResult[i].Country.Id);
             }
         }
     }
