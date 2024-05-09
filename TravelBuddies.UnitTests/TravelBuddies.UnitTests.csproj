@@ -20,4 +20,22 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="City\Queries\" />
+    <Folder Include="Group\Commands\" />
+    <Folder Include="Group\Queries\" />
+    <Folder Include="Logger\Commands\" />
+    <Folder Include="Message\Commands\" />
+    <Folder Include="Message\Queries\" />
+    <Folder Include="Post\Commands\" />
+    <Folder Include="Post\Queries\" />
+    <Folder Include="Review\Commands\" />
+    <Folder Include="Review\Queries\" />
+    <Folder Include="UserGroup\Commands\" />
+    <Folder Include="User\Commands\" />
+    <Folder Include="User\Queries\" />
+    <Folder Include="Vehicle\Commands\" />
+    <Folder Include="Vehicle\Queries\" />
+  </ItemGroup>
+
 </Project>
