@@ -4,7 +4,7 @@
 	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Cors;
 	using Microsoft.AspNetCore.Mvc;
-	using TravelBuddies.Application.City.Queries;
+	using TravelBuddies.Application.City.Queries.GetCities;
 	using TravelBuddies.Domain.Common;
 	using TravelBuddies.Domain.Entities;
 	using TravelBuddies.Presentation.DTOs.City;
