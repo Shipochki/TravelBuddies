@@ -4,6 +4,7 @@ import { OnCreatePostSubmit } from "../../services/PostService";
 import { Link } from "react-router-dom";
 import './CreatePost.css'
 import Calendar from "../../components/Calendar/Calendar";
+import { NotDriver } from "../../components/NotDriver/NotDriver";
 
 const createPostFromKeys = {
     FromDestination: 'fromDestinationCityId',
@@ -227,10 +228,7 @@ export const CreatePost = ({cities}) => {
                 <button type="submit">Add</button>
             </form>
             ) : (
-                <div>
-                    <h3>You are not Driver</h3>
-                    <Link to={'/becomeDriver'}>Bceome Driver</Link>
-                </div>
+                <NotDriver />
             )}
             
         </div>

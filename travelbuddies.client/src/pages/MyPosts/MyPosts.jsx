@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import './MyPosts.css'
 import { Post } from "../../components/Post/Post"
+import { NotDriver } from "../../components/NotDriver/NotDriver"
 
 export const MyPosts = ({posts}) => {
 
@@ -27,10 +28,7 @@ export const MyPosts = ({posts}) => {
                     ))}
                 </div>
             ) : (
-                <div className="not-driver">
-                    <h3>You are not Driver</h3>
-                    <Link to={'/becomeDriver'}>Bceome Driver</Link>
-                </div>
+                <NotDriver/>
             )}
         </div>
     )

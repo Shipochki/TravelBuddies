@@ -1,0 +1,33 @@
+
+.not-driver{
+    width: 24vw;
+    background: white;
+    box-shadow: 0 0 1px 0;
+    border-radius: 8px;
+    height: 10vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #2979ff;
+    row-gap: 20px;
+}
+
+.not-driver a{
+    text-decoration: none;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 16px;
+    background-color: white;
+    border: 2px solid #2979ff;;
+    transition: 0.3s;
+    margin-bottom: 1vw;
+    font-size: 1vw;
+    color: #2979ff;
+}
+
+.not-driver a:hover{
+    color: white;
+    background: #2979ff;
+    cursor: pointer;
+}

@@ -131,7 +131,7 @@ export const CreateVehicle = ({vehicle}) => {
             ) : (
                 <div className='allready-have-vehicle'>
                     <h3>You allready have added vehicle</h3>
-                    <div className='vehicle-links'>
+                    <div className='allready-vehicle-links'>
                         <Link to={'/myVehicle'}>My Vehicle</Link>
                         <Link to={'/editVehicle'}>Edit Vehicle</Link>
                     </div>

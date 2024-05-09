@@ -5,6 +5,7 @@ import { useForm } from "../../utils/hooks/useForm";
 import { Link } from "react-router-dom";
 import { GlobalContext } from "../../utils/contexts/GlobalContext";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { NoVehicle } from '../../components/NoVehicle/NoVehicle';
 
 const EditVehicleFromKeys = {
     Id: 'id',
@@ -142,12 +143,7 @@ export const EditVehicle = ({vehicle}) => {
                 </form>
             </div>
             ) : (
-                <div className='you-dont-have-vehicle'>
-                    <h3>You don't have added vehicle</h3>
-                    <div className='vehicle-links'>
-                        <Link to={'/createVehicle'}>Add Vehicle</Link>
-                    </div>
-                </div>
+                <NoVehicle/>
             )}
             
         </div>

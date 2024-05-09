@@ -3,6 +3,7 @@ import './MyVehicle.css'
 import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faX } from '@fortawesome/free-solid-svg-icons'
+import { NoVehicle } from '../../components/NoVehicle/NoVehicle'
 
 export const MyVehicle = ({vehicle}) => {
 
@@ -20,12 +21,7 @@ export const MyVehicle = ({vehicle}) => {
                         <LazyLoadImage src={vehicle.pictureLink}/>
                     </div>
             ) : (
-                <div className='you-dont-have-vehicle'>
-                    <h3>You don't have added vehicle</h3>
-                    <div className='vehicle-links'>
-                        <Link to={'/createVehicle'}>Add Vehicle</Link>
-                    </div>
-                </div>
+                <NoVehicle/>
             )}
         </div>
     )

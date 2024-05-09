@@ -179,10 +179,53 @@
     margin-bottom: 1vw;
     font-size: 1vw;
     color: #2979ff;
+    font-weight: bold;
 }
 
 .vehicle-submit-button:hover{
-cursor: pointer;
-background-color: #2979ff;
-color: white;
+    cursor: pointer;
+    background-color: #2979ff;
+    color: white;
+}
+
+.allready-have-vehicle{
+    width: 30vw;
+    height: 12vw;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 0 1px 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 20px;
+}
+
+.allready-have-vehicle h3{
+    font-size: 24px;
+    color: #2979ff;
+}
+
+.allready-vehicle-links{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.allready-vehicle-links a{
+    text-decoration: none;
+    border: 1px solid #2979ff;
+    padding: 10px;
+    border-radius: 16px;
+    color: #2979ff;
+    font-weight: bold;
+}
+
+.allready-vehicle-links a:hover{
+    background-color: #2979ff;
+    color: white;
+    cursor: pointer;
 }
