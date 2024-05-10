@@ -14,14 +14,15 @@
 		protected readonly UserManager<ApplicationUser> _userManager;
 		protected readonly RoleManager<IdentityRole> _roleManager;
 		protected TravelBuddiesDbContext _dbContext;
+		private readonly DbContextOptions<TravelBuddiesDbContext> _options;
 
 		public BaseHandlerTests()
 		{
-			var options = new DbContextOptionsBuilder<TravelBuddiesDbContext>()
-								.UseInMemoryDatabase(databaseName: "dbName")
+			_options = new DbContextOptionsBuilder<TravelBuddiesDbContext>()
+								.UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
 								.Options;
 
-			var context = new TravelBuddiesDbContext(options);
+			var context = new TravelBuddiesDbContext(_options);
 
 			_dbContext = context;
 
@@ -31,6 +32,15 @@
 			null, null, null, null, null, null, null, null);
 			_roleManager = Substitute.For<RoleManager<IdentityRole>>(
 			Substitute.For<IRoleStore<IdentityRole>>(), null, null, null, null);
+		}
+
+		protected void Dispose()
+		{
+			// Clear your database
+			using (_dbContext = new TravelBuddiesDbContext(_options))
+			{
+				_dbContext.Database.EnsureDeleted();
+			}
 		}
 
 	}

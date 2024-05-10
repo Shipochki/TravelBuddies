@@ -41,6 +41,8 @@
 				PictureLink = createVehicleDto.PictureLink,
 				ACSystem = createVehicleDto.ACSystem,
 				OwnerId = User.Id(),
+				Year = createVehicleDto.Year,
+				Color = createVehicleDto.Color,
 			};
 
 			await _mediator.Send(command);
@@ -87,6 +89,8 @@
 				ACSystem = updateVehicleDto.ACSystem,
 				OwnerId = User.Id(),
 				PictureLink = updateVehicleDto.PictureLink,
+				Year = updateVehicleDto.Year,
+				Color = updateVehicleDto.Color,
 			};
 
 			await _mediator.Send(command);

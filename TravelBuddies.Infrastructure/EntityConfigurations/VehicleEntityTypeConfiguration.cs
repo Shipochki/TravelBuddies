@@ -25,10 +25,16 @@
 				.HasMaxLength(MaxLengthModelName);
 
 			builder
+				.Property(v => v.Color)
+				.IsRequired()
+				.HasMaxLength(MaxLengthColor);
+
+			builder
 				.HasOne(v => v.Owner)
 				.WithOne()
 				.HasPrincipalKey<ApplicationUser>(a => a.Id)
-				.IsRequired();
+				.IsRequired()
+				.OnDelete(DeleteBehavior.Restrict);
 		}
 	}
 }

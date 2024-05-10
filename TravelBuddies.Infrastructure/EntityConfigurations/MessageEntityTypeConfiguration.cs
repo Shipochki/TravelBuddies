@@ -23,13 +23,15 @@
 				.HasOne(m => m.Creator)
 				.WithMany()
 				.HasForeignKey(m => m.CreatorId)
-				.IsRequired();
+				.IsRequired()
+				.OnDelete(DeleteBehavior.Restrict);
 
 			builder
 				.HasOne(m => m.Group)
 				.WithMany(m => m.Messages)
 				.HasForeignKey(m => m.GroupId)
-				.IsRequired();
+				.IsRequired()
+				.OnDelete(DeleteBehavior.Restrict);
 		}
 	}
 }

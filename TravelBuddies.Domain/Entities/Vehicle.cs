@@ -19,6 +19,10 @@
 
 		public required string OwnerId { get; set; }
 
+		public int Year { get; set; }
+
+		public required string Color { get; set; }
+
 		public required ApplicationUser Owner { get; set; }
 	}
 }

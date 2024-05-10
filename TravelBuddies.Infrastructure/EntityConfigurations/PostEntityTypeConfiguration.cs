@@ -52,7 +52,8 @@
 				.HasOne(p => p.Creator)
 				.WithMany()
 				.IsRequired()
-				.HasForeignKey(p => p.CreatorId);
+				.HasForeignKey(p => p.CreatorId)
+				.OnDelete(DeleteBehavior.Restrict);
 
 			builder
 				.HasOne(p => p.Group)

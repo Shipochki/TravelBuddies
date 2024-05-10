@@ -50,6 +50,8 @@
 			vehicle.ModelName = request.ModelName;
 			vehicle.Fuel = (Fuel)request.Fuel;
 			vehicle.SeatCount = request.SeatCount;
+			vehicle.Year = request.Year;
+			vehicle.Color = request.Color;
 			
 			vehicle.ACSystem = request.ACSystem;
 

@@ -37,6 +37,8 @@
 			{
 				await handler.Handle(qeury, default);
 			});
+
+			Dispose();
 		}
 
 		[Fact]
@@ -82,6 +84,8 @@
 			{
 				await handler.Handle(query, default);
 			});
+
+			Dispose();
 		}
 	}
 }

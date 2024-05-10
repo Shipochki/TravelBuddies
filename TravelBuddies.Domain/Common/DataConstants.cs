@@ -54,6 +54,9 @@
 
             public const int MaxRangeFuel = 2;
             public const int MinRangeFule = 0;
+
+            public const int MaxLengthColor = 30;
+            public const int MinLengthColor = 1;
         }
 
         public static class CountryConstants

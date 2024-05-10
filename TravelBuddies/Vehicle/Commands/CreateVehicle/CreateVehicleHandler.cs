@@ -46,7 +46,9 @@
 				ACSystem = request.ACSystem,
 				Owner = owner,
 				OwnerId = request.OwnerId,
-				CreatedOn = DateTime.Now
+				CreatedOn = DateTime.Now,
+				Year = request.Year,
+				Color = request.Color
 			};
 
 			await _repository.AddAsync(vehicle);

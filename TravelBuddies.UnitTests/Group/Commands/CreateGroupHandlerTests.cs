@@ -39,6 +39,7 @@
 				await handler.Handle(command, default);
 			});
 
+			Dispose();
 		}
 
 		[Fact]
@@ -53,7 +54,6 @@
 			var city2 = new City() { Country = country, Name = "Targovishte" };
 			var post = new Post
 			{
-				Id = 10234,
 				Creator = user,
 				CreatorId = user.Id,
 				Description = "test",
@@ -80,6 +80,7 @@
 			Assert.Equal(user.Id, result.CreatorId);
 			Assert.Equal(user, result.Creator);
 
+			Dispose();
 		}
 	}
 }

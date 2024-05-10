@@ -20,6 +20,13 @@
 		[Range(MinRangeFule, MaxRangeFuel)]
 		public int Fuel { get; set; }
 
+		public int Year { get; set; }
+
+		[Required]
+		[MinLength(MinLengthColor)]
+		[MaxLength(MinLengthColor)]
+		public required string Color { get; set; }
+
 		public int SeatCount { get; set; }
 
 		public IFormFile? PictureLink { get; set; }

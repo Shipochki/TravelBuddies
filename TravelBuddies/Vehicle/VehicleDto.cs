@@ -17,5 +17,9 @@ namespace TravelBuddies.Application.Vehicle
 		public bool ACSystem { get; set; }
 
 		public required string OwnerId { get; set; }
+
+		public int Year { get; set; }
+
+		public required string Color { get; set; }
 	}
 }
