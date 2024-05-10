@@ -1,7 +1,6 @@
 ﻿namespace TravelBuddies.UnitTests.Message.Commands
 {
 	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Message.Commands.DeleteMessage;
 	using TravelBuddies.Application.Message.Commands.UpdateMessage;
 	using TravelBuddies.Domain.Entities;
 

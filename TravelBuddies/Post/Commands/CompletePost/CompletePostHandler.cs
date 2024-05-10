@@ -35,7 +35,6 @@
 			}
 
 			post.IsCompleted = true;
-			_repository.Update(post);
 			await _repository.SaveChangesAsync();
 
 			return Task.CompletedTask;

@@ -38,7 +38,7 @@
 			}
 
 			if (post.CreatorId != request.CreatorId 
-				&& !await _userManager.IsInRoleAsync(user, ApplicationRoles.Admin))
+				&& await _userManager.IsInRoleAsync(user, ApplicationRoles.Admin))
 			{
 				throw new ApplicationUserNotCreatorException(
 					string.Format(ApplicationUserNotCreatorMessage, request.CreatorId));
