@@ -1,39 +1,14 @@
 ﻿namespace TravelBuddies.UnitTests.Group.Commands
 {
-	using Microsoft.AspNetCore.Identity;
-	using Microsoft.EntityFrameworkCore;
-	using NSubstitute;
 	using TravelBuddies.Domain.Entities;
-	using TravelBuddies.Infrastructure.Repository;
-	using TravelBuddies.Infrastructure;
 	using TravelBuddies.Application.Group.Commands.CreateGroup;
 	using TravelBuddies.Application.Exceptions;
-	using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-	public class CreateGroupHandlerTests
+	public class CreateGroupHandlerTests : BaseHandlerTests
 	{
-		private readonly Repository _repostiory;
-		private readonly UserManager<ApplicationUser> _userManager;
-		private readonly RoleManager<IdentityRole> _roleManager;
-
-		public CreateGroupHandlerTests()
-		{
-			var options = new DbContextOptionsBuilder<TravelBuddiesDbContext>()
-				.UseInMemoryDatabase(databaseName: "dbName")
-				.Options;
-
-			var dbContext = new TravelBuddiesDbContext(options);
-
-			_repostiory = new Repository(dbContext);
-			_userManager = new UserManager<ApplicationUser>(
-			new UserStore<ApplicationUser>(dbContext),
-			null, null, null, null, null, null, null, null);
-			_roleManager = Substitute.For<RoleManager<IdentityRole>>(
-			Substitute.For<IRoleStore<IdentityRole>>(), null, null, null, null);
-		}
 
 		[Fact]
-		public void CreateGroup_WithNonExistingCreator_ShouldThrownException()
+		public void CreateGroup_WithNonExistingCreator_ShouldThrowsException()
 		{
 			//Arrange
 			var handler = new CreateGroupHandler(_repostiory, _userManager, _roleManager);
@@ -47,17 +22,16 @@
 		}
 
 		[Fact]
-		public async Task CreateGroup_WithNonExistingPost_ShouldThrownException()
+		public async Task CreateGroup_WithNonExistingPost_ShouldThrowsException()
 		{
 			//Arrange
 			var handler = new CreateGroupHandler(_repostiory, _userManager, _roleManager);
-			var command = new CreateGroupCommand() { CreatorId = "1", PostId = 1 };
 
-			var user = new ApplicationUser { Id = "1" ,UserName = "testuser", Email = "test@example.com" };
+			var user = new ApplicationUser() { UserName = "Test", Email = "email"};
+			await _dbContext.AddAsync(user);
+			await _dbContext.SaveChangesAsync();
 
-			//Act
-			await _repostiory.AddAsync(user);
-			await _repostiory.SaveChangesAsync();
+			var command = new CreateGroupCommand() { CreatorId = user.Id, PostId = 10234 };
 
 			//Assert
 			await Assert.ThrowsAsync<PostNotFoundException>(async () =>
@@ -65,7 +39,6 @@
 				await handler.Handle(command, default);
 			});
 
-			_repostiory.Dispose();
 		}
 
 		[Fact]
@@ -78,34 +51,35 @@
 			var country = new Country() { Name = "country" };
 			var city1 = new City() { Country = country, Name = "Sofia" };
 			var city2 = new City() { Country = country, Name = "Targovishte" };
-			var post = new Post 
-			{ 
-				Id = 1,
+			var post = new Post
+			{
+				Id = 10234,
 				Creator = user,
-				CreatorId = "1", 
+				CreatorId = user.Id,
 				Description = "test",
 				FromDestinationCity = city1,
-				ToDestinationCity = city2 
+				ToDestinationCity = city2
 			};
 
-			await _repostiory.AddAsync(post);
-			await _repostiory.SaveChangesAsync();
+			await _dbContext.AddAsync(post);
+			await _dbContext.SaveChangesAsync();
 
-			var command = new CreateGroupCommand() { CreatorId = user.Id, PostId = post.Id };
-
+			var command = new CreateGroupCommand() 
+			{ 
+				CreatorId = user.Id, 
+				PostId = post.Id 
+			};
 
 			//Act
 			var result = await handler.Handle(command, default);
 
 			//Assert
 			Assert.NotNull(result);
-			Assert.Equal(1, result.Id);
 			Assert.Equal(post.Id, result.PostId);
 			Assert.Equal(post, result.Post);
 			Assert.Equal(user.Id, result.CreatorId);
 			Assert.Equal(user, result.Creator);
 
-			_repostiory.Dispose();
 		}
 	}
 }

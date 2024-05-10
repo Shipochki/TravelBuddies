@@ -47,7 +47,6 @@
 			group.IsDeleted = true;
 			group.DeletedOn = DateTime.Now;
 
-			_repository.Update(group);
 			await _repository.SaveChangesAsync();
 
 			return Task.CompletedTask;
