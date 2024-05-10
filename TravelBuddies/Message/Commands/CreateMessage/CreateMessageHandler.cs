@@ -2,7 +2,8 @@
 {
     using MediatR;
     using Microsoft.AspNetCore.Identity;
-    using System.Threading;
+	using Microsoft.EntityFrameworkCore;
+	using System.Threading;
     using System.Threading.Tasks;
     using TravelBuddies.Application.Exceptions;
     using TravelBuddies.Application.Repository;
@@ -29,12 +30,24 @@
 					string.Format(ApplicationUserNotFoundMessage, request.CreatorId));
 			}
 
-			Group? group = await _repository.GetByIdAsync<Group>(request.GroupId);
+			Group? group = await _repository
+				.All<Group>(g => g.Id == request.GroupId)
+				.FirstOrDefaultAsync();
 
 			if (group == null)
 			{
 				throw new GroupNotFoundException(
 					string.Format(GroupNotFoundMessage, request.GroupId));
+			}
+
+			UserGroup? userGroup = await _repository
+				.All<UserGroup>(u => u.UserId == creator.Id)
+				.FirstOrDefaultAsync();
+
+			if(userGroup == null)
+			{
+				throw new ApplicationUserNotInGroupException(
+					string.Format(ApplicationUserNotInGroupMessage, request.CreatorId, request.GroupId));
 			}
 
 			Message message = new Message()

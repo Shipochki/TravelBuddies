@@ -38,8 +38,6 @@
 			{
 				await handler.Handle(command, default);
 			});
-
-			Dispose();
 		}
 
 		[Fact]
@@ -79,8 +77,6 @@
 			Assert.Equal(post, result.Post);
 			Assert.Equal(user.Id, result.CreatorId);
 			Assert.Equal(user, result.Creator);
-
-			Dispose();
 		}
 	}
 }

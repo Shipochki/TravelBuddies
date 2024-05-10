@@ -66,8 +66,6 @@
 			{
 				await handler.Handle(command, default);
 			});
-
-			Dispose();
 		}
 
 		[Fact]
@@ -114,8 +112,6 @@
 			{
 				await handler.Handle(command, default);
 			});
-
-			Dispose();
 		}
 
 		[Fact]
@@ -160,8 +156,6 @@
 
 			//Assert
 			Assert.True(group.IsDeleted);
-
-			Dispose();
 		}
 	}
 }
