@@ -457,6 +457,9 @@ namespace TravelBuddies.Infrastructure.Migrations
 
                     b.HasIndex("CreatorId");
 
+                    b.HasIndex("PostId")
+                        .IsUnique();
+
                     b.ToTable("Groups");
                 });
 
@@ -531,7 +534,10 @@ namespace TravelBuddies.Infrastructure.Migrations
             modelBuilder.Entity("TravelBuddies.Domain.Entities.Post", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("Baggage")
                         .HasColumnType("bit");
@@ -784,7 +790,15 @@ namespace TravelBuddies.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("TravelBuddies.Domain.Entities.Post", "Post")
+                        .WithOne("Group")
+                        .HasForeignKey("TravelBuddies.Domain.Entities.Group", "PostId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Creator");
+
+                    b.Navigation("Post");
                 });
 
             modelBuilder.Entity("TravelBuddies.Domain.Entities.Message", b =>
@@ -820,12 +834,6 @@ namespace TravelBuddies.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("TravelBuddies.Domain.Entities.Group", "Group")
-                        .WithOne("Post")
-                        .HasForeignKey("TravelBuddies.Domain.Entities.Post", "Id")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("TravelBuddies.Domain.Entities.City", "ToDestinationCity")
                         .WithMany()
                         .HasForeignKey("ToDestinationCityId")
@@ -835,8 +843,6 @@ namespace TravelBuddies.Infrastructure.Migrations
                     b.Navigation("Creator");
 
                     b.Navigation("FromDestinationCity");
-
-                    b.Navigation("Group");
 
                     b.Navigation("ToDestinationCity");
                 });
@@ -894,10 +900,12 @@ namespace TravelBuddies.Infrastructure.Migrations
                 {
                     b.Navigation("Messages");
 
-                    b.Navigation("Post")
-                        .IsRequired();
-
                     b.Navigation("UsersGroups");
+                });
+
+            modelBuilder.Entity("TravelBuddies.Domain.Entities.Post", b =>
+                {
+                    b.Navigation("Group");
                 });
 #pragma warning restore 612, 618
         }
