@@ -39,7 +39,9 @@
 			}
 
 			UserGroup? userGroup = await _repository
-				.FirstOrDefaultAsync<UserGroup>(u => u.UserId == request.UserId && u.GroupId == request.GroupId);
+				.FirstOrDefaultAsync<UserGroup>(u => 
+				u.UserId == request.UserId 
+				&& u.GroupId == request.GroupId);
 
 			if(userGroup == null)
 			{

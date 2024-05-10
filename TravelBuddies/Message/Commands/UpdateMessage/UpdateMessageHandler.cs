@@ -40,7 +40,6 @@
 
 			message.Text = request.Text;
 
-			_repository.Update(message);
 			await _repository.SaveChangesAsync();
 
 			return Task.CompletedTask;
