@@ -44,7 +44,7 @@
             modelBuilder.ApplyConfiguration(new UserGroupEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new VehicleEntityTypeConfiguration());
 
-            //modelBuilder.Seed();
+            modelBuilder.Seed();
 
             base.OnModelCreating(modelBuilder);
         }

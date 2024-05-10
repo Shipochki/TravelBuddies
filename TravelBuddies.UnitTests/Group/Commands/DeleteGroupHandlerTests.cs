@@ -58,7 +58,7 @@
 				CreatedOn = DateTime.UtcNow,
 			};
 
-			await _dbContext.AddAsync(group);
+			await _dbContext.AddAsync(post);
 			await _dbContext.SaveChangesAsync();
 
 			//Assert

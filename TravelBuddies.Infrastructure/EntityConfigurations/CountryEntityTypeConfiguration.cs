@@ -10,11 +10,6 @@
 		public void Configure(EntityTypeBuilder<Country> builder)
 		{
 			builder
-				.Property(c => c.Id)
-				.IsRequired()
-				.UseIdentityColumn();
-
-			builder
 				.Property(c => c.Name)
 				.IsRequired()
 				.HasMaxLength(MaxLengthCountryName);

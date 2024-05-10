@@ -10,11 +10,6 @@
 		public void Configure(EntityTypeBuilder<Log> builder)
 		{
 			builder
-				.Property(l => l.Id)
-				.IsRequired()
-				.UseIdentityColumn();
-
-			builder
 				.Property(l => l.Message)
 				.IsRequired()
 				.HasMaxLength(MaxLengthMessage);

@@ -10,11 +10,6 @@
 		public void Configure(EntityTypeBuilder<Vehicle> builder)
 		{
 			builder
-				.Property(v => v.Id)
-				.IsRequired()
-				.UseIdentityColumn();
-
-			builder
 				.Property(v => v.BrandName)
 				.IsRequired()
 				.HasMaxLength(MaxLengthBrandName);

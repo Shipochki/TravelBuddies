@@ -10,11 +10,6 @@
 		public void Configure(EntityTypeBuilder<Post> builder)
 		{
 			builder
-				.Property(p => p.Id)
-				.IsRequired()
-				.UseIdentityColumn();
-
-			builder
 				.HasOne(p => p.FromDestinationCity)
 				.WithMany()
 				.HasForeignKey(p => p.FromDestinationCityId)
