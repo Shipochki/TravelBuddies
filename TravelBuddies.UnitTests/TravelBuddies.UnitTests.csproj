@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Review\Commands\" />
     <Folder Include="Review\Queries\" />
     <Folder Include="UserGroup\Commands\" />
     <Folder Include="User\Commands\" />
