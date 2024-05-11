@@ -1,7 +1,9 @@
 ﻿namespace TravelBuddies.UnitTests.Message.Commands
 {
+	using Microsoft.AspNetCore.Identity;
 	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Message.Commands.DeleteMessage;
+	using TravelBuddies.Domain.Common;
 	using TravelBuddies.Domain.Entities;
 
 	public class DeleteMessageHandlerTests : BaseHandlerTests
