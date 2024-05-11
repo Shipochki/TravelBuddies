@@ -39,7 +39,6 @@
 			post.Group = group;
 			post.GroupId = group.Id;
 
-			_repository.Update(post);
 			await _repository.SaveChangesAsync();
 			return Task.CompletedTask;
 		}
