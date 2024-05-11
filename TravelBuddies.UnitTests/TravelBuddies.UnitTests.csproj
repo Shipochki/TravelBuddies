@@ -23,9 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Review\Queries\" />
     <Folder Include="UserGroup\Commands\" />
-    <Folder Include="User\Commands\" />
     <Folder Include="User\Queries\" />
     <Folder Include="Vehicle\Commands\" />
     <Folder Include="Vehicle\Queries\" />

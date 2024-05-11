@@ -8,6 +8,7 @@
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Domain.Entities;
 	using static TravelBuddies.Application.Exceptions.Messages.ExceptionMessages;
+	using Microsoft.IdentityModel.Tokens;
 
 	public class BecomeDriverHandler : BaseHandler, IRequestHandler<BecomeDriverCommand, Task>
 	{
@@ -31,7 +32,7 @@
 
 			IdentityRole? identityRole = await _roleManager.FindByNameAsync(ApplicationRoles.Driver);
 
-			if (identityRole == null)
+			if (identityRole == null || identityRole.Name.IsNullOrEmpty())
 			{
 				throw new IdentityRoleNotFoundException(
 					string.Format(IdentityRoleNotFoundMessage, ApplicationRoles.Driver));

@@ -30,8 +30,8 @@
 			_userManager = new UserManager<ApplicationUser>(
 			new UserStore<ApplicationUser>(_dbContext),
 			null, null, null, null, null, null, null, null);
-			_roleManager = Substitute.For<RoleManager<IdentityRole>>(
-			Substitute.For<IRoleStore<IdentityRole>>(), null, null, null, null);
+			_roleManager = new RoleManager<IdentityRole>(
+			new RoleStore<IdentityRole>(_dbContext), null, null, null, null);
 		}
 
 		protected void Dispose()
