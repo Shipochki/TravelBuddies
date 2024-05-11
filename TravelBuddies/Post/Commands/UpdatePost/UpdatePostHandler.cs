@@ -44,6 +44,12 @@
 					string.Format(CityNotFoundMessage, request.ToDestinationCityId));
 			}
 
+			if(post.CreatorId != request.CreatorId)
+			{
+				throw new ApplicationUserNotCreatorException(
+					string.Format(ApplicationUserNotCreatorMessage, request.CreatorId));
+			}
+
 			post.FromDestinationCity = fromDestination;
 			post.FromDestinationCityId = request.FromDestinationCityId;
 			post.ToDestinationCity = toDestination;
@@ -54,7 +60,6 @@
 			post.Pets = request.Pets;
 			post.DateAndTime = DateTime.Parse(request.DateAndTime);
 
-			_repository.Update(post);
 			await _repository.SaveChangesAsync();
 			return Task.CompletedTask;
 		}
