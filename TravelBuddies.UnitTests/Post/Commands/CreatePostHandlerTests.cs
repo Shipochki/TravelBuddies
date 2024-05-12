@@ -14,7 +14,7 @@
 
         public CreatePostHandlerTests()
         {
-			_stripeService = new StripeServiceFake();
+			_stripeService = new StripeServiceDummy();
         }
 
         [Fact]

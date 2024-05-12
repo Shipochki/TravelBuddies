@@ -35,18 +35,22 @@
         {
             ApplicationUser? user = await _userManager.FindByEmailAsync(request.Email);
 
-            if (user != null && await _userManager.CheckPasswordAsync(user, request.Password))
+            if(user == null)
             {
-                await _signInManager.SignInAsync(user, isPersistent: false);
-
-                string token = GenerateJwtToken(user);
-
-                return token;
+                throw new ApplicationUserNotFoundException(
+                    string.Format(ApplicationUserNotFoundMessage, request.Email));
             }
-            else
+
+            if (!await _userManager.CheckPasswordAsync(user, request.Password))
             {
                 throw new InvalidLoginException(InvalidLoginMessage);
             }
+
+            await _signInManager.SignInAsync(user, isPersistent: false);
+
+            string token = GenerateJwtToken(user);
+
+            return token;
         }
 
         private string GenerateJwtToken(ApplicationUser user)

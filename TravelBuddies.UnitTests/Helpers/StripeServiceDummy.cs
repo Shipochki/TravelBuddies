@@ -3,7 +3,7 @@
 	using TravelBuddies.Application.Interfaces.Stripe;
 	using TravelBuddies.Domain.Entities;
 
-	public class StripeServiceFake : IStripeService
+	public class StripeServiceDummy : IStripeService
 	{
 		public string CreateProduct(Post post)
 		{

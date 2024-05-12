@@ -1,11 +1,8 @@
 ﻿namespace TravelBuddies.UnitTests.User.Commands
 {
-	using Microsoft.AspNetCore.Identity;
-	using NSubstitute;
 	using TravelBuddies.Application.Exceptions;
 	using TravelBuddies.Application.Interfaces.AzureStorage;
 	using TravelBuddies.Application.User.Commands.CreateApplicationUser;
-	using TravelBuddies.Domain.Entities;
 	using TravelBuddies.UnitTests.Helpers;
 
 	public class CreateApplicationUserHandlerTests : BaseHandlerTests
@@ -14,7 +11,7 @@
 
         public CreateApplicationUserHandlerTests()
         {
-			_blobService = new BlobServiceFake();
+			_blobService = new BlobServiceDummy();
         }
 
         [Fact]

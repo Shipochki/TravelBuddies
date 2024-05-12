@@ -4,7 +4,7 @@
 	using System.Threading.Tasks;
 	using TravelBuddies.Application.Interfaces.AzureStorage;
 
-	public class BlobServiceFake : IBlobService
+	public class BlobServiceDummy : IBlobService
 	{
 		public async Task<string> UploadImageAsync(IFormFile file)
 		{
