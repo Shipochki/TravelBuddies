@@ -1,13 +1,10 @@
 ﻿namespace TravelBuddies.IntegrationTests.Controllers
 {
-	using MediatR;
 	using Microsoft.AspNetCore.Mvc;
 	using NSubstitute;
-	using Stripe;
 	using System.Net;
 	using TravelBuddies.Application.City.Queries.GetCities;
 	using TravelBuddies.Domain.Entities;
-	using TravelBuddies.IntegrationTests.Helpers;
     using TravelBuddies.Presentation.Controllers;
 
 	public class CityControllerTests : BaseControllerTests
@@ -35,7 +32,6 @@
             var actionResult = await _controller.GetCities();
 
             var result = actionResult as OkObjectResult;
-            var citiesRes = result!.Value as List<City>;
 
             Assert.NotNull(result);
             Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);

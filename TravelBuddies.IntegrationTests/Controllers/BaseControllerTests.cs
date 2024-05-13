@@ -6,7 +6,6 @@
 	using TravelBuddies.Application.Repository;
 	using TravelBuddies.Infrastructure;
 	using TravelBuddies.Infrastructure.Repository;
-	using TravelBuddies.IntegrationTests.Helpers;
 
 	public class BaseControllerTests
 	{
