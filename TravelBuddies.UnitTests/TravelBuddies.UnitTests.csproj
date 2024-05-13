@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Vehicle\Commands\" />
     <Folder Include="Vehicle\Queries\" />
   </ItemGroup>
 
