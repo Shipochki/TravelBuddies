@@ -16,7 +16,7 @@
 		/// Entity framework DB context holding connection information and properties
 		/// and tracking entity states 
 		/// </summary>
-		protected TravelBuddiesDbContext Context { get; set; }
+		protected DbContext Context { get; set; }
 
 		/// <summary>
 		/// Representation of table in database
