@@ -52,10 +52,8 @@
 			vehicle.SeatCount = request.SeatCount;
 			vehicle.Year = request.Year;
 			vehicle.Color = request.Color;
-			
 			vehicle.ACSystem = request.ACSystem;
 
-			_repository.Update(vehicle);
 			await _repository.SaveChangesAsync();
 
 			return Task.CompletedTask;

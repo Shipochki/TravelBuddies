@@ -26,7 +26,18 @@
 			//Arrange
 			var handler = new GetUserByIdHandler(_repostiory, _userManager, _roleManager);
 
-			var user = new ApplicationUser() { UserName = "test", Email = "email" };
+			var user = new ApplicationUser()
+			{
+				FirstName = "firstname",
+				LastName = "lastname",
+				ProfilePictureLink = "profileLink",
+				DriverLicenseFrontPictureLink = "driveFrontPic",
+				DriverLicenseBackPictureLink = "driverBackPic",
+				Country = "country",
+				City = "city",
+				CreatedOn = DateTime.Now,
+				UserName = "test", 
+				Email = "email" };
 
 			await _dbContext.AddAsync(user);
 			await _dbContext.SaveChangesAsync();
@@ -38,6 +49,14 @@
 
 			//Assert
 			Assert.Equal(user, result);
+			Assert.Equal(user.FirstName, result.FirstName);
+			Assert.Equal(user.LastName, result.LastName);
+			Assert.Equal(user.ProfilePictureLink, result.ProfilePictureLink);
+			Assert.Equal(user.DriverLicenseFrontPictureLink, result.DriverLicenseFrontPictureLink);
+			Assert.Equal(user.DriverLicenseBackPictureLink, result.DriverLicenseBackPictureLink);
+			Assert.Equal(user.Country, result.Country);
+			Assert.Equal(user.City, result.City);
+			Assert.Equal(user.CreatedOn, result.CreatedOn);
 		}
 	}
 }

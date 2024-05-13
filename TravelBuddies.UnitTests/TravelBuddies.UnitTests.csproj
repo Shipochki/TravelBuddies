@@ -23,10 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Vehicle\Queries\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\TravelBuddies.Infrastructure\TravelBuddies.Infrastructure.csproj" />
     <ProjectReference Include="..\TravelBuddies\TravelBuddies.Application.csproj" />
   </ItemGroup>
