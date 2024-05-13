@@ -1,5 +1,6 @@
 ﻿namespace TravelBuddies.UnitTests.Logger.Commands
 {
+	using Microsoft.EntityFrameworkCore;
 	using TravelBuddies.Application.Logger.Commands.CreateLog;
 	using TravelBuddies.Domain.Enums;
 
@@ -14,9 +15,13 @@
 
 			//Act
 			await handler.Handle(command, default);
+			var result = await _dbContext.Logs.FirstOrDefaultAsync();
 
 			//Assert
 			Assert.Equal(1, _dbContext.Logs.Count());
+			Assert.Equal(DateTime.Now.Date, result.CreatedOn.Date);
+			Assert.Equal(command.Message, result.Message);
+			Assert.Equal(command.Level, result.LogLevel);
 		}
 	}
 }

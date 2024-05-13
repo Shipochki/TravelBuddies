@@ -113,6 +113,8 @@
 				FromDestinationCityId = city1.Id,
 				ToDestinationCityId = city2.Id,
 				PaymentType = (int)PaymentType.CashAndCard,
+				PricePerSeat = 5,
+				Pets = true,
 			};
 
 			//Act
@@ -121,7 +123,16 @@
 			//Assert
 			Assert.Equal(result.CreatorId, user.Id);
 			Assert.Equal(result.FromDestinationCityId, city1.Id);
+			Assert.Equal(result.FromDestinationCity, city1);
 			Assert.Equal(result.ToDestinationCityId, city2.Id);
+			Assert.Equal(result.ToDestinationCity, city2);
+			Assert.Equal(result.PricePerSeat, command.PricePerSeat);
+			Assert.False(result.Baggage);
+			Assert.True(result.Pets);
+			Assert.Equal(result.DateAndTime.Date, DateTime.Now.Date);
+			Assert.Equal("testLink", result.PaymentLink);
+			Assert.Equal(result.Creator, user);
+			Assert.Equal(result.CreatorId, user.Id);
 		}
 	}
 }

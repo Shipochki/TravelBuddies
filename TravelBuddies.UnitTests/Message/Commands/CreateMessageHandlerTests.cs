@@ -141,6 +141,8 @@
 
 			//Assert
 			Assert.NotNull(result);
+			Assert.Equal(user, result.Creator);
+			Assert.Equal(group, result.Group);
 		}
 	}
 }
