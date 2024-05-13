@@ -77,6 +77,8 @@
 			Assert.Equal(post, result.Post);
 			Assert.Equal(user.Id, result.CreatorId);
 			Assert.Equal(user, result.Creator);
+			Assert.Empty(result.UsersGroups);
+			Assert.Empty(result.Messages);
 		}
 	}
 }

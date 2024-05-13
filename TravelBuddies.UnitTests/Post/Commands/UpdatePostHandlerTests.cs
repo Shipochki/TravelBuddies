@@ -180,6 +180,7 @@
 
 			//Assert
 			Assert.Equal(post.Description, command.Description);
+			Assert.Equal(DateTime.Now.Date, post.UpdatedOn.Value.Date);
 		}
 	}
 }

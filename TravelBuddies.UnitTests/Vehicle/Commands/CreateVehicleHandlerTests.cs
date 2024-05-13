@@ -4,6 +4,7 @@
 	using TravelBuddies.Application.Interfaces.AzureStorage;
 	using TravelBuddies.Application.Vehicle.Commands.CreateVehicle;
 	using TravelBuddies.Domain.Entities;
+	using TravelBuddies.Domain.Enums;
 	using TravelBuddies.UnitTests.Helpers;
 
 	public class CreateVehicleHandlerTests : BaseHandlerTests
@@ -50,7 +51,10 @@
 				BrandName = "test",
 				Color = "color",
 				ModelName = "test",
-				OwnerId = user.Id
+				OwnerId = user.Id,
+				Fuel = (int)Fuel.Electric,
+				SeatCount = 3,
+				Year = 2024
 			};
 
 			//Act
@@ -59,6 +63,11 @@
 			//Assert
 			Assert.NotNull(result);
 			Assert.Equal(user.Id, result.OwnerId);
+			Assert.Equal(Fuel.Electric, result.Fuel);
+			Assert.Equal(command.SeatCount, result.SeatCount);
+			Assert.Equal(command.Year, result.Year);
+			Assert.False(result.ACSystem);
+			Assert.Equal("testLink", result.PictureLink);
 		}
 	}
 }

@@ -88,6 +88,7 @@
 
 			//Assert
 			Assert.Equal(post.Group, group);
+			Assert.Equal(post.GroupId, group.Id);
 		}
 	}
 }

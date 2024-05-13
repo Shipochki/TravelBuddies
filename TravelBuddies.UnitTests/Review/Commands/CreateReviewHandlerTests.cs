@@ -65,7 +65,9 @@
 
 			//Assert
 			Assert.Equal(user1.Id, result.CreatorId);
+			Assert.Equal(user1, result.Creator);
 			Assert.Equal(user2.Id, result.ReciverId);
+			Assert.Equal(user2, result.Reciver);
 			Assert.Equal("test", result.Text);
 			Assert.Equal(4, result.Rating);
 		}

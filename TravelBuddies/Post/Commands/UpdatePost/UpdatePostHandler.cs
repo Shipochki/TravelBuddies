@@ -59,6 +59,7 @@
 			post.Baggage = request.Baggage;
 			post.Pets = request.Pets;
 			post.DateAndTime = DateTime.Parse(request.DateAndTime);
+			post.UpdatedOn = DateTime.Now;
 
 			await _repository.SaveChangesAsync();
 			return Task.CompletedTask;

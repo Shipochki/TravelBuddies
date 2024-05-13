@@ -179,7 +179,9 @@
 
 			//Assert
 			Assert.Equal(user.Id, userGroup.UserId);
+			Assert.Equal(user, userGroup.User);
 			Assert.Equal(group.Id, userGroup.GroupId);
+			Assert.Equal(group, userGroup.Group);
 		}
 	}
 }
