@@ -24,7 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TravelBuddies.Infrastructure\TravelBuddies.Infrastructure.csproj" />
-    <ProjectReference Include="..\TravelBuddies.Server\TravelBuddies.Presentation.csproj" />
+    <ProjectReference Include="..\TravelBuddies\TravelBuddies.Application.csproj" />
   </ItemGroup>
 
 </Project>

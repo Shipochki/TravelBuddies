@@ -45,7 +45,6 @@ namespace TravelBuddies.Server
 			builder.Services.AddScoped<IBlobService, BlobService>();
 			builder.Services.AddScoped<IMailSender, MailSender>();
 			builder.Services.AddScoped<IStripeService, StripeService>();
-			//builder.Services.AddScoped<SignInManager<ApplicationUser>>();
 
 			// Add services to the container.
 			builder.Services.PolicyConfigure();
