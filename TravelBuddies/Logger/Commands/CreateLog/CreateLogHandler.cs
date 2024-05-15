@@ -3,7 +3,7 @@
     using MediatR;
     using Microsoft.AspNetCore.Identity;
     using System.Threading;
-    using TravelBuddies.Application.Common.Repository;
+    using TravelBuddies.Application.Common.Interfaces.Repository;
     using TravelBuddies.Domain.Entities;
 
     public class CreateLogHandler : BaseHandler, IRequestHandler<CreateLogCommand, Task>

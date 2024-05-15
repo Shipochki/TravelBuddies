@@ -8,7 +8,7 @@
     using System.Linq.Expressions;
     using System.Threading.Tasks;
     using TravelBuddies.Domain.EntityModels;
-    using TravelBuddies.Application.Common.Repository;
+    using TravelBuddies.Application.Common.Interfaces.Repository;
 
     public class Repository : IRepository
 	{

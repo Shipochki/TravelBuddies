@@ -8,7 +8,7 @@
     using TravelBuddies.Domain.Entities;
     using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;
     using Microsoft.IdentityModel.Tokens;
-    using TravelBuddies.Application.Common.Repository;
+    using TravelBuddies.Application.Common.Interfaces.Repository;
 
     public class BecomeDriverHandler : BaseHandler, IRequestHandler<BecomeDriverCommand, Task>
 	{

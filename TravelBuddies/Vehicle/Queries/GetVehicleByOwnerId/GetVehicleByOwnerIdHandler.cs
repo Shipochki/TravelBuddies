@@ -4,7 +4,7 @@
     using Microsoft.AspNetCore.Identity;
     using System.Threading;
     using System.Threading.Tasks;
-    using TravelBuddies.Application.Common.Repository;
+    using TravelBuddies.Application.Common.Interfaces.Repository;
     using TravelBuddies.Domain.Entities;
 
     public class GetVehicleByOwnerIdHandler : BaseHandler, IRequestHandler<GetVehicleByOwnerIdQuery, Vehicle?>

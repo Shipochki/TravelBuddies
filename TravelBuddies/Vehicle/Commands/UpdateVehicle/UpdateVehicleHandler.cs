@@ -3,11 +3,11 @@
     using MediatR;
     using Microsoft.AspNetCore.Identity;
     using TravelBuddies.Application.Common.Interfaces.AzureStorage;
-    using TravelBuddies.Application.Common.Repository;
     using TravelBuddies.Application.Common.Exceptions;
     using TravelBuddies.Domain.Entities;
     using TravelBuddies.Domain.Enums;
     using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;
+    using TravelBuddies.Application.Common.Interfaces.Repository;
 
     public class UpdateVehicleHandler : BaseHandler, IRequestHandler<UpdateVehicleCommand, Task>
 	{

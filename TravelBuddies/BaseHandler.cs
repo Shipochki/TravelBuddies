@@ -1,7 +1,7 @@
 ﻿namespace TravelBuddies.Application
 {
     using Microsoft.AspNetCore.Identity;
-    using TravelBuddies.Application.Common.Repository;
+    using TravelBuddies.Application.Common.Interfaces.Repository;
     using TravelBuddies.Domain.Entities;
 
     public abstract class BaseHandler

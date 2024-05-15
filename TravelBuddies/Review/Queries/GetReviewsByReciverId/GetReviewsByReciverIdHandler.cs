@@ -5,7 +5,7 @@
     using Microsoft.EntityFrameworkCore;
     using System.Threading;
     using System.Threading.Tasks;
-    using TravelBuddies.Application.Common.Repository;
+    using TravelBuddies.Application.Common.Interfaces.Repository;
     using TravelBuddies.Domain.Entities;
 
     public class GetReviewsByReciverIdHandler : BaseHandler, IRequestHandler<GetReviewsByReciverIdQuery, List<Review>>

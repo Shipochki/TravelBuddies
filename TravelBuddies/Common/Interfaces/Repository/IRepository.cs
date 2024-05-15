@@ -1,4 +1,4 @@
-﻿namespace TravelBuddies.Application.Common.Repository
+﻿namespace TravelBuddies.Application.Common.Interfaces.Repository
 {
     using System.Linq.Expressions;
     /// <summary>

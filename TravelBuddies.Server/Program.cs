@@ -15,10 +15,10 @@ namespace TravelBuddies.Server
     using TravelBuddies.Infrastructure.ExternalVendors.Stripe;
     using Stripe;
     using TravelBuddies.Presentation.Extensions;
-    using TravelBuddies.Application.Common.Repository;
     using TravelBuddies.Application.Common.Interfaces.AzureStorage;
     using TravelBuddies.Application.Common.Interfaces.MailSender;
     using TravelBuddies.Application.Common.Interfaces.Stripe;
+    using TravelBuddies.Application.Common.Interfaces.Repository;
 
     public class Program
 	{

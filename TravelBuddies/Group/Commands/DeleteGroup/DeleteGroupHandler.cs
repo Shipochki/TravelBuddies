@@ -7,7 +7,7 @@
     using TravelBuddies.Application.Common.Exceptions;
     using TravelBuddies.Domain.Entities;
     using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;
-    using TravelBuddies.Application.Common.Repository;
+    using TravelBuddies.Application.Common.Interfaces.Repository;
 
     public class DeleteGroupHandler : BaseHandler, IRequestHandler<DeleteGroupCommand, Task>
 	{
