@@ -1,26 +1,26 @@
 ﻿namespace TravelBuddies.Presentation.Controllers
 {
-	using MediatR;
-	using Microsoft.AspNetCore.Authorization;
-	using Microsoft.AspNetCore.Cors;
-	using Microsoft.AspNetCore.Mvc;
-	using TravelBuddies.Domain.Common;
-	using TravelBuddies.Application.Group.Commands.CreateGroup;
-	using TravelBuddies.Application.Post.Commands.CreatePost;
-	using TravelBuddies.Application.Post.Commands.DeletePost;
-	using TravelBuddies.Application.Post.Commands.UpdatePost;
-	using TravelBuddies.Application.Post.Commands.UpdatePostGroup;
-	using TravelBuddies.Application.Post.Queries.GetPostsBySearch;
-	using TravelBuddies.Application.UserGroup.Commands.CreateUserGroup;
-	using TravelBuddies.Domain.Entities;
-	using TravelBuddies.Domain.Enums;
-	using TravelBuddies.Presentation.Configurations;
-	using TravelBuddies.Presentation.DTOs.Post;
-	using TravelBuddies.Presentation.Filters;
-	using System.Text.Json;
-	using TravelBuddies.Application.Post.Queries.GetPostsByOwnerId;
+    using MediatR;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Cors;
+    using Microsoft.AspNetCore.Mvc;
+    using TravelBuddies.Domain.Common;
+    using TravelBuddies.Application.Group.Commands.CreateGroup;
+    using TravelBuddies.Application.Post.Commands.CreatePost;
+    using TravelBuddies.Application.Post.Commands.DeletePost;
+    using TravelBuddies.Application.Post.Commands.UpdatePost;
+    using TravelBuddies.Application.Post.Commands.UpdatePostGroup;
+    using TravelBuddies.Application.Post.Queries.GetPostsBySearch;
+    using TravelBuddies.Application.UserGroup.Commands.CreateUserGroup;
+    using TravelBuddies.Domain.Entities;
+    using TravelBuddies.Domain.Enums;
+    using TravelBuddies.Presentation.DTOs.Post;
+    using TravelBuddies.Presentation.Filters;
+    using System.Text.Json;
+    using TravelBuddies.Application.Post.Queries.GetPostsByOwnerId;
+    using TravelBuddies.Presentation.Extensions;
 
-	[EnableCors(ApplicationCorses.AllowOrigin)]
+    [EnableCors(ApplicationCorses.AllowOrigin)]
 	[Route("api/[controller]")]
 	[ApiController]
 	[Authorize]

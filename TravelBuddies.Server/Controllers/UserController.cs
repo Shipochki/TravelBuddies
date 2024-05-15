@@ -1,26 +1,26 @@
 ﻿namespace TravelBuddies.Presentation.Controllers
 {
-	using MediatR;
-	using Microsoft.AspNetCore.Authorization;
-	using Microsoft.AspNetCore.Mvc;
-	using TravelBuddies.Domain.Enums;
-	using TravelBuddies.Domain.Common;
-	using TravelBuddies.Presentation.DTOs.User;
-	using TravelBuddies.Application.User.Commands.CreateApplicationUser;
-	using TravelBuddies.Application.User.Commands.BecomeDriver;
-	using TravelBuddies.Application.User.Commands.DeleteApplicationUser;
-	using Microsoft.AspNetCore.Cors;
-	using TravelBuddies.Application.User.Commands.LoginApplicationUser;
-	using TravelBuddies.Presentation.Configurations;
-	using TravelBuddies.Presentation.Filters;
-	using TravelBuddies.Domain.Entities;
-	using TravelBuddies.Application.User.Queries.GetUserById;
-	using TravelBuddies.Application.Review.Queries.GetReviewsByReciverId;
-	using TravelBuddies.Presentation.DTOs.Review;
-	using TravelBuddies.Application.Vehicle.Queries.GetVehicleByOwnerId;
-	using TravelBuddies.Presentation.DTOs.Vehicle;
+    using MediatR;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using TravelBuddies.Domain.Enums;
+    using TravelBuddies.Domain.Common;
+    using TravelBuddies.Presentation.DTOs.User;
+    using TravelBuddies.Application.User.Commands.CreateApplicationUser;
+    using TravelBuddies.Application.User.Commands.BecomeDriver;
+    using TravelBuddies.Application.User.Commands.DeleteApplicationUser;
+    using Microsoft.AspNetCore.Cors;
+    using TravelBuddies.Application.User.Commands.LoginApplicationUser;
+    using TravelBuddies.Presentation.Filters;
+    using TravelBuddies.Domain.Entities;
+    using TravelBuddies.Application.User.Queries.GetUserById;
+    using TravelBuddies.Application.Review.Queries.GetReviewsByReciverId;
+    using TravelBuddies.Presentation.DTOs.Review;
+    using TravelBuddies.Application.Vehicle.Queries.GetVehicleByOwnerId;
+    using TravelBuddies.Presentation.DTOs.Vehicle;
+    using TravelBuddies.Presentation.Extensions;
 
-	[EnableCors(ApplicationCorses.AllowOrigin)]
+    [EnableCors(ApplicationCorses.AllowOrigin)]
 	[Route("api/[controller]")]
 	[ApiController]
 	public class UserController : BaseController

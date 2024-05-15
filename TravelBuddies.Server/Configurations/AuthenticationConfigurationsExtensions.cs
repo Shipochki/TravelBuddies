@@ -22,7 +22,9 @@
 					ValidateIssuerSigningKey = true,
 					ValidAudience = configuration["Jwt:Issuer"],
 					ValidIssuer = configuration["Jwt:Issuer"],
-					IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]))
+					IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]) 
+						?? throw new InvalidOperationException()),
+					ValidateLifetime = true
 				};
 			});
 

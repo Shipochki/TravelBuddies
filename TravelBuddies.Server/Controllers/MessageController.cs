@@ -1,21 +1,21 @@
 ﻿namespace TravelBuddies.Presentation.Controllers
 {
-	using MediatR;
-	using Microsoft.AspNetCore.Authorization;
-	using Microsoft.AspNetCore.Cors;
-	using Microsoft.AspNetCore.Mvc;
-	using TravelBuddies.Domain.Common;
-	using TravelBuddies.Application.Message.Commands.CreateMessage;
-	using TravelBuddies.Application.Message.Commands.DeleteMessage;
-	using TravelBuddies.Application.Message.Commands.UpdateMessage;
-	using TravelBuddies.Application.Message.Queries.GetMessagesByGroupId;
-	using TravelBuddies.Domain.Entities;
-	using TravelBuddies.Domain.Enums;
-	using TravelBuddies.Presentation.Configurations;
-	using TravelBuddies.Presentation.DTOs.Message;
-	using TravelBuddies.Presentation.Filters;
+    using MediatR;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Cors;
+    using Microsoft.AspNetCore.Mvc;
+    using TravelBuddies.Domain.Common;
+    using TravelBuddies.Application.Message.Commands.CreateMessage;
+    using TravelBuddies.Application.Message.Commands.DeleteMessage;
+    using TravelBuddies.Application.Message.Commands.UpdateMessage;
+    using TravelBuddies.Application.Message.Queries.GetMessagesByGroupId;
+    using TravelBuddies.Domain.Entities;
+    using TravelBuddies.Domain.Enums;
+    using TravelBuddies.Presentation.DTOs.Message;
+    using TravelBuddies.Presentation.Filters;
+    using TravelBuddies.Presentation.Extensions;
 
-	[EnableCors(ApplicationCorses.AllowOrigin)]
+    [EnableCors(ApplicationCorses.AllowOrigin)]
 	[Route("api/[controller]")]
 	[ApiController]
 	[Authorize]

@@ -1,16 +1,16 @@
 ﻿namespace TravelBuddies.Presentation.Controllers
 {
-	using MediatR;
-	using Microsoft.AspNetCore.Authorization;
-	using Microsoft.AspNetCore.Mvc;
-	using TravelBuddies.Application.Group.Queries.GetGroupById;
-	using TravelBuddies.Application.Group.Queries.GetUserGroupsByUserId;
-	using TravelBuddies.Domain.Entities;
-	using TravelBuddies.Domain.Enums;
-	using TravelBuddies.Presentation.Configurations;
-	using TravelBuddies.Presentation.DTOs.Group;
+    using MediatR;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using TravelBuddies.Application.Group.Queries.GetGroupById;
+    using TravelBuddies.Application.Group.Queries.GetUserGroupsByUserId;
+    using TravelBuddies.Domain.Entities;
+    using TravelBuddies.Domain.Enums;
+    using TravelBuddies.Presentation.DTOs.Group;
+    using TravelBuddies.Presentation.Extensions;
 
-	[Route("api/[controller]")]
+    [Route("api/[controller]")]
 	[ApiController]
 	[Authorize]
 	public class GroupController : BaseController

@@ -1,21 +1,21 @@
 ﻿namespace TravelBuddies.Presentation.Controllers
 {
-	using MediatR;
-	using Microsoft.AspNetCore.Authorization;
-	using Microsoft.AspNetCore.Cors;
-	using Microsoft.AspNetCore.Mvc;
-	using TravelBuddies.Domain.Common;
-	using TravelBuddies.Application.Vehicle.Commands.CreateVehicle;
-	using TravelBuddies.Application.Vehicle.Commands.DeleteVehicle;
-	using TravelBuddies.Application.Vehicle.Commands.UpdateVehicle;
-	using TravelBuddies.Application.Vehicle.Queries.GetVehicleById;
-	using TravelBuddies.Domain.Entities;
-	using TravelBuddies.Domain.Enums;
-	using TravelBuddies.Presentation.Configurations;
-	using TravelBuddies.Presentation.DTOs.Vehicle;
-	using TravelBuddies.Application.Vehicle.Queries.GetVehicleByOwnerId;
+    using MediatR;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Cors;
+    using Microsoft.AspNetCore.Mvc;
+    using TravelBuddies.Domain.Common;
+    using TravelBuddies.Application.Vehicle.Commands.CreateVehicle;
+    using TravelBuddies.Application.Vehicle.Commands.DeleteVehicle;
+    using TravelBuddies.Application.Vehicle.Commands.UpdateVehicle;
+    using TravelBuddies.Application.Vehicle.Queries.GetVehicleById;
+    using TravelBuddies.Domain.Entities;
+    using TravelBuddies.Domain.Enums;
+    using TravelBuddies.Presentation.DTOs.Vehicle;
+    using TravelBuddies.Application.Vehicle.Queries.GetVehicleByOwnerId;
+    using TravelBuddies.Presentation.Extensions;
 
-	[EnableCors(ApplicationCorses.AllowOrigin)]
+    [EnableCors(ApplicationCorses.AllowOrigin)]
 	[Route("api/[controller]")]
 	[ApiController]
 	[Authorize]

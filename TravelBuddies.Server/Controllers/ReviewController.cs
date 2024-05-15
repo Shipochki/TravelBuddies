@@ -1,20 +1,20 @@
 ﻿namespace TravelBuddies.Presentation.Controllers
 {
-	using MediatR;
-	using Microsoft.AspNetCore.Authorization;
-	using Microsoft.AspNetCore.Mvc;
-	using TravelBuddies.Application.Review.Queries.GetReviewsByReciverId;
-	using TravelBuddies.Domain.Entities;
-	using TravelBuddies.Domain.Enums;
-	using TravelBuddies.Application.Review.Commands.CreateReview;
-	using TravelBuddies.Domain.Common;
-	using TravelBuddies.Presentation.DTOs.Review;
-	using TravelBuddies.Application.Review.Commands.UpdateReview;
-	using TravelBuddies.Application.Review.Commands.DeleteReview;
-	using TravelBuddies.Presentation.Configurations;
-	using Microsoft.AspNetCore.Cors;
+    using MediatR;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using TravelBuddies.Application.Review.Queries.GetReviewsByReciverId;
+    using TravelBuddies.Domain.Entities;
+    using TravelBuddies.Domain.Enums;
+    using TravelBuddies.Application.Review.Commands.CreateReview;
+    using TravelBuddies.Domain.Common;
+    using TravelBuddies.Presentation.DTOs.Review;
+    using TravelBuddies.Application.Review.Commands.UpdateReview;
+    using TravelBuddies.Application.Review.Commands.DeleteReview;
+    using Microsoft.AspNetCore.Cors;
+    using TravelBuddies.Presentation.Extensions;
 
-	[EnableCors(ApplicationCorses.AllowOrigin)]
+    [EnableCors(ApplicationCorses.AllowOrigin)]
 	[Route("api/[controller]")]
 	[ApiController]
 	[Authorize]

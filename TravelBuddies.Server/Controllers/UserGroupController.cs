@@ -1,18 +1,18 @@
 ﻿namespace TravelBuddies.Presentation.Controllers
 {
-	using MediatR;
-	using Microsoft.AspNetCore.Authorization;
-	using Microsoft.AspNetCore.Cors;
-	using Microsoft.AspNetCore.Mvc;
-	using TravelBuddies.Domain.Common;
-	using TravelBuddies.Application.UserGroup.Commands.CreateUserGroup;
-	using TravelBuddies.Application.UserGroup.Commands.DeleteUserGroup;
-	using TravelBuddies.Application.UserGroup.Commands.RemoveUserGroup;
-	using TravelBuddies.Domain.Enums;
-	using TravelBuddies.Presentation.Configurations;
-	using TravelBuddies.Presentation.DTOs.UserGroup;
+    using MediatR;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Cors;
+    using Microsoft.AspNetCore.Mvc;
+    using TravelBuddies.Domain.Common;
+    using TravelBuddies.Application.UserGroup.Commands.CreateUserGroup;
+    using TravelBuddies.Application.UserGroup.Commands.DeleteUserGroup;
+    using TravelBuddies.Application.UserGroup.Commands.RemoveUserGroup;
+    using TravelBuddies.Domain.Enums;
+    using TravelBuddies.Presentation.DTOs.UserGroup;
+    using TravelBuddies.Presentation.Extensions;
 
-	[EnableCors(ApplicationCorses.AllowOrigin)]
+    [EnableCors(ApplicationCorses.AllowOrigin)]
 	[Route("api/[controller]")]
 	[ApiController]
 	[Authorize]
