@@ -1,10 +1,10 @@
 ﻿namespace TravelBuddies.IntegrationTests.Message.Queries
 {
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Message.Queries.GetMessagesByGroupId;
-	using TravelBuddies.Domain.Entities;
+    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Message.Queries.GetMessagesByGroupId;
+    using TravelBuddies.Domain.Entities;
 
-	public class GetMessagesByGroupIdHandlerTests : BaseHandlerTests
+    public class GetMessagesByGroupIdHandlerTests : BaseHandlerTests
 	{
 		[Fact]
 		public void GetMessagesByGroupId_WithNonExistingUser_ShouldThrowsException()

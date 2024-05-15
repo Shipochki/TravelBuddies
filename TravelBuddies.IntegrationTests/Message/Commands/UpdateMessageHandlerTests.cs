@@ -1,10 +1,10 @@
 ﻿namespace TravelBuddies.IntegrationTests.Message.Commands
 {
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Message.Commands.UpdateMessage;
-	using TravelBuddies.Domain.Entities;
+    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Message.Commands.UpdateMessage;
+    using TravelBuddies.Domain.Entities;
 
-	public class UpdateMessageHandlerTests : BaseHandlerTests
+    public class UpdateMessageHandlerTests : BaseHandlerTests
 	{
 		[Fact]
 		public void UpdateMessage_WithNonExisitingMessage_ShouldThrowsException()

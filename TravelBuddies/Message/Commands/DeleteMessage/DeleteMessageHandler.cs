@@ -4,10 +4,10 @@
     using Microsoft.AspNetCore.Identity;
     using System.Threading;
     using TravelBuddies.Domain.Common;
-    using TravelBuddies.Application.Exceptions;
-    using TravelBuddies.Application.Repository;
+    using TravelBuddies.Application.Common.Exceptions;
     using TravelBuddies.Domain.Entities;
-    using static TravelBuddies.Application.Exceptions.Messages.ExceptionMessages;
+    using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;
+    using TravelBuddies.Application.Common.Repository;
 
     public class DeleteMessageHandler : BaseHandler, IRequestHandler<DeleteMessageCommand, Task>
 	{

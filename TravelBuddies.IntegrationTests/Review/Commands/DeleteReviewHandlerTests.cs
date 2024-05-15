@@ -1,12 +1,12 @@
 ﻿namespace TravelBuddies.IntegrationTests.Review.Commands
 {
-	using Microsoft.AspNetCore.Identity;
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Review.Commands.DeleteReview;
-	using TravelBuddies.Domain.Common;
-	using TravelBuddies.Domain.Entities;
+    using Microsoft.AspNetCore.Identity;
+    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Review.Commands.DeleteReview;
+    using TravelBuddies.Domain.Common;
+    using TravelBuddies.Domain.Entities;
 
-	public class DeleteReviewHandlerTests : BaseHandlerTests
+    public class DeleteReviewHandlerTests : BaseHandlerTests
 	{
 		[Fact]
 		public void DeleteReview_WithNonExistingReview_ShouldThrowsException()

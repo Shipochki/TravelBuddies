@@ -33,7 +33,6 @@
 		[HttpPost]
 		[AllowAnonymous]
 		[Route("[action]")]
-		//[ModelStateValidation]
 		public async Task<IActionResult> Register([FromForm] UserRegisterDto userRegisterDto)
 		{
 			var formCollection = Request.Form["profilepicture"];
@@ -94,7 +93,6 @@
 
 		[HttpPost]
 		[Route("[action]")]
-		//[ModelStateValidation]
 		[AllowAnonymous]
 		public async Task<IActionResult> Login([FromBody] UserLoginDto userLoginDto)
 		{

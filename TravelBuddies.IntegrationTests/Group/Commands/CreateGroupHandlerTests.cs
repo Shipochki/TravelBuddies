@@ -1,10 +1,10 @@
 ﻿namespace TravelBuddies.IntegrationTests.Group.Commands
 {
-	using TravelBuddies.Domain.Entities;
-	using TravelBuddies.Application.Group.Commands.CreateGroup;
-	using TravelBuddies.Application.Exceptions;
+    using TravelBuddies.Domain.Entities;
+    using TravelBuddies.Application.Group.Commands.CreateGroup;
+    using TravelBuddies.Application.Common.Exceptions;
 
-	public class CreateGroupHandlerTests : BaseHandlerTests
+    public class CreateGroupHandlerTests : BaseHandlerTests
 	{
 
 		[Fact]

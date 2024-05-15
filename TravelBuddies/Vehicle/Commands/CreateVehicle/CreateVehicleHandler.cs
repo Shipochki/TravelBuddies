@@ -4,12 +4,12 @@
     using Microsoft.AspNetCore.Identity;
     using System.Threading;
     using System.Threading.Tasks;
-    using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Interfaces.AzureStorage;
-	using TravelBuddies.Application.Repository;
-	using TravelBuddies.Domain.Entities;
+    using TravelBuddies.Application.Common.Interfaces.AzureStorage;
+    using TravelBuddies.Application.Common.Repository;
+    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Domain.Entities;
     using TravelBuddies.Domain.Enums;
-    using static TravelBuddies.Application.Exceptions.Messages.ExceptionMessages;
+    using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;
 
     public class CreateVehicleHandler : BaseHandler, IRequestHandler<CreateVehicleCommand, Vehicle>
 	{

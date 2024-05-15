@@ -1,13 +1,13 @@
 ﻿namespace TravelBuddies.Application.Vehicle.Queries.GetVehicleByOwnerId
 {
-	using MediatR;
-	using Microsoft.AspNetCore.Identity;
-	using System.Threading;
-	using System.Threading.Tasks;
-	using TravelBuddies.Application.Repository;
-	using TravelBuddies.Domain.Entities;
+    using MediatR;
+    using Microsoft.AspNetCore.Identity;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using TravelBuddies.Application.Common.Repository;
+    using TravelBuddies.Domain.Entities;
 
-	public class GetVehicleByOwnerIdHandler : BaseHandler, IRequestHandler<GetVehicleByOwnerIdQuery, Vehicle?>
+    public class GetVehicleByOwnerIdHandler : BaseHandler, IRequestHandler<GetVehicleByOwnerIdQuery, Vehicle?>
 	{
 		public GetVehicleByOwnerIdHandler(IRepository repository
 			, UserManager<ApplicationUser> userManager

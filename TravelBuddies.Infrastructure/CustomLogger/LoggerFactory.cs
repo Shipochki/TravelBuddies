@@ -1,7 +1,7 @@
 ﻿namespace TravelBuddies.Infrastructure.CustomLogger
 {
     using MediatR;
-    using TravelBuddies.Application.Interfaces.CustomLogger;
+    using TravelBuddies.Application.Common.Interfaces.CustomLogger;
 
     public class LoggerFactory : ILoggerFactory
 	{

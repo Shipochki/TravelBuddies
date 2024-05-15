@@ -1,16 +1,16 @@
 ﻿namespace TravelBuddies.Infrastructure.Repository
 {
-	using Microsoft.EntityFrameworkCore.ChangeTracking;
-	using Microsoft.EntityFrameworkCore;
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Linq.Expressions;
-	using System.Threading.Tasks;
-	using TravelBuddies.Application.Repository;
-	using TravelBuddies.Domain.EntityModels;
+    using Microsoft.EntityFrameworkCore.ChangeTracking;
+    using Microsoft.EntityFrameworkCore;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Linq.Expressions;
+    using System.Threading.Tasks;
+    using TravelBuddies.Domain.EntityModels;
+    using TravelBuddies.Application.Common.Repository;
 
-	public class Repository : IRepository
+    public class Repository : IRepository
 	{
 		/// <summary>
 		/// Entity framework DB context holding connection information and properties

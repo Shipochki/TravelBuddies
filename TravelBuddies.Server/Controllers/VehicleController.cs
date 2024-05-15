@@ -29,7 +29,6 @@
 		[HttpPost]
 		[Route("[action]")]
 		[Authorize(Policy = ApplicationPolicies.OnlyDriver)]
-		//[ModelStateValidation]
 		public async Task<IActionResult> Create([FromForm] CreateVehicleDto createVehicleDto)
 		{
 			CreateVehicleCommand command = new CreateVehicleCommand()
@@ -76,7 +75,6 @@
 		[HttpPost]
 		[Route("[action]")]
 		[Authorize(Policy = ApplicationPolicies.OnlyDriver)]
-		//[ModelStateValidation]
 		public async Task<IActionResult> Update([FromForm] UpdateVehicleDto updateVehicleDto)
 		{
 			UpdateVehicleCommand command = new UpdateVehicleCommand()

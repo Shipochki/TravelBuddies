@@ -1,10 +1,10 @@
 ﻿namespace TravelBuddies.IntegrationTests.UserGroup.Commands
 {
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.UserGroup.Commands.CreateUserGroup;
-	using TravelBuddies.Domain.Entities;
+    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.UserGroup.Commands.CreateUserGroup;
+    using TravelBuddies.Domain.Entities;
 
-	public class CreateUserGroupHandlerTests : BaseHandlerTests
+    public class CreateUserGroupHandlerTests : BaseHandlerTests
 	{
 		[Fact]
 		public void CreateUserGroup_WithNonEsxistingUser_ShouldThrowsException()

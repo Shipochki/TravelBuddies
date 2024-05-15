@@ -1,13 +1,13 @@
 ﻿namespace TravelBuddies.IntegrationTests.Vehicle.Commands
 {
-	using Microsoft.EntityFrameworkCore;
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Interfaces.AzureStorage;
-	using TravelBuddies.Application.Vehicle.Commands.UpdateVehicle;
-	using TravelBuddies.Domain.Entities;
-	using TravelBuddies.IntegrationTests.Helpers;
+    using Microsoft.EntityFrameworkCore;
+    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Common.Interfaces.AzureStorage;
+    using TravelBuddies.Application.Vehicle.Commands.UpdateVehicle;
+    using TravelBuddies.Domain.Entities;
+    using TravelBuddies.IntegrationTests.Helpers;
 
-	public class UpdateVehicleHandlerTests : BaseHandlerTests
+    public class UpdateVehicleHandlerTests : BaseHandlerTests
 	{
 		private readonly IBlobService _blobService;	
 

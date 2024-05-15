@@ -1,12 +1,12 @@
 ﻿namespace TravelBuddies.Application.Logger.Commands.CreateLog
 {
-	using MediatR;
-	using Microsoft.AspNetCore.Identity;
-	using System.Threading;
-	using TravelBuddies.Application.Repository;
-	using TravelBuddies.Domain.Entities;
+    using MediatR;
+    using Microsoft.AspNetCore.Identity;
+    using System.Threading;
+    using TravelBuddies.Application.Common.Repository;
+    using TravelBuddies.Domain.Entities;
 
-	public class CreateLogHandler : BaseHandler, IRequestHandler<CreateLogCommand, Task>
+    public class CreateLogHandler : BaseHandler, IRequestHandler<CreateLogCommand, Task>
 	{
 		public CreateLogHandler(
 			IRepository repository

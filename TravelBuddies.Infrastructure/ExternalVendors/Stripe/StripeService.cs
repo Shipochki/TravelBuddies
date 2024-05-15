@@ -1,10 +1,10 @@
 ﻿namespace TravelBuddies.Infrastructure.ExternalVendors.Stripe
 {
-	using TravelBuddies.Application.Interfaces.Stripe;
-	using TravelBuddies.Domain.Entities;
-	using global::Stripe;
+    using TravelBuddies.Domain.Entities;
+    using global::Stripe;
+    using TravelBuddies.Application.Common.Interfaces.Stripe;
 
-	public class StripeService : IStripeService
+    public class StripeService : IStripeService
 	{
 		public string CreateProduct(Post post)
 		{

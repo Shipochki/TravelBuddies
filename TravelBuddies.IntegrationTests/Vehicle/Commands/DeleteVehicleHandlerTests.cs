@@ -1,11 +1,11 @@
 ﻿namespace TravelBuddies.IntegrationTests.Vehicle.Commands
 {
-	using Microsoft.EntityFrameworkCore;
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Vehicle.Commands.DeleteVehicle;
-	using TravelBuddies.Domain.Entities;
+    using Microsoft.EntityFrameworkCore;
+    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Vehicle.Commands.DeleteVehicle;
+    using TravelBuddies.Domain.Entities;
 
-	public class DeleteVehicleHandlerTests : BaseHandlerTests
+    public class DeleteVehicleHandlerTests : BaseHandlerTests
 	{
 		[Fact]
 		public void DeleteVehicle_WithNonExistingVehicle_ShouldThrowsException()

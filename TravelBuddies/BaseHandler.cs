@@ -1,10 +1,10 @@
 ﻿namespace TravelBuddies.Application
 {
-	using Microsoft.AspNetCore.Identity;
-	using TravelBuddies.Application.Repository;
-	using TravelBuddies.Domain.Entities;
+    using Microsoft.AspNetCore.Identity;
+    using TravelBuddies.Application.Common.Repository;
+    using TravelBuddies.Domain.Entities;
 
-	public abstract class BaseHandler
+    public abstract class BaseHandler
 	{
         protected readonly IRepository _repository;
         protected readonly UserManager<ApplicationUser> _userManager;

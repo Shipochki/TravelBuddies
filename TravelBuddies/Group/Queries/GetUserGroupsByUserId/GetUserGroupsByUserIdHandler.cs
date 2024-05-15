@@ -1,16 +1,16 @@
 ﻿namespace TravelBuddies.Application.Group.Queries.GetUserGroupsByUserId
 {
-	using MediatR;
-	using Microsoft.AspNetCore.Identity;
-	using Microsoft.EntityFrameworkCore;
-	using System.Threading;
-	using System.Threading.Tasks;
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Repository;
-	using TravelBuddies.Domain.Entities;
-	using static TravelBuddies.Application.Exceptions.Messages.ExceptionMessages;
+    using MediatR;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using TravelBuddies.Application.Common.Repository;
+    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Domain.Entities;
+    using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;
 
-	public class GetUserGroupsByUserIdHandler : BaseHandler, IRequestHandler<GetUserGroupsByUserIdQuery, List<Group>>
+    public class GetUserGroupsByUserIdHandler : BaseHandler, IRequestHandler<GetUserGroupsByUserIdQuery, List<Group>>
 	{
 		public GetUserGroupsByUserIdHandler(
 			IRepository repository

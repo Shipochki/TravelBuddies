@@ -1,10 +1,10 @@
 ﻿namespace TravelBuddies.IntegrationTests.Message.Commands
 {
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Message.Commands.CreateMessage;
-	using TravelBuddies.Domain.Entities;
+    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Message.Commands.CreateMessage;
+    using TravelBuddies.Domain.Entities;
 
-	public class CreateMessageHandlerTests : BaseHandlerTests
+    public class CreateMessageHandlerTests : BaseHandlerTests
 	{
 		[Fact]
 		public void CreateMessage_WithNonExistingCreator_ShouldThrowsException()

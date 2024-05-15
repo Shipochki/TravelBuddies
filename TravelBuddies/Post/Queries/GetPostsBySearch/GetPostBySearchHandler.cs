@@ -1,14 +1,14 @@
 ﻿namespace TravelBuddies.Application.Post.Queries.GetPostsBySearch
 {
-	using MediatR;
-	using Microsoft.AspNetCore.Identity;
-	using Microsoft.EntityFrameworkCore;
-	using System.Threading;
-	using System.Threading.Tasks;
-	using TravelBuddies.Application.Repository;
-	using TravelBuddies.Domain.Entities;
+    using MediatR;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using TravelBuddies.Application.Common.Repository;
+    using TravelBuddies.Domain.Entities;
 
-	public class GetPostBySearchHandler : BaseHandler, IRequestHandler<GetPostBySearchQuery, List<Post>>
+    public class GetPostBySearchHandler : BaseHandler, IRequestHandler<GetPostBySearchQuery, List<Post>>
 	{
 		private DateTime _minDate;
 

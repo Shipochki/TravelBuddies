@@ -1,12 +1,12 @@
 ﻿namespace TravelBuddies.IntegrationTests.Post.Commands
 {
-	using Microsoft.AspNetCore.Identity;
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Post.Commands.DeletePost;
-	using TravelBuddies.Domain.Common;
-	using TravelBuddies.Domain.Entities;
+    using Microsoft.AspNetCore.Identity;
+    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Post.Commands.DeletePost;
+    using TravelBuddies.Domain.Common;
+    using TravelBuddies.Domain.Entities;
 
-	public class DeletePostHandlerTests : BaseHandlerTests
+    public class DeletePostHandlerTests : BaseHandlerTests
 	{
 		[Fact]
 		public void DeletePost_WithNonExistingPost_ShouldThrowsException()

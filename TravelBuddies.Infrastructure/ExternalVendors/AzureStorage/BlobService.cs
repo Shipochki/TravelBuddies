@@ -3,7 +3,7 @@
     using Azure.Storage.Blobs;
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.Configuration;
-    using TravelBuddies.Application.Interfaces.AzureStorage;
+    using TravelBuddies.Application.Common.Interfaces.AzureStorage;
 
     public class BlobService : IBlobService
     {

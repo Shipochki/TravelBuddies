@@ -1,14 +1,14 @@
 ﻿namespace TravelBuddies.IntegrationTests.Post.Commands
 {
-	using NSubstitute;
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Interfaces.Stripe;
-	using TravelBuddies.Application.Post.Commands.CreatePost;
-	using TravelBuddies.Domain.Entities;
-	using TravelBuddies.Domain.Enums;
-	using TravelBuddies.IntegrationTests.Helpers;
+    using NSubstitute;
+    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Common.Interfaces.Stripe;
+    using TravelBuddies.Application.Post.Commands.CreatePost;
+    using TravelBuddies.Domain.Entities;
+    using TravelBuddies.Domain.Enums;
+    using TravelBuddies.IntegrationTests.Helpers;
 
-	public class CreatePostHandlerTests : BaseHandlerTests
+    public class CreatePostHandlerTests : BaseHandlerTests
 	{
 		private readonly IStripeService _stripeService;
 

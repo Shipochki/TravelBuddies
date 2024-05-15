@@ -1,10 +1,10 @@
 ﻿namespace TravelBuddies.IntegrationTests.Review.Commands
 {
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Review.Commands.UpdateReview;
-	using TravelBuddies.Domain.Entities;
+    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Review.Commands.UpdateReview;
+    using TravelBuddies.Domain.Entities;
 
-	public class UpdateReviewHandlerTests : BaseHandlerTests
+    public class UpdateReviewHandlerTests : BaseHandlerTests
 	{
 		[Fact]
 		public void UpdateReview_WithNonExistingReview_ShouldThrowsException()

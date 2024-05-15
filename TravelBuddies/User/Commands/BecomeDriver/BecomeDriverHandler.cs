@@ -1,16 +1,16 @@
 ﻿namespace TravelBuddies.Application.User.Commands.BecomeDriver
 {
-	using MediatR;
-	using Microsoft.AspNetCore.Identity;
-	using System.Threading;
-	using TravelBuddies.Domain.Common;
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Repository;
-	using TravelBuddies.Domain.Entities;
-	using static TravelBuddies.Application.Exceptions.Messages.ExceptionMessages;
-	using Microsoft.IdentityModel.Tokens;
+    using MediatR;
+    using Microsoft.AspNetCore.Identity;
+    using System.Threading;
+    using TravelBuddies.Domain.Common;
+    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Domain.Entities;
+    using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;
+    using Microsoft.IdentityModel.Tokens;
+    using TravelBuddies.Application.Common.Repository;
 
-	public class BecomeDriverHandler : BaseHandler, IRequestHandler<BecomeDriverCommand, Task>
+    public class BecomeDriverHandler : BaseHandler, IRequestHandler<BecomeDriverCommand, Task>
 	{
 		public BecomeDriverHandler(
 			IRepository repository

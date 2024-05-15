@@ -1,26 +1,26 @@
 namespace TravelBuddies.Server
 {
-	using Microsoft.AspNetCore.Identity;
-	using Microsoft.EntityFrameworkCore;
-	using TravelBuddies.Application;
-	using TravelBuddies.Domain.Common;
-	using TravelBuddies.Application.Repository;
-	using TravelBuddies.Domain.Entities;
-	using TravelBuddies.Infrastructure;
-	using TravelBuddies.Infrastructure.Repository;
-	using TravelBuddies.Presentation.Configurations;
-	using TravelBuddies.Application.Interfaces.AzureStorage;
-	using TravelBuddies.Infrastructure.ExternalVendors.AzureStorage;
-	using TravelBuddies.Presentation.Filters;
-	using Microsoft.AspNetCore.Mvc;
-	using TravelBuddies.Presentation.Contract;
-	using TravelBuddies.Application.Interfaces.MailSender;
-	using TravelBuddies.Infrastructure.ExternalVendors.MailSender;
-	using TravelBuddies.Application.Interfaces.Stripe;
-	using TravelBuddies.Infrastructure.ExternalVendors.Stripe;
-	using Stripe;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
+    using TravelBuddies.Application;
+    using TravelBuddies.Domain.Common;
+    using TravelBuddies.Domain.Entities;
+    using TravelBuddies.Infrastructure;
+    using TravelBuddies.Infrastructure.Repository;
+    using TravelBuddies.Infrastructure.ExternalVendors.AzureStorage;
+    using TravelBuddies.Presentation.Filters;
+    using Microsoft.AspNetCore.Mvc;
+    using TravelBuddies.Presentation.Responses;
+    using TravelBuddies.Infrastructure.ExternalVendors.MailSender;
+    using TravelBuddies.Infrastructure.ExternalVendors.Stripe;
+    using Stripe;
+    using TravelBuddies.Presentation.Extensions;
+    using TravelBuddies.Application.Common.Repository;
+    using TravelBuddies.Application.Common.Interfaces.AzureStorage;
+    using TravelBuddies.Application.Common.Interfaces.MailSender;
+    using TravelBuddies.Application.Common.Interfaces.Stripe;
 
-	public class Program
+    public class Program
 	{
 		public static void Main(string[] args)
 		{
@@ -51,7 +51,7 @@ namespace TravelBuddies.Server
 			
 			builder.Services.CorsesConfigure();
 
-			builder.Services.AddToken(builder.Configuration);
+			builder.Services.AddJwtAuthentication(builder.Configuration);
 
 			builder.Services.AddControllers(options =>
 			{

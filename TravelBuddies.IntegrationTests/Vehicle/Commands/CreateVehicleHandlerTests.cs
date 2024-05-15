@@ -1,13 +1,13 @@
 ﻿namespace TravelBuddies.IntegrationTests.Vehicle.Commands
 {
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Interfaces.AzureStorage;
-	using TravelBuddies.Application.Vehicle.Commands.CreateVehicle;
-	using TravelBuddies.Domain.Entities;
-	using TravelBuddies.Domain.Enums;
-	using TravelBuddies.IntegrationTests.Helpers;
+    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Common.Interfaces.AzureStorage;
+    using TravelBuddies.Application.Vehicle.Commands.CreateVehicle;
+    using TravelBuddies.Domain.Entities;
+    using TravelBuddies.Domain.Enums;
+    using TravelBuddies.IntegrationTests.Helpers;
 
-	public class CreateVehicleHandlerTests : BaseHandlerTests
+    public class CreateVehicleHandlerTests : BaseHandlerTests
 	{
 		private readonly IBlobService _blobService;
         public CreateVehicleHandlerTests()

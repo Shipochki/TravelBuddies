@@ -1,16 +1,16 @@
 ﻿namespace TravelBuddies.Application.User.Commands.CreateApplicationUser
 {
-	using MediatR;
-	using Microsoft.AspNetCore.Identity;
-	using System.Threading;
-	using TravelBuddies.Domain.Common;
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Interfaces.AzureStorage;
-	using TravelBuddies.Application.Repository;
-	using TravelBuddies.Domain.Entities;
-	using static TravelBuddies.Application.Exceptions.Messages.ExceptionMessages;
+    using MediatR;
+    using Microsoft.AspNetCore.Identity;
+    using System.Threading;
+    using TravelBuddies.Domain.Common;
+    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Domain.Entities;
+    using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;
+    using TravelBuddies.Application.Common.Repository;
+    using TravelBuddies.Application.Common.Interfaces.AzureStorage;
 
-	public class CreateApplicationUserHandler : BaseHandler, IRequestHandler<CreateApplicationUserCommand, Task>
+    public class CreateApplicationUserHandler : BaseHandler, IRequestHandler<CreateApplicationUserCommand, Task>
 	{
 		private readonly IBlobService _blobService;
 

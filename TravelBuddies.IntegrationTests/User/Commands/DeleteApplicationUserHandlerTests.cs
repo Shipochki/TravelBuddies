@@ -1,10 +1,10 @@
 ﻿namespace TravelBuddies.IntegrationTests.User.Commands
 {
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.User.Commands.DeleteApplicationUser;
-	using TravelBuddies.Domain.Entities;
+    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.User.Commands.DeleteApplicationUser;
+    using TravelBuddies.Domain.Entities;
 
-	public class DeleteApplicationUserHandlerTests : BaseHandlerTests
+    public class DeleteApplicationUserHandlerTests : BaseHandlerTests
 	{
 		[Fact]
 		public void DeleteApplicationUser_WithNonExistingUser_ShouldThrowsException()

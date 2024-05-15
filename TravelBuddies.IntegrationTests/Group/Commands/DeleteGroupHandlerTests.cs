@@ -1,10 +1,10 @@
 ﻿namespace TravelBuddies.IntegrationTests.Group.Commands
 {
-	using TravelBuddies.Domain.Entities;
-	using TravelBuddies.Application.Group.Commands.DeleteGroup;
-	using TravelBuddies.Application.Exceptions;
+    using TravelBuddies.Domain.Entities;
+    using TravelBuddies.Application.Group.Commands.DeleteGroup;
+    using TravelBuddies.Application.Common.Exceptions;
 
-	public class DeleteGroupHandlerTests : BaseHandlerTests
+    public class DeleteGroupHandlerTests : BaseHandlerTests
 	{
 		[Fact]
 		public void DeleteGroup_WithNonExistingGroup_ShouldThrowsException()

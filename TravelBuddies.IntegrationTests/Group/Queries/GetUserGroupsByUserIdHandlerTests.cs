@@ -1,10 +1,10 @@
 ﻿namespace TravelBuddies.IntegrationTests.Group.Queries
 {
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Group.Queries.GetUserGroupsByUserId;
-	using TravelBuddies.Domain.Entities;
+    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Group.Queries.GetUserGroupsByUserId;
+    using TravelBuddies.Domain.Entities;
 
-	public class GetUserGroupsByUserIdHandlerTests : BaseHandlerTests
+    public class GetUserGroupsByUserIdHandlerTests : BaseHandlerTests
 	{
 		[Fact]
 		public async Task GetUserGroupsByUserId_WithNonExistingUser_ShouldThrowsException()

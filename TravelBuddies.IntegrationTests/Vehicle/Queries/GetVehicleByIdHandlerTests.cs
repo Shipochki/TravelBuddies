@@ -1,10 +1,10 @@
 ﻿namespace TravelBuddies.IntegrationTests.Vehicle.Queries
 {
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Vehicle.Queries.GetVehicleById;
-	using TravelBuddies.Domain.Entities;
+    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Vehicle.Queries.GetVehicleById;
+    using TravelBuddies.Domain.Entities;
 
-	public class GetVehicleByIdHandlerTests : BaseHandlerTests
+    public class GetVehicleByIdHandlerTests : BaseHandlerTests
 	{
 		[Fact]
 		public void GetVehicleById_WithNonExistingVehicle_ShouldThrowsException()

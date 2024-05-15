@@ -1,16 +1,16 @@
 ﻿namespace TravelBuddies.Presentation.Filters
 {
-	using MediatR;
-	using Microsoft.AspNetCore.Mvc.Filters;
-	using TravelBuddies.Application.Interfaces.CustomLogger;
-	using TravelBuddies.Infrastructure.CustomLogger;
-	using TravelBuddies.Domain.Common;
-	using TravelBuddies.Domain.Enums;
-	using TravelBuddies.Application.Exceptions;
-	using Microsoft.AspNetCore.Mvc;
-	using TravelBuddies.Presentation.Contract;
+    using MediatR;
+    using Microsoft.AspNetCore.Mvc.Filters;
+    using TravelBuddies.Infrastructure.CustomLogger;
+    using TravelBuddies.Domain.Common;
+    using TravelBuddies.Domain.Enums;
+    using Microsoft.AspNetCore.Mvc;
+    using TravelBuddies.Presentation.Responses;
+    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Common.Interfaces.CustomLogger;
 
-	public class ExceptionHandler : IExceptionFilter
+    public class ExceptionHandler : IExceptionFilter
 	{
 		protected readonly IMediator _mediator;
 		protected readonly ILogger _fileLogger;

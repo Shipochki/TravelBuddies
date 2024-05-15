@@ -37,7 +37,6 @@
 		[HttpPost]
 		[Authorize(Policy = ApplicationPolicies.ClientAndDriver)]
 		[Route("[action]")]
-		//[ModelStateValidation]
 		public async Task<IActionResult> Create([FromBody] CreateReviewDto createReviewDto)
 		{
 			CreateReviewCommand command = new CreateReviewCommand()
@@ -62,7 +61,6 @@
 		[HttpPost]
 		[Authorize(Policy = ApplicationPolicies.ClientAndDriver)]
 		[Route("[action]")]
-		//[ModelStateValidation]
 		public async Task<IActionResult> Update([FromBody] UpdateReviewDto updateReviewDto)
 		{
 			UpdateReviewCommand command = new UpdateReviewCommand()

@@ -2,13 +2,13 @@
 {
     using MediatR;
     using Microsoft.AspNetCore.Identity;
-	using Microsoft.EntityFrameworkCore;
-	using System.Threading;
+    using Microsoft.EntityFrameworkCore;
+    using System.Threading;
     using System.Threading.Tasks;
-    using TravelBuddies.Application.Exceptions;
-    using TravelBuddies.Application.Repository;
+    using TravelBuddies.Application.Common.Repository;
+    using TravelBuddies.Application.Common.Exceptions;
     using TravelBuddies.Domain.Entities;
-    using static TravelBuddies.Application.Exceptions.Messages.ExceptionMessages;
+    using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;
 
     public class CreateMessageHandler : BaseHandler, IRequestHandler<CreateMessageCommand, Message>
 	{

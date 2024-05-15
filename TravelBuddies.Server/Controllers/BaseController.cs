@@ -3,8 +3,8 @@
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
     using TravelBuddies.Infrastructure.CustomLogger;
-    using TravelBuddies.Application.Interfaces.CustomLogger;
     using TravelBuddies.Domain.Common;
+    using TravelBuddies.Application.Common.Interfaces.CustomLogger;
 
     [Route("api/[controller]")]
 	[ApiController]

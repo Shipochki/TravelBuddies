@@ -1,11 +1,11 @@
 ﻿namespace TravelBuddies.IntegrationTests.UserGroup.Commands
 {
-	using Microsoft.EntityFrameworkCore;
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.UserGroup.Commands.RemoveUserGroup;
-	using TravelBuddies.Domain.Entities;
+    using Microsoft.EntityFrameworkCore;
+    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.UserGroup.Commands.RemoveUserGroup;
+    using TravelBuddies.Domain.Entities;
 
-	public class RemoveUserGroupHandlerTests : BaseHandlerTests
+    public class RemoveUserGroupHandlerTests : BaseHandlerTests
 	{
 		[Fact]
 		public void RemoveUserGroup_WithNonExistingUserForRemove_ShouldThrowsException()

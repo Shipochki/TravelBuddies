@@ -1,10 +1,10 @@
 ﻿namespace TravelBuddies.IntegrationTests.Post.Commands
 {
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Post.Commands.CompletePost;
-	using TravelBuddies.Domain.Entities;
+    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Post.Commands.CompletePost;
+    using TravelBuddies.Domain.Entities;
 
-	public class CompletePostHandlerTests : BaseHandlerTests
+    public class CompletePostHandlerTests : BaseHandlerTests
 	{
 		[Fact]
 		public void CompletePost_WithNonExistingPost_ShouldThrowsException()

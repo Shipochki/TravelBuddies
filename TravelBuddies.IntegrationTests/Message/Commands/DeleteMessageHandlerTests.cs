@@ -1,12 +1,12 @@
 ﻿namespace TravelBuddies.IntegrationTests.Message.Commands
 {
-	using Microsoft.AspNetCore.Identity;
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Message.Commands.DeleteMessage;
-	using TravelBuddies.Domain.Common;
-	using TravelBuddies.Domain.Entities;
+    using Microsoft.AspNetCore.Identity;
+    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Message.Commands.DeleteMessage;
+    using TravelBuddies.Domain.Common;
+    using TravelBuddies.Domain.Entities;
 
-	public class DeleteMessageHandlerTests : BaseHandlerTests
+    public class DeleteMessageHandlerTests : BaseHandlerTests
 	{
 		[Fact]
 		public void DeleteMessage_WithNonExisitingMessage_ShouldThrowsException()

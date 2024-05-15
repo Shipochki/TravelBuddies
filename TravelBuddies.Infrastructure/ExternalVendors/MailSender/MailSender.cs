@@ -1,10 +1,10 @@
 ﻿namespace TravelBuddies.Infrastructure.ExternalVendors.MailSender
 {
-	using System.Net.Mail;
-	using System.Net;
-	using TravelBuddies.Application.Interfaces.MailSender;
+    using System.Net.Mail;
+    using System.Net;
+    using TravelBuddies.Application.Common.Interfaces.MailSender;
 
-	public class MailSender : IMailSender
+    public class MailSender : IMailSender
 	{
 		public void SendMessage(string subject, string body, string reciverEmail)
 		{

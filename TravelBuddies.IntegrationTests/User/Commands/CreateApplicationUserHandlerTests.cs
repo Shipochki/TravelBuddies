@@ -1,11 +1,11 @@
 ﻿namespace TravelBuddies.IntegrationTests.User.Commands
 {
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Interfaces.AzureStorage;
-	using TravelBuddies.Application.User.Commands.CreateApplicationUser;
-	using TravelBuddies.IntegrationTests.Helpers;
+    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Common.Interfaces.AzureStorage;
+    using TravelBuddies.Application.User.Commands.CreateApplicationUser;
+    using TravelBuddies.IntegrationTests.Helpers;
 
-	public class CreateApplicationUserHandlerTests : BaseHandlerTests
+    public class CreateApplicationUserHandlerTests : BaseHandlerTests
 	{
 		private readonly IBlobService _blobService;
 

@@ -1,14 +1,14 @@
 ﻿namespace TravelBuddies.Application.Review.Queries.GetReviewsByReciverId
 {
-	using MediatR;
-	using Microsoft.AspNetCore.Identity;
-	using Microsoft.EntityFrameworkCore;
-	using System.Threading;
-	using System.Threading.Tasks;
-	using TravelBuddies.Application.Repository;
-	using TravelBuddies.Domain.Entities;
+    using MediatR;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using TravelBuddies.Application.Common.Repository;
+    using TravelBuddies.Domain.Entities;
 
-	public class GetReviewsByReciverIdHandler : BaseHandler, IRequestHandler<GetReviewsByReciverIdQuery, List<Review>>
+    public class GetReviewsByReciverIdHandler : BaseHandler, IRequestHandler<GetReviewsByReciverIdQuery, List<Review>>
 	{
 		public GetReviewsByReciverIdHandler(
 			IRepository repository

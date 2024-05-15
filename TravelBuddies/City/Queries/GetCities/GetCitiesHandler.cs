@@ -5,7 +5,7 @@
     using Microsoft.EntityFrameworkCore;
     using System.Threading;
     using System.Threading.Tasks;
-    using TravelBuddies.Application.Repository;
+    using TravelBuddies.Application.Common.Repository;
     using TravelBuddies.Domain.Entities;
 
     public class GetCitiesHandler : BaseHandler, IRequestHandler<GetCitiesQuery, List<City>>

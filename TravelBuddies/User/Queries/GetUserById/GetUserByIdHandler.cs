@@ -1,14 +1,14 @@
 ﻿namespace TravelBuddies.Application.User.Queries.GetUserById
 {
-	using MediatR;
-	using Microsoft.AspNetCore.Identity;
-	using System.Threading;
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Repository;
-	using TravelBuddies.Domain.Entities;
-	using static TravelBuddies.Application.Exceptions.Messages.ExceptionMessages;
+    using MediatR;
+    using Microsoft.AspNetCore.Identity;
+    using System.Threading;
+    using TravelBuddies.Application.Common.Repository;
+    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Domain.Entities;
+    using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;
 
-	public class GetUserByIdHandler : BaseHandler, IRequestHandler<GetUserByIdQuery, ApplicationUser>
+    public class GetUserByIdHandler : BaseHandler, IRequestHandler<GetUserByIdQuery, ApplicationUser>
 	{
 		public GetUserByIdHandler(IRepository repository
 			, UserManager<ApplicationUser> userManager

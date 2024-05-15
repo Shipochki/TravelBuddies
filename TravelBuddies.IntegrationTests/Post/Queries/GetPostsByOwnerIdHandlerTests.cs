@@ -1,10 +1,10 @@
 ﻿namespace TravelBuddies.IntegrationTests.Post.Queries
 {
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Post.Queries.GetPostsByOwnerId;
-	using TravelBuddies.Domain.Entities;
+    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Post.Queries.GetPostsByOwnerId;
+    using TravelBuddies.Domain.Entities;
 
-	public class GetPostsByOwnerIdHandlerTests : BaseHandlerTests
+    public class GetPostsByOwnerIdHandlerTests : BaseHandlerTests
 	{
 		[Fact]
 		public void GetPostsByOwnerId_WithNonExistingOwner_ShouldThrowsException()

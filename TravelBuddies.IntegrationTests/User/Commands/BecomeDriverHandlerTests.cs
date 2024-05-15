@@ -1,13 +1,13 @@
 ﻿namespace TravelBuddies.IntegrationTests.User.Commands
 {
-	using Microsoft.AspNetCore.Identity;
-	using NSubstitute;
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.User.Commands.BecomeDriver;
-	using TravelBuddies.Domain.Common;
-	using TravelBuddies.Domain.Entities;
+    using Microsoft.AspNetCore.Identity;
+    using NSubstitute;
+    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.User.Commands.BecomeDriver;
+    using TravelBuddies.Domain.Common;
+    using TravelBuddies.Domain.Entities;
 
-	public class BecomeDriverHandlerTests : BaseHandlerTests
+    public class BecomeDriverHandlerTests : BaseHandlerTests
 	{
 		[Fact]
 		public void BecomeDriver_WithNonExistingUser_ShouldThrowsException()

@@ -1,7 +1,7 @@
 ﻿namespace TravelBuddies.Infrastructure.CustomLogger
 {
     using System.Threading.Tasks;
-    using TravelBuddies.Application.Interfaces.CustomLogger;
+    using TravelBuddies.Application.Common.Interfaces.CustomLogger;
     using TravelBuddies.Domain.Enums;
 
     public class FileLogger : ILogger

@@ -1,15 +1,15 @@
 ﻿namespace TravelBuddies.Application.Vehicle.Commands.UpdateVehicle
 {
-	using MediatR;
-	using Microsoft.AspNetCore.Identity;
-	using TravelBuddies.Application.Exceptions;
-	using TravelBuddies.Application.Interfaces.AzureStorage;
-	using TravelBuddies.Application.Repository;
-	using TravelBuddies.Domain.Entities;
-	using TravelBuddies.Domain.Enums;
-	using static TravelBuddies.Application.Exceptions.Messages.ExceptionMessages;
+    using MediatR;
+    using Microsoft.AspNetCore.Identity;
+    using TravelBuddies.Application.Common.Interfaces.AzureStorage;
+    using TravelBuddies.Application.Common.Repository;
+    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Domain.Entities;
+    using TravelBuddies.Domain.Enums;
+    using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;
 
-	public class UpdateVehicleHandler : BaseHandler, IRequestHandler<UpdateVehicleCommand, Task>
+    public class UpdateVehicleHandler : BaseHandler, IRequestHandler<UpdateVehicleCommand, Task>
 	{
 		private readonly IBlobService _blobService;
 

@@ -2,7 +2,7 @@
 {
     using MediatR;
     using System.Threading.Tasks;
-    using TravelBuddies.Application.Interfaces.CustomLogger;
+    using TravelBuddies.Application.Common.Interfaces.CustomLogger;
     using TravelBuddies.Application.Logger.Commands.CreateLog;
     using TravelBuddies.Domain.Enums;
 
