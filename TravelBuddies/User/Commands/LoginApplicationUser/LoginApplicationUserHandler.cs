@@ -13,22 +13,26 @@
     using TravelBuddies.Domain.Entities;
     using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;
     using TravelBuddies.Application.Common.Interfaces.Repository;
+	using TravelBuddies.Application.Common.Interfaces;
 
-    public class LoginApplicationUserHandler : BaseHandler, IRequestHandler<LoginApplicationUserCommand, string>
+	public class LoginApplicationUserHandler : BaseHandler, IRequestHandler<LoginApplicationUserCommand, string>
     {
         private readonly IConfiguration _configuration;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IAuthTokenService _tokenService;
 
         public LoginApplicationUserHandler(
             IRepository repository
             , UserManager<ApplicationUser> userManager
             , RoleManager<IdentityRole> roleManager
             , IConfiguration configuration
-            , SignInManager<ApplicationUser> signInManager)
+            , SignInManager<ApplicationUser> signInManager
+            , IAuthTokenService tokenService)
             : base(repository, userManager, roleManager)
         {
             _configuration = configuration;
             _signInManager = signInManager;
+            _tokenService = tokenService;
         }
 
         public async Task<string> Handle(LoginApplicationUserCommand request, CancellationToken cancellationToken)
@@ -48,46 +52,9 @@
 
             await _signInManager.SignInAsync(user, isPersistent: false);
 
-            string token = GenerateJwtToken(user);
+            string token = _tokenService.GenerateAccessToken(user, _configuration, _userManager);
 
             return token;
-        }
-
-        private string GenerateJwtToken(ApplicationUser user)
-        {
-            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
-            SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-            List<Claim> claims = new List<Claim>()
-            {
-
-                new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(JwtRegisteredClaimNames.NameId, user.Id),
-                new Claim("fullname", $"{user.FirstName} {user.LastName}"),
-                
-                // Add additional claims as needed (e.g., roles, custom claims)
-            };
-
-            if(user.ProfilePictureLink != null)
-            {
-                claims.Add(new Claim("profilePictureLink", user.ProfilePictureLink));
-            }
-
-            foreach (var role in _userManager.GetRolesAsync(user).Result)
-            {
-                claims.Add(new Claim("role", role));
-            }
-
-            var token = new JwtSecurityToken(
-                _configuration["Jwt:Issuer"],
-                _configuration["Jwt:Issuer"],
-                claims,
-				expires: DateTime.UtcNow.AddHours(24),
-				signingCredentials: creds
-            );
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }
