@@ -1,7 +1,8 @@
 ﻿namespace TravelBuddies.IntegrationTests.Message.Commands
 {
     using Microsoft.AspNetCore.Identity;
-    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Common.Exceptions.Forbidden;
+    using TravelBuddies.Application.Common.Exceptions.NotFound;
     using TravelBuddies.Application.Message.Commands.DeleteMessage;
     using TravelBuddies.Domain.Common;
     using TravelBuddies.Domain.Entities;

@@ -4,12 +4,12 @@
     using Microsoft.AspNetCore.Identity;
     using System.Threading;
     using System.Threading.Tasks;
-    using TravelBuddies.Application.Common.Exceptions;
     using TravelBuddies.Domain.Entities;
     using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;
     using TravelBuddies.Application.Common.Interfaces.Repository;
+	using TravelBuddies.Application.Common.Exceptions.NotFound;
 
-    public class GetVehicleByIdHandler : BaseHandler, IRequestHandler<GetVehicleByIdQuery, Vehicle>
+	public class GetVehicleByIdHandler : BaseHandler, IRequestHandler<GetVehicleByIdQuery, Vehicle>
 	{
 		public GetVehicleByIdHandler(
 			IRepository repository

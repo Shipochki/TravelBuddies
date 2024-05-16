@@ -1,6 +1,6 @@
 ﻿namespace TravelBuddies.IntegrationTests.Review.Commands
 {
-    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Common.Exceptions.NotFound;
     using TravelBuddies.Application.Review.Commands.CreateReview;
     using TravelBuddies.Domain.Entities;
 

@@ -2,7 +2,7 @@
 {
     using TravelBuddies.Domain.Entities;
     using TravelBuddies.Application.Group.Commands.CreateGroup;
-    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Common.Exceptions.NotFound;
 
     public class CreateGroupHandlerTests : BaseHandlerTests
 	{

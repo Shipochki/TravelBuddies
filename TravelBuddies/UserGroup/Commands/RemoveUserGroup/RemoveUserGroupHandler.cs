@@ -4,12 +4,13 @@
     using Microsoft.AspNetCore.Identity;
     using System.Threading;
     using TravelBuddies.Domain.Common;
-    using TravelBuddies.Application.Common.Exceptions;
     using TravelBuddies.Domain.Entities;
     using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;
     using TravelBuddies.Application.Common.Interfaces.Repository;
+	using TravelBuddies.Application.Common.Exceptions.NotFound;
+	using TravelBuddies.Application.Common.Exceptions.Forbidden;
 
-    public class RemoveUserGroupHandler : BaseHandler, IRequestHandler<RemoveUserGroupCommand, Task>
+	public class RemoveUserGroupHandler : BaseHandler, IRequestHandler<RemoveUserGroupCommand, Task>
 	{
 		public RemoveUserGroupHandler(
 			IRepository repository

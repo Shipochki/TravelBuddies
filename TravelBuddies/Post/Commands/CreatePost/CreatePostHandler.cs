@@ -5,7 +5,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using TravelBuddies.Application.Common.Interfaces.Stripe;
-    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Common.Exceptions.NotFound;
     using TravelBuddies.Domain.Entities;
     using TravelBuddies.Domain.Enums;
     using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;

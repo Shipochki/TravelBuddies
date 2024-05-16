@@ -1,6 +1,6 @@
-﻿namespace TravelBuddies.Application.Common.Exceptions
+﻿namespace TravelBuddies.Application.Common.Exceptions.NotFound
 {
-    public class ApplicationUserNotFoundException : BaseException
+    public class ApplicationUserNotFoundException : NotFoundBaseException
     {
         public ApplicationUserNotFoundException(string message)
             : base(message)

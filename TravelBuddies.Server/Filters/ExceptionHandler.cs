@@ -6,9 +6,10 @@
     using TravelBuddies.Domain.Common;
     using TravelBuddies.Domain.Enums;
     using Microsoft.AspNetCore.Mvc;
-    using TravelBuddies.Presentation.Responses;
-    using TravelBuddies.Application.Common.Exceptions;
     using TravelBuddies.Application.Common.Interfaces.CustomLogger;
+    using TravelBuddies.Application.Common.Exceptions.NotFound;
+    using TravelBuddies.Application.Common.Exceptions.Forbidden;
+    using TravelBuddies.Application.Common.Exceptions.BadRequest;
 
     public class ExceptionHandler : IExceptionFilter
 	{
@@ -31,48 +32,44 @@
 			int status = 500;
 			string statusPhrase = "Internal Server Error";
 			string message = context.Exception.Message;
+			string detailMessage = string.Empty;
 
-			if(context.Exception is ApplicationUserNotFoundException
-				|| context.Exception is CityNotFoundException
-				|| context.Exception is GroupNotFoundException
-				|| context.Exception is IdentityRoleNotFoundException
-				|| context.Exception is MessageNotFoundException
-				|| context.Exception is PostNotFoundException
-				|| context.Exception is ReviewNotFoundException
-				|| context.Exception is VehicleNotFoundException
-				|| context.Exception is ApplicationUserNotInGroupException
-				)
+			if(context.Exception is NotFoundBaseException)
 			{
 				status = 404;
 				statusPhrase = "Not Found";
 			}
-			else if(context.Exception is ApplicationUserNotCreatorException)
+			else if(context.Exception is ForbiddenBaseException)
 			{
 				status = 403;
 				statusPhrase = "Forbidden";
 			}
-			else if(context.Exception is UnableToCreateApplicationUserException
-				|| context.Exception is UnableToAddRoleToUserException
-				|| context.Exception is InvalidLoginException
-				|| context.Exception is ApplicationUserAllreadyInGroupException
-				|| context.Exception is NotAvailableSeatsInPostException
-				|| context.Exception is GroupNotMatchException)
+			else if(context.Exception is BadRequestBaseException)
 			{
 				status = 400;
 				statusPhrase = "Bad Request";
 			}
 
-			ErrorResponse error = new ErrorResponse()
+			detailMessage += message + Environment.NewLine;
+			if (context.Exception is AggregateException aggregateException)
 			{
-				StatusCode = status,
-				StatusPhrase = statusPhrase,
-				Timestamp = DateTime.Now,
-				ErrorMessage = new List<string> { message }
+				foreach (var innerException in aggregateException.InnerExceptions)
+				{
+					detailMessage += innerException.Message + Environment.NewLine;
+				}
+			}
+
+			ProblemDetails problemDetails = new ProblemDetails
+			{
+				Status = status,
+				Title = statusPhrase,
+				Detail = detailMessage.TrimEnd(),
+				Instance = context.HttpContext.Request.Path
 			};
 
 			_fileLogger.LogAsync(logLevel, message);
 			_databaseLogger.LogAsync(logLevel, message);
-			context.Result = new JsonResult(error) { StatusCode = status};
+			context.Result = new JsonResult(problemDetails) { StatusCode = status};
 		}
 	}
 }

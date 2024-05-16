@@ -1,6 +1,6 @@
 ﻿namespace TravelBuddies.IntegrationTests.User.Commands
 {
-    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Common.Exceptions.NotFound;
     using TravelBuddies.Application.User.Commands.DeleteApplicationUser;
     using TravelBuddies.Domain.Entities;
 

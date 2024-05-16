@@ -1,6 +1,6 @@
 ﻿namespace TravelBuddies.IntegrationTests.Post.Commands
 {
-    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Common.Exceptions.NotFound;
     using TravelBuddies.Application.Post.Commands.UpdatePostGroup;
     using TravelBuddies.Domain.Entities;
 

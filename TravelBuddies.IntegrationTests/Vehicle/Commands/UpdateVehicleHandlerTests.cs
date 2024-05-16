@@ -1,7 +1,8 @@
 ﻿namespace TravelBuddies.IntegrationTests.Vehicle.Commands
 {
     using Microsoft.EntityFrameworkCore;
-    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Common.Exceptions.Forbidden;
+    using TravelBuddies.Application.Common.Exceptions.NotFound;
     using TravelBuddies.Application.Common.Interfaces.AzureStorage;
     using TravelBuddies.Application.Vehicle.Commands.UpdateVehicle;
     using TravelBuddies.Domain.Entities;

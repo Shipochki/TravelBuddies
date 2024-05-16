@@ -4,12 +4,13 @@
     using Microsoft.AspNetCore.Identity;
     using System.Threading;
     using System.Threading.Tasks;
-    using TravelBuddies.Application.Common.Exceptions;
     using TravelBuddies.Domain.Entities;
     using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;
     using TravelBuddies.Application.Common.Interfaces.Repository;
+	using TravelBuddies.Application.Common.Exceptions.NotFound;
+	using TravelBuddies.Application.Common.Exceptions.Forbidden;
 
-    public class UpdateReviewHandler : BaseHandler, IRequestHandler<UpdateReviewCommand, Review>
+	public class UpdateReviewHandler : BaseHandler, IRequestHandler<UpdateReviewCommand, Review>
 	{
 		public UpdateReviewHandler(
 			IRepository repository

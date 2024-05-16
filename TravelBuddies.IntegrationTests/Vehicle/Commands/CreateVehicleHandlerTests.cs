@@ -1,6 +1,6 @@
 ﻿namespace TravelBuddies.IntegrationTests.Vehicle.Commands
 {
-    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Common.Exceptions.NotFound;
     using TravelBuddies.Application.Common.Interfaces.AzureStorage;
     using TravelBuddies.Application.Vehicle.Commands.CreateVehicle;
     using TravelBuddies.Domain.Entities;

@@ -1,6 +1,6 @@
 ﻿namespace TravelBuddies.IntegrationTests.User.Commands
 {
-    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Common.Exceptions.BadRequest;
     using TravelBuddies.Application.Common.Interfaces.AzureStorage;
     using TravelBuddies.Application.User.Commands.CreateApplicationUser;
     using TravelBuddies.IntegrationTests.Helpers;

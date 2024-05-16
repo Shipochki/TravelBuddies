@@ -1,6 +1,6 @@
-﻿namespace TravelBuddies.Application.Common.Exceptions
+﻿namespace TravelBuddies.Application.Common.Exceptions.BadRequest
 {
-    public class ApplicationUserAllreadyInGroupException : BaseException
+    public class ApplicationUserAllreadyInGroupException : BadRequestBaseException
     {
         public ApplicationUserAllreadyInGroupException(string message) : base(message)
         {

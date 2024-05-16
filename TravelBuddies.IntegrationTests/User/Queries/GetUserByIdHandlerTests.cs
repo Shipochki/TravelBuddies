@@ -1,6 +1,6 @@
 ﻿namespace TravelBuddies.IntegrationTests.User.Queries
 {
-    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Common.Exceptions.NotFound;
     using TravelBuddies.Application.User.Queries.GetUserById;
     using TravelBuddies.Domain.Entities;
 

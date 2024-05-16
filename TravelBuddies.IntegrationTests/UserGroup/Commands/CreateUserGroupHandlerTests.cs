@@ -1,6 +1,7 @@
 ﻿namespace TravelBuddies.IntegrationTests.UserGroup.Commands
 {
-    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Common.Exceptions.BadRequest;
+    using TravelBuddies.Application.Common.Exceptions.NotFound;
     using TravelBuddies.Application.UserGroup.Commands.CreateUserGroup;
     using TravelBuddies.Domain.Entities;
 

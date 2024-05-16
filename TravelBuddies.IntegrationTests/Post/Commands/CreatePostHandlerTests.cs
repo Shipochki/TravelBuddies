@@ -1,7 +1,7 @@
 ﻿namespace TravelBuddies.IntegrationTests.Post.Commands
 {
     using NSubstitute;
-    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Common.Exceptions.NotFound;
     using TravelBuddies.Application.Common.Interfaces.Stripe;
     using TravelBuddies.Application.Post.Commands.CreatePost;
     using TravelBuddies.Domain.Entities;

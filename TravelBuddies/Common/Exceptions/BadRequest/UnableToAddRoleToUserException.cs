@@ -1,6 +1,6 @@
-﻿namespace TravelBuddies.Application.Common.Exceptions
+﻿namespace TravelBuddies.Application.Common.Exceptions.BadRequest
 {
-    public class UnableToAddRoleToUserException : BaseException
+    public class UnableToAddRoleToUserException : BadRequestBaseException
     {
         public UnableToAddRoleToUserException(string message)
             : base(message)

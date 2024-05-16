@@ -1,6 +1,6 @@
-﻿namespace TravelBuddies.Application.Common.Exceptions
+﻿namespace TravelBuddies.Application.Common.Exceptions.NotFound
 {
-    public class ReviewNotFoundException : BaseException
+    public class ReviewNotFoundException : NotFoundBaseException
     {
         public ReviewNotFoundException(string message) : base(message)
         {

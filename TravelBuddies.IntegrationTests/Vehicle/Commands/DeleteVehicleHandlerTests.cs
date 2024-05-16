@@ -1,7 +1,8 @@
 ﻿namespace TravelBuddies.IntegrationTests.Vehicle.Commands
 {
     using Microsoft.EntityFrameworkCore;
-    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Common.Exceptions.Forbidden;
+    using TravelBuddies.Application.Common.Exceptions.NotFound;
     using TravelBuddies.Application.Vehicle.Commands.DeleteVehicle;
     using TravelBuddies.Domain.Entities;
 

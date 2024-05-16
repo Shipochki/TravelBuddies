@@ -1,6 +1,6 @@
-﻿namespace TravelBuddies.Application.Common.Exceptions
+﻿namespace TravelBuddies.Application.Common.Exceptions.BadRequest
 {
-    public class UnableToCreateApplicationUserException : BaseException
+    public class UnableToCreateApplicationUserException : BadRequestBaseException
     {
         public UnableToCreateApplicationUserException(string message) : base(message)
         {

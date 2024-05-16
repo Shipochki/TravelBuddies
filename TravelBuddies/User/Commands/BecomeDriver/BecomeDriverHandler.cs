@@ -4,13 +4,14 @@
     using Microsoft.AspNetCore.Identity;
     using System.Threading;
     using TravelBuddies.Domain.Common;
-    using TravelBuddies.Application.Common.Exceptions;
     using TravelBuddies.Domain.Entities;
     using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;
     using Microsoft.IdentityModel.Tokens;
     using TravelBuddies.Application.Common.Interfaces.Repository;
+	using TravelBuddies.Application.Common.Exceptions.NotFound;
+	using TravelBuddies.Application.Common.Exceptions.BadRequest;
 
-    public class BecomeDriverHandler : BaseHandler, IRequestHandler<BecomeDriverCommand, Task>
+	public class BecomeDriverHandler : BaseHandler, IRequestHandler<BecomeDriverCommand, Task>
 	{
 		public BecomeDriverHandler(
 			IRepository repository

@@ -5,12 +5,12 @@
     using Microsoft.EntityFrameworkCore;
     using System.Threading;
     using System.Threading.Tasks;
-    using TravelBuddies.Application.Common.Exceptions;
     using TravelBuddies.Domain.Entities;
     using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;
     using TravelBuddies.Application.Common.Interfaces.Repository;
+	using TravelBuddies.Application.Common.Exceptions.NotFound;
 
-    public class GetGroupByIdHandler : BaseHandler, IRequestHandler<GetGroupByIdQuery, Group>
+	public class GetGroupByIdHandler : BaseHandler, IRequestHandler<GetGroupByIdQuery, Group>
 	{
 		public GetGroupByIdHandler(IRepository repository
 			, UserManager<ApplicationUser> userManager

@@ -13,6 +13,14 @@ export const OnLoginSubmit = async (loginFromKeys) => {
         body: JSON.stringify(loginFromKeys)
       });
 
+      if(!response.ok){
+        const errorResponse = await response.json(); // Parse JSON response body
+        if(Array.isArray(response.detail))
+          window.alert(errorResponse.detail.join("\n")); // Access ErrorMessage property
+        else
+          window.alert(errorResponse.detail)
+      }
+
       const { token: accessToken } = await response.json();
 
       const { 

@@ -1,6 +1,6 @@
-﻿namespace TravelBuddies.Application.Common.Exceptions
+﻿namespace TravelBuddies.Application.Common.Exceptions.BadRequest
 {
-    public class GroupNotMatchException : BaseException
+    public class GroupNotMatchException : BadRequestBaseException
     {
         public GroupNotMatchException(string message)
             : base(message)

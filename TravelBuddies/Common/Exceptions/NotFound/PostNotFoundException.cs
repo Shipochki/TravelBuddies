@@ -1,6 +1,6 @@
-﻿namespace TravelBuddies.Application.Common.Exceptions
+﻿namespace TravelBuddies.Application.Common.Exceptions.NotFound
 {
-    public class PostNotFoundException : BaseException
+    public class PostNotFoundException : NotFoundBaseException
     {
         public PostNotFoundException(string message)
             : base(message)

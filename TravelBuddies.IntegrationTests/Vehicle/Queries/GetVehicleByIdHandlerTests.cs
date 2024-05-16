@@ -1,6 +1,6 @@
 ﻿namespace TravelBuddies.IntegrationTests.Vehicle.Queries
 {
-    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Common.Exceptions.NotFound;
     using TravelBuddies.Application.Vehicle.Queries.GetVehicleById;
     using TravelBuddies.Domain.Entities;
 

@@ -1,6 +1,6 @@
 ﻿namespace TravelBuddies.IntegrationTests.Post.Queries
 {
-    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Common.Exceptions.NotFound;
     using TravelBuddies.Application.Post.Queries.GetPostsByOwnerId;
     using TravelBuddies.Domain.Entities;
 

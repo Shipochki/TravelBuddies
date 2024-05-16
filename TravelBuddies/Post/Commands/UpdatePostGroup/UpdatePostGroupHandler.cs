@@ -3,12 +3,12 @@
     using MediatR;
     using Microsoft.AspNetCore.Identity;
     using System.Threading;
-    using TravelBuddies.Application.Common.Exceptions;
     using TravelBuddies.Domain.Entities;
     using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;
     using TravelBuddies.Application.Common.Interfaces.Repository;
+	using TravelBuddies.Application.Common.Exceptions.NotFound;
 
-    public class UpdatePostGroupHandler : BaseHandler, IRequestHandler<UpdatePostGroupCommand, Task>
+	public class UpdatePostGroupHandler : BaseHandler, IRequestHandler<UpdatePostGroupCommand, Task>
 	{
 		public UpdatePostGroupHandler(
 			IRepository repository

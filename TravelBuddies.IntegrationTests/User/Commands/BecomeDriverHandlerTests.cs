@@ -2,7 +2,7 @@
 {
     using Microsoft.AspNetCore.Identity;
     using NSubstitute;
-    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Common.Exceptions.NotFound;
     using TravelBuddies.Application.User.Commands.BecomeDriver;
     using TravelBuddies.Domain.Common;
     using TravelBuddies.Domain.Entities;

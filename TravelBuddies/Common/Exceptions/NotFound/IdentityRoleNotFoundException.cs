@@ -1,6 +1,6 @@
-﻿namespace TravelBuddies.Application.Common.Exceptions
+﻿namespace TravelBuddies.Application.Common.Exceptions.NotFound
 {
-    public class IdentityRoleNotFoundException : BaseException
+    public class IdentityRoleNotFoundException : NotFoundBaseException
     {
         public IdentityRoleNotFoundException(string message) : base(message)
         {

@@ -1,7 +1,8 @@
 ﻿namespace TravelBuddies.IntegrationTests.Review.Commands
 {
     using Microsoft.AspNetCore.Identity;
-    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Common.Exceptions.Forbidden;
+    using TravelBuddies.Application.Common.Exceptions.NotFound;
     using TravelBuddies.Application.Review.Commands.DeleteReview;
     using TravelBuddies.Domain.Common;
     using TravelBuddies.Domain.Entities;

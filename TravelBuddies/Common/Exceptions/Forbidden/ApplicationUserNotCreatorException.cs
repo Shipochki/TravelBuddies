@@ -1,6 +1,6 @@
-﻿namespace TravelBuddies.Application.Common.Exceptions
+﻿namespace TravelBuddies.Application.Common.Exceptions.Forbidden
 {
-    public class ApplicationUserNotCreatorException : BaseException
+    public class ApplicationUserNotCreatorException : ForbiddenBaseException
     {
         public ApplicationUserNotCreatorException(string message)
             : base(message)

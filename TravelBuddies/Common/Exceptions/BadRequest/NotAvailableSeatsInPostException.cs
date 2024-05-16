@@ -1,6 +1,6 @@
-﻿namespace TravelBuddies.Application.Common.Exceptions
+﻿namespace TravelBuddies.Application.Common.Exceptions.BadRequest
 {
-    public class NotAvailableSeatsInPostException : BaseException
+    public class NotAvailableSeatsInPostException : BadRequestBaseException
     {
         public NotAvailableSeatsInPostException(string message) : base(message)
         {

@@ -1,6 +1,6 @@
-﻿namespace TravelBuddies.Application.Common.Exceptions
+﻿namespace TravelBuddies.Application.Common.Exceptions.NotFound
 {
-    public class CityNotFoundException : BaseException
+    public class CityNotFoundException : NotFoundBaseException
     {
         public CityNotFoundException(string message)
             : base(message)

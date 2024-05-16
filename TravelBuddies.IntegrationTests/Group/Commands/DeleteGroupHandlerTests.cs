@@ -2,7 +2,8 @@
 {
     using TravelBuddies.Domain.Entities;
     using TravelBuddies.Application.Group.Commands.DeleteGroup;
-    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Common.Exceptions.NotFound;
+    using TravelBuddies.Application.Common.Exceptions.Forbidden;
 
     public class DeleteGroupHandlerTests : BaseHandlerTests
 	{

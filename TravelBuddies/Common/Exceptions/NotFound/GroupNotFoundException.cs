@@ -1,6 +1,6 @@
-﻿namespace TravelBuddies.Application.Common.Exceptions
+﻿namespace TravelBuddies.Application.Common.Exceptions.NotFound
 {
-    public class GroupNotFoundException : BaseException
+    public class GroupNotFoundException : NotFoundBaseException
     {
         public GroupNotFoundException(string message)
             : base(message)

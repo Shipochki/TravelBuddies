@@ -3,17 +3,14 @@
     using MediatR;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.Configuration;
-    using Microsoft.IdentityModel.Tokens;
-    using System.IdentityModel.Tokens.Jwt;
-    using System.Security.Claims;
-    using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
-    using TravelBuddies.Application.Common.Exceptions;
     using TravelBuddies.Domain.Entities;
     using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;
     using TravelBuddies.Application.Common.Interfaces.Repository;
 	using TravelBuddies.Application.Common.Interfaces;
+	using TravelBuddies.Application.Common.Exceptions.NotFound;
+	using TravelBuddies.Application.Common.Exceptions.BadRequest;
 
 	public class LoginApplicationUserHandler : BaseHandler, IRequestHandler<LoginApplicationUserCommand, string>
     {

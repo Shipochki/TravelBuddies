@@ -1,6 +1,6 @@
-﻿namespace TravelBuddies.Application.Common.Exceptions
+﻿namespace TravelBuddies.Application.Common.Exceptions.NotFound
 {
-    public class VehicleNotFoundException : BaseException
+    public class VehicleNotFoundException : NotFoundBaseException
     {
         public VehicleNotFoundException(string message) : base(message)
         {

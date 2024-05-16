@@ -3,12 +3,14 @@
     using MediatR;
     using Microsoft.AspNetCore.Identity;
     using System.Threading;
-    using TravelBuddies.Application.Common.Exceptions;
     using TravelBuddies.Domain.Entities;
     using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;
     using TravelBuddies.Application.Common.Interfaces.Repository;
+	using TravelBuddies.Application.Common.Exceptions.NotFound;
+	using TravelBuddies.Application.Common.Exceptions.Forbidden;
+	using TravelBuddies.Application.Common.Exceptions.BadRequest;
 
-    public class UpdateMessageHandler : BaseHandler, IRequestHandler<UpdateMessageCommand, Task>
+	public class UpdateMessageHandler : BaseHandler, IRequestHandler<UpdateMessageCommand, Task>
 	{
 		public UpdateMessageHandler(
 			IRepository repository
@@ -24,7 +26,8 @@
 
 			if (message == null)
 			{
-				throw new MessageNotFoundException(string.Format(MessageNotFoundMessage, request.Id));
+				throw new MessageNotFoundException(
+					string.Format(MessageNotFoundMessage, request.Id));
 			}
 
 			if (message.CreatorId != request.CreatorId)

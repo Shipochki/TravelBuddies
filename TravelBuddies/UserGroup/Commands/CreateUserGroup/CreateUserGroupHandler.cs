@@ -5,12 +5,13 @@
     using Microsoft.EntityFrameworkCore;
     using System.Threading;
     using TravelBuddies.Domain.Common;
-    using TravelBuddies.Application.Common.Exceptions;
     using TravelBuddies.Domain.Entities;
     using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;
     using TravelBuddies.Application.Common.Interfaces.Repository;
+	using TravelBuddies.Application.Common.Exceptions.BadRequest;
+	using TravelBuddies.Application.Common.Exceptions.NotFound;
 
-    public class CreateUserGroupHandler : BaseHandler, IRequestHandler<CreateUserGroupCommand, Task>
+	public class CreateUserGroupHandler : BaseHandler, IRequestHandler<CreateUserGroupCommand, Task>
 	{
 		public CreateUserGroupHandler(
 			IRepository repository

@@ -1,7 +1,7 @@
 ﻿namespace TravelBuddies.IntegrationTests.Post.Commands
 {
     using Microsoft.AspNetCore.Identity;
-    using TravelBuddies.Application.Common.Exceptions;
+    using TravelBuddies.Application.Common.Exceptions.NotFound;
     using TravelBuddies.Application.Post.Commands.DeletePost;
     using TravelBuddies.Domain.Common;
     using TravelBuddies.Domain.Entities;
