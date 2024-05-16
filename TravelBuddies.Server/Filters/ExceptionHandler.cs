@@ -20,7 +20,6 @@
 		public ExceptionHandler(IMediator mediator)
 		{
 			_mediator = mediator;
-
 			LoggerFactory loggerFactory = new LoggerFactory(ApplicationLogsFilePaths.Logs, _mediator);
 			_fileLogger = loggerFactory.CreateFileLoggerAsync(ApplicationCategoryNames.FileLogger);
 			_databaseLogger = loggerFactory.CreateDatabaseLoggerAsync();

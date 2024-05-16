@@ -7,21 +7,23 @@
 	{
 		private readonly string _filePath;
 		private readonly IMediator _mediator;
+		private readonly string _loggerValue;
 
-        public LoggerFactory(string filePath, IMediator mediator)
+        public LoggerFactory(string filePath, IMediator mediator, string loggerValue = "Information")
         {
             _filePath = filePath;
 			_mediator = mediator;
+			_loggerValue = loggerValue;
         }
 
 		public ILogger CreateDatabaseLoggerAsync()
 		{
-			return new DatabaseLogger(_mediator);
+			return new DatabaseLogger(_mediator, _loggerValue);
 		}
 
 		public ILogger CreateFileLoggerAsync(string categoryName)
 		{
-			return new FileLogger(categoryName, _filePath);
+			return new FileLogger(categoryName, _filePath, _loggerValue);
 		}
 	}
 }
