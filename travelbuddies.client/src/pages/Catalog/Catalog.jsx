@@ -9,7 +9,6 @@ export const Catalog = ({posts}) => {
                 {posts.map((x, i) => (
                     <div>
                     <Post key={i} {...x}/>
-                    <Post {...x}/>
                     </div>
                 ))}
             </div>

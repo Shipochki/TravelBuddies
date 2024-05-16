@@ -37,7 +37,7 @@
 
 			//Assert
 			Assert.True(user.IsDeleted);
-			Assert.Equal(user.DeletedOn.Date, DateTime.Now.Date);
+			Assert.Equal(user.DeletedOn.Value.Date, DateTime.Now.Date);
 		}
 	}
 }

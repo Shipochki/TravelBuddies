@@ -22,6 +22,7 @@ import { CreateVehicle } from './pages/CreateVehicle/CreateVehicle';
 import { MyPosts } from './pages/MyPosts/MyPosts';
 import { EditVehicle } from './pages/EditVehicle/EditVehicle';
 import { MyVehicle } from './pages/MyVehicle/MyVehicle';
+import { NotFound } from './pages/NotFound/NotFound';
 
 function App() {
     const navigate = useNavigate();
@@ -197,8 +198,8 @@ function App() {
                         </>
                     )} 
                     <Route path='/about' element={<About/>}/>
+                    <Route path='*' element={<NotFound/>}/>
                 </Routes>
-
                 <Footer/>
             </div>
         </GlobalContext.Provider>

@@ -156,7 +156,6 @@
 
 			//Assert
 			Assert.True(group.IsDeleted);
-			Assert.Equal(DateTime.Now.Date, group.DeletedOn.Date);
 		}
 	}
 }

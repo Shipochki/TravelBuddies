@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TravelBuddies.Infrastructure;
 
@@ -11,9 +12,11 @@ using TravelBuddies.Infrastructure;
 namespace TravelBuddies.Infrastructure.Migrations
 {
     [DbContext(typeof(TravelBuddiesDbContext))]
-    partial class TravelBuddiesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240515185213_SetDeletedOnToNullable")]
+    partial class SetDeletedOnToNullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,26 +50,6 @@ namespace TravelBuddies.Infrastructure.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "0e8ac22b-fe9e-4179-b4df-687e3619bd42",
-                            Name = "client",
-                            NormalizedName = "CLIENT"
-                        },
-                        new
-                        {
-                            Id = "57198ec5-bf97-427d-9a79-982db8c08049",
-                            Name = "admin",
-                            NormalizedName = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = "e3561acf-d05f-494a-95b0-7e12433ec036",
-                            Name = "driver",
-                            NormalizedName = "DRIVER"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -154,23 +137,6 @@ namespace TravelBuddies.Infrastructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "050609c6-76d0-4a15-b9d8-bb70da19d1fe",
-                            RoleId = "0e8ac22b-fe9e-4179-b4df-687e3619bd42"
-                        },
-                        new
-                        {
-                            UserId = "b33a74a9-0021-4c3a-9481-a6fc6a922655",
-                            RoleId = "e3561acf-d05f-494a-95b0-7e12433ec036"
-                        },
-                        new
-                        {
-                            UserId = "fd325402-6f4e-4657-8b05-bc141b17cdef",
-                            RoleId = "57198ec5-bf97-427d-9a79-982db8c08049"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -292,70 +258,6 @@ namespace TravelBuddies.Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "050609c6-76d0-4a15-b9d8-bb70da19d1fe",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "2f8f0326-49df-4896-bff4-bd06fae02f72",
-                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "stef@abv.bg",
-                            EmailConfirmed = false,
-                            FirstName = "Stefan",
-                            IsDeleted = false,
-                            LastName = "Petkov",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "STEF@ABV.BG",
-                            NormalizedUserName = "STEF@ABV.BG",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPVnteRPP3bxhfn6aX/VLDyvnhpR1G/XMZL+3lTqsFfCBSkw02SQmqBTA3eYyp8iGw==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "KSGYS5WQKJHNDDGNY4GS4EX76VXJQ7OI",
-                            TwoFactorEnabled = false,
-                            UserName = "stef@abv.bg"
-                        },
-                        new
-                        {
-                            Id = "b33a74a9-0021-4c3a-9481-a6fc6a922655",
-                            AccessFailedCount = 0,
-                            City = "Pernik",
-                            ConcurrencyStamp = "fc339f9a-b858-4016-8b88-ed0a66d016f2",
-                            Country = "Bulgaria",
-                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "ivan@mail.com",
-                            EmailConfirmed = false,
-                            FirstName = "Ivan",
-                            IsDeleted = false,
-                            LastName = "Marianov",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "IVAN@MAIL.COM",
-                            NormalizedUserName = "IVAN@MAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAp54NNJZSWCgUnjr3egFsEaeGZn+LaS5ln6Vy5fdWhxgSRunRtN7ZwkbZTzp0m2xw==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "6Y6MZSEJ5FKGOXWADDON74PWO7EYV7MJ",
-                            TwoFactorEnabled = false,
-                            UserName = "ivan@mail.com"
-                        },
-                        new
-                        {
-                            Id = "fd325402-6f4e-4657-8b05-bc141b17cdef",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "f331cadb-1aa2-40a2-9a4f-caf2d56ea45c",
-                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "admin@gmail.com",
-                            EmailConfirmed = false,
-                            FirstName = "Admin",
-                            IsDeleted = false,
-                            LastName = "Administrator",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN@GMAIL.COM",
-                            NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMh/VZgfL1JHlQRYRVq9jjyXpX4SwQYPxfO6MgLj0fjy5MsBOxg6Orr5MS9h8NV5ww==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "D2VRP2BMPH4QOFVUC3LMIHZVDKCALXNZ",
-                            TwoFactorEnabled = false,
-                            UserName = "admin@gmail.com"
-                        });
                 });
 
             modelBuilder.Entity("TravelBuddies.Domain.Entities.City", b =>

@@ -77,7 +77,7 @@
 				FreeSeats = createPostDto.FreeSeats,
 				Baggage = createPostDto.Baggage,
 				Pets = createPostDto.Pets,
-				DateAndTime = $"{createPostDto.Date} {createPostDto.Time}",
+				DateAndTime = $"{DateTime.Parse(createPostDto.Date).ToString("yyyy.MM.dd")} {createPostDto.Time}",
 				PaymentType = createPostDto.PaymentType,
 				CreatorId = User.Id()
 			};
