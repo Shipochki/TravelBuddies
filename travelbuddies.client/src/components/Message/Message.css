@@ -1,0 +1,71 @@
+.message{
+    display: flex;
+    align-items: center;
+}
+
+.my-message{
+    flex-direction: row-reverse;
+}
+
+
+.message-content{
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    height: 2.5vw;
+    padding: 10px;
+    width: fit-content;
+}
+
+.message-buttons{
+    display: none;
+}
+
+.message-creator-info img{
+    max-width: 30px;
+    border-radius: 32px;
+    height: 30px;
+    object-fit: cover;
+}
+
+.message-creator-info img:hover{
+    cursor: pointer;
+}
+
+.message-text{
+    background-color: #F5F6F7;
+    border-radius: 8px;
+    box-shadow: 0 0 1px 0;
+    padding: 5px 15px;
+}
+
+.message-content:hover .message-buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 1px 0;
+    padding: 5px;
+    border-radius: 8px;
+}
+
+.message-buttons{
+    background-color: white;
+}
+
+.message-buttons button{
+    border: 0;
+    background-color: white;
+}
+
+.message-buttons button:hover{
+    cursor: pointer;
+}
+
+.message-buttons-edit:hover{
+    color: #2979ff;
+}
+
+.message-buttons-delete:hover{
+    color: red;
+}

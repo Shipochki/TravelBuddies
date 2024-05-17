@@ -1,0 +1,68 @@
+.edit-message-main{
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100vw; /* Full width */
+    height: 100vh; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    column-gap: 20px;
+}
+
+.edit-message-main form{
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 38%; /* Could be more or less, depending on screen size */
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    align-items: center;
+}
+
+.edit-message-main form input{
+    width: 30vw;
+    height: 3vw;
+    border-radius: 32px;
+    border: 0;
+    background: white;
+    box-shadow: 0 0 1px 0 black;
+    padding: 10px 20px;
+}
+
+.edit-message-main form button{
+    border: 0;
+    background: white;
+    color: #2979ff;
+    width: 5vw;
+    height: 3vw;
+    border-radius: 32px;
+    border: 1px solid #2979ff;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.edit-message-main form button:hover{
+    color: white;
+    background-color: #2979ff;
+    cursor: pointer;
+}
+
+.close{
+    color: white;
+    font-size: 40px;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
