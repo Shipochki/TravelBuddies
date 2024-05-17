@@ -37,7 +37,8 @@
                         PasswordHash = "AQAAAAIAAYagAAAAEAp54NNJZSWCgUnjr3egFsEaeGZn+LaS5ln6Vy5fdWhxgSRunRtN7ZwkbZTzp0m2xw==",
                         SecurityStamp = "6Y6MZSEJ5FKGOXWADDON74PWO7EYV7MJ",
                         ConcurrencyStamp = "fc339f9a-b858-4016-8b88-ed0a66d016f2",
-                    },
+                        ProfilePictureLink = "https://sttravelbuddies001.blob.core.windows.net/web/pexels-simon-robben-55958-614810.jpg"
+					},
                     new ApplicationUser()
                     {
                         Id = "fd325402-6f4e-4657-8b05-bc141b17cdef",

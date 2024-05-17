@@ -76,6 +76,12 @@ export const Group = ({group}) => {
                 {group.messages.map((m, i) => (
                     <div key={i} id={i} className={`message ${m.creatorId == localStorage.userId && 'my-message'}`}>
                         <div className="message-content">
+                            {m.creatorId == localStorage.userId && (
+                                <div className="message-buttons">
+                                    <button>Edit</button>
+                                    <button>Delete</button>
+                                </div>
+                            )}
                             <div className="message-creator-info">
                                 {m.creatorId != localStorage.userId && (
                                     <Link onClick={async (e) => {

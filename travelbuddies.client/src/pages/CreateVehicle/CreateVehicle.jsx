@@ -3,6 +3,7 @@ import { GetVehicleByOwnerId, OnCreateVehicleSubmit } from "../../services/Vehic
 import { useForm } from "../../utils/hooks/useForm"
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { NotDriver } from '../../components/NotDriver/NotDriver'
 
 const VehicleFromKeys = {
     BrandName: 'brandname',
@@ -50,7 +51,9 @@ export const CreateVehicle = ({vehicle}) => {
 
     return(
         <div className="create-vehicle-main">
-            {vehicle.length == 0 ? (
+            {localStorage.role == 'driver' ? (
+                <>
+                {vehicle.length == 0 ? (
                 <div className='create-vehicle-content'>
                 <div className='create-vehicle-header'>
                     <h2>Add your Vehicle</h2>
@@ -128,7 +131,7 @@ export const CreateVehicle = ({vehicle}) => {
                 <button className='vehicle-submit-button'>Add</button>
                 </form>
             </div>
-            ) : (
+                ) : (
                 <div className='allready-have-vehicle'>
                     <h3>You allready have added vehicle</h3>
                     <div className='allready-vehicle-links'>
@@ -136,8 +139,11 @@ export const CreateVehicle = ({vehicle}) => {
                         <Link to={'/editVehicle'}>Edit Vehicle</Link>
                     </div>
                 </div>
+                )}
+                </>
+            ) : (
+                <NotDriver/>
             )}
-            
         </div>
     )
 }

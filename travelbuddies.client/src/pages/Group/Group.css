@@ -121,6 +121,10 @@
     flex-direction: row-reverse;
 }
 
+.my-message .message-text:hover{
+    cursor: pointer;
+}
+
 .message-content{
     display: flex;
     align-items: center;
@@ -128,6 +132,10 @@
     height: 2.5vw;
     padding: 10px;
     width: fit-content;
+}
+
+.message-buttons{
+    display: none;
 }
 
 .message-creator-info img{
@@ -147,3 +155,5 @@
     box-shadow: 0 0 1px 0;
     padding: 5px 15px;
 }
+
+.message-content:hover .message-buttons{display: inline;}
