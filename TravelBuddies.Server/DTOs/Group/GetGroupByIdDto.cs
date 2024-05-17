@@ -20,8 +20,13 @@
 			{
 				Id = group.Id,
 				Creator = UserDto.FromUser(group.Creator),
-				Members = group.UsersGroups.Select(u => User.UserDto.FromUser(u.User)).ToList(),
-				Messages = group.Messages.Select(GetMessagesByGroupIdDto.FromMessage).Reverse().ToList(),
+				Members = group.UsersGroups
+					.Select(u => UserDto.FromUser(u.User))
+					.ToList(),
+				Messages = group.Messages
+					.Select(GetMessagesByGroupIdDto.FromMessage)
+					.Reverse()
+					.ToList(),
 			};
 		}
 	}

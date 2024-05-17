@@ -9,6 +9,7 @@ import { faPeopleGroup } from "@fortawesome/free-solid-svg-icons"
 import { MemberGroup } from "../../components/MemberGroup/MemberGroup"
 import { Message } from "../../components/Message/Message"
 import { CreateMessage } from "../../components/CreateMessage/CreateMessage"
+import { EditMessage } from '../../components/EditMessage/EditMessage'
 
 export const Group = ({group}) => {
     const { OnSetGroup } = useContext(GlobalContext);
@@ -39,7 +40,10 @@ export const Group = ({group}) => {
             </div>
             <div className="group-messages">
                 {group.messages.map((m, i) => (
-                    <Message message={m} i={i}/>
+                    <>
+                        <Message message={m} i={i} ownerId={group.creator.id}/>
+                        <EditMessage message={m}/>
+                    </>
                 ))}
             </div>
             </div>

@@ -43,7 +43,8 @@
 				.Include(g => g.Creator)
 				.Include(g => g.UsersGroups)
 				.ThenInclude(u => u.User)
-				.Include(g => g.Messages)
+				.Include(g => g.Messages
+					.Where(m => m.IsDeleted == false))
 				.ThenInclude(m => m.Creator)
 				.FirstOrDefaultAsync(g => g.Id == request.GroupId);
 

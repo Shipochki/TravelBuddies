@@ -16,6 +16,8 @@
 
 		public string? CreatorProfileLink { get; set; }
 
+		public required string CreatedOn { get; set; } 
+
 		public static GetMessagesByGroupIdDto FromMessage(Message message)
 		{
 			return new GetMessagesByGroupIdDto()
@@ -25,7 +27,8 @@
 				CreatorId = message.CreatorId,
 				CreatorName = $"{message.Creator.FirstName} {message.Creator.LastName}",
 				GroupId = message.GroupId,
-				CreatorProfileLink = message.Creator.ProfilePictureLink
+				CreatorProfileLink = message.Creator.ProfilePictureLink,
+				CreatedOn = $"{message.CreatedOn.ToString("yyyy.MM.dd HH:mm")}"
 			};
 		}
 	}

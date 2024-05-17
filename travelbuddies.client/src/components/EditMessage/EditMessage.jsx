@@ -25,8 +25,6 @@ export const EditMessage = ({message}) => {
 
         await OnUpdateMessageSubmit(values);
 
-        values[EditMessageFromKeys.Text] = message.text;
-
         const result = await GetGroupById(groupId);
 
         OnSetGroup(result);

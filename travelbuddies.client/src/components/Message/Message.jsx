@@ -7,8 +7,10 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { EditMessage } from '../EditMessage/EditMessage';
 import { OnDeleteMessageSubmit } from '../../services/MessageService';
 import { GetGroupById } from '../../services/GroupService';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
-export const Message = ({message, i}) => {
+export const Message = ({message, i, ownerId}) => {
     const { OnSetUser, OnSetGroup } = useContext(GlobalContext);
     
     const LoadProfile = async (id) => {
@@ -21,7 +23,7 @@ export const Message = ({message, i}) => {
         if(confirm(text) == true){
             await OnDeleteMessageSubmit(messageId);
 
-            const result = await GetGroupById(groupId);
+            const result = await GetGroupById(message.groupId);
 
             OnSetGroup(result);
         }
@@ -30,17 +32,26 @@ export const Message = ({message, i}) => {
     return (
         <div key={i} id={i} className={`message ${message.creatorId == localStorage.userId && 'my-message'}`}>
                         <div className="message-content">
-                            {message.creatorId == localStorage.userId && (
+                            {(message.creatorId == localStorage.userId 
+                                || localStorage.role == 'admin'
+                                || ownerId == localStorage.userId) && (
                                 <div className="message-buttons">
-                                    <div className='message-edit-menu'>
+                                    <div>
+                                        {message.creatorId == localStorage.userId &&
+                                            <div className='message-edit-menu'>
                                         <button className="message-buttons-edit"
                                         onClick={() => {
                                             window.document.getElementById(`message-${message.id}`).style.display = 'flex';
                                         }}
                                         >Edit</button>
-                                        <EditMessage message={message}/>
+                                            </div>
+                                        }
+                                        <button onClick={(e) => {
+                                        e.preventDefault();
+                                        ConfirmDelete(message.id);
+                                        }} className="message-buttons-delete">Delete</button>
                                     </div>
-                                    <button onClick={ConfirmDelete} className="message-buttons-delete">Delete</button>
+                                    <FontAwesomeIcon icon={faArrowRight}/>
                                 </div>
                             )}
                             <div className="message-creator-info">

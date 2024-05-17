@@ -18,7 +18,7 @@
         { 
             _mediator = mediator;
 
-            LoggerFactory loggerFactory = new LoggerFactory(ApplicationLogsFilePaths.Logs, _mediator);
+            LoggerFactory loggerFactory = new LoggerFactory(ApplicationLogsFilePaths.Logs, _mediator, LogLevel.Error.ToString());
             _fileLogger = loggerFactory.CreateFileLoggerAsync(ApplicationCategoryNames.FileLogger);
             _databaseLogger = loggerFactory.CreateDatabaseLoggerAsync();
         }

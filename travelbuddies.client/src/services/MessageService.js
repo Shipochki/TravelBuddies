@@ -38,7 +38,6 @@ export const OnUpdateMessageSubmit = async (updateMessageFromKeys) => {
   
           if (response.ok) {
             // Handle successful response
-            return  response.json();
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);
@@ -50,19 +49,17 @@ export const OnUpdateMessageSubmit = async (updateMessageFromKeys) => {
 
 export const OnDeleteMessageSubmit = async (messageId) => {
     try {
-        const response = await fetch(Url + '/delete', {
+        const response = await fetch(Url + `/delete/${messageId}`, {
           method: 'POST',
           mode: "cors",
           headers: {
               'Authorization': `Bearer ${localStorage.accessToken}`,
               'Content-Type': 'application/json'
           },
-          body: (messageId)
         });
   
           if (response.ok) {
             // Handle successful response
-            return response.json();
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);

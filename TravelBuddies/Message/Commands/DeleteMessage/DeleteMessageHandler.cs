@@ -37,8 +37,17 @@
 					string.Format(ApplicationUserNotFoundMessage, request.CreatorId));
 			}
 
+			Group? group = await _repository.GetByIdAsync<Group>(message.GroupId);
+
+			if (group == null)
+			{
+				throw new GroupNotFoundException(
+					string.Format(GroupNotFoundMessage, message.GroupId));
+			}
+
 			if (message.CreatorId != request.CreatorId 
-				&& !await _userManager.IsInRoleAsync(user, ApplicationRoles.Admin))
+				&& !await _userManager.IsInRoleAsync(user, ApplicationRoles.Admin)
+				&& group.CreatorId != request.CreatorId)
 			{
 				throw new ApplicationUserNotCreatorException(
 					string.Format(ApplicationUserNotCreatorMessage, request.CreatorId));

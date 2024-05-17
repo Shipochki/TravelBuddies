@@ -41,7 +41,7 @@
 
 .message-content:hover .message-buttons{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     box-shadow: 0 0 1px 0;
@@ -51,6 +51,7 @@
 
 .message-buttons{
     background-color: white;
+    z-index: 1;
 }
 
 .message-buttons button{
