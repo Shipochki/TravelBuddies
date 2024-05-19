@@ -67,7 +67,8 @@ export const Message = ({message, i, ownerId}) => {
                                     </Link>)}
                             </div>
                             <div className="message-text">
-                                <p>{message.text}</p>
+                                <p>{message.text}</p>  
+                                <span>Sent: {message.createdOn}</span>  
                             </div>
                         </div>
                     </div>

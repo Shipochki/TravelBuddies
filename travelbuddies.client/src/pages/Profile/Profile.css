@@ -98,9 +98,3 @@
     align-items: center;
     width: 100%;
 }
-
-.review-form{
-    display: flex;
-    align-items: center;
-    column-gap: 15px;
-}

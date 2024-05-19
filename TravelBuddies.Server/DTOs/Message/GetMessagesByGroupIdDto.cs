@@ -28,7 +28,7 @@
 				CreatorName = $"{message.Creator.FirstName} {message.Creator.LastName}",
 				GroupId = message.GroupId,
 				CreatorProfileLink = message.Creator.ProfilePictureLink,
-				CreatedOn = $"{message.CreatedOn.ToString("yyyy.MM.dd HH:mm")}"
+				CreatedOn = $"{message.CreatedOn.ToString("HH:mm")}"
 			};
 		}
 	}

@@ -4,22 +4,14 @@ import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faX } from '@fortawesome/free-solid-svg-icons'
 import { NoVehicle } from '../../components/NoVehicle/NoVehicle'
+import { Vehicle } from '../../components/Vehicle/Vehicle'
 
 export const MyVehicle = ({vehicle}) => {
 
     return(
         <div className="myvehicle-main">
             {vehicle.length != 0 ? (
-                    <div className='myvehicle-content'>
-                        <div className='myvehicle-info'>
-                            <p>Brand: {vehicle.brandName}</p>
-                            <p>Model: {vehicle.modelName}</p>
-                            <p>Fuel: {vehicle.fuel}</p>
-                            <p>Seat count: {vehicle.seatCount}</p>
-                            <p>ACSystem <FontAwesomeIcon icon={vehicle.acSystem ? faCheck : faX}/></p>
-                        </div>
-                        <LazyLoadImage src={vehicle.pictureLink}/>
-                    </div>
+                <Vehicle vehicle={vehicle}/>
             ) : (
                 <NoVehicle/>
             )}

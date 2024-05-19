@@ -54,6 +54,6 @@
     display: flex;
     flex-direction: column-reverse;
     padding: 2vw;
-    row-gap: 5px;
+    row-gap: 30px;
     overflow: auto;
 }

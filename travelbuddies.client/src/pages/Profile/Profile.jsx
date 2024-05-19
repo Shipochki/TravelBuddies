@@ -1,29 +1,10 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import './Profile.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faX } from '@fortawesome/free-solid-svg-icons';
 import { Review } from '../../components/Review/Review';
-import { StarSelector } from '../../components/StarSelector/StarSelector';
-import { useForm } from '../../utils/hooks/useForm';
-import { OnCreateReviewSubmit } from '../../services/ReviewService';
-
-const ReviewFromKeys = {
-    Text: 'text',
-    Rating: 'rating',
-    ReciverId: 'reciverId',
-}
+import { CreateReview } from '../../components/CreateReview/CreateReview';
+import { Vehicle } from '../../components/Vehicle/Vehicle';
 
 export const Profile = ({user}) => {
-    const {values, changeHandler, onSubmit} = useForm({
-        [ReviewFromKeys.Text]: '',
-        [ReviewFromKeys.Rating]: 0,
-        [ReviewFromKeys.ReciverId]: user.id,
-    }, OnCreateReviewSubmit)
-
-    const onChangeStar = (star) => {
-        values[ReviewFromKeys.Rating] = star;
-        changeHandler;
-    }
 
     return (
         <div className='profile-main'>
@@ -46,16 +27,7 @@ export const Profile = ({user}) => {
                 <div className='profile-vehicle'>
                     <h4>Vehicle</h4>
                     {user.vehicle ? (
-                        <div className='vehicle'>
-                            <div className='vehicle-info'>
-                                <p>Brand: {user.vehicle.brandName}</p>
-                                <p>Model: {user.vehicle.modelName}</p>
-                                <p>Fuel: {user.vehicle.fuel}</p>
-                                <p>Seat count: {user.vehicle.seatCount}</p>
-                                <p>ACSystem <FontAwesomeIcon icon={user.vehicle.acSystem ? faCheck : faX}/></p>
-                            </div>
-                            <LazyLoadImage src={user.vehicle.pictureLink}/>
-                        </div>
+                        <Vehicle vehicle={user.vehicle}/>
                     ) : (
                         <div>
                             User don't have vehicle
@@ -74,17 +46,7 @@ export const Profile = ({user}) => {
                         </div>
                     )}
                     {user.id != localStorage.userId && (
-                        <form className='review-form' onSubmit={onSubmit}>
-                            <StarSelector totalStars={5} onSelect={onChangeStar}/>
-                            <input 
-                            type='text'
-                            placeholder='Your review here'
-                            name={[ReviewFromKeys.Text]}
-                            value={values[ReviewFromKeys.Text]}
-                            onChange={changeHandler}
-                            />
-                            <button>Submit</button>
-                        </form>
+                       <CreateReview user={user}/>  
                     )}
                 </div>
             </div>

@@ -16,7 +16,7 @@ export const StarSelector = ({ totalStars = 5, onSelect }) => {
     };
   
     return (
-      <div className='starselector'>
+      <div className='stars'>
         {[...Array(totalStars)].map((_, index) => (
           <Star
             key={index}

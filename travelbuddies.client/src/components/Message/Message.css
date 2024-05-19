@@ -7,7 +7,6 @@
     flex-direction: row-reverse;
 }
 
-
 .message-content{
     display: flex;
     align-items: center;
@@ -37,6 +36,15 @@
     border-radius: 8px;
     box-shadow: 0 0 1px 0;
     padding: 5px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.message-text span{
+    font-size: 10px;
+    color: #2979ff;
+    display: none;
 }
 
 .message-content:hover .message-buttons{
@@ -47,6 +55,10 @@
     box-shadow: 0 0 1px 0;
     padding: 5px;
     border-radius: 8px;
+}
+
+.message-content:hover .message-text span{
+    display: inline;
 }
 
 .message-buttons{
@@ -70,3 +82,4 @@
 .message-buttons-delete:hover{
     color: red;
 }
+
