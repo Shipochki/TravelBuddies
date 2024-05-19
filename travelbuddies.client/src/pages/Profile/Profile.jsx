@@ -3,6 +3,7 @@ import './Profile.css';
 import { Review } from '../../components/Review/Review';
 import { CreateReview } from '../../components/CreateReview/CreateReview';
 import { Vehicle } from '../../components/Vehicle/Vehicle';
+import { EditReview } from '../../components/EditReview/EditReview';
 
 export const Profile = ({user}) => {
 
@@ -38,7 +39,10 @@ export const Profile = ({user}) => {
                     <h4>Reviews</h4>
                     {user.reviews.length > 0 ? (
                         user.reviews.map((r) => (
-                            <Review key={r.id} review={r}/>
+                            <>
+                                <Review key={r.id} review={r}/>
+                                <EditReview key={r.id} userId={user.id} review={r}/>
+                            </>
                         ))
                     ): (
                         <div>

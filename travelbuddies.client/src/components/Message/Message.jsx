@@ -4,7 +4,6 @@ import { GlobalContext } from '../../utils/contexts/GlobalContext';
 import { GetUserById } from '../../services/UserService';
 import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { EditMessage } from '../EditMessage/EditMessage';
 import { OnDeleteMessageSubmit } from '../../services/MessageService';
 import { GetGroupById } from '../../services/GroupService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -39,16 +38,16 @@ export const Message = ({message, i, ownerId}) => {
                                     <div>
                                         {message.creatorId == localStorage.userId &&
                                             <div className='message-edit-menu'>
-                                        <button className="message-buttons-edit"
-                                        onClick={() => {
-                                            window.document.getElementById(`message-${message.id}`).style.display = 'flex';
-                                        }}
-                                        >Edit</button>
+                                                <button className="message-buttons-edit"
+                                                onClick={() => {
+                                                    window.document.getElementById(`message-${message.id}`).style.display = 'flex';
+                                                }}
+                                                >Edit</button>
                                             </div>
                                         }
                                         <button onClick={(e) => {
-                                        e.preventDefault();
-                                        ConfirmDelete(message.id);
+                                            e.preventDefault();
+                                            ConfirmDelete(message.id);
                                         }} className="message-buttons-delete">Delete</button>
                                     </div>
                                     <FontAwesomeIcon icon={faArrowRight}/>

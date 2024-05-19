@@ -23,6 +23,17 @@ export const Review = ({review}) => {
                 : 'https://sttravelbuddies001.blob.core.windows.net/web/blank-profile-picture-973460_960_720.png'}/> 
             <StarGenerator num={review.rating}/>
             <p>{review.text}</p>
+            <div className='review-editing-buttons'>
+                {review.creator.id == localStorage.userId && (
+                    <button 
+                        onClick={() => {
+                            window.document.getElementById(`review-${review.id}`).style.display = 'flex';
+                        }}
+                        className='review-edit-button'>
+                        Edit
+                    </button>
+                )}
+            </div>
         </div>
     )
 }
