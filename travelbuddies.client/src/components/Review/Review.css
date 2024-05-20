@@ -46,7 +46,6 @@
 .review-text-editing{
     display: flex;
     flex-direction: row;
-    justify-content: center;
     column-gap: 10px;
     width: 100%;
 

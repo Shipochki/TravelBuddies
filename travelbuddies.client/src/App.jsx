@@ -31,11 +31,13 @@ function App() {
     const [groups, setGroups] = useState([]);
     const [group, setGroup] = useState([]);
     const [user, setUser] = useState([]);
-    const [expiry, setExpiry] = useState(null);
+    //const [expiry, setExpiry] = useState(null);
     const [reviews, setReviews] = useState([]);
     const [vehicle, setVehicle] = useState([]);
+    const [isLoading, setIsloading] = useState(true);
 
-    useEffect(() => {
+    if(localStorage.accessToken){
+        useEffect(() => {
         const GetAllCities = async () => {
           try {
             const response = await fetch('https://localhost:7005/api/city/getcities', {
@@ -52,9 +54,9 @@ function App() {
           }
         }; 
         GetAllCities();
-        }, []);
+            }, []);
     
-    useEffect(() => {
+        useEffect(() => {
         const GetAllGroupByUserId = async () => {
             try {
                 const response = await fetch('https://localhost:7005/api/group/getusergroupsbyuserid', {
@@ -73,9 +75,9 @@ function App() {
                 console.error('Error fetching join group:', error);
               }};
               GetAllGroupByUserId()
-    }, [])
+            }, [])
 
-    useEffect(() => {
+        useEffect(() => {
         const GetVehicleByOwnerId = async () => {
             try {
               const response = await fetch(`https://localhost:7005/api/vehicle/getvehiclebyownerid/${localStorage.userId}`, {
@@ -100,13 +102,14 @@ function App() {
             };
           }
           GetVehicleByOwnerId();
-    }, [])
+            }, [])
+    }
 
-    useEffect(() => {
-        if(localStorage.accessToken){
-            setExpiry(localStorage.exp * 1000);
-        }
-    })
+    // useEffect(() => {
+    //     if(localStorage.accessToken){
+    //         setExpiry(localStorage.exp * 1000);
+    //     }
+    // })
 
     // useEffect(() => {
     //     const interval = setInterval(checkTokenExpiry, 60000); // Check every minute

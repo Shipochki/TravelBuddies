@@ -5,6 +5,8 @@ export const OnCreateVehicleSubmit = async (createVehicleFromKeys) => {
       const formData = new FormData();
       formData.append('brandname', createVehicleFromKeys.brandname);
       formData.append('modelname', createVehicleFromKeys.modelname);
+      formData.append('year', createVehicleFromKeys.year);
+      formData.append('color', createVehicleFromKeys.color);
       formData.append('fuel', createVehicleFromKeys.fuel);
       formData.append('seatcount', createVehicleFromKeys.seatcount);
       formData.append('acsystem', createVehicleFromKeys.acsystem);
@@ -21,6 +23,7 @@ export const OnCreateVehicleSubmit = async (createVehicleFromKeys) => {
   
           if (response.ok) {
             // Handle successful response
+            return response.json();
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);

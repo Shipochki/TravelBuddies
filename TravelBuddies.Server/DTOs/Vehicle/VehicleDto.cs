@@ -10,6 +10,9 @@
 
 		public required string ModelName { get; set; }
 
+		public int Year { get; set; }
+		public required string Color { get; set; }
+
 		public required string Fuel { get; set; }
 
 		public int SeatCount { get; set; }
@@ -27,6 +30,8 @@
 				Id = vehicle.Id,
 				BrandName = vehicle.BrandName,
 				ModelName = vehicle.ModelName,
+				Year = vehicle.Year,
+				Color = vehicle.Color,
 				Fuel = vehicle.Fuel.ToString(),
 				SeatCount = vehicle.SeatCount,
 				PictureLink = vehicle.PictureLink,

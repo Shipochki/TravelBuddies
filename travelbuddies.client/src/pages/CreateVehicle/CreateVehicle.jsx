@@ -9,6 +9,8 @@ import { GlobalContext } from '../../utils/contexts/GlobalContext'
 const VehicleFromKeys = {
     BrandName: 'brandname',
     ModelName: 'modelname',
+    Year: 'year',
+    Color: 'color',
     Fuel: 'fuel',
     SeatCount: 'seatcount',
     PictureLink: 'picturelink',
@@ -21,6 +23,8 @@ export const CreateVehicle = ({vehicle}) => {
     const {values, changeHandler, onSubmit} = useForm({
         [VehicleFromKeys.BrandName]: '',
         [VehicleFromKeys.ModelName]: '',
+        [VehicleFromKeys.Year]: 0,
+        [VehicleFromKeys.Color]: '',
         [VehicleFromKeys.Fuel]: 0,
         [VehicleFromKeys.SeatCount]: 0,
         [VehicleFromKeys.PictureLink]: null,
@@ -32,9 +36,9 @@ export const CreateVehicle = ({vehicle}) => {
 
         await OnCreateVehicleSubmit(values);
 
-        const result = await GetVehicleByOwnerId(localStorage.userId);
+        // const result = await GetVehicleByOwnerId(localStorage.userId);
 
-        OnSetVehicle(result);
+        // OnSetVehicle(result);
     }
 
     const [nameFile, setNameFile] = useState('');
@@ -89,6 +93,28 @@ export const CreateVehicle = ({vehicle}) => {
                         onChange={changeHandler}
                         required
                         />
+                </div>
+                <div className='vehicle-year'>
+                    <label>Year</label>
+                    <input
+                        type='year'
+                        id='year'
+                        className='inputModel'
+                        placeholder='Color'
+                        name={VehicleFromKeys.Year}
+                        value={values[VehicleFromKeys.Year]}
+                        onChange={changeHandler}
+                        required/>
+                </div>
+                <div className='vehicle-color'>
+                    <input
+                        type='text'
+                        id='color'
+                        className='inputModel'
+                        name={VehicleFromKeys.Color}
+                        value={values[VehicleFromKeys.Color]}
+                        onChange={changeHandler}
+                        required/>
                 </div>
                 <div className='vehicle-fuel'>
                     <label for="fuel">Choose a Fuel:</label>

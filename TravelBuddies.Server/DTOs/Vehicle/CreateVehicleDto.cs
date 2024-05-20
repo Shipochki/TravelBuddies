@@ -22,13 +22,12 @@
 
 		[Required]
 		[MinLength(MinLengthColor)]
-		[MaxLength(MinLengthColor)]
+		[MaxLength(MaxLengthColor)]
 		public required string Color { get; set; }
 
 		public int SeatCount { get; set; }
 
-		[Required]
-		public required IFormFile PictureLink { get; set; }
+		public IFormFile? PictureLink { get; set; }
 
 		public bool ACSystem { get; set; }
 	}
