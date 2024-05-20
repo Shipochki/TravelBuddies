@@ -28,22 +28,19 @@ export const EditReview = ({review, userId}) => {
         changeHandler;
     }
 
-    const LoadProfile = async (id) => {
-        const result = await GetUserById(id);
-        OnSetUser(result);
-    }
-
     const OnEditSubmit = async (id) => {
         window.document.getElementById(`review-${review.id}`).style.display = 'none';
 
         await OnUpdateReviewSubmit(values);
 
-        await LoadProfile(id);
+        const result = await GetUserById(id);
+
+        OnSetUser(result);
     }
 
     return(
         <div id={`review-${review.id}`} className="edit-review-main">
-            <form className='review-form' onSubmit={(e) => {
+            <form className='edit-review-form' onSubmit={(e) => {
                 e.preventDefault();
                 OnEditSubmit(userId);
             }}>
@@ -55,7 +52,7 @@ export const EditReview = ({review, userId}) => {
                     value={values[EditReviewFromKeys.Text]}
                     onChange={changeHandler}
                 />
-                <button>Submit</button>
+                <button>Edit</button>
             </form>
             <span className='close'
             onClick={() => {

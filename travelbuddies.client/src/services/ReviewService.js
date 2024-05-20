@@ -37,7 +37,6 @@ export const OnCreateReviewSubmit = async (createReviewFromKeys) => {
   
           if (response.ok) {
             // Handle successful response
-            return response.json();
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);
@@ -61,7 +60,6 @@ export const OnUpdateReviewSubmit = async (updateReviewFromKeys) => {
   
           if (response.ok) {
             // Handle successful response
-            return response.json();
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);
@@ -85,7 +83,6 @@ export const OnDeleteReviewSubmit = async (reviewId) => {
   
           if (response.ok) {
             // Handle successful response
-            return response.json();
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);

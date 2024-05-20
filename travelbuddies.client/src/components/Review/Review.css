@@ -21,3 +21,74 @@
 .profile-review img:hover{
     cursor: pointer;
 }
+
+.review-editing-buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    column-gap: 5px;
+}
+
+.button-container{
+    position: relative;
+    display: inline-block;
+}
+
+.button-container .button-info{
+    visibility: hidden;
+    width: 60px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position above the icon */
+    left: 50%;
+    margin-left: -30px; /* Center the tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.button-container .button-info::after{
+    content: "";
+    position: absolute;
+    top: 100%; /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+.review-button{
+    border: 0;
+    background-color: transparent;
+    color: #2979ff;;
+}
+
+.review-button:hover{
+    cursor: pointer;
+}
+
+.delete-review-button{
+    border: 0;
+    background-color: transparent;
+    color: red;
+    font-size: 18px;
+}
+
+.delete-review-button:hover{
+    cursor: pointer;
+}
+
+.button-container:hover .button-info{
+    visibility: visible;
+    opacity: 1;
+}
+
+.last-child{
+    margin-left: auto;
+}

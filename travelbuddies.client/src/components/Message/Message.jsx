@@ -50,7 +50,6 @@ export const Message = ({message, i, ownerId}) => {
                                             ConfirmDelete(message.id);
                                         }} className="message-buttons-delete">Delete</button>
                                     </div>
-                                    <FontAwesomeIcon icon={faArrowRight}/>
                                 </div>
                             )}
                             <div className="message-creator-info">

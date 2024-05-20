@@ -8,8 +8,6 @@
 		[Required]
 		public int Id { get; set; }
 
-		public required string CreatorId { get; set; }
-
 		public required string ReciverId { get; set; }
 
 		[MinLength(MinLengthText)]

@@ -31,16 +31,19 @@ export const Profile = ({user}) => {
                         <Vehicle vehicle={user.vehicle}/>
                     ) : (
                         <div>
-                            User don't have vehicle
+                            User don't have a vehicle
                         </div>
                     )}
                 </div>
                 <div className='profile-reviews'>
                     <h4>Reviews</h4>
+                    {user.id != localStorage.userId && (
+                       <CreateReview user={user}/>  
+                    )}
                     {user.reviews.length > 0 ? (
                         user.reviews.map((r) => (
                             <>
-                                <Review key={r.id} review={r}/>
+                                <Review key={r.id} review={r} userId={user.id}/>
                                 <EditReview key={r.id} userId={user.id} review={r}/>
                             </>
                         ))
@@ -48,9 +51,6 @@ export const Profile = ({user}) => {
                         <div>
                             User don't have any reviews
                         </div>
-                    )}
-                    {user.id != localStorage.userId && (
-                       <CreateReview user={user}/>  
                     )}
                 </div>
             </div>

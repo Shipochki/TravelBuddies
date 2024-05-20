@@ -1,5 +1,49 @@
+.create-review-main{
+    background-color: white;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    border-radius: 16px;
+}
+
 .review-form{
     display: flex;
     align-items: center;
     column-gap: 15px;
+}
+
+.review-form input{
+    background-color: #F5F6F7;
+    border: 0;
+    width: 70%;
+    height: 50px;
+    padding: 12px;
+    border-radius: 32px;
+    box-shadow: 0 0 1px 0;
+}
+
+.review-form button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    column-gap: 10px;
+    border: 0;
+    background: white;
+    width: 14vw;
+    height: 3vw;
+    border-radius: 16px;
+    border: 2px solid #2979ff;
+    font-size: 16px;
+    font-weight: 500;
+    color: #2979ff;
+}
+
+.review-form button:hover{
+    color: white;
+    background-color: #2979ff;
+    cursor: pointer;
 }

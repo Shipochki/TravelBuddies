@@ -1,7 +1,9 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { OnCreateReviewSubmit } from "../../services/ReviewService"
 import { useForm } from "../../utils/hooks/useForm"
 import { StarSelector } from "../StarSelector/StarSelector"
 import './CreateReview.css'
+import { faPlus } from "@fortawesome/free-solid-svg-icons"
 
 const ReviewFromKeys = {
     Text: 'text',
@@ -31,7 +33,7 @@ export const CreateReview = ({user}) => {
                     value={values[ReviewFromKeys.Text]}
                     onChange={changeHandler}
                 />
-                <button>Submit</button>
+                <button><FontAwesomeIcon icon={faPlus}/> Add a review</button>
             </form>
         </div>
     )
