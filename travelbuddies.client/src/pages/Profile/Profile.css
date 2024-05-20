@@ -62,31 +62,6 @@
     row-gap: 10px;
 }
 
-.vehicle{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-    justify-content: space-between;
-    padding: 10px;
-}
-
-.vehicle-info{
-    display: flex;
-    align-items: center;
-    justify-items: center;
-    flex-direction: column;
-}
-
-.vehicle-info p{
-    font-size: 18px;
-}
-
-.vehicle img{
-    max-width: 20vw;
-    border-radius: 16px;
-}
-
 .profile-content h4{
     color: #2979ff;
     font-size: 20px;

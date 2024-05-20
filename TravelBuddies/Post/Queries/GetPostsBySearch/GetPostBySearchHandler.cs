@@ -39,6 +39,8 @@
 				.Include(c => c.FromDestinationCity)
 				.Include(c => c.ToDestinationCity)
 				.Include(c => c.Creator)
+				.Include(c => c.Group)
+				.ThenInclude(c => c.UsersGroups)
 				.ToListAsync();
 
 			return await Task.FromResult(posts);

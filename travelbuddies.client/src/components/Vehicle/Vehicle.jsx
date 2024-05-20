@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import './Vehicle'
+import './Vehicle.css'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { faCheck, faX } from '@fortawesome/free-solid-svg-icons'
 
@@ -16,7 +16,7 @@ export const Vehicle = ({vehicle}) => {
                 <p>Seat count: {vehicle.seatCount}</p>
                 <p>ACSystem <FontAwesomeIcon icon={vehicle.acSystem ? faCheck : faX}/></p>
             </div>
-            <LazyLoadImage src={vehicle.pictureLink}/>
+            <LazyLoadImage className='vehicle-img' src={vehicle.pictureLink}/>
         </div>
     )
 }

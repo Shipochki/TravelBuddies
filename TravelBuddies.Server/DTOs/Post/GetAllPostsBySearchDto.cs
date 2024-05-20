@@ -27,6 +27,8 @@
 
 		public required UserDto Creator { get; set; }
 
+		public List<string> Participants { get; set; } = null!;
+
 		public static GetAllPostsBySearchDto FromPost(Post post)
 		{
 			return new GetAllPostsBySearchDto()
@@ -42,6 +44,7 @@
 				DateAndTime = post.DateAndTime.ToString(),
 				GroupId = post.GroupId,
 				Creator = UserDto.FromUser(post.Creator),
+				Participants = post.Group.UsersGroups.Select(ug => ug.UserId).ToList()
 			};
 		}
 	}

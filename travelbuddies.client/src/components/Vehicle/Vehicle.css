@@ -1,0 +1,25 @@
+.vehicle{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    max-width: 50vw;
+}
+
+.vehicle-info{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+}
+
+.vehicle-info p{
+    font-size: 18px;
+}
+
+.vehicle img{
+    max-width: 20vw;
+    border-radius: 16px;
+    margin-left: auto;
+}

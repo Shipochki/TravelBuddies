@@ -19,6 +19,7 @@ export const Post = ({
     DateAndTime,
     GroupId,
     Creator,
+    Participants
 }) => {
     const { OnSetUser } = useContext(GlobalContext);
 
@@ -40,7 +41,6 @@ export const Post = ({
                 </Link>
                 <p>{Creator.FullName}</p>
             </div>
-            {/* <MapContainer originCity={FromDestinationName} destinationCity={ToDestinationName}/> */}
             <div className='post-cities'>
                 <p>{FromDestinationName}</p>
                 <FontAwesomeIcon icon={faArrowRight}/>
@@ -55,7 +55,12 @@ export const Post = ({
                 <p className='post-bool'>Pets <FontAwesomeIcon icon={Pets ? faCheck : faCircleXmark} /></p>
             </div>
             <div className='join-button'>
-                <button type='submit' onClick={onSubmit}>Join</button>
+                <button type='submit' onClick={() =>
+                        {Participants.includes(localStorage.userId) ? 
+                        alert(`You are allready in group: 
+                        ${FromDestinationName} -> ${ToDestinationName}
+                        ${DateAndTime}`) :
+                        onSubmit}}>Join</button>
             </div>
         </div>
     )
