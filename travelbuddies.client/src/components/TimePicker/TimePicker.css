@@ -1,0 +1,17 @@
+.time-picker {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+  }
+  
+  .time-input {
+    width: 50px;
+    padding: 5px;
+  }
+  
+  .set-button {
+    padding: 5px 10px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  
