@@ -45,7 +45,7 @@
 		{
 			services.AddScoped<UserManager<ApplicationUser>>();
 			services.AddScoped<IRepository, Repository>();
-			services.AddScoped<IBlobService, BlobService>();
+			//services.AddScoped<IBlobService, BlobService>();
 			services.AddScoped<IMailSender, MailSender>();
 			services.AddScoped<IAuthTokenService, AuthTokenService>();
 			services.AddScoped<IStripeService, StripeService>();

@@ -12,16 +12,15 @@
 
 	public class UpdateVehicleHandler : BaseHandler, IRequestHandler<UpdateVehicleCommand, Task>
 	{
-		private readonly IBlobService _blobService;
+		//private readonly IBlobService _blobService;
 
 		public UpdateVehicleHandler(
 			IRepository repository
 			, UserManager<ApplicationUser> userManager
-			, RoleManager<IdentityRole> roleManager
-			, IBlobService blobService)
+			, RoleManager<IdentityRole> roleManager)
 			: base(repository, userManager, roleManager)
 		{
-			_blobService = blobService;
+			//_blobService = blobService;
 		}
 
 		public async Task<Task> Handle(UpdateVehicleCommand request, CancellationToken cancellationToken)
@@ -42,9 +41,9 @@
 
 			if(request.PictureLink != null)
 			{
-				string pictureLink = await _blobService.UploadImageAsync(request.PictureLink);
+				//string pictureLink = await _blobService.UploadImageAsync(request.PictureLink);
 				
-				vehicle.PictureLink = pictureLink;
+				vehicle.PictureLink = string.Empty;
 			}
 
 			vehicle.BrandName = request.BrandName;

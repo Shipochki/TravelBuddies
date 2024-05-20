@@ -21,7 +21,6 @@ export const OnCreateVehicleSubmit = async (createVehicleFromKeys) => {
   
           if (response.ok) {
             // Handle successful response
-            return response.json();
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);
@@ -53,7 +52,6 @@ export const OnUpdateVehicleSubmit = async (updateVehicleFromKeys) => {
   
           if (response.ok) {
             // Handle successful response
-            return response.json();
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);

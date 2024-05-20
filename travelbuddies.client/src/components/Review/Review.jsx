@@ -28,15 +28,21 @@ export const Review = ({review}) => {
 
     return(
         <div className='profile-review'>
-            <LazyLoadImage
-            onClick={LoadProfile} 
-            src={review.creator.creatorProfileLink 
+            <div className='review-creator-info'>
+                <LazyLoadImage
+                onClick={LoadProfile} 
+                src={review.creator.creatorProfileLink 
                 ? review.creator.creatorProfileLink 
                 : 'https://sttravelbuddies001.blob.core.windows.net/web/blank-profile-picture-973460_960_720.png'}/> 
-            <div>
-                <p>{review.rating}/5</p>
+                <p>{review.creator.fullName}</p>
             </div>
-            <p>{review.text}</p>
+            
+            <div className='review-rating-createdon-info'>
+                <p className='review-rating'>{review.rating}/5</p>
+                <p className='review-createdon'>{review.createdOn}</p>
+            </div>
+            <div className='review-text-editing'>
+                 <p>{review.text}</p>
                 {(review.creator.id == localStorage.userId
                  || localStorage.role == 'admin') && (
                     <div className='review-editing-buttons last-child'>
@@ -65,6 +71,8 @@ export const Review = ({review}) => {
                         </div>
                     </div>
                 )}
+            </div>
+           
         </div>
     )
 }

@@ -35,8 +35,6 @@
 		[Route("[action]")]
 		public async Task<IActionResult> Register([FromForm] UserRegisterDto userRegisterDto)
 		{
-			var formCollection = Request.Form["profilepicture"];
-
 			CreateApplicationUserCommand command = new CreateApplicationUserCommand()
 			{
 				Email = userRegisterDto.Email,

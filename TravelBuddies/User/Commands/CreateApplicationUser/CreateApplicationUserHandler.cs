@@ -12,16 +12,15 @@
 
 	public class CreateApplicationUserHandler : BaseHandler, IRequestHandler<CreateApplicationUserCommand, Task>
 	{
-		private readonly IBlobService _blobService;
+		//private readonly IBlobService _blobService;
 
 		public CreateApplicationUserHandler(
 			IRepository repository
 			, UserManager<ApplicationUser> userManager
-			, RoleManager<IdentityRole> roleManager
-			, IBlobService blobService)
+			, RoleManager<IdentityRole> roleManager)
 			: base(repository, userManager, roleManager)
 		{
-			_blobService = blobService;
+			//_blobService = blobService;
 		}
 
 		public async Task<Task> Handle(CreateApplicationUserCommand request, CancellationToken cancellationToken)
@@ -30,7 +29,7 @@
 
 			if(request.ProfilePicture != null)
 			{
-				profilePictureLink = await _blobService.UploadImageAsync(request.ProfilePicture);
+				//profilePictureLink = await _blobService.UploadImageAsync(request.ProfilePicture);
 			}
 
 			ApplicationUser applicationUser = new ApplicationUser()
@@ -41,7 +40,8 @@
 				LastName = request.LastName,
 				City = request.City,
 				Country = request.Country,
-				ProfilePictureLink = profilePictureLink
+				ProfilePictureLink = profilePictureLink,
+				CreatedOn = DateTime.Now
 			};
 
 			IdentityResult result = await _userManager.CreateAsync(applicationUser, request.Password);

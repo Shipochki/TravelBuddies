@@ -1,9 +1,10 @@
 import './CreateVehicle.css'
 import { GetVehicleByOwnerId, OnCreateVehicleSubmit } from "../../services/VehicleService"
 import { useForm } from "../../utils/hooks/useForm"
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { NotDriver } from '../../components/NotDriver/NotDriver'
+import { GlobalContext } from '../../utils/contexts/GlobalContext'
 
 const VehicleFromKeys = {
     BrandName: 'brandname',
@@ -15,6 +16,8 @@ const VehicleFromKeys = {
 }
 
 export const CreateVehicle = ({vehicle}) => {
+    const {OnSetVehicle} = useContext(GlobalContext);
+
     const {values, changeHandler, onSubmit} = useForm({
         [VehicleFromKeys.BrandName]: '',
         [VehicleFromKeys.ModelName]: '',
@@ -25,9 +28,13 @@ export const CreateVehicle = ({vehicle}) => {
     }, OnCreateVehicleSubmit);
 
     const OnClickSubmit = async (e) => {
-        onSubmit(e);
+        e.preventDefault();
+
+        await OnCreateVehicleSubmit(values);
 
         const result = await GetVehicleByOwnerId(localStorage.userId);
+
+        OnSetVehicle(result);
     }
 
     const [nameFile, setNameFile] = useState('');

@@ -1,4 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './Vehicle'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 export const Vehicle = ({vehicle}) => {
 
