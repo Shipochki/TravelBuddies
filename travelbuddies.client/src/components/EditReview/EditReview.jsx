@@ -1,10 +1,8 @@
-import { useContext } from 'react'
 import { OnUpdateReviewSubmit } from '../../services/ReviewService'
-import { GetUserById } from '../../services/UserService'
 import { useForm } from '../../utils/hooks/useForm'
 import { StarSelector } from '../StarSelector/StarSelector'
 import './EditReview.css'
-import { GlobalContext } from '../../utils/contexts/GlobalContext'
+import { useNavigate } from 'react-router-dom'
 
 const EditReviewFromKeys = {
     Id: 'id',
@@ -14,7 +12,7 @@ const EditReviewFromKeys = {
 }
 
 export const EditReview = ({review, userId}) => {
-    const { OnSetUser } = useContext(GlobalContext);
+    const navigate = useNavigate();
 
     const {values, changeHandler, onSubmit} = useForm({
         [EditReviewFromKeys.Id]: review.id,
@@ -33,9 +31,8 @@ export const EditReview = ({review, userId}) => {
 
         await OnUpdateReviewSubmit(values);
 
-        const result = await GetUserById(id);
-
-        OnSetUser(result);
+        window.location.reload();
+        navigate(`/profile/${id}`)
     }
 
     return(

@@ -43,7 +43,7 @@ export const Group = () => {
                 <div className="group-info">
                     <p onClick={onClickVisable}><FontAwesomeIcon icon={faPeopleGroup}/> Members</p>
                     {membersVisable && group.members.map((m) => (
-                       <MemberGroup key={`member-key-${m.id}`} member={m}/>
+                       <MemberGroup key={`member-key-${m.id}`} member={m} ownerId={group.creator.id}/>
                     ))}
             </div>
             <div className="group-messages">
@@ -55,7 +55,7 @@ export const Group = () => {
                     ))}
             </div>
             </div>
-            <CreateMessage group={group}/>
+            <CreateMessage groupId={group.id}/>
         </div>
     )
 }

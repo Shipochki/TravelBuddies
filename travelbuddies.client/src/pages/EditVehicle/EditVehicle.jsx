@@ -1,8 +1,7 @@
 import './EditVehicle.css'
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { GetVehicleByOwnerId, OnUpdateVehicleSubmit } from "../../services/VehicleService";
 import { useForm } from "../../utils/hooks/useForm";
-import { GlobalContext } from "../../utils/contexts/GlobalContext";
 import { NoVehicle } from '../../components/NoVehicle/NoVehicle';
 
 const EditVehicleFromKeys = {
@@ -22,6 +21,13 @@ export const EditVehicle = () => {
         const fetchData = async () => {
             const data = await GetVehicleByOwnerId(localStorage.userId);
             setVehicle(data);
+
+            values[EditVehicleFromKeys.Id] = data.id;
+            values[EditVehicleFromKeys.BrandName] = data.brandName;
+            values[EditVehicleFromKeys.ModelName] = data.modelName;
+            values[EditVehicleFromKeys.Fuel] = fuel[data.fuel];
+            values[EditVehicleFromKeys.SeatCount] = data.seatCount;
+            values[EditVehicleFromKeys.ACSystem] = data.acSystem;
         }
         fetchData();
     }, []);
@@ -63,7 +69,7 @@ export const EditVehicle = () => {
 
     return(
         <div className="create-vehicle-main">
-            {vehicle.length != 0 ? (
+            {vehicle.id ? (
                 <div className='create-vehicle-content'>
                 <div className='create-vehicle-header'>
                     <h2>Edit your Vehicle</h2>

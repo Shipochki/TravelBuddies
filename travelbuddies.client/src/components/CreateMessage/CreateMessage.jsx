@@ -8,19 +8,21 @@ const MessageFromKeys = {
     GroupId: 'groupId'
 }
 
-export const CreateMessage = ({group}) => {
+export const CreateMessage = ({groupId}) => {
     const navigate = useNavigate();
 
     const { values, changeHandler, onSubmit } = useForm({
         [MessageFromKeys.Text]: '',
-        [MessageFromKeys.GroupId]: group.id
+        [MessageFromKeys.GroupId]: groupId
     }, OnCreateMessageSubmit)
 
     const onCreateSubmit = async (id) => {
+        values[MessageFromKeys.GroupId] = id;
         await OnCreateMessageSubmit(values);
 
         values[MessageFromKeys.Text] = '';
 
+        window.location.reload();
         navigate(`/group/${id}`);
     }
 
@@ -28,7 +30,7 @@ export const CreateMessage = ({group}) => {
         <div className="message-form">
                 <form method="POST" onSubmit={(e) => {
                     e.preventDefault();
-                    onCreateSubmit(group.id)}}>
+                    onCreateSubmit(groupId)}}>
                     <input 
                         type="text"
                         placeholder="Your message here..."

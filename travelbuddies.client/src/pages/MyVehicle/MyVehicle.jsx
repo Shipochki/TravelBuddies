@@ -17,7 +17,7 @@ export const MyVehicle = () => {
 
     return(
         <div className="myvehicle-main">
-            {vehicle.length != 0 ? (
+            {vehicle.id ? (
                 <Vehicle vehicle={vehicle}/>
             ) : (
                 <NoVehicle/>

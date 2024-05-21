@@ -1,28 +1,23 @@
-import { useContext } from 'react';
-import { GetUserById } from '../../services/UserService';
 import './Review.css';
-import { GlobalContext } from '../../utils/contexts/GlobalContext';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { StarGenerator } from '../StarGenerator/StarGenerator';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil, faX } from '@fortawesome/free-solid-svg-icons';
 import { OnDeleteReviewSubmit } from '../../services/ReviewService';
+import { useNavigate } from 'react-router-dom';
 
 export const Review = ({review}) => {
-    const { OnSetUser } = useContext(GlobalContext);
+    const navigate = useNavigate();
 
-    const LoadProfile = async (e) => {
-        e.preventDefault();
-        const result = await GetUserById(review.creator.id);
-        OnSetUser(result);
+    const LoadProfile = () => {
+        navigate(`/profile/${review.creator.id}`)
     }
 
-    const ConfirmDelete = async (e, reviewId) => {
+    const ConfirmDelete = async (reviewId) => {
         const text = `Are you sure you want to delete this review:\n ${review.text}`
         if(confirm(text) == true){
             await OnDeleteReviewSubmit(reviewId);
 
-            await LoadProfile(e);
+             LoadProfile();
         }
     }
 
@@ -62,7 +57,7 @@ export const Review = ({review}) => {
                             <button
                                 onClick={(e) => {
                                     e.preventDefault()
-                                    ConfirmDelete(e, review.id);
+                                    ConfirmDelete(review.id);
                                 }}
                                 className='delete-review-button'>
                                 <FontAwesomeIcon icon={faX}/>

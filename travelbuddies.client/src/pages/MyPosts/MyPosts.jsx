@@ -14,7 +14,7 @@ export const MyPosts = () => {
         }
 
         fetchData();
-    })
+    }, []);
     
     return(
         <div className="myposts-main">

@@ -3,11 +3,7 @@ import './Post.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { OnJoinGroupSubmit } from '../../services/UserGroupService';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { Link } from 'react-router-dom';
-import { useContext } from 'react';
-import { GetUserById } from '../../services/UserService';
-import { GlobalContext } from '../../utils/contexts/GlobalContext';
-import { GetGroupById } from '../../services/GroupService';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Post = ({
     FromDestinationName,
@@ -22,25 +18,18 @@ export const Post = ({
     Creator,
     Participants
 }) => {
-    const { OnSetUser, OnSetGroup } = useContext(GlobalContext);
-
-    const LoadProfile = async (e) => {
-        e.preventDefault();
-        const result = await GetUserById(Creator.Id);
-        OnSetUser(result);
-    }
+    const navigate = useNavigate();
 
     const OnJoinSubmit = async (e) => {
         e.preventDefault();
         await OnJoinGroupSubmit(GroupId);
-        const result = await GetGroupById(GroupId);
-        OnSetGroup(result);
+        navigate(`/group/${GroupId}`)
     }
 
     return (
         <div className='post-component'>
             <div className='post-creator'>
-                <Link onClick={LoadProfile}>
+                <Link to={`/profile/${Creator.Id}`}>
                     <LazyLoadImage src={Creator.ProfilePictureLink ?? 'https://sttravelbuddies001.blob.core.windows.net/web/blank-profile-picture-973460_960_720.png'}/>
                 </Link>
                 <p>{Creator.FullName}</p>

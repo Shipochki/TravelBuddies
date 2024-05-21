@@ -1,22 +1,18 @@
-import { useContext } from 'react';
 import './Message.css';
-import { GlobalContext } from '../../utils/contexts/GlobalContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { OnDeleteMessageSubmit } from '../../services/MessageService';
-import { GetGroupById } from '../../services/GroupService';
 
 export const Message = ({message, i, ownerId}) => {
-    const { OnSetGroup } = useContext(GlobalContext);
+    const navigate = useNavigate();
 
     const ConfirmDelete = async (messageId) => {
         const text = `Are you sure you want to delete this message:\n ${message.text}`
         if(confirm(text) == true){
             await OnDeleteMessageSubmit(messageId);
 
-            const result = await GetGroupById(message.groupId);
-
-            OnSetGroup(result);
+            window.location.reload();
+            navigate(`/group/${message.groupId}`)
         }
     }
 

@@ -1,9 +1,7 @@
-import { useContext } from 'react';
 import './EditMessage.css'
-import { GlobalContext } from '../../utils/contexts/GlobalContext';
 import { OnUpdateMessageSubmit } from '../../services/MessageService';
-import { GetGroupById } from '../../services/GroupService';
 import { useForm } from '../../utils/hooks/useForm';
+import { useNavigate } from 'react-router-dom';
 
 const EditMessageFromKeys = {
     Id: 'id',
@@ -12,7 +10,7 @@ const EditMessageFromKeys = {
 }
 
 export const EditMessage = ({message}) => {
-    const { OnSetGroup } = useContext(GlobalContext);
+    const navigate = useNavigate();
 
     const { values, changeHandler, onSubmit } = useForm({
         [EditMessageFromKeys.Id]: message.id,
@@ -25,9 +23,8 @@ export const EditMessage = ({message}) => {
 
         await OnUpdateMessageSubmit(values);
 
-        const result = await GetGroupById(groupId);
-
-        OnSetGroup(result);
+        window.location.reload();
+        navigate(`/group/${groupId}`);
     }
 
     return (

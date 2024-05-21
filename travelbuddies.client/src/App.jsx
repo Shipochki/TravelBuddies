@@ -104,9 +104,9 @@ function App() {
                             <Route path='/' element={<Home/>}/>
                             <Route path='/login' element={<Login/>}/>
                             <Route path='/register' element={<Regiser/>}/>
+                            <Route path='/about' element={<About/>}/>
                         </>
                     )} 
-                    <Route path='/about' element={<About/>}/>
                     <Route path='*' element={<NotFound/>}/>
                 </Routes>
                 <Footer/>
