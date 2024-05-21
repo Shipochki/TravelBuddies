@@ -2,9 +2,7 @@ import './EditVehicle.css'
 import { useContext, useEffect, useState } from "react";
 import { GetVehicleByOwnerId, OnUpdateVehicleSubmit } from "../../services/VehicleService";
 import { useForm } from "../../utils/hooks/useForm";
-import { Link } from "react-router-dom";
 import { GlobalContext } from "../../utils/contexts/GlobalContext";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import { NoVehicle } from '../../components/NoVehicle/NoVehicle';
 
 const EditVehicleFromKeys = {
@@ -17,8 +15,16 @@ const EditVehicleFromKeys = {
     ACSystem: 'acsystem',
 }
 
-export const EditVehicle = ({vehicle}) => {
-    const {OnSetVehicle} = useContext(GlobalContext);
+export const EditVehicle = () => {
+    const [vehicle, setVehicle] = useState({});
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await GetVehicleByOwnerId(localStorage.userId);
+            setVehicle(data);
+        }
+        fetchData();
+    }, []);
 
     const fuel = {
         "Diesel": 0,
@@ -35,13 +41,6 @@ export const EditVehicle = ({vehicle}) => {
         [EditVehicleFromKeys.PictureLink]: null,
         [EditVehicleFromKeys.ACSystem]: vehicle.acSystem,
     }, OnUpdateVehicleSubmit);
-
-    const OnClickSubmit = async (e) => {
-        onSubmit(e);
-
-        const result = await GetVehicleByOwnerId(localStorage.userId);
-        OnSetVehicle(result);
-    }
 
     const [nameFile, setNameFile] = useState('');
 
@@ -69,7 +68,7 @@ export const EditVehicle = ({vehicle}) => {
                 <div className='create-vehicle-header'>
                     <h2>Edit your Vehicle</h2>
                 </div>
-                <form className="create-vehicle-form" onSubmit={OnClickSubmit}>
+                <form className="create-vehicle-form" onSubmit={onSubmit}>
                 <div className='vehicle-brandname'>
                     <input 
                         type='text'

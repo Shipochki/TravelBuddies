@@ -1,7 +1,5 @@
 import './Group.css'
 import { useState } from "react"
-import { useContext } from "react"
-import { GlobalContext } from "../../utils/contexts/GlobalContext"
 import { GetGroupById } from "../../services/GroupService"
 import { useEffect } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -10,9 +8,19 @@ import { MemberGroup } from "../../components/MemberGroup/MemberGroup"
 import { Message } from "../../components/Message/Message"
 import { CreateMessage } from "../../components/CreateMessage/CreateMessage"
 import { EditMessage } from '../../components/EditMessage/EditMessage'
+import { useParams } from 'react-router-dom'
 
-export const Group = ({group}) => {
-    const { OnSetGroup } = useContext(GlobalContext);
+export const Group = () => {
+    const { id } = useParams();
+    const [group, setGroup] = useState({});
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await GetGroupById(id);
+            setGroup(data);
+        }
+        fetchData();
+    }, []);
 
     const [membersVisable, setMembersVisable] = useState(false);
 
@@ -22,8 +30,8 @@ export const Group = ({group}) => {
 
     useEffect(() => {
         const interval = setInterval(async () => {
-            const result = await GetGroupById(group.id);
-            OnSetGroup(result);
+            const data = await GetGroupById(id);
+            setGroup(data);
         }, 60000);
 
         return () => clearInterval(interval);
@@ -35,16 +43,16 @@ export const Group = ({group}) => {
                 <div className="group-info">
                     <p onClick={onClickVisable}><FontAwesomeIcon icon={faPeopleGroup}/> Members</p>
                     {membersVisable && group.members.map((m) => (
-                       <MemberGroup member={m}/>
+                       <MemberGroup key={`member-key-${m.id}`} member={m}/>
                     ))}
             </div>
             <div className="group-messages">
-                {group.messages.map((m, i) => (
-                    <>
-                        <Message message={m} i={i} ownerId={group.creator.id}/>
-                        <EditMessage message={m}/>
-                    </>
-                ))}
+                    {group.messages && group.messages.map((m, i) => (
+                        <div key={`message-container-key${i}`}>
+                            <Message key={`message-key-${m.id}`} message={m} i={i} ownerId={group.creator.id}/>
+                            <EditMessage key={`edit-message-key-${m.id}`} message={m}/>
+                        </div>
+                    ))}
             </div>
             </div>
             <CreateMessage group={group}/>

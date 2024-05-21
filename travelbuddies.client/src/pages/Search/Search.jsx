@@ -1,11 +1,14 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import './Search.css'
 import Calendar from '../../components/Calendar/Calendar';
 import { useForm } from '../../utils/hooks/useForm';
+import { serializer } from '../../utils/common/serializer'
 import { OnSearchSubmit } from '../../services/PostService';
 import { GlobalContext } from '../../utils/contexts/GlobalContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight, faCalendar, faCalendarDays, faCarSide, faCheck, faSliders, faX } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faCalendarDays, faSliders, faX } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
+import { GetAllCities } from '../../services/CityService';
 
 const searchFromKeys = {
   FromDestination: 'fromDestinationCityId',
@@ -18,8 +21,17 @@ const searchFromKeys = {
   Pets: 'pets',
 }
 
-export const Search = ({cities}) => {
-  const {OnSetPosts} = useContext(GlobalContext);
+export const Search = () => {
+  const [cities, setCities] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await GetAllCities();
+      setCities(data);
+    };
+    fetchData();
+  }, [])
 
   const { values, changeHandler, onSubmit } = useForm({
     [searchFromKeys.FromDestination]: '',
@@ -42,10 +54,8 @@ export const Search = ({cities}) => {
     }else{
       values[searchFromKeys.FromDestination] = fromdes.id;
       values[searchFromKeys.ToDestination] = todes.id;
-    
-      const result = await OnSearchSubmit(values);
 
-      OnSetPosts(result);
+      navigate(`/catalog?${serializer(values)}`)
     }
   }
 

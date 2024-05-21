@@ -1,21 +1,19 @@
-import { useContext } from "react";
 
 const Url = 'https://localhost:7005/api/post';
 
-export const OnSearchSubmit = async (searchFromKeys) => {
+export const OnSearchSubmit = async () => {
     try {
-      const response = await fetch(Url + '/allpostbysearch', {
-        method: 'POST',
+      const params = new URLSearchParams(location.search);
+
+      const response = await fetch(Url + `/allpostbysearch?${params.toString()}`, {
+        method: 'GET',
         mode: "cors",
         headers: {
             'Authorization': `Bearer ${localStorage.accessToken}`,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(searchFromKeys)
+        }
       });
       
       const result = await response.json();
-      console.log(result);
       return result;
     } catch (error) {
       console.error('Error fetching get all post by search:', error);

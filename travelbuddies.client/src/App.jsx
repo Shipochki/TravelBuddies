@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { Home } from './pages/Home/Home';
@@ -26,105 +26,11 @@ import { NotFound } from './pages/NotFound/NotFound';
 
 function App() {
     const navigate = useNavigate();
-    const [cities, setCities] = useState([]);
     const [posts, setPosts] = useState([]);
-    const [groups, setGroups] = useState([]);
     const [group, setGroup] = useState([]);
     const [user, setUser] = useState([]);
-    //const [expiry, setExpiry] = useState(null);
     const [reviews, setReviews] = useState([]);
     const [vehicle, setVehicle] = useState([]);
-    const [isLoading, setIsloading] = useState(true);
-
-    if(localStorage.accessToken){
-        useEffect(() => {
-        const GetAllCities = async () => {
-          try {
-            const response = await fetch('https://localhost:7005/api/city/getcities', {
-                method: 'GET',
-                mode: "cors",
-                headers: {
-                    'Authorization': `Bearer ${localStorage.accessToken}`,
-                    'Content-Type': 'application/json'
-                }});
-            const cityNames = await response.json();
-            setCities(cityNames);
-          } catch (error) {
-            console.error('Error fetching cities:', error);
-          }
-        }; 
-        GetAllCities();
-            }, []);
-    
-        useEffect(() => {
-        const GetAllGroupByUserId = async () => {
-            try {
-                const response = await fetch('https://localhost:7005/api/group/getusergroupsbyuserid', {
-                  method: 'GET',
-                  mode: "cors",
-                  headers: {
-                      'Authorization': `Bearer ${localStorage.accessToken}`,
-                      'Content-Type': 'application/json'
-                  },
-                });
-
-                const groups = await response.json()
-                setGroups(groups);
-                
-              } catch (error) {
-                console.error('Error fetching join group:', error);
-              }};
-              GetAllGroupByUserId()
-            }, [])
-
-        useEffect(() => {
-        const GetVehicleByOwnerId = async () => {
-            try {
-              const response = await fetch(`https://localhost:7005/api/vehicle/getvehiclebyownerid/${localStorage.userId}`, {
-                method: 'GET',
-                mode: "cors",
-                headers: {
-                    'Authorization': `Bearer ${localStorage.accessToken}`,
-                    'Content-Type': 'application/json'
-                },
-              });
-          
-                if (response.ok) {
-                  // Handle successful response
-                  const result = await response.json();
-                  setVehicle(result);
-              }  else {
-                  // Handle other errors
-                  console.error('Error:', response.statusText);
-              }
-            } catch (error) {
-              console.error('Error fetching get vehicle by owner id:', error);
-            };
-          }
-          GetVehicleByOwnerId();
-            }, [])
-    }
-
-    // useEffect(() => {
-    //     if(localStorage.accessToken){
-    //         setExpiry(localStorage.exp * 1000);
-    //     }
-    // })
-
-    // useEffect(() => {
-    //     const interval = setInterval(checkTokenExpiry, 60000); // Check every minute
-    //     return () => clearInterval(interval); // Cleanup on unmount
-    //   }, [expiry]);
-    
-    //   function checkTokenExpiry() {
-    //     if (expiry) {
-    //       const currentTime = new Date().getTime();
-    //       if (currentTime >= expiry.getTime()) {
-    //         localStorage.clear();
-    //         navigate('/');
-    //       }
-    //     }
-    // }
 
     const OnSetPosts = (posts) => {
         setPosts(posts);
@@ -172,26 +78,26 @@ function App() {
                 <Header/>
                 {localStorage.accessToken && (
                     <>
-                        <Groups groups={groups}/>
+                        <Groups/>
                         <Menu />
                     </>
                 )}
                 <Routes>
                     {localStorage.accessToken ? (
                         <>
-                            <Route path='/' element={<Search cities={cities}/>}/>
-                            <Route path='/search' element={<Search cities={cities}/>}/>
+                            <Route path='/' element={<Search/>}/>
+                            <Route path='/search' element={<Search/>}/>
                             <Route path='/logout' element={<Logout/>}/>
                             <Route path='/becomeDriver' element={<BecomeDriver/>}/>
-                            <Route path='/createPost' element={<CreatePost cities={cities} vehicle={vehicle}/>}/>
-                            <Route path='/catalog' element={<Catalog posts={posts}/>}/>
-                            <Route path='/group' element={<Group group={group}/>}/>
-                            <Route path='/profile' element={<Profile user={user}/>}/>
-                            <Route path='/reviews' element={<Reviews reviews={reviews}/>}/>
-                            <Route path='/createVehicle' element={<CreateVehicle vehicle={vehicle} />}/>
-                            <Route path='/editVehicle' element={<EditVehicle vehicle={vehicle}/>}/>
+                            <Route path='/createPost' element={<CreatePost/>}/>
+                            <Route path='/catalog' element={<Catalog/>}/>
+                            <Route path='/group/:id' element={<Group/>}/>
+                            <Route path='/profile/:id' element={<Profile/>}/>
+                            <Route path='/reviews/:id' element={<Reviews/>}/>
+                            <Route path='/createVehicle' element={<CreateVehicle/>}/>
+                            <Route path='/editVehicle' element={<EditVehicle/>}/>
                             <Route path='/myVehicle' element={<MyVehicle vehicle={vehicle}/>}/>
-                            <Route path='/myPosts' element={<MyPosts posts={posts}/>}/>
+                            <Route path='/myPosts' element={<MyPosts/>}/>
                         </>
                     ) : (
                         <>

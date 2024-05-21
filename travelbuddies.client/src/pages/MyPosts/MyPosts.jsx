@@ -1,11 +1,21 @@
-import { Link } from "react-router-dom"
 import './MyPosts.css'
-import { Post } from "../../components/Post/Post"
 import { NotDriver } from "../../components/NotDriver/NotDriver"
 import { MyPost } from "../../components/MyPost/MyPost"
+import { useEffect, useState } from "react"
+import { GetPostsByOwnerId } from "../../services/PostService"
 
-export const MyPosts = ({posts}) => {
+export const MyPosts = () => {
+    const [posts, setPosts] = useState([]);
 
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await GetPostsByOwnerId(localStorage.userId);
+            setPosts(data);
+        }
+
+        fetchData();
+    })
+    
     return(
         <div className="myposts-main">
             {localStorage.role == 'driver' ? (

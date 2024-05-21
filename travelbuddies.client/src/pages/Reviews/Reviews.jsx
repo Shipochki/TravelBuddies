@@ -1,7 +1,20 @@
+import { useEffect, useState } from 'react';
 import { Review } from '../../components/Review/Review';
 import './Reviews.css';
+import { GetAllReviewByReciverId } from '../../services/ReviewService';
+import { useParams } from 'react-router-dom';
 
-export const Reviews = ({reviews}) => {
+export const Reviews = () => {
+    const {id} = useParams();
+    const [reviews, setReviews] = useState([])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await GetAllReviewByReciverId(id)
+            setReviews(data);
+        };
+        fetchData();
+    }, []);
 
     return(
         <div className='reviews-main'>

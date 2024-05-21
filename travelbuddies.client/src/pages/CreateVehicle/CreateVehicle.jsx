@@ -1,7 +1,7 @@
 import './CreateVehicle.css'
 import { GetVehicleByOwnerId, OnCreateVehicleSubmit } from "../../services/VehicleService"
 import { useForm } from "../../utils/hooks/useForm"
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { NotDriver } from '../../components/NotDriver/NotDriver'
 import { GlobalContext } from '../../utils/contexts/GlobalContext'
@@ -17,7 +17,17 @@ const VehicleFromKeys = {
     ACSystem: 'acsystem',
 }
 
-export const CreateVehicle = ({vehicle}) => {
+export const CreateVehicle = () => {
+    const [vehicle, setVehicle] = useState({});
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await GetVehicleByOwnerId(localStorage.userId);
+            setVehicle(data);
+        }
+        fetchData();
+    }, []);
+
     const {OnSetVehicle} = useContext(GlobalContext);
 
     const {values, changeHandler, onSubmit} = useForm({

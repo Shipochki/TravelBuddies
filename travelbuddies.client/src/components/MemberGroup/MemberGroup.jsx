@@ -1,21 +1,13 @@
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { GetUserById } from "../../services/UserService";
-import { useContext } from "react";
-import { GlobalContext } from "../../utils/contexts/GlobalContext";
 import './MemberGroup.css'
+import { useNavigate } from "react-router-dom";
 
 export const MemberGroup = ({member}) => {
-    const { OnSetUser } = useContext(GlobalContext);
-    
-    const LoadProfile = async (id) => {
-        const result = await GetUserById(id);
-        OnSetUser(result);
-    }
+    const navigate = useNavigate();
     return(
         <div className="member" 
-            onClick={async (e) => {
-                e.preventDefault();
-                LoadProfile(member.id);
+            onClick={() => {
+                navigate(`/profile/${member.id}`)
             }}>
             <LazyLoadImage 
                 src={member.profilePictureLink 

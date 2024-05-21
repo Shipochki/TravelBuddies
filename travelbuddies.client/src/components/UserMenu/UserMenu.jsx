@@ -38,18 +38,12 @@ export const UserMenu = () => {
         }
       };
 
-      document.addEventListener('mousedown', handleOutsideClick);
+        document.addEventListener('mousedown', handleOutsideClick);
   
       return () => {
         document.removeEventListener('mousedown', handleOutsideClick);
       };
     }, []);
-
-    const LoadProfile = async (e) => {
-        e.preventDefault();
-        const result = await GetUserById(localStorage.userId);
-        OnSetUser(result);
-    }
 
     return (
         <div>
@@ -72,9 +66,7 @@ export const UserMenu = () => {
                             <p>{localStorage.fullname}</p>
                         </div>
                         <div className='navLinks'>
-                            <Link 
-                            onClick={LoadProfile
-                            }>{<FontAwesomeIcon icon={faUser}/>} Profile</Link>
+                            <Link to={`/profile/${localStorage.userId}`}>{<FontAwesomeIcon icon={faUser}/>} Profile</Link>
                             <Link to={'/edit'}>{<FontAwesomeIcon icon={faPencil}/>} Edit</Link>
                             {/* {localStorage.role == 'client' ? (  
                                 <Link to={'/becomeDriver'}>{<FontAwesomeIcon icon={faDriversLicense}/>}Become Driver</Link>

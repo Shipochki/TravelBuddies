@@ -4,8 +4,21 @@ import { Review } from '../../components/Review/Review';
 import { CreateReview } from '../../components/CreateReview/CreateReview';
 import { Vehicle } from '../../components/Vehicle/Vehicle';
 import { EditReview } from '../../components/EditReview/EditReview';
+import { useEffect, useState } from 'react';
+import { GetUserById } from '../../services/UserService';
+import { useParams } from 'react-router-dom';
 
-export const Profile = ({user}) => {
+export const Profile = () => {
+    const {id} = useParams();
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await GetUserById(id);
+            setUser(data);
+        };
+        fetchData();
+    }, []);
 
     return (
         <div className='profile-main'>
@@ -40,11 +53,11 @@ export const Profile = ({user}) => {
                     {user.id != localStorage.userId && (
                        <CreateReview user={user}/>  
                     )}
-                    {user.reviews.length > 0 ? (
+                    {user.reviews ? (
                         user.reviews.map((r) => (
                             <>
-                                <Review key={r.id} review={r} userId={user.id}/>
-                                <EditReview key={r.id} userId={user.id} review={r}/>
+                                <Review key={`review-key-${r.id}`} review={r} userId={user.id}/>
+                                <EditReview key={`edit-review-key-${r.id}`} userId={user.id} review={r}/>
                             </>
                         ))
                     ): (

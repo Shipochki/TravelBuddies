@@ -31,22 +31,30 @@
 		{
 		}
 
-		[HttpPost]
+		[HttpGet]
 		[Route("[action]")]
-		public async Task<IActionResult> AllPostBySearch([FromBody] PostSearchDto postSearchDto)
+		public async Task<IActionResult> AllPostBySearch(
+			[FromQuery] int fromDestinationCityId,
+			[FromQuery] int toDestinationCityId,
+			[FromQuery] decimal? priceMin,
+			[FromQuery] decimal? priceMax,
+			[FromQuery] string? fromDate,
+			[FromQuery] string? toDate,
+			[FromQuery] bool? baggage,
+			[FromQuery] bool? pets)
 		{
 			LogLevel logLevel;
 
 			GetPostBySearchQuery command = new GetPostBySearchQuery()
 			{
-				FromDate = postSearchDto.FromDate,
-				ToDate = postSearchDto.ToDate,
-				FromDestinationCityId = postSearchDto.FromDestinationCityId,
-				ToDestinationCityId = postSearchDto.ToDestinationCityId,
-				PriceMin = postSearchDto.PriceMin,
-				PriceMax = postSearchDto.PriceMax,
-				Baggage = postSearchDto.Baggage,
-				Pets = postSearchDto.Pets,
+				FromDate = fromDate,
+				ToDate = toDate,
+				FromDestinationCityId = fromDestinationCityId,
+				ToDestinationCityId = toDestinationCityId,
+				PriceMin = priceMin,
+				PriceMax = priceMax,
+				Baggage = baggage,
+				Pets = pets,
 			};
 
 			List<Post> posts = await _mediator.Send(command);

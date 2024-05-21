@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "../../utils/hooks/useForm";
 import { GetPostsByOwnerId, OnCreatePostSubmit } from "../../services/PostService";
 import './CreatePost.css'
@@ -8,6 +8,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faCalendarDays, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { NoVehicle } from "../../components/NoVehicle/NoVehicle";
 import { GlobalContext } from "../../utils/contexts/GlobalContext";
+import { GetVehicleByOwnerId } from "../../services/VehicleService";
+import { GetAllCities } from "../../services/CityService";
 
 const CreatePostFromKeys = {
     FromDestination: 'fromDestinationCityId',
@@ -21,7 +23,21 @@ const CreatePostFromKeys = {
     Time: 'time'
 }
 
-export const CreatePost = ({cities, vehicle}) => {
+export const CreatePost = () => {
+    const [cities, setCities] = useState([]);
+    const [vehicle, setVehicle] = useState({});
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await GetAllCities();
+            setCities(data);
+
+            const dataVeh = await GetVehicleByOwnerId(localStorage.userId);
+            setVehicle(dataVeh);
+        };
+        fetchData();
+    }, [])
+
     const {OnSetPostsByOwner} = useContext(GlobalContext);
 
     const {values, changeHandler, onSubmit } = useForm({

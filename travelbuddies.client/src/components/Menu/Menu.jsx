@@ -33,8 +33,7 @@ export const Menu = () => {
         <div className="left-menu-main">
             <div className="reviews-link">
                 <h4>{<FontAwesomeIcon icon={faStar}/>} Review</h4>
-                <Link 
-                onClick={LoadReviews}>My Reviews</Link>
+                <Link to={`/reviews/${localStorage.userId}`}>My Reviews</Link>
             </div>
             <div className="vehicle-links">
                 <h4>{<FontAwesomeIcon icon={faCarSide}/>} Vehicle</h4>

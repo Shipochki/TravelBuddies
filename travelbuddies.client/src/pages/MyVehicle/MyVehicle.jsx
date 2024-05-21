@@ -1,12 +1,19 @@
-import { LazyLoadImage } from 'react-lazy-load-image-component'
 import './MyVehicle.css'
-import { Link } from "react-router-dom"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck, faX } from '@fortawesome/free-solid-svg-icons'
 import { NoVehicle } from '../../components/NoVehicle/NoVehicle'
 import { Vehicle } from '../../components/Vehicle/Vehicle'
+import { GetVehicleByOwnerId } from '../../services/VehicleService';
+import { useEffect, useState } from 'react';
 
-export const MyVehicle = ({vehicle}) => {
+export const MyVehicle = () => {
+    const [vehicle, setVehicle] = useState({});
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await GetVehicleByOwnerId(localStorage.userId);
+            setVehicle(data);
+        }
+        fetchData();
+    }, []);
 
     return(
         <div className="myvehicle-main">
