@@ -5,8 +5,9 @@
     using TravelBuddies.Infrastructure.CustomLogger;
     using TravelBuddies.Domain.Common;
     using TravelBuddies.Application.Common.Interfaces.CustomLogger;
+	using TravelBuddies.Domain.Enums;
 
-    [Route("api/[controller]")]
+	[Route("api/[controller]")]
 	[ApiController]
 	public abstract class BaseController : ControllerBase
 	{

@@ -42,7 +42,7 @@ export const Review = ({review}) => {
                 <p className='review-createdon'>{review.createdOn}</p>
             </div>
             <div className='review-text-editing'>
-                 <p>{review.text}</p>
+                 <p>{(review.text)}</p>
                 {(review.creator.id == localStorage.userId
                  || localStorage.role == 'admin') && (
                     <div className='review-editing-buttons last-child'>

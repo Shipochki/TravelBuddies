@@ -37,7 +37,7 @@ export const CreateReview = ({user}) => {
     return(
         <div className="create-review-main">
             <form className='review-form' onSubmit={onSubmit}>
-                <StarSelector totalStars={5} onSelect={onChangeStar}/>
+                <StarSelector onSelect={onChangeStar}/>
                 <input 
                     type='text'
                     placeholder='Your review here'

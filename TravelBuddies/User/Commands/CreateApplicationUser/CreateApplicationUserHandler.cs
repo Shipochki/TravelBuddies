@@ -30,7 +30,7 @@
 
 			if(request.ProfilePicture != null)
 			{
-				profilePictureLink = await _blobService.UploadImageAsync(request.ProfilePicture);
+				//profilePictureLink = await _blobService.UploadImageAsync(request.ProfilePicture);
 			}
 
 			ApplicationUser applicationUser = new ApplicationUser()
