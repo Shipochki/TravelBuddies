@@ -27,13 +27,14 @@ export const Regiser = () => {
         [RegisterFromKeys.ProfilePicture]: null
     }, OnRegisterSubmit);
 
-    const clickSubmit = (e) => {
+    const clickSubmit = async (e) => {
 
         if(values[RegisterFromKeys.Password] != repass){
             return;
         }
+        e.preventDefault();
+        await OnRegisterSubmit(values);
 
-        onSubmit(e);
         window.location.assign('/login')
     }
 

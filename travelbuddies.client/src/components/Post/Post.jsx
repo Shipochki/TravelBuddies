@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { GetUserById } from '../../services/UserService';
 import { GlobalContext } from '../../utils/contexts/GlobalContext';
+import { GetGroupById } from '../../services/GroupService';
 
 export const Post = ({
     FromDestinationName,
@@ -21,7 +22,7 @@ export const Post = ({
     Creator,
     Participants
 }) => {
-    const { OnSetUser } = useContext(GlobalContext);
+    const { OnSetUser, OnSetGroup } = useContext(GlobalContext);
 
     const onSubmit = () => {
         OnJoinGroupSubmit(GroupId);
@@ -31,6 +32,12 @@ export const Post = ({
         e.preventDefault();
         const result = await GetUserById(Creator.Id);
         OnSetUser(result);
+    }
+
+    const OnJoinSubmit = async (e) => {
+        e.preventDefault();
+        const result = await GetGroupById(GroupId);
+        OnSetGroup(result);
     }
 
     return (
@@ -55,12 +62,12 @@ export const Post = ({
                 <p className='post-bool'>Pets <FontAwesomeIcon icon={Pets ? faCheck : faCircleXmark} /></p>
             </div>
             <div className='join-button'>
-                <button type='submit' onClick={() =>
+                <button type='submit' onClick={(e) =>
                         {Participants.includes(localStorage.userId) ? 
                         alert(`You are allready in group: 
                         ${FromDestinationName} -> ${ToDestinationName}
                         ${DateAndTime}`) :
-                        onSubmit}}>Join</button>
+                        OnJoinSubmit(e)}}>Join</button>
             </div>
         </div>
     )

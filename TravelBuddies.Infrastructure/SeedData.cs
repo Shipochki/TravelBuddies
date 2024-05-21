@@ -52,7 +52,22 @@
                         PasswordHash = "AQAAAAIAAYagAAAAEMh/VZgfL1JHlQRYRVq9jjyXpX4SwQYPxfO6MgLj0fjy5MsBOxg6Orr5MS9h8NV5ww==",
                         SecurityStamp = "D2VRP2BMPH4QOFVUC3LMIHZVDKCALXNZ",
                         ConcurrencyStamp = "f331cadb-1aa2-40a2-9a4f-caf2d56ea45c",
-                    }
+                    },
+                    new ApplicationUser(){
+                        Id = "750b562c-3842-460e-a47a-44798f150069",
+                        FirstName = "Kristin",
+                        LastName = "Petkova",
+                        ProfilePictureLink = "https://sttravelbuddies001.blob.core.windows.net/web/70093934-03aa-4a3c-8065-1cef7399d957",
+                        Country = "Bulgaria",
+                        City = "Varna",
+                        UserName = "krisito@mail.com",
+                        NormalizedUserName = "KRISITO@MAIL.COM",
+						NormalizedEmail = "KRISITO@MAIL.COM",
+                        Email = "krisito@mail.com",
+                        PasswordHash = "AQAAAAIAAYagAAAAEC9ZZUGGj1XLYXPq+dbIPaDdWrA4Nhs/tRGrUPWfCxQv4H8GZPBDZZDtswrdXaSj6Q==",
+                        SecurityStamp = "W7L75PHKOU2YSBQU5R3FPUCNBNZE6GEB",
+                        ConcurrencyStamp = "812c85e3-fcd3-4f53-910f-c366a395750a"
+					}
                 ]);
 
             modelBuilder.Entity<IdentityRole>()

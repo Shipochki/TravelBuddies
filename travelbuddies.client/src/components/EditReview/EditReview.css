@@ -15,14 +15,10 @@
     column-gap: 20px;
 }
 
-.edit-review-form{
-    display: flex;
-    width: 32%;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+.edit-review-main form{
     background-color: white;
+    width: 40%;
     height: 80px;
-    border-radius: 8px;
-    column-gap: 15px;
+    padding: 10px;
+    border-radius: 16px;
 }

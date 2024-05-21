@@ -40,7 +40,7 @@ export const EditReview = ({review, userId}) => {
 
     return(
         <div id={`review-${review.id}`} className="edit-review-main">
-            <form className='edit-review-form' onSubmit={(e) => {
+            <form className='review-form' onSubmit={(e) => {
                 e.preventDefault();
                 OnEditSubmit(userId);
             }}>
