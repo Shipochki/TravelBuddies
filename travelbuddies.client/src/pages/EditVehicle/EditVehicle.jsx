@@ -127,7 +127,7 @@ export const EditVehicle = ({vehicle}) => {
                 </div>
                 <div className="vehicle-upload">
                     <LazyLoadImage src={vehicle.pictureLink}/>
-                    <label>Upload Vehicle Img
+                    <label>Update Vehicle Img
                     <input 
                         type="file"
                         id='picturelink'

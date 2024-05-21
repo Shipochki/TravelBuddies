@@ -185,7 +185,8 @@ export const CreatePost = ({cities}) => {
                     placeholder="Description..."
                 />
                 <div className="create-post-date-time">
-                    <input 
+                    <div className="create-post-date-time-info">
+                        <input 
                         type="text"
                         id="date"
                         className="create-post-date"
@@ -201,7 +202,7 @@ export const CreatePost = ({cities}) => {
                         placeholder="Choose time"
                         disabled
                     />
-                <button type='button' onClick={toggleCalendar}><FontAwesomeIcon icon={!calendarVisible ? faCalendarDays : faCheck}/></button>
+                    </div>
                     {calendarVisible && 
                         <div className="calendar-time">
                             <Calendar handle={handleDate}/>
@@ -213,46 +214,54 @@ export const CreatePost = ({cities}) => {
                                 onChange={changeHandler}
                             />
                         </div>}
+                        <button type='button' onClick={toggleCalendar}><FontAwesomeIcon icon={!calendarVisible ? faCalendarDays : faCheck}/></button>
                 </div>
-                <div>
-                    <p>Baggage</p>
-                    <input
-                        type="checkbox"
-                        checked={isBaggage}
-                        onChange={handleIsBaggage}
-                    />
-                    <label>{isBaggage ? 'Checked' : 'Unchecked'}</label>
-                </div>
-                <div>
-                    <p>Pets</p>
-                    <input
-                        type="checkbox"
-                        checked={isPets}
-                        onChange={handleIsPets}
-                    />
+                <div className="create-post-bools">
+                    <div className="create-post-baggage">
+                        <p>Baggage</p>
+                        <input
+                            type="checkbox"
+                            checked={isBaggage}
+                            onChange={handleIsBaggage}
+                        />
+                        <label>{isBaggage ? 'Checked' : 'Unchecked'}</label>
+                    </div>
+                    <div className="create-post-pets">
+                        <p>Pets</p>
+                        <input
+                            type="checkbox"
+                            checked={isPets}
+                            onChange={handleIsPets}
+                        />
                     <label>{isPets ? 'Checked' : 'Unchecked'}</label>
+                    </div>
                 </div>
-                <div>
-                    <label>Price per seat</label>
-                    <input
-                        type="number"
-                        name={CreatePostFromKeys.PricePerSeat}
-                        value={values[CreatePostFromKeys.PricePerSeat]}
-                        onChange={changeHandler}
-                        placeholder="10$"
-                    />
+                <div className="create-post-nums-inputs">
+                    <div className="create-post-price">
+                        <label>Price per seat</label>
+                        <input
+                            type="number"
+                            name={CreatePostFromKeys.PricePerSeat}
+                            value={values[CreatePostFromKeys.PricePerSeat]}
+                            onChange={changeHandler}
+                            placeholder="10$"
+                        />
+                    </div>
+                    <div className="create-post-seats">
+                        <label>Available seats</label>
+                        <input
+                            type="number"
+                            name={CreatePostFromKeys.FreeSeats}
+                            value={values[CreatePostFromKeys.FreeSeats]}
+                            onChange={changeHandler}
+                            placeholder="3"
+                        />
+                    </div>
                 </div>
-                <div>
-                    <label>Free seats</label>
-                    <input
-                        type="number"
-                        name={CreatePostFromKeys.FreeSeats}
-                        value={values[CreatePostFromKeys.FreeSeats]}
-                        onChange={changeHandler}
-                        placeholder="3"
-                    />
-                </div>
-                <button type="submit">Add</button>
+                <button
+                    className="create-post-btn-add"
+                    type="submit">
+                    Add</button>
                 </form>
                 </>
             ) : (

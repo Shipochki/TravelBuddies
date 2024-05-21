@@ -9,7 +9,9 @@ export const MyPosts = ({posts}) => {
         <div className="myposts-main">
             {localStorage.role == 'driver' ? (
                 <div className="myposts-content">
-                    {posts.map((p) => (
+                    {posts.length > 0 ? (
+                        <>
+                            {posts.map((p) => (
                         <div className="myposts-post">
                             <p>{p.fromDestinationName}</p>
                             <p>{p.toDestinationName}</p>
@@ -25,7 +27,13 @@ export const MyPosts = ({posts}) => {
                                 <Link to={'/completePost'}>Complete Post</Link>
                             </div>
                         </div>
-                    ))}
+                            ))}
+                        </>
+                    ): (
+                        <div>
+                            <h2>You don't have created Posts</h2>
+                        </div>
+                    )}
                 </div>
             ) : (
                 <NotDriver/>

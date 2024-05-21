@@ -58,6 +58,10 @@
     grid-row-gap: 1vw;
 }
 
+.post-bool svg{
+    font-size: 18px;
+}
+
 .join-button{
     display: flex;
     align-items: center;
@@ -81,4 +85,12 @@
     cursor: pointer;
     background-color: #2979ff;
     color: white;
+}
+
+.fa-check{
+    color: green;
+}
+
+.fa-circle-xmark{
+    color: red;
 }

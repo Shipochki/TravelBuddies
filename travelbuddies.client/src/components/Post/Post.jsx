@@ -1,10 +1,10 @@
-import { faArrowRight, faCalendar, faCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faCalendarDays, faCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import './Post.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { OnJoinGroupSubmit } from '../../services/UserGroupService';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link } from 'react-router-dom';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { GetUserById } from '../../services/UserService';
 import { GlobalContext } from '../../utils/contexts/GlobalContext';
 import { GetGroupById } from '../../services/GroupService';
@@ -24,10 +24,6 @@ export const Post = ({
 }) => {
     const { OnSetUser, OnSetGroup } = useContext(GlobalContext);
 
-    const onSubmit = () => {
-        OnJoinGroupSubmit(GroupId);
-    }
-
     const LoadProfile = async (e) => {
         e.preventDefault();
         const result = await GetUserById(Creator.Id);
@@ -36,6 +32,7 @@ export const Post = ({
 
     const OnJoinSubmit = async (e) => {
         e.preventDefault();
+        await OnJoinGroupSubmit(GroupId);
         const result = await GetGroupById(GroupId);
         OnSetGroup(result);
     }
@@ -53,7 +50,7 @@ export const Post = ({
                 <FontAwesomeIcon icon={faArrowRight}/>
                 <p>{ToDestinationName}</p>
             </div>
-            <p className='post-dateandtime'><FontAwesomeIcon icon={faCalendar}/> {DateAndTime}</p>
+            <p className='post-dateandtime'><FontAwesomeIcon icon={faCalendarDays}/> {DateAndTime}</p>
             <p className='post-decription'>{Description}</p>
             <div className='post-more-info'>
                 <p className='post-priceperseat'>Price: {PricePerSeat}$</p>

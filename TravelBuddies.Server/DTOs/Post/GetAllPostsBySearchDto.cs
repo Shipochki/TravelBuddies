@@ -38,13 +38,13 @@
 				ToDestinationName = post.ToDestinationCity.Name,
 				Description = post.Description,
 				PricePerSeat = post.PricePerSeat,
-				FreeSeats = post.FreeSeats,
 				Baggage = post.Baggage,
 				Pets = post.Pets,
-				DateAndTime = post.DateAndTime.ToString(),
+				DateAndTime = post.DateAndTime.ToString("yyyy-MM-dd   hh:mm tt"),
 				GroupId = post.GroupId,
 				Creator = UserDto.FromUser(post.Creator),
-				Participants = post.Group.UsersGroups.Select(ug => ug.UserId).ToList()
+				Participants = post.Group.UsersGroups.Select(ug => ug.UserId).ToList(),
+				FreeSeats = post.FreeSeats - post.Group.UsersGroups.Select(ug => ug.UserId).ToList().Count(),
 			};
 		}
 	}

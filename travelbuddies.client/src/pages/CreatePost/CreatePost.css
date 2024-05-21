@@ -10,18 +10,7 @@
     font-family: "Roboto", sans-serif;
     row-gap: 20px;
     padding: 9vw 0 5vw 0;
-}
-
-.create-post-main form{
-    padding: 2%;
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 40vw;
-    row-gap: 2vw;
-    background: white;
-    box-shadow: 0px 0px 1px 0px black;
+    color: #2979ff;
 }
 
 .create-post-header{
@@ -43,6 +32,18 @@
     color: #2979ff;
 }
 
+.create-post-main form{
+    padding: 2%;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40vw;
+    row-gap: 2vw;
+    background: white;
+    box-shadow: 0px 0px 1px 0px black;
+}
+
 .create-post-main form textarea{
     border: 0;
     box-shadow: 0 0 1px 0;
@@ -57,9 +58,19 @@
 .create-post-date-time{
     color: #2979ff;
     display: flex;
+    flex-direction: row;
+    row-gap: 15px;
+    align-items: flex-start;
+    column-gap: 10px;
+}
+
+.create-post-date-time-info{
+    display: flex;
     flex-direction: column;
     align-items: center;
-    row-gap: 15px;
+    justify-content: center;
+    row-gap: 10px;
+    column-gap: 10px;
 }
 
 .create-post-date-time button{
@@ -77,7 +88,7 @@
     width: 8vw;
     padding: 5px;
     border: 0;
-    box-shadow: 0 0 1px 0;
+    border: 1px solid #ccc;
     border-radius: 8px;
 }
 
@@ -93,4 +104,26 @@
     flex-direction: column;
     align-items: center;
     row-gap: 10px;
+}
+
+.create-post-bools{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.create-post-nums-inputs{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.create-post-nums-inputs div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
