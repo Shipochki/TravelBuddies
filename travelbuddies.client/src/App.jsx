@@ -183,7 +183,7 @@ function App() {
                             <Route path='/search' element={<Search cities={cities}/>}/>
                             <Route path='/logout' element={<Logout/>}/>
                             <Route path='/becomeDriver' element={<BecomeDriver/>}/>
-                            <Route path='/createPost' element={<CreatePost cities={cities}/>}/>
+                            <Route path='/createPost' element={<CreatePost cities={cities} vehicle={vehicle}/>}/>
                             <Route path='/catalog' element={<Catalog posts={posts}/>}/>
                             <Route path='/group' element={<Group group={group}/>}/>
                             <Route path='/profile' element={<Profile user={user}/>}/>

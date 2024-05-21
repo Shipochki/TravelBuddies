@@ -8,7 +8,7 @@
     min-height: 100vh;
     background: #F5F6F7;
     font-family: "Roboto", sans-serif;
-    row-gap: 20px;
+    row-gap: 25px;
     padding: 9vw 0 5vw 0;
     color: #2979ff;
 }
@@ -39,7 +39,7 @@
     flex-direction: column;
     align-items: center;
     width: 40vw;
-    row-gap: 2vw;
+    row-gap: 3vw;
     background: white;
     box-shadow: 0px 0px 1px 0px black;
 }
@@ -62,6 +62,7 @@
     row-gap: 15px;
     align-items: flex-start;
     column-gap: 10px;
+    position: relative;
 }
 
 .create-post-date-time-info{
@@ -106,12 +107,58 @@
     row-gap: 10px;
 }
 
+.btn-calendar-container:hover .tooltip-btn-calendar-info{
+    visibility: visible;
+    opacity: 1;
+}
+
+.btn-calendar-container .tooltip-btn-calendar-info{
+    visibility: hidden;
+    width: 100px;
+    background-color: white;
+    color: #2979ff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position above the icon */
+    left: 85%;
+    margin-left: -30px; /* Center the tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+    border: 1px solid;
+}
+
+.btn-calendar-container .tooltip-btn-calendar-info::after{
+    content: "";
+    position: absolute;
+    top: 100%; /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
 .create-post-bools{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
     width: 100%;
+}
+
+.create-post-bools div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-post-bools input{
+    width: 15px;
+    height: 15px;
 }
 
 .create-post-nums-inputs{
@@ -126,4 +173,30 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.create-post-nums-inputs div input{
+    width: 3vw;
+    border: 1px solid #2979ff;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.create-post-btn-add{
+    border-radius: 16px;
+    height: 2.5vw;
+    width: 6vw;
+    background-color: white;
+    border: 2px solid #2979ff;;
+    transition: 0.3s;
+    margin-bottom: 1vw;
+    font-size: 1vw;
+    color: #2979ff;
+    font-weight: bold;
+}
+
+.create-post-btn-add:hover{
+    cursor: pointer;
+    background-color: #2979ff;
+    color: white;
 }

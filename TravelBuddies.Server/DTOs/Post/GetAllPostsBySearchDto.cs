@@ -44,7 +44,7 @@
 				GroupId = post.GroupId,
 				Creator = UserDto.FromUser(post.Creator),
 				Participants = post.Group.UsersGroups.Select(ug => ug.UserId).ToList(),
-				FreeSeats = post.FreeSeats - post.Group.UsersGroups.Select(ug => ug.UserId).ToList().Count(),
+				FreeSeats = post.FreeSeats - post.Group.UsersGroups.Select(ug => ug.UserId).ToList().Count() + 1,
 			};
 		}
 	}

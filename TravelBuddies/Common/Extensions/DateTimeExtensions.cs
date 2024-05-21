@@ -1,4 +1,4 @@
-﻿namespace TravelBuddies.Presentation.Extensions
+﻿namespace TravelBuddies.Application.Common.Extensions
 {
 	public static class DateTimeExtensions
 	{

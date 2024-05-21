@@ -36,9 +36,9 @@ export const CreateVehicle = ({vehicle}) => {
 
         await OnCreateVehicleSubmit(values);
 
-        // const result = await GetVehicleByOwnerId(localStorage.userId);
+        const result = await GetVehicleByOwnerId(localStorage.userId);
 
-        // OnSetVehicle(result);
+        OnSetVehicle(result);
     }
 
     const [nameFile, setNameFile] = useState('');
@@ -97,10 +97,9 @@ export const CreateVehicle = ({vehicle}) => {
                 <div className='vehicle-year'>
                     <label>Year</label>
                     <input
-                        type='year'
+                        type='number'
                         id='year'
                         className='inputModel'
-                        placeholder='Color'
                         name={VehicleFromKeys.Year}
                         value={values[VehicleFromKeys.Year]}
                         onChange={changeHandler}
@@ -111,6 +110,7 @@ export const CreateVehicle = ({vehicle}) => {
                         type='text'
                         id='color'
                         className='inputModel'
+                        placeholder='Color'
                         name={VehicleFromKeys.Color}
                         value={values[VehicleFromKeys.Color]}
                         onChange={changeHandler}

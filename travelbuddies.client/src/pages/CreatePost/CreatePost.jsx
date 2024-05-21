@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "../../utils/hooks/useForm";
-import { OnCreatePostSubmit } from "../../services/PostService";
-import { Link } from "react-router-dom";
+import { GetPostsByOwnerId, OnCreatePostSubmit } from "../../services/PostService";
 import './CreatePost.css'
 import Calendar from "../../components/Calendar/Calendar";
 import { NotDriver } from "../../components/NotDriver/NotDriver";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faCalendarDays, faCheck } from "@fortawesome/free-solid-svg-icons";
-import { TimePicker } from "../../components/TimePicker/TimePicker";
+import { NoVehicle } from "../../components/NoVehicle/NoVehicle";
+import { GlobalContext } from "../../utils/contexts/GlobalContext";
 
 const CreatePostFromKeys = {
     FromDestination: 'fromDestinationCityId',
@@ -21,43 +21,37 @@ const CreatePostFromKeys = {
     Time: 'time'
 }
 
-export const CreatePost = ({cities}) => {
+export const CreatePost = ({cities, vehicle}) => {
+    const {OnSetPostsByOwner} = useContext(GlobalContext);
+
     const {values, changeHandler, onSubmit } = useForm({
         [CreatePostFromKeys.FromDestination]: '',
         [CreatePostFromKeys.ToDestination]: '',
         [CreatePostFromKeys.Description]: '',
-        [CreatePostFromKeys.PricePerSeat]: '',
-        [CreatePostFromKeys.FreeSeats]: '',
-        [CreatePostFromKeys.Baggage]: '',
-        [CreatePostFromKeys.Pets]: '',
+        [CreatePostFromKeys.PricePerSeat]: 0,
+        [CreatePostFromKeys.FreeSeats]: 0,
+        [CreatePostFromKeys.Baggage]: false,
+        [CreatePostFromKeys.Pets]: false,
         [CreatePostFromKeys.Date]: '',
         [CreatePostFromKeys.Time]: ''
     })
 
-    const clickHandler = () => {
+    const clickHandler = async (e) => {
+        e.preventDefault();
+
         const fromdes = cities.filter(c => c.name == values[CreatePostFromKeys.FromDestination])[0];
         const todes = cities.filter(c => c.name == values[CreatePostFromKeys.ToDestination])[0];
-    
-        if(fromdes == '' || todes == ''
-            || values[CreatePostFromKeys.Description] == ''
-            || values[CreatePostFromKeys.PricePerSeat] == ''
-            || values[CreatePostFromKeys.FreeSeats] == ''
-            || values[CreatePostFromKeys.FreeSeats] <= 0
-            || values[CreatePostFromKeys.Baggage] == ''
-            || values[CreatePostFromKeys.Pets] == ''
-            || values[CreatePostFromKeys.Date] == ''
-            || values[CreatePostFromKeys.Time] == ''){
-          return;
-        }
     
         values[CreatePostFromKeys.FromDestination] = fromdes.id;
         values[CreatePostFromKeys.ToDestination] = todes.id;
         values[CreatePostFromKeys.FreeSeats] = Number(values[CreatePostFromKeys.FreeSeats]);
         values[CreatePostFromKeys.PricePerSeat] = Number(values[CreatePostFromKeys.PricePerSeat]);
 
-        OnCreatePostSubmit(values);
-    
-        navigate('/driverHome');
+        await OnCreatePostSubmit(values);
+
+        const result = await GetPostsByOwnerId(localStorage.userId);
+
+        OnSetPostsByOwner(result);
       }
 
     const [filteredCities, setFilteredCities] = useState([]);
@@ -131,10 +125,12 @@ export const CreatePost = ({cities}) => {
         <div className="create-post-main">
             {localStorage.role == 'driver' ? (
                 <>
-                <div className="create-post-header">
+                    {vehicle != '' ? (
+                        <>
+                            <div className="create-post-header">
                     <h2>Create Post</h2>
-                </div>
-                <form id="create-post" method="POST" onSubmit={clickHandler}>
+                            </div>
+                            <form id="create-post" method="POST" onSubmit={clickHandler}>
                 <div className='cities-inputs'>
                     <div className='city-input'>
                         <input
@@ -144,6 +140,7 @@ export const CreatePost = ({cities}) => {
                             onChange={handleFromDesChange}
                             placeholder="From destination..."
                             autoComplete="off"
+                            required
                         />
                         {filteredCities.length > 0 && (
                             <ul>
@@ -164,6 +161,7 @@ export const CreatePost = ({cities}) => {
                             onChange={handleToDesChange}
                             placeholder="To destination..."
                             autoComplete="off"
+                            required
                         />
                         {filteredToDesCities.length > 0 && (
                             <ul>
@@ -183,6 +181,7 @@ export const CreatePost = ({cities}) => {
                     value={values[CreatePostFromKeys.Description]}
                     onChange={changeHandler}
                     placeholder="Description..."
+                    required
                 />
                 <div className="create-post-date-time">
                     <div className="create-post-date-time-info">
@@ -212,49 +211,59 @@ export const CreatePost = ({cities}) => {
                                 name={CreatePostFromKeys.Time}
                                 value={values[CreatePostFromKeys.Time]}
                                 onChange={changeHandler}
+                                required
                             />
                         </div>}
-                        <button type='button' onClick={toggleCalendar}><FontAwesomeIcon icon={!calendarVisible ? faCalendarDays : faCheck}/></button>
+                        <div className="btn-calendar-container">
+                            {!calendarVisible &&<span className="tooltip-btn-calendar-info">Date and Time selector</span>}
+                            <button className="create-post-btn-calendar" type='button' onClick={toggleCalendar}><FontAwesomeIcon icon={!calendarVisible ? faCalendarDays : faCheck}/></button>
+                        </div>
                 </div>
                 <div className="create-post-bools">
                     <div className="create-post-baggage">
-                        <p>Baggage</p>
+                        <p>Baggage:</p> 
+                        <label>{isBaggage ? 'Yes' : 'No'}</label>
                         <input
                             type="checkbox"
                             checked={isBaggage}
                             onChange={handleIsBaggage}
                         />
-                        <label>{isBaggage ? 'Checked' : 'Unchecked'}</label>
                     </div>
                     <div className="create-post-pets">
-                        <p>Pets</p>
+                        <p>Pets:</p>
+                        <label>{isPets ? 'Yes' : 'No'}</label>
                         <input
                             type="checkbox"
                             checked={isPets}
                             onChange={handleIsPets}
                         />
-                    <label>{isPets ? 'Checked' : 'Unchecked'}</label>
                     </div>
                 </div>
                 <div className="create-post-nums-inputs">
                     <div className="create-post-price">
                         <label>Price per seat</label>
-                        <input
-                            type="number"
-                            name={CreatePostFromKeys.PricePerSeat}
-                            value={values[CreatePostFromKeys.PricePerSeat]}
-                            onChange={changeHandler}
-                            placeholder="10$"
-                        />
+                        <label>
+                            <input
+                                type="number"
+                                name={CreatePostFromKeys.PricePerSeat}
+                                value={values[CreatePostFromKeys.PricePerSeat]}
+                                onChange={changeHandler}
+                                placeholder="10"
+                                required
+                                min={0}
+                            />
+                        EUR</label>
                     </div>
                     <div className="create-post-seats">
-                        <label>Available seats</label>
+                        <label>Available seats:</label>
                         <input
                             type="number"
                             name={CreatePostFromKeys.FreeSeats}
                             value={values[CreatePostFromKeys.FreeSeats]}
                             onChange={changeHandler}
                             placeholder="3"
+                            required
+                            min={1}
                         />
                     </div>
                 </div>
@@ -262,12 +271,15 @@ export const CreatePost = ({cities}) => {
                     className="create-post-btn-add"
                     type="submit">
                     Add</button>
-                </form>
+                            </form>
+                        </>
+                    ) : (
+                        <NoVehicle/>
+                    )}
                 </>
             ) : (
                 <NotDriver />
             )}
-            
         </div>
     )
 }

@@ -67,6 +67,22 @@
                         PasswordHash = "AQAAAAIAAYagAAAAEC9ZZUGGj1XLYXPq+dbIPaDdWrA4Nhs/tRGrUPWfCxQv4H8GZPBDZZDtswrdXaSj6Q==",
                         SecurityStamp = "W7L75PHKOU2YSBQU5R3FPUCNBNZE6GEB",
                         ConcurrencyStamp = "812c85e3-fcd3-4f53-910f-c366a395750a"
+					},
+                    new ApplicationUser()
+                    {
+                        Id = "e31879db-e921-4054-aba7-0f8b6a2092c1",
+                        FirstName = "Simeon",
+                        LastName = "Gerov",
+                        ProfilePictureLink = "https://sttravelbuddies001.blob.core.windows.net/web/d7f5d2a0-cf11-4335-aa06-c31f6e9ca10c",
+                        Country = "Bulgaria",
+                        City = "Burgas",
+                        UserName = "simo@mail.com",
+                        NormalizedUserName = "SIMO@MAIL.COM",
+                        Email = "simo@mail.com",
+                        NormalizedEmail = "SIMO@MAIL.COM",
+                        PasswordHash = "AQAAAAIAAYagAAAAEI3uBcNSaKrbzS6hwhbYBA7BT2AMqCW6ebzsPs0QlCfWSIYEMqHCUUCIOY/tPL8qzA==",
+                        SecurityStamp = "CCM42K6PXVXEJSDTQEKV27CJUFCPUE65",
+                        ConcurrencyStamp = "4a4da6c1-d33c-416a-953a-2274f4e1b640"
 					}
                 ]);
 
@@ -108,7 +124,17 @@
                     {
                         UserId = "fd325402-6f4e-4657-8b05-bc141b17cdef",
                         RoleId = "57198ec5-bf97-427d-9a79-982db8c08049"
-                    }
+                    },
+                    new IdentityUserRole<string>()
+                    {
+                        UserId = "750b562c-3842-460e-a47a-44798f150069",
+                        RoleId = "0e8ac22b-fe9e-4179-b4df-687e3619bd42",
+					},
+                    new IdentityUserRole<string>()
+                    {
+                        UserId = "e31879db-e921-4054-aba7-0f8b6a2092c1",
+                        RoleId = "e3561acf-d05f-494a-95b0-7e12433ec036"
+					}
                 ]);
 
             return modelBuilder;

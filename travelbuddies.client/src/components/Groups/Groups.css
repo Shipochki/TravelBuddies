@@ -32,7 +32,7 @@
 }
 
 .picture-group img{
-    max-width: 40px;
+    width: 40px;
     border-radius: 32px;
     height: 40px;
     object-fit: cover;

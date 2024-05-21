@@ -33,21 +33,20 @@ export const Search = ({cities}) => {
   }, OnSearchSubmit);
 
   const clickSubmit = async (e) => {
+    e.preventDefault();
     const fromdes = cities.filter(c => c.name == values[searchFromKeys.FromDestination])[0];
     const todes = cities.filter(c => c.name == values[searchFromKeys.ToDestination])[0];
 
-    if(fromdes == '' || todes == ''){
-      return;
-    }
-
-    values[searchFromKeys.FromDestination] = fromdes.id;
-    values[searchFromKeys.ToDestination] = todes.id;
+    if(!fromdes || !todes){
+      alert("Invalid cities")
+    }else{
+      values[searchFromKeys.FromDestination] = fromdes.id;
+      values[searchFromKeys.ToDestination] = todes.id;
     
-    e.preventDefault();
+      const result = await OnSearchSubmit(values);
 
-    const result = await OnSearchSubmit(values);
-
-    OnSetPosts(result);
+      OnSetPosts(result);
+    }
   }
 
   const [filteredCities, setFilteredCities] = useState([]);

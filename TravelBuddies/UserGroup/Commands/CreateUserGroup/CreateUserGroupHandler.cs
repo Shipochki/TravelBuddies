@@ -60,7 +60,7 @@
 				.AllReadonly<UserGroup>(u => u.GroupId == request.GroupId)
 				.ToListAsync();
 
-			if(post.FreeSeats <= userGroups.Count 
+			if(post.FreeSeats + 1 <= userGroups.Count 
 				&& !await _userManager.IsInRoleAsync(user, ApplicationRoles.Admin))
 			{
 				throw new NotAvailableSeatsInPostException(

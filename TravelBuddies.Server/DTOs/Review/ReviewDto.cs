@@ -2,7 +2,7 @@
 {
 	using TravelBuddies.Domain.Entities;
 	using TravelBuddies.Presentation.DTOs.User;
-	using TravelBuddies.Presentation.Extensions;
+	using TravelBuddies.Application.Common.Extensions;
 
 	public class ReviewDto
 	{
