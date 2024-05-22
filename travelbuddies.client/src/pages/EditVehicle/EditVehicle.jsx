@@ -132,7 +132,7 @@ export const EditVehicle = () => {
                 </div>
                 <div className="vehicle-upload">
                     
-                    <label>Edit Vehicle Img
+                    <label>Upload new vehicle img
                     <input 
                         type="file"
                         id='picturelink'

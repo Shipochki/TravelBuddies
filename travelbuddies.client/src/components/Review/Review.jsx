@@ -9,6 +9,7 @@ export const Review = ({review}) => {
     const navigate = useNavigate();
 
     const LoadProfile = () => {
+        window.location.reload();
         navigate(`/profile/${review.creator.id}`)
     }
 

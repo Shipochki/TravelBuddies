@@ -25,51 +25,7 @@ import { MyVehicle } from './pages/MyVehicle/MyVehicle';
 import { NotFound } from './pages/NotFound/NotFound';
 
 function App() {
-    const navigate = useNavigate();
-    const [posts, setPosts] = useState([]);
-    const [group, setGroup] = useState([]);
-    const [user, setUser] = useState([]);
-    const [reviews, setReviews] = useState([]);
-    const [vehicle, setVehicle] = useState([]);
-
-    const OnSetPosts = (posts) => {
-        setPosts(posts);
-
-        navigate('/catalog');
-    }
-
-    const OnSetGroup = (group) => {
-        setGroup(group);
-        navigate('/group');
-    }
-
-    const OnSetUser = (user) => {
-        setUser(user);
-        navigate('/profile')
-    }
-
-    const OnSetReviews = (reviews) => {
-        setReviews(reviews);
-        navigate('/reviews')
-    }
-
-    const OnSetVehicle = (vehicle) => {
-        setVehicle(vehicle);
-        navigate('/myVehicle')
-    }
-
-    const OnSetPostsByOwner = (posts) => {
-        setPosts(posts);
-        navigate('/myPosts')
-    }
-
     const globalContext = {
-        OnSetPosts,
-        OnSetGroup,
-        OnSetUser,
-        OnSetReviews,
-        OnSetVehicle,
-        OnSetPostsByOwner
     }
 
     return (
@@ -96,7 +52,7 @@ function App() {
                             <Route path='/reviews/:id' element={<Reviews/>}/>
                             <Route path='/createVehicle' element={<CreateVehicle/>}/>
                             <Route path='/editVehicle' element={<EditVehicle/>}/>
-                            <Route path='/myVehicle' element={<MyVehicle vehicle={vehicle}/>}/>
+                            <Route path='/myVehicle' element={<MyVehicle/>}/>
                             <Route path='/myPosts' element={<MyPosts/>}/>
                         </>
                     ) : (
