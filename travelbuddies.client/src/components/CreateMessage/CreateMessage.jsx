@@ -2,6 +2,8 @@ import { OnCreateMessageSubmit } from '../../services/MessageService';
 import './CreateMessage.css';
 import { useForm } from '../../utils/hooks/useForm';
 import { useNavigate } from 'react-router-dom';
+import { Button } from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
 
 const MessageFromKeys = {
     Text: 'text',
@@ -39,7 +41,9 @@ export const CreateMessage = ({groupId}) => {
                         onChange={changeHandler}
                         required
                         />
-                    <button>Send</button>
+                    <Button variant="contained" endIcon={<SendIcon />}>
+                        Send
+                    </Button>
                 </form>
             </div>
     )

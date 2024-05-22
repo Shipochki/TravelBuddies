@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { GetVehicleByOwnerId, OnUpdateVehicleSubmit } from "../../services/VehicleService";
 import { useForm } from "../../utils/hooks/useForm";
 import { NoVehicle } from '../../components/NoVehicle/NoVehicle';
+import { Box, FormControl, InputLabel, NativeSelect } from '@mui/material';
 
 const EditVehicleFromKeys = {
     Id: 'id',
@@ -99,7 +100,7 @@ export const EditVehicle = () => {
                         required
                         />
                 </div>
-                <div className='vehicle-fuel'>
+                {/* <div className='vehicle-fuel'>             
                     <label for="fuel">Choose a Fuel:</label>
                     <select 
                         value={values[EditVehicleFromKeys.Fuel]} 
@@ -110,7 +111,26 @@ export const EditVehicle = () => {
                         <option value={1}>Gasoline</option>
                         <option value={2}>Electric</option>
                     </select>
-                </div>
+                </div> */}
+                <Box sx={{ minWidth: 120 , gridArea:'fuel'}}>
+                    <FormControl fullWidth>
+                        <InputLabel variant="standard" htmlFor="fuel">
+                            Choose a Fuel
+                        </InputLabel>
+                        <NativeSelect
+                            value={values[EditVehicleFromKeys.Fuel]}
+                            onChange={changeHandler}
+                            inputProps={{
+                                name: 'fuel',
+                                id: 'fuel',
+                            }}
+                            >
+                            <option value={0}>Diesel</option>
+                            <option value={1}>Gasoline</option>
+                            <option value={2}>Electric</option>
+                        </NativeSelect>
+                    </FormControl>
+                </Box>
                 <div className='vehicle-seatcount'>
                     <label>SeatCount</label>
                     <input

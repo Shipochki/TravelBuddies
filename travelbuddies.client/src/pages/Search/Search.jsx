@@ -6,9 +6,11 @@ import { serializer } from '../../utils/common/serializer'
 import { OnSearchSubmit } from '../../services/PostService';
 import { GlobalContext } from '../../utils/contexts/GlobalContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight, faCalendarDays, faSliders, faX } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight, faCalendarDays, faCheck, faSliders, faX } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { GetAllCities } from '../../services/CityService';
+import { Box, FormLabel, Stack, TextField, Typography } from '@mui/material';
+import { ArrowForward, ArrowRight } from '@mui/icons-material';
 
 const searchFromKeys = {
   FromDestination: 'fromDestinationCityId',
@@ -144,50 +146,149 @@ export const Search = () => {
   }
 
   return (
+    // <Stack 
+    // direction="column"
+    // justifyContent="center"
+    // alignItems="center"
+    // rowGap={5}
+    // pacing={2} 
+    // sx={{
+    //   width: '100%',
+    //   height: '100vh',
+    //   bgcolor: 'secondary.main',
+    // }}>
+    //   <Box sx={{
+    //     width: {
+    //       sx: '100%',
+    //       sm: '70%',
+    //       md: '50%',
+    //     },
+    //     bgcolor: 'primary.light',
+    //   }}
+    //   >
+    //     <Stack
+    //     direction="column"
+    //     justifyContent="center"
+    //     alignItems="center"
+    //     pacing={2}
+    //     sx={{
+    //       boxShadow: '0 0 1px 0',
+    //       borderRadius: '8px',
+    //     }}>
+    //       <Typography
+    //         sx={{
+    //           margin: '0',
+    //           fontWeight: '400',
+    //           color: 'primary.main',
+    //           p: 2
+    //         }}
+    //         variant='h2' gutterBottom>
+    //         You can search your travel here
+    //       </Typography>
+    //     </Stack>
+    //   </Box>
+    //   <Box sx={{
+    //     width: {
+    //       sx: '100%',
+    //       sm: '70%',
+    //       md: '50%',
+    //     },
+    //     bgcolor: 'primary.light',
+    //     boxShadow: '0 0 1px 0'
+    //   }}>
+    //     <form id='search'>
+    //       <Stack width='80%'
+    //       direction="row"
+    //       justifyContent="center"
+    //       alignItems="center"
+    //       columnGap={2}
+    //       pacing={2} 
+    //       >
+    //         <TextField sx={{
+    //           width: {
+    //             sx: '100%',
+    //             sm: '50%',
+    //             md: '40%',
+    //           },
+    //           height: {
+    //             sx: '20px',
+    //             sm: '30px',
+    //             md: '40px'
+    //           }
+    //         }} id='fromCity' label='From destination' variant='outlined'/>
+    //         <ArrowForward width='10%'/>
+    //         <TextField sx={{
+    //           width: {
+    //             sx: '100%',
+    //             sm: '50%',
+    //             md: '40%',
+    //           },
+    //         }} id='toCity' label='To destination' variant='outlined'/>
+    //       </Stack>
+    //     </form>
+    //   </Box>
+    // </Stack>
+
     <div className='search-menu'>
       <div className='search-header'>
         <h2>You can search your travel here</h2>
       </div>
       <form id="search" method="POST" onSubmit={clickSubmit}>
         <div className='cities-inputs'>
-        <div className='city-input'>
-      <input
-        type="text"
-        name={searchFromKeys.FromDestination}
-        value={values[searchFromKeys.FromDestination]}
-        onChange={handleInputChange}
-        placeholder="From destination..."
-        autoComplete='off'
-      />
-      {filteredCities.length > 0 && (
-        <ul>
-          {filteredCities.map((city) => (
-            <li key={city.id} onClick={() => handleSelectCity(city.name)}>
-              {city.name}
-            </li>
-          )).slice(0, 8)}
-        </ul>
-      )}
-        </div>
-        {<FontAwesomeIcon icon={faArrowRight}/>}
-        <div className='city-input'>
-      <input
-        type="text"
-        name={searchFromKeys.ToDestination}
-        value={values[searchFromKeys.ToDestination]}
-        onChange={handleToDesChange}
-        placeholder="To destination..."
-        autoComplete='off'
-      />
-      {filteredToDesCities.length > 0 && (
-        <ul>
-          {filteredToDesCities.map((city) => (
-            <li key={city.id} onClick={() => handleToDesSelectCity(city.name)}>
-              {city.name}
-            </li>
-          )).slice(0, 8)}
-        </ul>
-      )}
+          <div className='city-input'>
+            <TextField
+              type='text'
+              name={searchFromKeys.FromDestination}
+              value={values[searchFromKeys.FromDestination]}
+              onChange={handleInputChange}
+              label='From destination...'
+              autoComplete='off'
+            />
+          {/* <input
+            type="text"
+            name={searchFromKeys.FromDestination}
+            value={values[searchFromKeys.FromDestination]}
+            onChange={handleInputChange}
+            placeholder="From destination..."
+            autoComplete='off'
+          /> */}
+            {filteredCities.length > 0 && (
+              <ul>
+                {filteredCities.map((city) => (
+                  <li key={city.id} onClick={() => handleSelectCity(city.name)}>
+                    {city.name}
+                  </li>
+                )).slice(0, 8)}
+              </ul>
+            )}
+          </div>
+          {<FontAwesomeIcon icon={faArrowRight}/>}
+          <div className='city-input'>
+            <TextField
+              type='text'
+              name={searchFromKeys.ToDestination}
+              value={values[searchFromKeys.ToDestination]}
+              onChange={handleToDesChange}
+              label='To destination...'
+              autoComplete='off'
+            />
+            {/* <input
+              type="text"
+                name={searchFromKeys.ToDestination}
+                value={values[searchFromKeys.ToDestination]}
+                onChange={handleToDesChange}
+                placeholder="To destination..."
+                autoComplete='off'
+            /> */}
+            {filteredToDesCities.length > 0 && (
+              <ul>
+                {filteredToDesCities.map((city) => (
+                  <li key={city.id} onClick={() => handleToDesSelectCity(city.name)}>
+                    {city.name}
+                  </li>
+                )).slice(0, 8)}
+              </ul>
+            )}
         </div>
       </div>
       <div className='more-options'>

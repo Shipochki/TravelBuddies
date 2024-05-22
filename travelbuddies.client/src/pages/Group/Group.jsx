@@ -9,6 +9,8 @@ import { Message } from "../../components/Message/Message"
 import { CreateMessage } from "../../components/CreateMessage/CreateMessage"
 import { EditMessage } from '../../components/EditMessage/EditMessage'
 import { useParams } from 'react-router-dom'
+import { Avatar, AvatarGroup } from '@mui/material'
+import { GroupAvatars } from '../../components/GroupAvatars/GroupAvatars'
 
 export const Group = () => {
     const { id } = useParams();
@@ -42,6 +44,7 @@ export const Group = () => {
             <div className="group-content">
                 <div className="group-info">
                     <p onClick={onClickVisable}><FontAwesomeIcon icon={faPeopleGroup}/> Members</p>
+                    
                     {membersVisable && group.members.map((m) => (
                        <MemberGroup key={`member-key-${m.id}`} member={m} ownerId={group.creator.id}/>
                     ))}

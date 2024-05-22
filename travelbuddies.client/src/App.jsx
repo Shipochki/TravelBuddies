@@ -23,50 +23,77 @@ import { MyPosts } from './pages/MyPosts/MyPosts';
 import { EditVehicle } from './pages/EditVehicle/EditVehicle';
 import { MyVehicle } from './pages/MyVehicle/MyVehicle';
 import { NotFound } from './pages/NotFound/NotFound';
+import { ThemeProvider } from '@emotion/react';
+import { createTheme } from '@mui/material';
 
 function App() {
+    const theme = createTheme({
+        palette:{
+            primary:{
+                main: '#2979ff',
+                light: 'white',
+            },
+            secondary:{
+                main: '#F5F6F7'
+            }
+        },
+        typography: {
+            h2: {
+              fontSize: '1rem',
+              '@media (min-width:600px)': {
+                fontSize: '1.5rem',
+              },
+              '@media (min-width:960px)': {
+                fontSize: '2rem',
+              },
+            },
+          },
+      });
+
     const globalContext = {
     }
 
     return (
         <GlobalContext.Provider value={globalContext}>
-            <div className='box'>
-                <Header/>
-                {localStorage.accessToken && (
-                    <>
-                        <Groups/>
-                        <Menu />
-                    </>
-                )}
-                <Routes>
-                    {localStorage.accessToken ? (
+            <ThemeProvider theme={theme}>
+                <div className='box'>
+                    <Header/>
+                    {localStorage.accessToken && (
                         <>
-                            <Route path='/' element={<Search/>}/>
-                            <Route path='/search' element={<Search/>}/>
-                            <Route path='/logout' element={<Logout/>}/>
-                            <Route path='/becomeDriver' element={<BecomeDriver/>}/>
-                            <Route path='/createPost' element={<CreatePost/>}/>
-                            <Route path='/catalog' element={<Catalog/>}/>
-                            <Route path='/group/:id' element={<Group/>}/>
-                            <Route path='/profile/:id' element={<Profile/>}/>
-                            <Route path='/reviews/:id' element={<Reviews/>}/>
-                            <Route path='/createVehicle' element={<CreateVehicle/>}/>
-                            <Route path='/editVehicle' element={<EditVehicle/>}/>
-                            <Route path='/myVehicle' element={<MyVehicle/>}/>
-                            <Route path='/myPosts' element={<MyPosts/>}/>
+                            <Groups/>
+                            <Menu />
                         </>
-                    ) : (
-                        <>
-                            <Route path='/' element={<Home/>}/>
-                            <Route path='/login' element={<Login/>}/>
-                            <Route path='/register' element={<Regiser/>}/>
-                            <Route path='/about' element={<About/>}/>
-                        </>
-                    )} 
+                    )}
+                    <Routes>
+                        {localStorage.accessToken ? (
+                            <>
+                                <Route path='/' element={<Search/>}/>
+                                <Route path='/search' element={<Search/>}/>
+                                <Route path='/logout' element={<Logout/>}/>
+                                <Route path='/becomeDriver' element={<BecomeDriver/>}/>
+                                <Route path='/createPost' element={<CreatePost/>}/>
+                                <Route path='/catalog' element={<Catalog/>}/>
+                                <Route path='/group/:id' element={<Group/>}/>
+                                <Route path='/profile/:id' element={<Profile/>}/>
+                                <Route path='/reviews/:id' element={<Reviews/>}/>
+                                <Route path='/createVehicle' element={<CreateVehicle/>}/>
+                                <Route path='/editVehicle' element={<EditVehicle/>}/>
+                                <Route path='/myVehicle' element={<MyVehicle/>}/>
+                                <Route path='/myPosts' element={<MyPosts/>}/>
+                            </>
+                        ) : (
+                            <>
+                                <Route path='/' element={<Home/>}/>
+                                <Route path='/login' element={<Login/>}/>
+                                <Route path='/register' element={<Regiser/>}/>
+                                <Route path='/about' element={<About/>}/>
+                            </>
+                        )} 
                     <Route path='*' element={<NotFound/>}/>
                 </Routes>
                 <Footer/>
-            </div>
+                </div>
+            </ThemeProvider>
         </GlobalContext.Provider>
     )
 }

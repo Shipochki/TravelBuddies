@@ -1,16 +1,12 @@
 import './UserMenu.css'
 import { Link } from "react-router-dom";
 
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil, faSignOut, faUser } from '@fortawesome/free-solid-svg-icons';
-import { GetUserById } from '../../services/UserService';
-import { GlobalContext } from '../../utils/contexts/GlobalContext';
 
 export const UserMenu = () => {
-    const { OnSetUser } = useContext(GlobalContext);
-
     const OnLogout = () => {
         localStorage.clear();
 
@@ -18,10 +14,6 @@ export const UserMenu = () => {
     }
 
     const [menuVisible, setMenuVisible] = useState(false);
-    
-    const toggleMenu = () => {
-        setMenuVisible(!menuVisible);
-    };
 
     const menuRef = useRef(null);
 
