@@ -2,6 +2,7 @@ import './EditMessage.css'
 import { OnUpdateMessageSubmit } from '../../services/MessageService';
 import { useForm } from '../../utils/hooks/useForm';
 import { useNavigate } from 'react-router-dom';
+import { GetGroupById } from '../../services/GroupService';
 
 const EditMessageFromKeys = {
     Id: 'id',
@@ -9,7 +10,7 @@ const EditMessageFromKeys = {
     GroupId: 'groupId',
 }
 
-export const EditMessage = ({message}) => {
+export const EditMessage = ({message, setGroup}) => {
     const navigate = useNavigate();
 
     const { values, changeHandler, onSubmit } = useForm({
@@ -23,8 +24,8 @@ export const EditMessage = ({message}) => {
 
         await OnUpdateMessageSubmit(values);
 
-        window.location.reload();
-        navigate(`/group/${groupId}`);
+        const data = await GetGroupById(groupId);
+        setGroup(data);
     }
 
     return (

@@ -1,8 +1,9 @@
+import { Rating } from '@mui/material'
 import { OnUpdateReviewSubmit } from '../../services/ReviewService'
+import { GetUserById } from '../../services/UserService'
 import { useForm } from '../../utils/hooks/useForm'
-import { StarSelector } from '../StarSelector/StarSelector'
 import './EditReview.css'
-import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 
 const EditReviewFromKeys = {
     Id: 'id',
@@ -11,8 +12,8 @@ const EditReviewFromKeys = {
     ReciverId: 'reciverId',
 }
 
-export const EditReview = ({review, userId}) => {
-    const navigate = useNavigate();
+export const EditReview = ({review, userId, setUser}) => {
+    const [stars, setStars] = useState(review.rating);
 
     const {values, changeHandler, onSubmit} = useForm({
         [EditReviewFromKeys.Id]: review.id,
@@ -21,18 +22,21 @@ export const EditReview = ({review, userId}) => {
         [EditReviewFromKeys.ReciverId]: userId,
     }, OnUpdateReviewSubmit)
 
-    const onChangeStar = (star) => {
-        values[EditReviewFromKeys.Rating] = star;
-        changeHandler;
+    const onChangeStar = (event, stars) => {
+        setStars(stars);
     }
 
     const OnEditSubmit = async (id) => {
         window.document.getElementById(`review-${review.id}`).style.display = 'none';
 
+        values[EditReviewFromKeys.ReciverId] = userId;
+        values[EditReviewFromKeys.Rating] = stars;
+
         await OnUpdateReviewSubmit(values);
 
-        window.location.reload();
-        navigate(`/profile/${id}`)
+        const data = await GetUserById(id);
+
+        setUser(data);
     }
 
     return(
@@ -41,7 +45,12 @@ export const EditReview = ({review, userId}) => {
                 e.preventDefault();
                 OnEditSubmit(userId);
             }}>
-                <StarSelector totalStars={5} onSelect={onChangeStar}/>
+                {/* <StarSelector totalStars={5} onSelect={onChangeStar}/> */}
+                <Rating 
+                    name="size-medium"
+                    value={stars}
+                    onChange={onChangeStar}
+                    />
                 <input 
                     type='text'
                     placeholder='Your review here'

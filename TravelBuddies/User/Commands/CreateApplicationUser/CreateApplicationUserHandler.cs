@@ -9,19 +9,23 @@
     using TravelBuddies.Application.Common.Interfaces.AzureStorage;
     using TravelBuddies.Application.Common.Interfaces.Repository;
 	using TravelBuddies.Application.Common.Exceptions.BadRequest;
+	using TravelBuddies.Application.Common.Interfaces.MailSender;
 
 	public class CreateApplicationUserHandler : BaseHandler, IRequestHandler<CreateApplicationUserCommand, Task>
 	{
 		private readonly IBlobService _blobService;
+		private readonly IMailSender _mailSender;
 
 		public CreateApplicationUserHandler(
 			IRepository repository
 			, UserManager<ApplicationUser> userManager
 			, RoleManager<IdentityRole> roleManager
-			, IBlobService blobService)
+			, IBlobService blobService
+			, IMailSender mailSender)
 			: base(repository, userManager, roleManager)
 		{
 			_blobService = blobService;
+			_mailSender = mailSender;
 		}
 
 		public async Task<Task> Handle(CreateApplicationUserCommand request, CancellationToken cancellationToken)
@@ -53,6 +57,9 @@
 			}
 
 			await _userManager.AddToRoleAsync(applicationUser, ApplicationRoles.Client);
+
+			string body = _mailSender.GenerateRegistrationEmail($"{applicationUser.FirstName} {applicationUser.LastName}");
+			_mailSender.SendMessage("Succesful register", body, applicationUser.Email);
 
 			return Task.CompletedTask;
 		}

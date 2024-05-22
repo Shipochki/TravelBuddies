@@ -1,3 +1,5 @@
+import { errorHandler } from "../utils/common/errorHandler";
+
 const Url = 'https://localhost:7005/api/review';
 
 export const GetAllReviewByReciverId = async (reciverId) => {
@@ -17,6 +19,7 @@ export const GetAllReviewByReciverId = async (reciverId) => {
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);
+            errorHandler(response.status);
         }
       } catch (error) {
         console.error('Error fetching get all review by reciver id:', error);
@@ -40,6 +43,7 @@ export const OnCreateReviewSubmit = async (createReviewFromKeys) => {
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);
+            errorHandler(response.status);
         }
       } catch (error) {
         console.error('Error fetching create review:', error);
@@ -63,6 +67,7 @@ export const OnUpdateReviewSubmit = async (updateReviewFromKeys) => {
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);
+            errorHandler(response.status);
         }
       } catch (error) {
         console.error('Error fetching update review:', error);
@@ -71,14 +76,13 @@ export const OnUpdateReviewSubmit = async (updateReviewFromKeys) => {
 
 export const OnDeleteReviewSubmit = async (reviewId) => {
     try {
-        const response = await fetch(Url + '/delete', {
+        const response = await fetch(Url + `/delete/${reviewId}`, {
           method: 'POST',
           mode: "cors",
           headers: {
               'Authorization': `Bearer ${localStorage.accessToken}`,
               'Content-Type': 'application/json'
           },
-          body: (reviewId)
         });
   
           if (response.ok) {
@@ -86,6 +90,7 @@ export const OnDeleteReviewSubmit = async (reviewId) => {
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);
+            errorHandler(response.status);
         }
       } catch (error) {
         console.error('Error fetching delete review:', error);

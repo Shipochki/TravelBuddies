@@ -4,21 +4,25 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil, faX } from '@fortawesome/free-solid-svg-icons';
 import { OnDeleteReviewSubmit } from '../../services/ReviewService';
 import { useNavigate } from 'react-router-dom';
+import { GetUserById } from '../../services/UserService';
 
-export const Review = ({review}) => {
+export const Review = ({review, userId, setUser}) => {
     const navigate = useNavigate();
 
-    const LoadProfile = () => {
-        window.location.reload();
-        navigate(`/profile/${review.creator.id}`)
+    const LoadProfile = async (e) => {
+        e.preventDefault();
+
+        const data = await GetUserById(userId);
+
+        setUser(data);
     }
 
-    const ConfirmDelete = async (reviewId) => {
+    const ConfirmDelete = async (e, reviewId) => {
         const text = `Are you sure you want to delete this review:\n ${review.text}`
         if(confirm(text) == true){
             await OnDeleteReviewSubmit(reviewId);
 
-             LoadProfile();
+            LoadProfile(e);
         }
     }
 
@@ -58,7 +62,7 @@ export const Review = ({review}) => {
                             <button
                                 onClick={(e) => {
                                     e.preventDefault()
-                                    ConfirmDelete(review.id);
+                                    ConfirmDelete(e, review.id);
                                 }}
                                 className='delete-review-button'>
                                 <FontAwesomeIcon icon={faX}/>

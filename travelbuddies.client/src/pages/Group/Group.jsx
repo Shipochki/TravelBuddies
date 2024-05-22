@@ -44,7 +44,6 @@ export const Group = () => {
             <div className="group-content">
                 <div className="group-info">
                     <p onClick={onClickVisable}><FontAwesomeIcon icon={faPeopleGroup}/> Members</p>
-                    
                     {membersVisable && group.members.map((m) => (
                        <MemberGroup key={`member-key-${m.id}`} member={m} ownerId={group.creator.id}/>
                     ))}
@@ -53,12 +52,12 @@ export const Group = () => {
                     {group.messages && group.messages.map((m, i) => (
                         <div key={`message-container-key${i}`}>
                             <Message key={`message-key-${m.id}`} message={m} i={i} ownerId={group.creator.id}/>
-                            <EditMessage key={`edit-message-key-${m.id}`} message={m}/>
+                            <EditMessage key={`edit-message-key-${m.id}`} message={m} setGroup={setGroup}/>
                         </div>
                     ))}
             </div>
             </div>
-            <CreateMessage groupId={group.id}/>
+            <CreateMessage groupId={group.id} setGroup={setGroup}/>
         </div>
     )
 }

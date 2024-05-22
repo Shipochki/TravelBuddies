@@ -7,7 +7,7 @@ export const GroupAvatars = ({members}) => {
     return(
         <AvatarGroup max={4}>
             {members.map((m) => {
-                <Avatar alt={m.fullName} src={m.profilePictureLink}/>
+                <Avatar src={m.profilePictureLink}/>
             })}
         </AvatarGroup>
     )

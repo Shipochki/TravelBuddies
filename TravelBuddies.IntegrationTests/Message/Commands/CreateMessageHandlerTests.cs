@@ -1,5 +1,6 @@
 ﻿namespace TravelBuddies.IntegrationTests.Message.Commands
 {
+    using TravelBuddies.Application.Common.Exceptions.Forbidden;
     using TravelBuddies.Application.Common.Exceptions.NotFound;
     using TravelBuddies.Application.Message.Commands.CreateMessage;
     using TravelBuddies.Domain.Entities;

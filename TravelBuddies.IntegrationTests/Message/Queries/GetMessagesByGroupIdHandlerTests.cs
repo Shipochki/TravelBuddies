@@ -1,5 +1,6 @@
 ﻿namespace TravelBuddies.IntegrationTests.Message.Queries
 {
+    using TravelBuddies.Application.Common.Exceptions.Forbidden;
     using TravelBuddies.Application.Common.Exceptions.NotFound;
     using TravelBuddies.Application.Message.Queries.GetMessagesByGroupId;
     using TravelBuddies.Domain.Entities;

@@ -1,3 +1,5 @@
+import { errorHandler } from "../utils/common/errorHandler";
+
 const Url = 'https://localhost:7005/api/city';
 
 export const GetAllCities = async () => {
@@ -16,6 +18,7 @@ export const GetAllCities = async () => {
       }  else {
           // Handle other errors
           console.error('Error:', response.statusText);
+          errorHandler(response.status);
       }
     } catch (error) {
       console.error('Error fetching cities:', error);

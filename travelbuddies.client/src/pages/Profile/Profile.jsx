@@ -51,13 +51,13 @@ export const Profile = () => {
                 <div className='profile-reviews'>
                     <h4>Reviews</h4>
                     {user.id != localStorage.userId && (
-                       <CreateReview user={user}/>  
+                       <CreateReview user={user} setUser={setUser}/>  
                     )}
                     {user.reviews ? (
                         user.reviews.map((r) => (
                             <>
-                                <Review key={`review-key-${r.id}`} review={r} userId={user.id}/>
-                                <EditReview key={`edit-review-key-${r.id}`} userId={user.id} review={r}/>
+                                <Review key={`review-key-${r.id}`} review={r} userId={user.id} setUser={setUser}/>
+                                <EditReview key={`edit-review-key-${r.id}`} userId={user.id} review={r} setUser={setUser}/>
                             </>
                         ))
                     ): (

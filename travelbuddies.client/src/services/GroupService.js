@@ -1,3 +1,5 @@
+import { errorHandler } from "../utils/common/errorHandler";
+
 const Url = 'https://localhost:7005/api/group';
 
 export const GetAllGroupByUserId = async () => {
@@ -17,6 +19,7 @@ export const GetAllGroupByUserId = async () => {
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);
+            errorHandler(response.status)
         }
       } catch (error) {
         console.error('Error fetching get all group by user id:', error);
@@ -41,6 +44,7 @@ export const GetGroupById = async (id) => {
       }  else {
           // Handle other errors
           console.error('Error:', response.statusText);
+          errorHandler(response.status);
       }
     } catch (error) {
       console.error('Error fetching get all group by user id:', error);

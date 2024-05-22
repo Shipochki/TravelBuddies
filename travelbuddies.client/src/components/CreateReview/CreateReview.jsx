@@ -1,13 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { OnCreateReviewSubmit } from "../../services/ReviewService"
 import { useForm } from "../../utils/hooks/useForm"
-import { StarSelector } from "../StarSelector/StarSelector"
 import './CreateReview.css'
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
-import { useContext } from "react"
-import { GlobalContext } from "../../utils/contexts/GlobalContext"
+import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { OnCreateMessageSubmit } from "../../services/MessageService"
+import { Rating } from "@mui/material"
+import { GetUserById } from "../../services/UserService"
 
 const ReviewFromKeys = {
     Text: 'text',
@@ -15,10 +15,9 @@ const ReviewFromKeys = {
     ReciverId: 'reciverId',
 }
 
-export const CreateReview = ({user}) => {
+export const CreateReview = ({user, setUser}) => {
     const navigate = useNavigate();
-
-    const { OnSetUser } = useContext(GlobalContext);
+    const [stars, setStars] = useState(1);
 
     const {values, changeHandler, onSubmit} = useForm({
         [ReviewFromKeys.Text]: '',
@@ -26,23 +25,36 @@ export const CreateReview = ({user}) => {
         [ReviewFromKeys.ReciverId]: user.id,
     }, OnCreateReviewSubmit)
 
-    const onChangeStar = (star) => {
-        values[ReviewFromKeys.Rating] = star;
-        changeHandler;
+    const onChangeStar = (event, stars) => {
+        setStars(stars);
     }
 
     const OnCreateSubmit = async (e) => {
         e.preventDefault();
-        await OnCreateMessageSubmit(values);
 
-        window.location.reload();
-        navigate(`/profile/${user.id}`)
+        values[ReviewFromKeys.ReciverId] = user.id;
+        values[ReviewFromKeys.Rating] = stars;
+        
+        await OnCreateReviewSubmit(values);
+
+        values[ReviewFromKeys.Rating] = 1;
+        values[ReviewFromKeys.Text] = '';
+        setStars(1);
+    
+        const result = await GetUserById(user.id);
+
+        setUser(result);
     }
 
     return(
         <div className="create-review-main">
             <form className='review-form' onSubmit={OnCreateSubmit}>
-                <StarSelector onSelect={onChangeStar}/>
+                {/* <StarSelector onSelect={onChangeStar}/> */}
+                <Rating 
+                    name="size-medium"
+                    value={stars}
+                    onChange={onChangeStar}
+                    />
                 <input 
                     type='text'
                     placeholder='Your review here'

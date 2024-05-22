@@ -1,3 +1,5 @@
+import { errorHandler } from "../utils/common/errorHandler";
+
 const Url = 'https://localhost:7005/api/usergroup';
 
 export const OnJoinGroupSubmit = async (groupId) => {
@@ -17,6 +19,7 @@ export const OnJoinGroupSubmit = async (groupId) => {
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);
+            errorHandler(response.status);
         }
       } catch (error) {
         console.error('Error fetching join group:', error);
@@ -41,6 +44,7 @@ export const OnLeaveGroupSubmit = async (groupId) => {
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);
+            errorHandler(response.status);
         }
       } catch (error) {
         console.error('Error fetching leave group:', error);
@@ -65,6 +69,7 @@ export const OnRemoveUserFromGroupSubmit = async (removeFromGroupKeys) => {
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);
+            errorHandler(response.status);
         }
       } catch (error) {
         console.error('Error fetching remove user from group:', error);

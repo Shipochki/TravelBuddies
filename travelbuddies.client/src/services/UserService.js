@@ -1,3 +1,4 @@
+import { errorHandler } from "../utils/common/errorHandler";
 import { parseJwt } from "../utils/common/parsers";
 
 const Url = 'https://localhost:7005/api/user';
@@ -39,8 +40,6 @@ export const OnLoginSubmit = async (loginFromKeys) => {
       localStorage.setItem('fullname', fullname);
       localStorage.setItem('exp', exp);
       localStorage.setItem('profilePictureLink', profilePictureLink);
-
-      window.location.assign('/search')
     } catch (error) {
       console.log("Error with login");
     }
@@ -64,7 +63,12 @@ export const OnRegisterSubmit = async (registerFromKeys) => {
         body: formData,
       });
 
-      const result = await response.json();
+      if(response.ok){
+        const result = await response.json();
+      } else {
+        console.log(response.statusText);
+        errorHandler(response.status);
+      }
     } catch (error) {
       console.log("Error with register")
     }
@@ -80,6 +84,11 @@ export const OnBecomeDriverSubmit = async () => {
         'Content-Type': 'application/json'
       },
     });
+
+    if(!response.ok){
+      console.log(response.statusText);
+      errorHandler(response.status);
+    }
   }
   catch(error){
     console.log("Error with become driver")
@@ -107,6 +116,7 @@ export const GetUserById = async (id) => {
     }  else {
         // Handle other errors
         console.error('Error:', response.statusText);
+        errorHandler(response.status);
     }
   } catch (error) {
     console.error('Error fetching get user by id:', error);

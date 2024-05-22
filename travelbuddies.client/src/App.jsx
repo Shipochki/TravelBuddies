@@ -25,6 +25,8 @@ import { MyVehicle } from './pages/MyVehicle/MyVehicle';
 import { NotFound } from './pages/NotFound/NotFound';
 import { ThemeProvider } from '@emotion/react';
 import { createTheme } from '@mui/material';
+import { Forbidden } from './pages/Forbidden/Forbidden';
+import { BadRequest } from './pages/BadRequest/BadRequest';
 
 function App() {
     const theme = createTheme({
@@ -80,6 +82,8 @@ function App() {
                                 <Route path='/editVehicle' element={<EditVehicle/>}/>
                                 <Route path='/myVehicle' element={<MyVehicle/>}/>
                                 <Route path='/myPosts' element={<MyPosts/>}/>
+                                <Route path='/forbidden' element={<Forbidden/>}/>
+                                <Route path='/badRequest' element={<BadRequest/>}/>
                             </>
                         ) : (
                             <>

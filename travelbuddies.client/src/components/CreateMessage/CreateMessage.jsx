@@ -1,18 +1,16 @@
 import { OnCreateMessageSubmit } from '../../services/MessageService';
 import './CreateMessage.css';
 import { useForm } from '../../utils/hooks/useForm';
-import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
+import { GetGroupById } from '../../services/GroupService';
 
 const MessageFromKeys = {
     Text: 'text',
     GroupId: 'groupId'
 }
 
-export const CreateMessage = ({groupId}) => {
-    const navigate = useNavigate();
-
+export const CreateMessage = ({groupId, setGroup}) => {
     const { values, changeHandler, onSubmit } = useForm({
         [MessageFromKeys.Text]: '',
         [MessageFromKeys.GroupId]: groupId
@@ -24,8 +22,8 @@ export const CreateMessage = ({groupId}) => {
 
         values[MessageFromKeys.Text] = '';
 
-        window.location.reload();
-        navigate(`/group/${id}`);
+        const data = await GetGroupById(groupId);
+        setGroup(data);
     }
 
     return(
@@ -41,7 +39,8 @@ export const CreateMessage = ({groupId}) => {
                         onChange={changeHandler}
                         required
                         />
-                    <Button variant="contained" endIcon={<SendIcon />}>
+                    <Button type='submit'
+                    variant="contained" endIcon={<SendIcon />}>
                         Send
                     </Button>
                 </form>

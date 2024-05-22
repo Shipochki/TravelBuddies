@@ -1,3 +1,5 @@
+import { errorHandler } from "../utils/common/errorHandler";
+
 const Url = 'https://localhost:7005/api/vehicle';
 
 export const OnCreateVehicleSubmit = async (createVehicleFromKeys) => {
@@ -27,6 +29,7 @@ export const OnCreateVehicleSubmit = async (createVehicleFromKeys) => {
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);
+            errorHandler(response.status);
         }
       } catch (error) {
         console.error('Error fetching create vehicle:', error);
@@ -58,6 +61,7 @@ export const OnUpdateVehicleSubmit = async (updateVehicleFromKeys) => {
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);
+            errorHandler(response.status);
         }
       } catch (error) {
         console.error('Error fetching update vehicle:', error);
@@ -82,6 +86,7 @@ export const OnDeleteVehicleSubmit = async (vehicleId) => {
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);
+            errorHandler(response.status);
         }
       } catch (error) {
         console.error('Error fetching create vehicle:', error);
@@ -105,6 +110,7 @@ export const GetVehicleByOwnerId = async (ownerId) => {
     }  else {
         // Handle other errors
         console.error('Error:', response.statusText);
+        errorHandler(response.status);
     }
   } catch (error) {
     console.error('Error fetching get vehicle by owner id:', error);

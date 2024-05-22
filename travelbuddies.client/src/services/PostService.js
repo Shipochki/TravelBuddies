@@ -1,3 +1,4 @@
+import { errorHandler } from "../utils/common/errorHandler";
 
 const Url = 'https://localhost:7005/api/post';
 
@@ -13,8 +14,12 @@ export const OnSearchSubmit = async () => {
         }
       });
       
-      const result = await response.json();
-      return result;
+      if(response.ok){
+        return await response.json();
+      }else{
+        console.log(response.statusText);
+        errorHandler(response.status);
+      }
     } catch (error) {
       console.error('Error fetching get all post by search:', error);
     }
@@ -36,6 +41,7 @@ export const OnCreatePostSubmit = async (createPostFromKeys) => {
       return await response.json();
     } else {
       console.error('Error:', response.statusText);
+      errorHandler(response.status);
     }
   } catch (error){
     console.error('Error fetching create post', error)
@@ -58,6 +64,7 @@ export const OnDeletePostSubmit = async (postId) => {
       return response.json();
     } else {
       console.error('Error', response.statusText);
+      errorHandler(response.status);
     }
   } catch (error){
     console.error('Error fetching delete post', error);
@@ -80,6 +87,7 @@ export const OnUpdatePostSubmit = async (updatePostFromKeys) => {
       return response.json();
     } else {
       console.error('Error:', response.statusText);
+      errorHandler(response.status);
     }
   } catch (error){
     console.error('Error fetching update post', error)
@@ -97,9 +105,12 @@ export const GetPostsByOwnerId = async (ownerId) => {
       },
     });
     
-    const result = await response.json();
-    console.log(result);
-    return result;
+    if(response.ok){
+      return response.json();
+    } else {
+      console.error('Error:', response.statusText);
+      errorHandler(response.status);
+    }
   } catch (error) {
     console.error('Error fetching get all post by search:', error);
   }

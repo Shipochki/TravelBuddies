@@ -1,3 +1,5 @@
+import { errorHandler } from "../utils/common/errorHandler";
+
 const Url = 'https://localhost:7005/api/message';
 
 export const OnCreateMessageSubmit = async (createMessageFromKeys) => {
@@ -18,6 +20,7 @@ export const OnCreateMessageSubmit = async (createMessageFromKeys) => {
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);
+            errorHandler(response.status);
         }
       } catch (error) {
         console.error('Error fetching create message:', error);
@@ -41,6 +44,7 @@ export const OnUpdateMessageSubmit = async (updateMessageFromKeys) => {
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);
+            errorHandler(response.status);
         }
       } catch (error) {
         console.error('Error fetching update message:', error);
@@ -63,6 +67,7 @@ export const OnDeleteMessageSubmit = async (messageId) => {
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);
+            errorHandler(response.status)
         }
       } catch (error) {
         console.error('Error fetching delete message:', error);
@@ -86,6 +91,7 @@ export const GetAllMessageByGroupId = async (groupId) => {
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);
+            errorHandler(response.status)
         }
       } catch (error) {
         console.error('Error fetching join group:', error);

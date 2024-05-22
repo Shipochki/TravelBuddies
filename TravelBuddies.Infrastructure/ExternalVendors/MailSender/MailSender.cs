@@ -24,5 +24,23 @@
 
 			smtpClient.SendMailAsync(mailMessage).Wait();
 		}
+
+		public string GenerateRegistrationEmail(string userName)
+		{
+			return $@"
+					<html>
+					<body>
+						<h2>Welcome to TravelBuddies!</h2>
+						<p>Hi {userName},</p>
+						<p>Thank you for registering at TravelBuddies! We're excited to have you on board.</p>
+						<p><a href='https://localhost:5173/login'>Login to your account</a></p>
+						<p>If you did not create an account with us, please ignore this email.</p>
+						<br />
+						<p>Best regards,</p>
+						<p>The TravelBuddies Team</p>
+					</body>
+					</html>";
+		}
+
 	}
 }
