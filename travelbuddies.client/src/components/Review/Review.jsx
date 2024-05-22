@@ -5,6 +5,8 @@ import { faPencil, faX } from '@fortawesome/free-solid-svg-icons';
 import { OnDeleteReviewSubmit } from '../../services/ReviewService';
 import { useNavigate } from 'react-router-dom';
 import { GetUserById } from '../../services/UserService';
+import { IconButton } from '@mui/material';
+import { DeleteForever } from '@mui/icons-material';
 
 export const Review = ({review, userId, setUser}) => {
     const navigate = useNavigate();
@@ -59,14 +61,22 @@ export const Review = ({review, userId, setUser}) => {
                             </div>
                         )}
                         <div className='button-container'>
-                            <button
+                            {/* <button
                                 onClick={(e) => {
                                     e.preventDefault()
                                     ConfirmDelete(e, review.id);
                                 }}
                                 className='delete-review-button'>
                                 <FontAwesomeIcon icon={faX}/>
-                            </button>
+                            </button> */}
+                            <IconButton 
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    ConfirmDelete(e, review.id);
+                                }}
+                                aria-label="delete">
+                                <DeleteForever />
+                            </IconButton>
                             <span className='button-info'>Delete</span>
                         </div>
                     </div>

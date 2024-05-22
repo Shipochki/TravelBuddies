@@ -40,6 +40,8 @@ export const OnLoginSubmit = async (loginFromKeys) => {
       localStorage.setItem('fullname', fullname);
       localStorage.setItem('exp', exp);
       localStorage.setItem('profilePictureLink', profilePictureLink);
+
+      window.location.assign('/');
     } catch (error) {
       console.log("Error with login");
     }
@@ -65,6 +67,8 @@ export const OnRegisterSubmit = async (registerFromKeys) => {
 
       if(response.ok){
         const result = await response.json();
+
+        window.location.assign('/login');
       } else {
         console.log(response.statusText);
         errorHandler(response.status);

@@ -23,27 +23,11 @@
     row-gap: 10px;
 }
 
-.group-info p{
-    width: 8vw;
-    text-align: center;
-    border-radius: 8px;
-    padding: 5px;
-}
-
-.group-info p:hover{
-    background-color: white;
-    cursor: pointer;
+.group-info-members:hover{
     color: #2979ff;
+    cursor: pointer;
 }
 
-.group-info div{
-    width: 12vw;
-    height: 3vw;
-    background-color: white;
-    box-shadow: 0px 0px 1px 0px;
-    border-radius: 8px;
-    padding: 5px;
-}
 
 .group-messages{
     width: 50vw;

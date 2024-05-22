@@ -22,7 +22,9 @@ export const Post = ({
 
     const OnJoinSubmit = async (e) => {
         e.preventDefault();
+        
         await OnJoinGroupSubmit(GroupId);
+
         navigate(`/group/${GroupId}`)
     }
 
