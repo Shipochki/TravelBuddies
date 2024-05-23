@@ -2,11 +2,19 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import './MemberGroup.css'
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faIdCard, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faBan, faIdCard, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { OnRemoveUserFromGroupSubmit } from "../../services/UserGroupService";
 
-export const MemberGroup = ({member, ownerId, groupId, setGroup}) => {
+import personImgOffline from '../../utils/images/blank-profile-picture-973460_960_720.png'
+import { Box, Popper } from "@mui/material";
+import { useContext, useState } from "react";
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { GlobalContext } from "../../utils/contexts/GlobalContext";
+
+export const MemberGroup = ({member, ownerId, groupId}) => {
+    const {OnSetGroup} = useContext(GlobalContext);
     const navigate = useNavigate();
+    const [anchorEl, setAnchorEl] = useState(null);
 
     const ConfirmDelete = async () => {
         const text = `Are you sure you want to kick this user:\n ${member.fullName}`
@@ -18,11 +26,17 @@ export const MemberGroup = ({member, ownerId, groupId, setGroup}) => {
 
             await OnRemoveUserFromGroupSubmit(kickMemberFromKeys);
 
-            const data = await GetGroupById(groupId);
-
-            setGroup(data);
+            OnSetGroup(groupId);
         }
     }
+
+    const handleClick = (event) => {
+        setAnchorEl(anchorEl ? null : event.currentTarget)
+    }
+
+    const open = Boolean(anchorEl);
+    const id = open ? 'simple-popper' : undefined;
+
     return(
         <div className="member">
             <LazyLoadImage 
@@ -31,17 +45,28 @@ export const MemberGroup = ({member, ownerId, groupId, setGroup}) => {
                 }}
                 src={member.profilePictureLink 
                 ? member.profilePictureLink 
-                : 'https://lh3.googleusercontent.com/d/1jzzGHsTZWHo57Mhria1n_MIm4kzxe-tD=s220?authuser=0'}/>
+                : personImgOffline}/>
             <p
                 onClick={() => {
                     navigate(`/profile/${member.id}`)
                 }}>{member.id == ownerId && <FontAwesomeIcon icon={faIdCard}/>} {member.fullName}</p>
-            {(localStorage.userId == ownerId || localStorage.role == 'admin') && (
-                <button onClick={(e) => {
-                    e.preventDefault();
-                    ConfirmDelete();
-                }} className="button-kick"><FontAwesomeIcon icon={faXmark}/></button>
+                {(localStorage.userId == ownerId || localStorage.role == 'admin') && (
+                <button onClick={handleClick} aria-describedby={id} className="button-member-options"><MoreVertIcon/></button>
             )}
+                <Popper id={id} open={open} anchorEl={anchorEl}>
+                    <Box sx={{ 
+                        border: 1, 
+                        p: 1, 
+                        bgcolor: 'background.paper', 
+                        display: 'flex', 
+                        flexDirection: 'column',
+                        width: '80px'
+                        }}>
+                        <button> Kick</button>
+                        <button><FontAwesomeIcon icon={faBan}/> Ban</button>
+                    </Box>
+                </Popper>
+            
         </div>
     )
 }

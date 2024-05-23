@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil, faSignOut, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Button, Tooltip } from '@mui/material';
 
+import personImgOffline from '../../utils/images/blank-profile-picture-973460_960_720.png'
+
 export const UserMenu = () => {
     const OnLogout = () => {
         localStorage.clear();
@@ -47,7 +49,7 @@ export const UserMenu = () => {
                     }}>
                         <LazyLoadImage
                             className='menuLines'
-                            src={localStorage.profilePictureLink !== 'undefined' ? localStorage.profilePictureLink : 'https://lh3.googleusercontent.com/d/1jzzGHsTZWHo57Mhria1n_MIm4kzxe-tD=s220?authuser=0'}/>
+                            src={localStorage.profilePictureLink !== 'undefined' ? localStorage.profilePictureLink : personImgOffline}/>
                     </Button>
                 </Tooltip>
             ): (
@@ -57,7 +59,7 @@ export const UserMenu = () => {
                     }}>
                         <LazyLoadImage
                             className='menuLines clicked'
-                            src={localStorage.profilePictureLink !== 'undefined' ? localStorage.profilePictureLink : 'https://lh3.googleusercontent.com/d/1jzzGHsTZWHo57Mhria1n_MIm4kzxe-tD=s220?authuser=0'}/>
+                            src={localStorage.profilePictureLink !== 'undefined' ? localStorage.profilePictureLink : personImgOffline}/>
                     </Button>
                 </Tooltip>
             )}
@@ -67,7 +69,7 @@ export const UserMenu = () => {
                     <div>
                         <div className='profile-info'>
                             <LazyLoadImage
-                            src={localStorage.profilePictureLink !== 'undefined' ? localStorage.profilePictureLink : 'https://lh3.googleusercontent.com/d/1jzzGHsTZWHo57Mhria1n_MIm4kzxe-tD=s220?authuser=0'}/>
+                            src={localStorage.profilePictureLink !== 'undefined' ? localStorage.profilePictureLink : personImgOffline}/>
                             <p>{localStorage.fullname}</p>
                         </div>
                         <div className='navLinks'>

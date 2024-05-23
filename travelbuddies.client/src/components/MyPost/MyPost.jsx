@@ -2,6 +2,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './MyPost.css'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
+import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 
 export const MyPost = ({post}) => {
 
@@ -18,14 +21,14 @@ export const MyPost = ({post}) => {
                 <div className='mypost-info'>
                     <p className='mypost-seats'>Avalible seats: {post.freeSeats}</p>
                     <p className='mypost-pricePerSeat'>Price per seats: {post.pricePerSeat} EUR</p>
-                    <p className='mypost-baggage'>{post.baggage}</p>
-                    <p className='mypost-pets'>{post.pets}</p>
+                    <p className='mypost-baggage'>Baggage: {post.baggage ? 'Yes' : 'No'}</p>
+                    <p className='mypost-pets'>Pets: {post.pets ? 'Yes': 'No'}</p>
                 </div>
             </div>
             <div className='mypost-navigation'>
-                <Link to={'/editPost'}>Edit Post</Link>
-                <Link to={'/deletePost'}>Delete Post</Link>
-                <Link to={'/completePost'}>Complete Post</Link>
+                <Link className='edit-post-btn' to={'/editPost'}><EditIcon fontSize='16px'/> Edit</Link>
+                <Link className='complete-post-btn' to={'/completePost'}><CheckCircleOutlineOutlinedIcon fontSize='16px'/> Complete</Link>
+                <Link className='delete-post-btn' to={'/deletePost'}><DeleteForeverOutlinedIcon fontSize='16px'/> Delete</Link>
             </div>
         </div>
     )

@@ -1,13 +1,24 @@
-import { useEffect, useState } from "react";
-import { GetAllGroupByUserId } from "../../services/GroupService"
+import { useContext, useEffect, useState } from "react";
+import { GetAllGroupByUserId, GetGroupById } from "../../services/GroupService"
 import './Groups.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPeopleGroup } from "@fortawesome/free-solid-svg-icons";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useNavigate } from "react-router-dom";
 
+import personImgOffline from '../../utils/images/blank-profile-picture-973460_960_720.png'
+import { GlobalContext } from "../../utils/contexts/GlobalContext";
+
 export const Groups = () => {
+    const { OnSetGroup } = useContext(GlobalContext);
     const [groups, setGroups] = useState([]);
+    const navigate = useNavigate();
+
+    const OnGetGroup = async (id) => {
+        //const data = await GetGroupById(id);
+        OnSetGroup(id);
+        // navigate(`../group/${id}`, { replace: true });
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -17,8 +28,7 @@ export const Groups = () => {
         fetchData();
     }, []);
 
-    const navigate = useNavigate();
-
+    
     return(
         <div className="groups-main">
             <h3>{<FontAwesomeIcon icon={faPeopleGroup}/>} My Groups</h3>
@@ -27,10 +37,11 @@ export const Groups = () => {
             )}
             {groups.map((g, i) => (
                 <div key={i} id={g.id} onClick={() => {
-                    window.location.assign(`/group/${g.id}`);
+                    OnGetGroup(g.id);
+                    // window.location.assign(`/group/${g.id}`);
                 }} className="groups-main-group">
                     <div className="picture-group">
-                        <LazyLoadImage src={g.creatorProfileLink ? g.creatorProfileLink : 'https://lh3.googleusercontent.com/d/1jzzGHsTZWHo57Mhria1n_MIm4kzxe-tD=s220?authuser=0'}/>
+                        <LazyLoadImage src={g.creatorProfileLink ? g.creatorProfileLink : personImgOffline}/>
                     </div>
                     <div>  
                         <p>{g.name}</p>

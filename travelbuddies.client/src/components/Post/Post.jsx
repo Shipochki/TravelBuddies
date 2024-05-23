@@ -5,6 +5,8 @@ import { OnJoinGroupSubmit } from '../../services/UserGroupService';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link, useNavigate } from 'react-router-dom';
 
+import personImgOffline from '../../utils/images/blank-profile-picture-973460_960_720.png'
+
 export const Post = ({
     FromDestinationName,
     ToDestinationName,
@@ -32,7 +34,7 @@ export const Post = ({
         <div className='post-component'>
             <div className='post-creator'>
                 <Link to={`/profile/${Creator.Id}`}>
-                    <LazyLoadImage src={Creator.ProfilePictureLink ?? 'https://lh3.googleusercontent.com/d/1jzzGHsTZWHo57Mhria1n_MIm4kzxe-tD=s220?authuser=0'}/>
+                    <LazyLoadImage src={Creator.ProfilePictureLink ? Creator.ProfilePictureLink : personImgOffline}/>
                 </Link>
                 <p>{Creator.FullName}</p>
             </div>

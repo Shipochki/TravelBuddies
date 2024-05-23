@@ -8,6 +8,8 @@ import { useEffect, useState } from 'react';
 import { GetUserById } from '../../services/UserService';
 import { Link, useParams } from 'react-router-dom';
 
+import personImgOffline from '../../utils/images/blank-profile-picture-973460_960_720.png'
+
 export const Profile = () => {
     const {id} = useParams();
     const [user, setUser] = useState({});
@@ -27,7 +29,7 @@ export const Profile = () => {
                     <LazyLoadImage 
                     src={user.profilePictureLink != null
                          ? user.profilePictureLink
-                          : 'https://lh3.googleusercontent.com/d/1jzzGHsTZWHo57Mhria1n_MIm4kzxe-tD=s220?authuser=0'}
+                          : personImgOffline}
                           />
                     <div className='profile-info-content'>
                         <h3>{user.firstName} {user.lastName}</h3>

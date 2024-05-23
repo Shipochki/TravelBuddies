@@ -53,6 +53,7 @@
     min-width: 33vw;
     min-height: 8vw;
     max-width: 40vw;
+    max-height: 10vw;
 }
 
 .create-post-date-time{

@@ -8,6 +8,8 @@ import { GetUserById } from '../../services/UserService';
 import { IconButton } from '@mui/material';
 import { DeleteForever } from '@mui/icons-material';
 
+import personImgOffline from '../../utils/images/blank-profile-picture-973460_960_720.png'
+
 export const Review = ({review, userId, setUser}) => {
     const navigate = useNavigate();
 
@@ -35,7 +37,7 @@ export const Review = ({review, userId, setUser}) => {
                 onClick={LoadProfile} 
                 src={review.creator.profilePictureLink 
                 ? review.creator.profilePictureLink 
-                : 'https://lh3.googleusercontent.com/d/1jzzGHsTZWHo57Mhria1n_MIm4kzxe-tD=s220?authuser=0'}/> 
+                : personImgOffline}/> 
                 <p>{review.creator.fullName}</p>
             </div>
             

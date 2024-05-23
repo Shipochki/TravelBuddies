@@ -20,7 +20,7 @@
 
 		[Required]
 		[MinLength(MinLengthColor)]
-		[MaxLength(MinLengthColor)]
+		[MaxLength(MaxLengthColor)]
 		public required string Color { get; set; }
 
 		[Range(MinRangeFule, MaxRangeFuel)]

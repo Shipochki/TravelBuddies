@@ -49,3 +49,14 @@
 .button-kick:hover{
     cursor: pointer;
 }
+
+.button-member-options{
+    border: 0;
+    background-color: transparent;
+    width: 10px;
+    color: gray;
+}
+
+.button-member-options:hover{
+    cursor: pointer;
+}

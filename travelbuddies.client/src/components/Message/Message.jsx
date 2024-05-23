@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 
+import personImgOffline from '../../utils/images/blank-profile-picture-973460_960_720.png'
+
 export const Message = ({message, i, ownerId, setGroup}) => {
     const [vissable, setVissable] = useState(false); 
 
@@ -51,7 +53,7 @@ export const Message = ({message, i, ownerId, setGroup}) => {
                         <LazyLoadImage
                         src={message.creatorProfileLink 
                         ? message.creatorProfileLink 
-                        : 'https://lh3.googleusercontent.com/d/1jzzGHsTZWHo57Mhria1n_MIm4kzxe-tD=s220?authuser=0'}/> 
+                        : personImgOffline}/> 
                     </Link>)}
                 </div>
                 <div className="message-text">

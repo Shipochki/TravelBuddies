@@ -27,10 +27,18 @@ import { ThemeProvider } from '@emotion/react';
 import { createTheme } from '@mui/material';
 import { Forbidden } from './pages/Forbidden/Forbidden';
 import { BadRequest } from './pages/BadRequest/BadRequest';
+import { GetGroupById } from './services/GroupService';
 
 function App() {
     const navigate = useNavigate();
-    
+    const [group, setGroup] = useState({});
+
+    const OnSetGroup = async (id) => {
+        const data = await GetGroupById(id);
+        setGroup(data);
+        navigate(`/group/${id}`);
+    }
+
     const theme = createTheme({
         palette:{
             primary:{
@@ -55,6 +63,7 @@ function App() {
       });
 
     const globalContext = {
+        OnSetGroup
     }
 
     return (
@@ -77,7 +86,7 @@ function App() {
                                 <Route path='/becomeDriver' element={<BecomeDriver/>}/>
                                 <Route path='/createPost' element={<CreatePost/>}/>
                                 <Route path='/catalog' element={<Catalog/>}/>
-                                <Route path='/group/:id' element={<Group/>}/>
+                                <Route path='/group/:id' element={<Group group={group}/>}/>
                                 <Route path='/profile/:id' element={<Profile/>}/>
                                 <Route path='/reviews/:id' element={<Reviews/>}/>
                                 <Route path='/createVehicle' element={<CreateVehicle/>}/>
