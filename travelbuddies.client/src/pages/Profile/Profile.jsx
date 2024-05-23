@@ -27,7 +27,7 @@ export const Profile = () => {
                     <LazyLoadImage 
                     src={user.profilePictureLink != null
                          ? user.profilePictureLink
-                          : 'https://sttravelbuddies001.blob.core.windows.net/web/blank-profile-picture-973460_960_720.png'}
+                          : 'https://lh3.googleusercontent.com/d/1jzzGHsTZWHo57Mhria1n_MIm4kzxe-tD=s220?authuser=0'}
                           />
                     <div className='profile-info-content'>
                         <h3>{user.firstName} {user.lastName}</h3>

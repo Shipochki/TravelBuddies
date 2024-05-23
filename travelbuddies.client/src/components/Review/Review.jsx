@@ -35,7 +35,7 @@ export const Review = ({review, userId, setUser}) => {
                 onClick={LoadProfile} 
                 src={review.creator.profilePictureLink 
                 ? review.creator.profilePictureLink 
-                : 'https://sttravelbuddies001.blob.core.windows.net/web/blank-profile-picture-973460_960_720.png'}/> 
+                : 'https://lh3.googleusercontent.com/d/1jzzGHsTZWHo57Mhria1n_MIm4kzxe-tD=s220?authuser=0'}/> 
                 <p>{review.creator.fullName}</p>
             </div>
             

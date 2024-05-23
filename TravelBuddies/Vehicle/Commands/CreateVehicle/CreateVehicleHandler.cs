@@ -13,15 +13,14 @@
 
 	public class CreateVehicleHandler : BaseHandler, IRequestHandler<CreateVehicleCommand, Vehicle>
 	{
-		private readonly IBlobService _blobService;
+		//private readonly IBlobService _blobService;
 		public CreateVehicleHandler(
 			IRepository repository
 			, UserManager<ApplicationUser> userManager
-			, RoleManager<IdentityRole> roleManager
-			, IBlobService blobService)
+			, RoleManager<IdentityRole> roleManager)
 			: base(repository, userManager, roleManager)
 		{
-			_blobService = blobService;
+			//_blobService = blobService;
 		}
 
 		public async Task<Vehicle> Handle(CreateVehicleCommand request, CancellationToken cancellationToken)

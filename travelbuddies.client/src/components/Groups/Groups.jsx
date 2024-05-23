@@ -30,7 +30,7 @@ export const Groups = () => {
                     window.location.assign(`/group/${g.id}`);
                 }} className="groups-main-group">
                     <div className="picture-group">
-                        <LazyLoadImage src={g.creatorProfileLink ? g.creatorProfileLink : 'https://sttravelbuddies001.blob.core.windows.net/web/blank-profile-picture-973460_960_720.png'}/>
+                        <LazyLoadImage src={g.creatorProfileLink ? g.creatorProfileLink : 'https://lh3.googleusercontent.com/d/1jzzGHsTZWHo57Mhria1n_MIm4kzxe-tD=s220?authuser=0'}/>
                     </div>
                     <div>  
                         <p>{g.name}</p>

@@ -174,7 +174,7 @@ export const Header = () => {
             <div className="logo-content">
                 
                 <Link to={'/'} className="logo">
-                    <img src="https://sttravelbuddies001.blob.core.windows.net/web/logo-no-background.png" alt="" /></Link>
+                    <img src="https://lh3.googleusercontent.com/d/1QE8IVBVhMs9n0A-FGzvjNwbK1s0vktoi=s220?authuser=0" alt="" /></Link>
            
             </div>
             <div className="navigation">

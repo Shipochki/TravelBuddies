@@ -16,16 +16,15 @@
 		[MinLength(MinLengthModelName)]
 		[MaxLength(MaxLengthModelName)]
 		public required string ModelName { get; set; }
-
-		[Range(MinRangeFule, MaxRangeFuel)]
-		public int Fuel { get; set; }
-
 		public int Year { get; set; }
 
 		[Required]
 		[MinLength(MinLengthColor)]
 		[MaxLength(MinLengthColor)]
 		public required string Color { get; set; }
+
+		[Range(MinRangeFule, MaxRangeFuel)]
+		public int Fuel { get; set; }
 
 		public int SeatCount { get; set; }
 

@@ -43,7 +43,7 @@ export const OnLoginSubmit = async (loginFromKeys) => {
 
       window.location.assign('/');
     } catch (error) {
-      console.log("Error with login");
+      console.log("Error with login", error);
     }
   }
 

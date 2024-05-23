@@ -16,7 +16,7 @@ export const Vehicle = ({vehicle}) => {
                 <p>Seat count: {vehicle.seatCount}</p>
                 <p>ACSystem <FontAwesomeIcon icon={vehicle.acSystem ? faCheck : faX}/></p>
             </div>
-            <LazyLoadImage className='vehicle-img' src={vehicle.pictureLink}/>
+            <LazyLoadImage className='vehicle-img' src={vehicle.pictureLink ? vehicle.pictureLink : 'https://lh3.googleusercontent.com/d/1jzzGHsTZWHo57Mhria1n_MIm4kzxe-tD=s220?authuser=0'}/>
         </div>
     )
 }

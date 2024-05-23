@@ -60,10 +60,11 @@ export const OnUpdateVehicleSubmit = async (updateVehicleFromKeys) => {
   
           if (response.ok) {
             // Handle successful response
+            return response.json();
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);
-            errorHandler(response.status);
+            //errorHandler(response.status);
         }
       } catch (error) {
         console.error('Error fetching update vehicle:', error);

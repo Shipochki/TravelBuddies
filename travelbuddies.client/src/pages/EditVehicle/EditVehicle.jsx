@@ -75,14 +75,32 @@ export const EditVehicle = () => {
         changeHandler;
     }
 
+    const onUpdateSubmit = async (e) => {
+        e.preventDefault();
+
+        await OnUpdateVehicleSubmit(values);
+
+        const data = await GetVehicleByOwnerId(localStorage.userId);
+            setVehicle(data);
+
+            values[EditVehicleFromKeys.Id] = data.id;
+            values[EditVehicleFromKeys.BrandName] = data.brandName;
+            values[EditVehicleFromKeys.ModelName] = data.modelName;
+            values[EditVehicleFromKeys.Fuel] = fuel[data.fuel];
+            values[EditVehicleFromKeys.SeatCount] = data.seatCount;
+            values[EditVehicleFromKeys.ACSystem] = data.acSystem;
+            values[EditVehicleFromKeys.Year] = data.year;
+            values[EditVehicleFromKeys.Color] = data.color;
+    }
+
     return(
         <div className="create-vehicle-main">
-            {vehicle.id ? (
+            {vehicle.brandName != '' ? (
                 <div className='create-vehicle-content'>
                 <div className='create-vehicle-header'>
                     <h2>Edit your Vehicle</h2>
                 </div>
-                <form className="create-vehicle-form" onSubmit={onSubmit}>
+                <form className="create-vehicle-form" onSubmit={onUpdateSubmit}>
                 <div className='vehicle-brandname'>
                     <input 
                         type='text'

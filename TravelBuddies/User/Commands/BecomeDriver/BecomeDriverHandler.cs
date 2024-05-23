@@ -39,7 +39,7 @@
 					string.Format(IdentityRoleNotFoundMessage, ApplicationRoles.Driver));
 			}
 
-			await _roleManager.RoleExistsAsync(ApplicationRoles.Client);
+			await _userManager.RemoveFromRoleAsync(applicationUser, ApplicationRoles.Client);
 
 			IdentityResult result = await _userManager.AddToRoleAsync(applicationUser, ApplicationRoles.Driver);
 

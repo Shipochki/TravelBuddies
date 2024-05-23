@@ -47,7 +47,7 @@ export const UserMenu = () => {
                     }}>
                         <LazyLoadImage
                             className='menuLines'
-                            src={localStorage.profilePictureLink !== 'undefined' ? localStorage.profilePictureLink : 'https://sttravelbuddies001.blob.core.windows.net/web/blank-profile-picture-973460_960_720.png'}/>
+                            src={localStorage.profilePictureLink !== 'undefined' ? localStorage.profilePictureLink : 'https://lh3.googleusercontent.com/d/1jzzGHsTZWHo57Mhria1n_MIm4kzxe-tD=s220?authuser=0'}/>
                     </Button>
                 </Tooltip>
             ): (
@@ -57,7 +57,7 @@ export const UserMenu = () => {
                     }}>
                         <LazyLoadImage
                             className='menuLines clicked'
-                            src={localStorage.profilePictureLink !== 'undefined' ? localStorage.profilePictureLink : 'https://sttravelbuddies001.blob.core.windows.net/web/blank-profile-picture-973460_960_720.png'}/>
+                            src={localStorage.profilePictureLink !== 'undefined' ? localStorage.profilePictureLink : 'https://lh3.googleusercontent.com/d/1jzzGHsTZWHo57Mhria1n_MIm4kzxe-tD=s220?authuser=0'}/>
                     </Button>
                 </Tooltip>
             )}
@@ -67,7 +67,7 @@ export const UserMenu = () => {
                     <div>
                         <div className='profile-info'>
                             <LazyLoadImage
-                            src={localStorage.profilePictureLink !== 'undefined' ? localStorage.profilePictureLink : 'https://sttravelbuddies001.blob.core.windows.net/web/blank-profile-picture-973460_960_720.png'}/>
+                            src={localStorage.profilePictureLink !== 'undefined' ? localStorage.profilePictureLink : 'https://lh3.googleusercontent.com/d/1jzzGHsTZWHo57Mhria1n_MIm4kzxe-tD=s220?authuser=0'}/>
                             <p>{localStorage.fullname}</p>
                         </div>
                         <div className='navLinks'>

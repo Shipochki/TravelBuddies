@@ -49,7 +49,7 @@ export const CreateVehicle = () => {
 
         const result = await GetVehicleByOwnerId(localStorage.userId);
 
-        OnSetVehicle(result);
+        setVehicle(result);
     }
 
     const [nameFile, setNameFile] = useState('');
@@ -75,7 +75,7 @@ export const CreateVehicle = () => {
         <div className="create-vehicle-main">
             {localStorage.role == 'driver' ? (
                 <>
-                {vehicle.length == 0 ? (
+                {vehicle.brandName == '' ? (
                 <div className='create-vehicle-content'>
                 <div className='create-vehicle-header'>
                     <h2>Add your Vehicle</h2>

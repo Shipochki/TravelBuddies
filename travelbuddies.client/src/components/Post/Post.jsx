@@ -32,7 +32,7 @@ export const Post = ({
         <div className='post-component'>
             <div className='post-creator'>
                 <Link to={`/profile/${Creator.Id}`}>
-                    <LazyLoadImage src={Creator.ProfilePictureLink ?? 'https://sttravelbuddies001.blob.core.windows.net/web/blank-profile-picture-973460_960_720.png'}/>
+                    <LazyLoadImage src={Creator.ProfilePictureLink ?? 'https://lh3.googleusercontent.com/d/1jzzGHsTZWHo57Mhria1n_MIm4kzxe-tD=s220?authuser=0'}/>
                 </Link>
                 <p>{Creator.FullName}</p>
             </div>
