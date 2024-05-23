@@ -40,7 +40,6 @@
 			review.Rating = request.Rating;
 			review.UpdatedOn = DateTime.Now;
 
-			_repository.Update(review);
 			await _repository.SaveChangesAsync();
 
 			return await Task.FromResult(review);

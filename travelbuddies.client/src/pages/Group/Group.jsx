@@ -1,5 +1,5 @@
 import './Group.css'
-import { useContext, useState } from "react"
+import { useContext, useRef, useState } from "react"
 import { GetGroupById } from "../../services/GroupService"
 import { useEffect } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -13,33 +13,27 @@ import { GlobalContext } from '../../utils/contexts/GlobalContext'
 
 export const Group = ({group}) => {
     const { OnSetGroup } = useContext(GlobalContext);
+    const intervalRef = useRef(null);
+
+    const { id } = useParams();
 
     useEffect(() => {
         if(!group.id){
-            const { id } = useParams();
             OnSetGroup(id);
         }
-        // const fetchData = async () => {
-        //     const data = await GetGroupById(id);
-        //     setGroup(data);
-        // fetchData();
-        // }
-    }, []);
+
+        intervalRef.current = setInterval(() => {
+            OnSetGroup(id);
+        }, 60000);
+
+        return () => clearInterval(intervalRef.current);
+    }, [id]);
 
     const [membersVisable, setMembersVisable] = useState(false);
 
     const onClickVisable = () => {
         setMembersVisable(!membersVisable);
     }
-
-    useEffect(() => {
-        const interval = setInterval(async () => {
-            const { id } = useParams();
-            OnSetGroup(id);
-        }, 60000);
-
-        return () => clearInterval(interval);
-    }, []);
 
     return (
         <div className="group-main">

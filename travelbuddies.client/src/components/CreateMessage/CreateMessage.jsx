@@ -4,13 +4,17 @@ import { useForm } from '../../utils/hooks/useForm';
 import { Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { GetGroupById } from '../../services/GroupService';
+import { useContext } from 'react';
+import { GlobalContext } from '../../utils/contexts/GlobalContext';
 
 const MessageFromKeys = {
     Text: 'text',
     GroupId: 'groupId'
 }
 
-export const CreateMessage = ({groupId, setGroup}) => {
+export const CreateMessage = ({groupId}) => {
+    const { OnSetGroup } = useContext(GlobalContext);
+
     const { values, changeHandler, onSubmit } = useForm({
         [MessageFromKeys.Text]: '',
         [MessageFromKeys.GroupId]: groupId
@@ -22,8 +26,7 @@ export const CreateMessage = ({groupId, setGroup}) => {
 
         values[MessageFromKeys.Text] = '';
 
-        const data = await GetGroupById(groupId);
-        setGroup(data);
+        OnSetGroup(groupId);
     }
 
     return(

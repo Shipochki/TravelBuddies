@@ -42,6 +42,7 @@
 			}
 
 			message.Text = request.Text;
+			message.UpdatedOn = DateTime.Now;
 
 			await _repository.SaveChangesAsync();
 

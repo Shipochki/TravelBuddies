@@ -55,7 +55,6 @@
 
 			message.IsDeleted = true;
 
-			_repository.Update(message);
 			await _repository.SaveChangesAsync();
 
 			return Task.CompletedTask;

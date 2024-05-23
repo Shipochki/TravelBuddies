@@ -13,5 +13,7 @@
 		public List<UserGroup> UsersGroups { get; set; } = new List<UserGroup>();
 
 		public List<Message> Messages { get; set; } = new List<Message>();
+
+		public List<UserBlackList> UsersBlackLists { get; set; } = new List<UserBlackList>();
 	}
 }

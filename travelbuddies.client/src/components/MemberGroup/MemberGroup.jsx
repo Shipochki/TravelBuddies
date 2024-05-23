@@ -62,7 +62,7 @@ export const MemberGroup = ({member, ownerId, groupId}) => {
                         flexDirection: 'column',
                         width: '80px'
                         }}>
-                        <button> Kick</button>
+                        <button onClick={ConfirmDelete}> Kick</button>
                         <button><FontAwesomeIcon icon={faBan}/> Ban</button>
                     </Box>
                 </Popper>

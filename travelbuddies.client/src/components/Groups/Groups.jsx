@@ -12,7 +12,6 @@ import { GlobalContext } from "../../utils/contexts/GlobalContext";
 export const Groups = () => {
     const { OnSetGroup } = useContext(GlobalContext);
     const [groups, setGroups] = useState([]);
-    const navigate = useNavigate();
 
     const OnGetGroup = async (id) => {
         //const data = await GetGroupById(id);

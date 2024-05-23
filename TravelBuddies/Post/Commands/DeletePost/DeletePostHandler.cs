@@ -48,7 +48,6 @@
 			post.IsDeleted = true;
 			post.DeletedOn = DateTime.Now;
 
-			_repository.Update(post);
 			await _repository.SaveChangesAsync();
 
 			return Task.CompletedTask;

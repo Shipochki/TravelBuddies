@@ -5,11 +5,13 @@ import { OnDeleteMessageSubmit } from '../../services/MessageService';
 import { GetGroupById } from '../../services/GroupService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import personImgOffline from '../../utils/images/blank-profile-picture-973460_960_720.png'
+import { GlobalContext } from '../../utils/contexts/GlobalContext';
 
-export const Message = ({message, i, ownerId, setGroup}) => {
+export const Message = ({message, i, ownerId}) => {
+    const {OnSetGroup} = useContext(GlobalContext);
     const [vissable, setVissable] = useState(false); 
 
     const ConfirmDelete = async (messageId) => {
@@ -17,9 +19,7 @@ export const Message = ({message, i, ownerId, setGroup}) => {
         if(confirm(text) == true){
             await OnDeleteMessageSubmit(messageId);
 
-            const data = await GetGroupById(message.groupId);
-
-            setGroup(data);
+            OnSetGroup(message.groupId)
         }
     }
 

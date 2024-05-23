@@ -19,7 +19,6 @@
                         NormalizedUserName = "STEF@ABV.BG",
                         Email = "stef@abv.bg",
                         NormalizedEmail = "STEF@ABV.BG",
-                        ProfilePictureLink = "https://sttravelbuddies001.blob.core.windows.net/web/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg",
 						PasswordHash = "AQAAAAIAAYagAAAAEPVnteRPP3bxhfn6aX/VLDyvnhpR1G/XMZL+3lTqsFfCBSkw02SQmqBTA3eYyp8iGw==",
                         SecurityStamp = "KSGYS5WQKJHNDDGNY4GS4EX76VXJQ7OI",
                         ConcurrencyStamp = "2f8f0326-49df-4896-bff4-bd06fae02f72",
@@ -38,7 +37,6 @@
                         PasswordHash = "AQAAAAIAAYagAAAAEAp54NNJZSWCgUnjr3egFsEaeGZn+LaS5ln6Vy5fdWhxgSRunRtN7ZwkbZTzp0m2xw==",
                         SecurityStamp = "6Y6MZSEJ5FKGOXWADDON74PWO7EYV7MJ",
                         ConcurrencyStamp = "fc339f9a-b858-4016-8b88-ed0a66d016f2",
-                        ProfilePictureLink = "https://sttravelbuddies001.blob.core.windows.net/web/pexels-simon-robben-55958-614810.jpg"
 					},
                     new ApplicationUser()
                     {
@@ -57,7 +55,6 @@
                         Id = "750b562c-3842-460e-a47a-44798f150069",
                         FirstName = "Kristin",
                         LastName = "Petkova",
-                        ProfilePictureLink = "https://sttravelbuddies001.blob.core.windows.net/web/70093934-03aa-4a3c-8065-1cef7399d957",
                         Country = "Bulgaria",
                         City = "Varna",
                         UserName = "krisito@mail.com",
@@ -73,7 +70,6 @@
                         Id = "e31879db-e921-4054-aba7-0f8b6a2092c1",
                         FirstName = "Simeon",
                         LastName = "Gerov",
-                        ProfilePictureLink = "https://sttravelbuddies001.blob.core.windows.net/web/d7f5d2a0-cf11-4335-aa06-c31f6e9ca10c",
                         Country = "Bulgaria",
                         City = "Burgas",
                         UserName = "simo@mail.com",

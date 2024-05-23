@@ -10,7 +10,7 @@
         public TravelBuddiesDbContext(DbContextOptions<TravelBuddiesDbContext> options)
             : base(options)
         {
-            
+            Database.EnsureCreated();
         }
 
 		public DbSet<Review> Reviews { get; set; }
@@ -25,7 +25,10 @@
 
         public DbSet<UserGroup> UsersGroups { get; set; }
 
-        public DbSet<Log> Logs { get; set; }
+        public DbSet<UserBlackList> UsersBlackLists { get; set; }
+
+
+		public DbSet<Log> Logs { get; set; }
 
         public DbSet<City> Cities { get; set; }
 
@@ -43,6 +46,7 @@
             modelBuilder.ApplyConfiguration(new ReviewEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new UserGroupEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new VehicleEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new UserBlackListEntityTypeConfiguration());
 
             modelBuilder.Seed();
 

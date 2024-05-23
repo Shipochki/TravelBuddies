@@ -21,7 +21,7 @@
 		public void UpdateVehicle_WithNonExistingVehicle_ShouldThrowsException()
 		{
 			//Arrange
-			var handler = new UpdateVehicleHandler(_repostiory, _userManager, _roleManager, _blobService);
+			var handler = new UpdateVehicleHandler(_repostiory, _userManager, _roleManager);
 			var command = new UpdateVehicleCommand()
 			{
 				BrandName = "test",
@@ -41,7 +41,7 @@
 		public async Task UpdateVehicle_WithNonMatchingOwner_ShouldThrowsException()
 		{
 			//Arrange
-			var handler = new UpdateVehicleHandler(_repostiory, _userManager, _roleManager, _blobService);
+			var handler = new UpdateVehicleHandler(_repostiory, _userManager, _roleManager);
 
 			var user1 = new ApplicationUser() { UserName = "test", Email = "email" };
 			var vehicle = new Vehicle()
@@ -77,7 +77,7 @@
 		public async Task UpdateVehicle_WithValidData_ShouldUpdateVehicle()
 		{
 			//Arrange
-			var handler = new UpdateVehicleHandler(_repostiory, _userManager, _roleManager, _blobService);
+			var handler = new UpdateVehicleHandler(_repostiory, _userManager, _roleManager);
 
 			var user1 = new ApplicationUser() { UserName = "test", Email = "email" };
 			var vehicle = new Vehicle()
