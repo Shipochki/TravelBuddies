@@ -80,7 +80,7 @@
 			await _mediator.Send(command);
 
 			LogLevel logLevel = LogLevel.Information;
-			string message = "Succesfully leave group";
+			string message = "Succesfully kick user from group";
 
 			await _fileLogger.LogAsync(logLevel, message);
 			await _databaseLogger.LogAsync(logLevel, message);
