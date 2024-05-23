@@ -74,3 +74,13 @@
     width: 100%;
     row-gap: 20px;
 }
+
+.load-more-reviews{
+    color: #2979ff;
+    text-decoration: none;
+}
+
+.load-more-reviews:hover{
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}

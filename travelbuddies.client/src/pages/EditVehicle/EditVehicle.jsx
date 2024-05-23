@@ -8,11 +8,19 @@ import { Box, FormControl, InputLabel, NativeSelect } from '@mui/material';
 const EditVehicleFromKeys = {
     Id: 'id',
     BrandName: 'brandname',
-    ModelName: 'modelname',
+    ModelName: 'modelname', 
+    Year: 'year',
+    Color: 'color',
     Fuel: 'fuel',
     SeatCount: 'seatcount',
     PictureLink: 'picturelink',
-    ACSystem: 'acsystem',
+    ACSystem: 'acsystem'
+}
+
+const fuel = {
+    "Diesel": 0,
+    "Gasoline": 1,
+    "Electric": 2,
 }
 
 export const EditVehicle = () => {
@@ -29,15 +37,12 @@ export const EditVehicle = () => {
             values[EditVehicleFromKeys.Fuel] = fuel[data.fuel];
             values[EditVehicleFromKeys.SeatCount] = data.seatCount;
             values[EditVehicleFromKeys.ACSystem] = data.acSystem;
+            values[EditVehicleFromKeys.Year] = data.year;
+            values[EditVehicleFromKeys.Color] = data.color;
         }
         fetchData();
     }, []);
 
-    const fuel = {
-        "Diesel": 0,
-        "Gasoline": 1,
-        "Electric": 2,
-    }
 
     const {values, changeHandler, onSubmit} = useForm({
         [EditVehicleFromKeys.Id]: vehicle.id,
@@ -47,6 +52,8 @@ export const EditVehicle = () => {
         [EditVehicleFromKeys.SeatCount]: vehicle.seatCount,
         [EditVehicleFromKeys.PictureLink]: null,
         [EditVehicleFromKeys.ACSystem]: vehicle.acSystem,
+        [EditVehicleFromKeys.Year]: vehicle.year,
+        [EditVehicleFromKeys]: vehicle.color
     }, OnUpdateVehicleSubmit);
 
     const [nameFile, setNameFile] = useState('');
@@ -99,6 +106,28 @@ export const EditVehicle = () => {
                         onChange={changeHandler}
                         required
                         />
+                </div>
+                <div className='vehicle-year'>
+                    <label>Year</label>
+                    <input
+                        type='number'
+                        id='year'
+                        className='inputModel'
+                        name={EditVehicleFromKeys.Year}
+                        value={values[EditVehicleFromKeys.Year]}
+                        onChange={changeHandler}
+                        required/>
+                </div>
+                <div className='vehicle-color'>
+                    <input
+                        type='text'
+                        id='color'
+                        className='inputModel'
+                        placeholder='Color'
+                        name={EditVehicleFromKeys.Color}
+                        value={values[EditVehicleFromKeys.Color]}
+                        onChange={changeHandler}
+                        required/>
                 </div>
                 {/* <div className='vehicle-fuel'>             
                     <label for="fuel">Choose a Fuel:</label>

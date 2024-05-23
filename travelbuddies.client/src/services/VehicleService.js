@@ -42,6 +42,8 @@ export const OnUpdateVehicleSubmit = async (updateVehicleFromKeys) => {
       formData.append('id', updateVehicleFromKeys.id);
       formData.append('brandname', updateVehicleFromKeys.brandname);
       formData.append('modelname', updateVehicleFromKeys.modelname);
+      formData.append('year', updateVehicleFromKeys.year);
+      formData.append('color', updateVehicleFromKeys.color);
       formData.append('fuel', updateVehicleFromKeys.fuel);
       formData.append('seatcount', updateVehicleFromKeys.seatcount);
       formData.append('acsystem', updateVehicleFromKeys.acsystem);

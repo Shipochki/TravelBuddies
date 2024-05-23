@@ -27,7 +27,7 @@ export const Groups = () => {
             )}
             {groups.map((g, i) => (
                 <div key={i} id={g.id} onClick={() => {
-                    navigate(`/group/${g.id}`);
+                    window.location.assign(`/group/${g.id}`);
                 }} className="groups-main-group">
                     <div className="picture-group">
                         <LazyLoadImage src={g.creatorProfileLink ? g.creatorProfileLink : 'https://sttravelbuddies001.blob.core.windows.net/web/blank-profile-picture-973460_960_720.png'}/>

@@ -117,7 +117,7 @@
 
 			List<Review> reviews = await _mediator.Send(new GetReviewsByReciverIdQuery(id));
 
-			userDto.Reviews = reviews.Select(ReviewDto.FromReview).ToList();
+			userDto.Reviews = reviews.Select(ReviewDto.FromReview).Take(3).ToList();
 			
 			Vehicle? vehicle = await _mediator.Send(new GetVehicleByOwnerIdQuery(id));
 

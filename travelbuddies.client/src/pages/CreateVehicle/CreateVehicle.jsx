@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { NotDriver } from '../../components/NotDriver/NotDriver'
 import { GlobalContext } from '../../utils/contexts/GlobalContext'
+import { Box, FormControl, InputLabel, NativeSelect } from '@mui/material'
 
 const VehicleFromKeys = {
     BrandName: 'brandname',
@@ -126,7 +127,7 @@ export const CreateVehicle = () => {
                         onChange={changeHandler}
                         required/>
                 </div>
-                <div className='vehicle-fuel'>
+                {/* <div className='vehicle-fuel'>
                     <label for="fuel">Choose a Fuel:</label>
                     <select 
                         value={values[VehicleFromKeys.Fuel]} 
@@ -137,7 +138,26 @@ export const CreateVehicle = () => {
                         <option value={1}>Gasoline</option>
                         <option value={2}>Electric</option>
                     </select>
-                </div>
+                </div> */}
+                <Box sx={{ minWidth: 120 , gridArea:'fuel'}}>
+                    <FormControl fullWidth>
+                        <InputLabel variant="standard" htmlFor="fuel">
+                            Choose a Fuel
+                        </InputLabel>
+                        <NativeSelect
+                            value={values[VehicleFromKeys.Fuel]}
+                            onChange={changeHandler}
+                            inputProps={{
+                                name: 'fuel',
+                                id: 'fuel',
+                            }}
+                            >
+                            <option value={0}>Diesel</option>
+                            <option value={1}>Gasoline</option>
+                            <option value={2}>Electric</option>
+                        </NativeSelect>
+                    </FormControl>
+                </Box>
                 <div className='vehicle-seatcount'>
                     <label>SeatCount</label>
                     <input

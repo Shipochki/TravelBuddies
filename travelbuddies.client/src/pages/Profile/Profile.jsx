@@ -6,7 +6,7 @@ import { Vehicle } from '../../components/Vehicle/Vehicle';
 import { EditReview } from '../../components/EditReview/EditReview';
 import { useEffect, useState } from 'react';
 import { GetUserById } from '../../services/UserService';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 export const Profile = () => {
     const {id} = useParams();
@@ -63,6 +63,11 @@ export const Profile = () => {
                     ): (
                         <div>
                             User don't have any reviews
+                        </div>
+                    )}
+                    {user.reviews && user.reviews.length == 3 && (
+                        <div>
+                            <Link className='load-more-reviews' to={`/reviews/${user.id}`}>Load more</Link>
                         </div>
                     )}
                 </div>

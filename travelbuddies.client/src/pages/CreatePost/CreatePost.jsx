@@ -10,6 +10,7 @@ import { NoVehicle } from "../../components/NoVehicle/NoVehicle";
 import { GlobalContext } from "../../utils/contexts/GlobalContext";
 import { GetVehicleByOwnerId } from "../../services/VehicleService";
 import { GetAllCities } from "../../services/CityService";
+import { Box, FormControl, InputLabel, NativeSelect, TextField } from "@mui/material";
 
 const CreatePostFromKeys = {
     FromDestination: 'fromDestinationCityId',
@@ -20,7 +21,8 @@ const CreatePostFromKeys = {
     Baggage: 'baggage',
     Pets: 'pets',
     Date: 'date', 
-    Time: 'time'
+    Time: 'time',
+    PaymentType: 'payType'
 }
 
 export const CreatePost = () => {
@@ -49,7 +51,8 @@ export const CreatePost = () => {
         [CreatePostFromKeys.Baggage]: false,
         [CreatePostFromKeys.Pets]: false,
         [CreatePostFromKeys.Date]: '',
-        [CreatePostFromKeys.Time]: ''
+        [CreatePostFromKeys.Time]: '',
+        [CreatePostFromKeys.PaymentType]: 0,
     })
 
     const clickHandler = async (e) => {
@@ -149,7 +152,19 @@ export const CreatePost = () => {
                             <form id="create-post" method="POST" onSubmit={clickHandler}>
                 <div className='cities-inputs'>
                     <div className='city-input'>
-                        <input
+                        <TextField
+                            type='text'
+                            name={CreatePostFromKeys.FromDestination}
+                            value={values[CreatePostFromKeys.FromDestination]}
+                            onChange={handleFromDesChange}
+                            label='From destination...'
+                            autoComplete='off'
+                            sx={{
+                                width: '14vw'
+                            }}
+                            required
+                        />
+                        {/* <input
                             type="text"
                             name={CreatePostFromKeys.FromDestination}
                             value={values[CreatePostFromKeys.FromDestination]}
@@ -157,7 +172,7 @@ export const CreatePost = () => {
                             placeholder="From destination..."
                             autoComplete="off"
                             required
-                        />
+                        /> */}
                         {filteredCities.length > 0 && (
                             <ul>
                                 {filteredCities.map((city) => (
@@ -170,7 +185,19 @@ export const CreatePost = () => {
                     </div>
                     <FontAwesomeIcon icon={faArrowRight}/>
                     <div className='city-input'>
-                        <input
+                        <TextField
+                            type='text'
+                            name={CreatePostFromKeys.ToDestination}
+                            value={values[CreatePostFromKeys.ToDestination]}
+                            onChange={handleToDesChange}
+                            label='To destination...'
+                            autoComplete='off'
+                            sx={{
+                                width: '14vw'
+                            }}
+                            required
+                        />
+                        {/* <input
                             type="text"
                             name={CreatePostFromKeys.ToDestination}
                             value={values[CreatePostFromKeys.ToDestination]}
@@ -178,7 +205,7 @@ export const CreatePost = () => {
                             placeholder="To destination..."
                             autoComplete="off"
                             required
-                        />
+                        /> */}
                         {filteredToDesCities.length > 0 && (
                             <ul>
                                 {filteredToDesCities.map((city) => (
@@ -197,7 +224,6 @@ export const CreatePost = () => {
                     value={values[CreatePostFromKeys.Description]}
                     onChange={changeHandler}
                     placeholder="Description..."
-                    required
                 />
                 <div className="create-post-date-time">
                     <div className="create-post-date-time-info">
@@ -267,8 +293,9 @@ export const CreatePost = () => {
                                 placeholder="10"
                                 required
                                 min={0}
+                                max={100}
                             />
-                        EUR</label>
+                        &euro;</label>
                     </div>
                     <div className="create-post-seats">
                         <label>Available seats:</label>
@@ -283,6 +310,25 @@ export const CreatePost = () => {
                         />
                     </div>
                 </div>
+                <Box sx={{ minWidth: 120 }}>
+                    <FormControl fullWidth>
+                        <InputLabel variant="standard" htmlFor="payType">
+                            Choose a Payment type
+                        </InputLabel>
+                        <NativeSelect
+                            value={values[CreatePostFromKeys.PaymentType]}
+                            onChange={changeHandler}
+                            inputProps={{
+                                name: 'payType',
+                                id: 'payType',
+                            }}
+                            >
+                            <option value={0}>Cash</option>
+                            <option value={1}>Card</option>
+                            <option value={2}>Cash and Card</option>
+                        </NativeSelect>
+                    </FormControl>
+                </Box>
                 <button
                     className="create-post-btn-add"
                     type="submit">

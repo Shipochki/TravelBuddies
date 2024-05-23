@@ -236,7 +236,7 @@ export const Search = () => {
           <div className='price-range-selector'>
           <label>Price range</label>
           <Box sx={{ width: "68%", display: 'flex', columnGap: '20px', alignItems: 'center'}}>
-            <p>{priceValues[0]}$</p>
+            <p>{priceValues[0]}&euro;</p>
               <Slider
                 getAriaLabel={() => 'Price range'}
                 value={priceValues}
@@ -244,7 +244,7 @@ export const Search = () => {
                 valueLabelDisplay="auto"
                 getAriaValueText={valuetext}
               />
-            <p>{priceValues[1]}$</p>
+            <p>{priceValues[1]}&euro;</p>
           </Box>
           </div>
           

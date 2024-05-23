@@ -22,6 +22,7 @@
 		{
 			List<Review> reviews = await _repository
 				.All<Review>(r => r.IsDeleted == false && r.ReciverId == request.Id)
+				.OrderByDescending(r => r.CreatedOn)
 				.Include(r => r.Creator)
 				.ToListAsync();
 

@@ -75,7 +75,7 @@ export const Review = ({review, userId, setUser}) => {
                                     ConfirmDelete(e, review.id);
                                 }}
                                 aria-label="delete">
-                                <DeleteForever />
+                                <DeleteForever sx={{color: 'red'}}/>
                             </IconButton>
                             <span className='button-info'>Delete</span>
                         </div>

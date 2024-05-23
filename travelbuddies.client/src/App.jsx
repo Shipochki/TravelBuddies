@@ -29,6 +29,8 @@ import { Forbidden } from './pages/Forbidden/Forbidden';
 import { BadRequest } from './pages/BadRequest/BadRequest';
 
 function App() {
+    const navigate = useNavigate();
+    
     const theme = createTheme({
         palette:{
             primary:{
