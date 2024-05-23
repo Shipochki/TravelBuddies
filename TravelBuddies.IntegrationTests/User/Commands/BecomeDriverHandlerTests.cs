@@ -53,7 +53,7 @@
 			var role = new IdentityRole() {
 				Id = "e3561acf-d05f-494a-95b0-7e12433ec036",
 				Name = "driver",
-				NormalizedName = "DRIVER"
+				NormalizedName = "DRIVER",
 			};
 
 			await _roleManager.CreateAsync(role);

@@ -100,6 +100,7 @@
 			var handler = new CreateUserGroupHandler(_repostiory, _userManager, _roleManager);
 
 			var user = new ApplicationUser { UserName = "testuser", Email = "test@example.com" };
+			var user2 = new ApplicationUser { UserName = "testuse2r", Email = "test@example.com2" };
 			var country = new Country() { Name = "country" };
 			var city1 = new City() { Country = country, Name = "Sofia" };
 			var city2 = new City() { Country = country, Name = "Targovishte" };
@@ -120,14 +121,22 @@
 				PostId = post.Id,
 				CreatedOn = DateTime.UtcNow,
 			};
+			var userGroup = new UserGroup()
+			{
+				Group = group,
+				UserId = user.Id,
+				User = user,
+				GroupId = group.Id,
+			};
 
-			await _dbContext.AddAsync(group);
+			await _dbContext.AddAsync(userGroup);
+			await _dbContext.AddAsync(user2);
 			await _dbContext.SaveChangesAsync();
 
 			var command = new CreateUserGroupCommand()
 			{
 				GroupId = group.Id,
-				UserId = user.Id
+				UserId = user2.Id
 			};
 
 			//Assert

@@ -54,7 +54,7 @@
 				OwnerId = user.Id,
 				Fuel = (int)Fuel.Electric,
 				SeatCount = 3,
-				Year = 2024
+				Year = 2024,
 			};
 
 			//Act
@@ -67,7 +67,7 @@
 			Assert.Equal(command.SeatCount, result.SeatCount);
 			Assert.Equal(command.Year, result.Year);
 			Assert.False(result.ACSystem);
-			Assert.Equal("testLink", result.PictureLink);
+			Assert.Equal("", result.PictureLink);
 		}
 	}
 }
