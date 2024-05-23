@@ -80,6 +80,7 @@
     background: #F5F6F7;;
     margin: 0;
     row-gap: 1vw;
+    z-index: 2;
 }
 
 .city-input ul li{
@@ -102,6 +103,7 @@
     align-items: center;
     row-gap: 1vw;
     justify-items: center;
+    width: 100%;
 }
 
 .more-options-a{
@@ -119,15 +121,15 @@
 }
 
 .more-options-content{
-    display: grid;
+    display: flex;
     align-items: center;
-    align-content: center;
     justify-content: center;
     justify-items: center;
     column-gap: 10vw;
-    row-gap: 1vw;
-    grid-template-columns: auto auto;
+    row-gap: 3vw;
     font-size: 16px;
+    flex-direction: column;
+    width: 100%;
 }
 
 .more-option-price{
@@ -182,7 +184,7 @@
 
 .search-calendar{
     position: absolute;
-    top: 30vw;
+    top: 35vw;
     z-index: 1;
 }
 
@@ -202,4 +204,23 @@
     cursor: pointer;
     background-color: #2979ff;
     color: white;
+}
+
+.more-opitons-calendars{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.price-range-selector{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.more-options-bools{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
 }

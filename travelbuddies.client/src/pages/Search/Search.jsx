@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faCalendarDays, faCheck, faSliders, faX } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { GetAllCities } from '../../services/CityService';
-import { Autocomplete, Box, FormLabel, Stack, TextField, Typography } from '@mui/material';
+import { Autocomplete, Box, FormLabel, Slider, Stack, TextField, Tooltip, Typography } from '@mui/material';
 import { ArrowForward, ArrowRight } from '@mui/icons-material';
 
 const searchFromKeys = {
@@ -21,6 +21,10 @@ const searchFromKeys = {
   ToDate: 'toDate',
   Baggage: 'baggage',
   Pets: 'pets',
+}
+
+function valuetext(value) {
+  return `${value}`;
 }
 
 export const Search = () => {
@@ -145,90 +149,15 @@ export const Search = () => {
     changeHandler;
   }
 
-  return (
-    // <Stack 
-    // direction="column"
-    // justifyContent="center"
-    // alignItems="center"
-    // rowGap={5}
-    // pacing={2} 
-    // sx={{
-    //   width: '100%',
-    //   height: '100vh',
-    //   bgcolor: 'secondary.main',
-    // }}>
-    //   <Box sx={{
-    //     width: {
-    //       sx: '100%',
-    //       sm: '70%',
-    //       md: '50%',
-    //     },
-    //     bgcolor: 'primary.light',
-    //   }}
-    //   >
-    //     <Stack
-    //     direction="column"
-    //     justifyContent="center"
-    //     alignItems="center"
-    //     pacing={2}
-    //     sx={{
-    //       boxShadow: '0 0 1px 0',
-    //       borderRadius: '8px',
-    //     }}>
-    //       <Typography
-    //         sx={{
-    //           margin: '0',
-    //           fontWeight: '400',
-    //           color: 'primary.main',
-    //           p: 2
-    //         }}
-    //         variant='h2' gutterBottom>
-    //         You can search your travel here
-    //       </Typography>
-    //     </Stack>
-    //   </Box>
-    //   <Box sx={{
-    //     width: {
-    //       sx: '100%',
-    //       sm: '70%',
-    //       md: '50%',
-    //     },
-    //     bgcolor: 'primary.light',
-    //     boxShadow: '0 0 1px 0'
-    //   }}>
-    //     <form id='search'>
-    //       <Stack width='80%'
-    //       direction="row"
-    //       justifyContent="center"
-    //       alignItems="center"
-    //       columnGap={2}
-    //       pacing={2} 
-    //       >
-    //         <TextField sx={{
-    //           width: {
-    //             sx: '100%',
-    //             sm: '50%',
-    //             md: '40%',
-    //           },
-    //           height: {
-    //             sx: '20px',
-    //             sm: '30px',
-    //             md: '40px'
-    //           }
-    //         }} id='fromCity' label='From destination' variant='outlined'/>
-    //         <ArrowForward width='10%'/>
-    //         <TextField sx={{
-    //           width: {
-    //             sx: '100%',
-    //             sm: '50%',
-    //             md: '40%',
-    //           },
-    //         }} id='toCity' label='To destination' variant='outlined'/>
-    //       </Stack>
-    //     </form>
-    //   </Box>
-    // </Stack>
+  const [priceValues, setPriceValues] = useState([0, 100])
 
+  const handlePriceValues = (event, newPriceValue) => {
+    setPriceValues(newPriceValue);
+    values[searchFromKeys.PriceMin] = newPriceValue[0];
+    values[searchFromKeys.PriceMax] = newPriceValue[1];
+  }
+
+  return (
     <div className='search-menu'>
       <div className='search-header'>
         <h2>You can search your travel here</h2>
@@ -243,6 +172,9 @@ export const Search = () => {
               onChange={handleInputChange}
               label='From destination...'
               autoComplete='off'
+              sx={{
+                width: '14vw'
+              }}
             />
           {/* <input
             type="text"
@@ -271,6 +203,9 @@ export const Search = () => {
               onChange={handleToDesChange}
               label='To destination...'
               autoComplete='off'
+              sx={{
+                width: '14vw'
+              }}
             />
             {/* <input
               type="text"
@@ -298,7 +233,23 @@ export const Search = () => {
           </a>
         {moreOptionsVisible &&
         <div className='more-options-content'>
-          <input 
+          <div className='price-range-selector'>
+          <label>Price range</label>
+          <Box sx={{ width: "68%", display: 'flex', columnGap: '20px', alignItems: 'center'}}>
+            <p>{priceValues[0]}$</p>
+              <Slider
+                getAriaLabel={() => 'Price range'}
+                value={priceValues}
+                onChange={handlePriceValues}
+                valueLabelDisplay="auto"
+                getAriaValueText={valuetext}
+              />
+            <p>{priceValues[1]}$</p>
+          </Box>
+          </div>
+          
+
+          {/* <input 
           type="number"
           name={searchFromKeys.PriceMin}
           value={values[searchFromKeys.PriceMin]}
@@ -313,8 +264,9 @@ export const Search = () => {
           onChange={changeHandler}
           placeholder='Max Price'
           className='more-option-price'
-          />
-        <div className='more-options-calendar'>
+          /> */}
+          <div className='more-opitons-calendars'>
+            <div className='more-options-calendar from-des-cal'>
           <div className='options-calendar-input-button'>
             <input
             type='text'
@@ -329,8 +281,8 @@ export const Search = () => {
           <div className='search-calendar'>
             {calendarVisible && <Calendar handle={handleFromDate} />}
           </div>
-        </div>
-        <div className='more-options-calendar'>
+            </div>
+            <div className='more-options-calendar to-des-cal'>
         <div className='options-calendar-input-button'>
           <input
             type='text'
@@ -345,23 +297,26 @@ export const Search = () => {
             <div className='search-calendar'>
               {calendarToDateVisible && <Calendar handle={handleToDate} />}
             </div>
-        </div>
-        <div className='more-options-boolean'>
-          <p>Baggage</p>
-          <input
-            type="checkbox"
-            checked={isBaggage}
-            onChange={handleIsBaggage}
-          />
-        </div>
-        <div className='more-options-boolean'>
-          <p>Pets</p>
-          <input
-            type="checkbox"
-            checked={isPets}
-            onChange={handleIsPets}
-          />
-        </div>
+            </div>
+          </div>
+          <div className='more-options-bools'>
+            <div className='more-options-boolean baggage-btn'>
+              <p>Baggage</p>
+              <input
+                type="checkbox"
+                checked={isBaggage}
+                onChange={handleIsBaggage}
+              />
+            </div>
+            <div className='more-options-boolean pets-btn'>
+              <p>Pets</p>
+              <input
+                type="checkbox"
+                checked={isPets}
+                onChange={handleIsPets}
+              />
+            </div>
+          </div>
         </div>}
       </div>
         <div>

@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil, faSignOut, faUser } from '@fortawesome/free-solid-svg-icons';
+import { Button, Tooltip } from '@mui/material';
 
 export const UserMenu = () => {
     const OnLogout = () => {
@@ -40,13 +41,25 @@ export const UserMenu = () => {
     return (
         <div>
             {menuVisible ? (
-                <LazyLoadImage
-                    className='menuLines'
-                    src={localStorage.profilePictureLink !== 'undefined' ? localStorage.profilePictureLink : 'https://sttravelbuddies001.blob.core.windows.net/web/blank-profile-picture-973460_960_720.png'}/>
+                <Tooltip title="User settings">
+                    <Button sx={{
+                        borderRadius: '32px'
+                    }}>
+                        <LazyLoadImage
+                            className='menuLines'
+                            src={localStorage.profilePictureLink !== 'undefined' ? localStorage.profilePictureLink : 'https://sttravelbuddies001.blob.core.windows.net/web/blank-profile-picture-973460_960_720.png'}/>
+                    </Button>
+                </Tooltip>
             ): (
-                <LazyLoadImage
-                    className='menuLines clicked'
-                    src={localStorage.profilePictureLink !== 'undefined' ? localStorage.profilePictureLink : 'https://sttravelbuddies001.blob.core.windows.net/web/blank-profile-picture-973460_960_720.png'}/>
+                <Tooltip title="User settings">
+                    <Button sx={{
+                        borderRadius: '32px'
+                    }}>
+                        <LazyLoadImage
+                            className='menuLines clicked'
+                            src={localStorage.profilePictureLink !== 'undefined' ? localStorage.profilePictureLink : 'https://sttravelbuddies001.blob.core.windows.net/web/blank-profile-picture-973460_960_720.png'}/>
+                    </Button>
+                </Tooltip>
             )}
             
             <div className="menu-content">
