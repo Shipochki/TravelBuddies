@@ -95,7 +95,7 @@ export const EditVehicle = () => {
 
     return(
         <div className="create-vehicle-main">
-            {vehicle.brandName != '' ? (
+            {vehicle.id ? (
                 <div className='create-vehicle-content'>
                 <div className='create-vehicle-header'>
                     <h2>Edit your Vehicle</h2>

@@ -16,9 +16,10 @@ export const Review = ({review, userId, setUser}) => {
     const LoadProfile = async (e) => {
         e.preventDefault();
 
-        const data = await GetUserById(userId);
+        const data = await GetUserById(review.creator.id);
 
         setUser(data);
+        navigate(`/profile/${review.creator.id}`)
     }
 
     const ConfirmDelete = async (e, reviewId) => {

@@ -20,6 +20,19 @@ export const Profile = () => {
             setUser(data);
         };
         fetchData();
+
+        const handlePopState = () => {
+            // When user navigates back, trigger data reload
+            fetchData();
+          };
+      
+          // Add event listener for browser navigation back
+          window.addEventListener('popstate', handlePopState);
+      
+          // Cleanup: remove event listener when component unmounts
+          return () => {
+            window.removeEventListener('popstate', handlePopState);
+          };
     }, []);
 
     return (

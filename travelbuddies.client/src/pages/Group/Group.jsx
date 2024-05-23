@@ -21,10 +21,27 @@ export const Group = ({group}) => {
         if(!group.id){
             OnSetGroup(id);
         }
+    }, [id]);
 
+    useEffect(() => {
+        const handlePopState = () => {
+            // When user navigates back, trigger data reload
+            OnSetGroup(id);
+          };
+      
+          // Add event listener for browser navigation back
+          window.addEventListener('popstate', handlePopState);
+      
+          // Cleanup: remove event listener when component unmounts
+          return () => {
+            window.removeEventListener('popstate', handlePopState);
+          };
+    }, [id])
+
+    useEffect(() => {
         intervalRef.current = setInterval(() => {
             OnSetGroup(id);
-        }, 60000);
+        }, 5000);
 
         return () => clearInterval(intervalRef.current);
     }, [id]);

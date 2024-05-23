@@ -56,10 +56,10 @@
 			UserBlackList? blackList = await _repository
 				.FirstOrDefaultAsync<UserBlackList>(b => b.UserId == request.UserId && b.GroupId == request.GroupId);
 
-			if(blackList == null)
+			if(blackList != null)
 			{
 				throw new ApplicationUserAllreadyIsBannedFromGroupException(
-					string.Format(ApplicationUserAllreadyIsBannedFromGroup, request.UserId, request.GroupId);
+					string.Format(UserAllreadyIsBannedFromGroupMessage, request.UserId, request.GroupId));
 			}
 
 			UserBlackList userBlackList = new UserBlackList()

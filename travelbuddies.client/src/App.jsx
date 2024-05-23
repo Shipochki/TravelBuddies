@@ -32,6 +32,7 @@ import { GetGroupById } from './services/GroupService';
 function App() {
     const navigate = useNavigate();
     const [group, setGroup] = useState({});
+    const [user, setUser] = useState({});
 
     const OnSetGroup = async (id) => {
         const data = await GetGroupById(id);

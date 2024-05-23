@@ -60,3 +60,33 @@
 .button-member-options:hover{
     cursor: pointer;
 }
+
+.kick-user-btn{
+    background: transparent;
+    display: flex;
+    border: 0;
+    align-items: center;
+    justify-content: center;
+    column-gap: 5px;
+    color: orangered;
+}
+
+.kick-user-btn:hover{
+    cursor: pointer;
+    color: red;
+}
+
+.ban-user-btn{
+    background: transparent;
+    display: flex;
+    border: 0;
+    align-items: center;
+    justify-content: center;
+    column-gap: 5px;
+    color: gray;
+}
+
+.ban-user-btn:hover{
+    cursor: pointer;
+    color: black;
+}

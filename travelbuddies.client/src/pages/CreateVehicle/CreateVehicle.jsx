@@ -29,8 +29,6 @@ export const CreateVehicle = () => {
         fetchData();
     }, []);
 
-    const {OnSetVehicle} = useContext(GlobalContext);
-
     const {values, changeHandler, onSubmit} = useForm({
         [VehicleFromKeys.BrandName]: '',
         [VehicleFromKeys.ModelName]: '',
@@ -75,7 +73,7 @@ export const CreateVehicle = () => {
         <div className="create-vehicle-main">
             {localStorage.role == 'driver' ? (
                 <>
-                {vehicle.brandName == '' ? (
+                {!vehicle.id ? (
                 <div className='create-vehicle-content'>
                 <div className='create-vehicle-header'>
                     <h2>Add your Vehicle</h2>

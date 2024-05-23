@@ -6,7 +6,7 @@
         public const string ApplicationUserNotCreatorMessage = "User with Id {0} is not creator";
         public const string ApplicationUserNotInGroupMessage = "User with Id {0} is not in group with Id {1}";
         public const string ApplicationUserAllreadyInGroupMessage = "User with Id {0} is allready in Group with Id {1}";
-        public const string ApplicationUserAllreadyIsBannedFromGroup = "User with Id {0} is allready banned from group with id {1}";
+        public const string UserAllreadyIsBannedFromGroupMessage = "User with Id {0} is allready banned from group with id {1}";
         public const string UnableToCreateApplicationUserMessage = "Unable to create user";
         public const string UnableToAddRoleToUserMessage = "Unable to add role to user with Id {0}";
         public const string InvalidLoginMessage = "Unable to login";

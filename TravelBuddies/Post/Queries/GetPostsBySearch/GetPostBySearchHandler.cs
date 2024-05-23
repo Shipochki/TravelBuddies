@@ -40,7 +40,9 @@
 				.Include(c => c.ToDestinationCity)
 				.Include(c => c.Creator)
 				.Include(c => c.Group)
-				.ThenInclude(c => c.UsersGroups)
+				.ThenInclude(g => g.UsersGroups)
+				.Include(c => c.Group)
+				.ThenInclude(g => g.UsersBlackLists)
 				.ToListAsync();
 
 			return await Task.FromResult(posts);

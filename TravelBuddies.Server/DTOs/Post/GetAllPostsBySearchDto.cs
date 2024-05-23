@@ -29,6 +29,8 @@
 
 		public List<string> Participants { get; set; } = null!;
 
+		public List<string> BlackListsUsers { get; set; } = null!;
+
 		public static GetAllPostsBySearchDto FromPost(Post post)
 		{
 			return new GetAllPostsBySearchDto()
@@ -44,6 +46,7 @@
 				GroupId = post.GroupId,
 				Creator = UserDto.FromUser(post.Creator),
 				Participants = post.Group.UsersGroups.Select(ug => ug.UserId).ToList(),
+				BlackListsUsers = post.Group.UsersBlackLists.Select(ug => ug.UserId).ToList(),
 				FreeSeats = post.FreeSeats - post.Group.UsersGroups.Select(ug => ug.UserId).ToList().Count() + 1,
 			};
 		}

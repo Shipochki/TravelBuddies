@@ -39,6 +39,14 @@
 					string.Format(GroupNotFoundMessage, request.GroupId));
 			}
 
+			UserBlackList? userBlackList = await _repository
+				.FirstOrDefaultAsync<UserBlackList>(u => u.GroupId == request.GroupId && u.UserId == request.UserId);
+
+			if (userBlackList != null) {
+				throw new ApplicationUserAllreadyIsBannedFromGroupException(
+					string.Format(UserAllreadyIsBannedFromGroupMessage, request.UserId, request.GroupId));
+			}
+
 			UserGroup? userGroup = await _repository
 				.FirstOrDefaultAsync<UserGroup>(u => u.GroupId == request.GroupId && u.UserId == request.UserId);
 

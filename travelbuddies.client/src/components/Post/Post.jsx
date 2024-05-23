@@ -18,7 +18,8 @@ export const Post = ({
     DateAndTime,
     GroupId,
     Creator,
-    Participants
+    Participants,
+    BlackListsUsers
 }) => {
     const navigate = useNavigate();
 
@@ -28,6 +29,14 @@ export const Post = ({
         await OnJoinGroupSubmit(GroupId);
 
         navigate(`/group/${GroupId}`)
+    }
+
+    const IsAllreadyInGroupAlert = () => {
+        alert(`It seems you're already a member of the group.`)
+    }
+
+    const IsBannedFromGroup = () => {
+        alert(`Apologies, but due to a prior issue, you're unable to participate in the group at this time.`)
     }
 
     return (
@@ -52,12 +61,15 @@ export const Post = ({
                 <p className='post-bool'>Pets <FontAwesomeIcon icon={Pets ? faCheck : faCircleXmark} /></p>
             </div>
             <div className='join-button'>
-                <button type='submit' onClick={(e) =>
+                {!BlackListsUsers.includes(localStorage.userId) ? (
+                    <button type='submit' onClick={(e) =>
                         {Participants.includes(localStorage.userId) ? 
-                        alert(`You are allready in group: 
-                        ${FromDestinationName} -> ${ToDestinationName}
-                        ${DateAndTime}`) :
-                        OnJoinSubmit(e)}}>Join</button>
+                        IsAllreadyInGroupAlert() :
+                        OnJoinSubmit(e)}}>Join</button>) : (
+                    <button onClick={() => {
+                        IsBannedFromGroup();
+                    }}>Join</button>
+                )}
             </div>
         </div>
     )
