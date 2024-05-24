@@ -19,8 +19,9 @@
     using System.Text.Json;
     using TravelBuddies.Application.Post.Queries.GetPostsByOwnerId;
     using TravelBuddies.Presentation.Extensions;
+	using TravelBuddies.Application.Post.Commands.CompletePost;
 
-    [EnableCors(ApplicationCorses.AllowOrigin)]
+	[EnableCors(ApplicationCorses.AllowOrigin)]
 	[Route("api/[controller]")]
 	[ApiController]
 	[Authorize]
@@ -134,7 +135,7 @@
 			await _fileLogger.LogAsync(logLevel, message);
 			await _databaseLogger.LogAsync(logLevel, message);
 
-			return Ok(message);
+			return Ok();
 		}
 
 		[HttpPost]
@@ -165,8 +166,24 @@
 			await _fileLogger.LogAsync(logLevel, message);
 			await _databaseLogger.LogAsync(logLevel, message);
 
-			return Ok(message);
+			return Ok();
 		}
+
+		[HttpPost]
+		[Route("[action]/{postId}")]
+		[Authorize(Policy = ApplicationPolicies.OnlyDriver)]
+		public async Task<IActionResult> Complete(int postId)
+		{
+			await _mediator.Send(new CompletePostCommand(postId, User.Id());
+
+			LogLevel logLevel = LogLevel.Information;
+			string message = "Succesfully complete post";
+
+			await _fileLogger.LogAsync(logLevel, message);
+			await _databaseLogger.LogAsync(logLevel, message);\
+
+			return Ok();
+		} 
 
 		[HttpGet]
 		[Route("[action]/{ownerId}")]
