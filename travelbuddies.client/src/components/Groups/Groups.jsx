@@ -9,9 +9,8 @@ import { useNavigate } from "react-router-dom";
 import personImgOffline from '../../utils/images/blank-profile-picture-973460_960_720.png'
 import { GlobalContext } from "../../utils/contexts/GlobalContext";
 
-export const Groups = () => {
-    const { OnSetGroup } = useContext(GlobalContext);
-    const [groups, setGroups] = useState([]);
+export const Groups = ({groups}) => {
+    const { OnSetGroup, OnSetGroups } = useContext(GlobalContext);
 
     const OnGetGroup = async (id) => {
         //const data = await GetGroupById(id);
@@ -20,11 +19,14 @@ export const Groups = () => {
     }
 
     useEffect(() => {
-        const fetchData = async () => {
-            const data = await GetAllGroupByUserId(localStorage.userId);
-            setGroups(data);
-        };
-        fetchData();
+        if(!groups.length){
+            OnSetGroups();
+        }
+        // const fetchData = async () => {
+        //     const data = await GetAllGroupByUserId(localStorage.userId);
+        //     setGroups(data);
+        // };
+        // fetchData();
     }, []);
 
     
@@ -42,9 +44,9 @@ export const Groups = () => {
                     <div className="picture-group">
                         <LazyLoadImage src={g.creatorProfileLink ? g.creatorProfileLink : personImgOffline}/>
                     </div>
-                    <div>  
+                    <div className="groups-group">  
                         <p>{g.name}</p>
-                        <p>{g.date}</p>
+                        <p className="groups-group-date">{g.date}</p>
                     </div>
                 </div>
             ))}

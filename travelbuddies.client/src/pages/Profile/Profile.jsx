@@ -4,26 +4,31 @@ import { Review } from '../../components/Review/Review';
 import { CreateReview } from '../../components/CreateReview/CreateReview';
 import { Vehicle } from '../../components/Vehicle/Vehicle';
 import { EditReview } from '../../components/EditReview/EditReview';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { GetUserById } from '../../services/UserService';
 import { Link, useParams } from 'react-router-dom';
 
 import personImgOffline from '../../utils/images/blank-profile-picture-973460_960_720.png'
+import { GlobalContext } from '../../utils/contexts/GlobalContext';
 
-export const Profile = () => {
+export const Profile = ({user}) => {
+    const { OnSetUser } = useContext(GlobalContext);
     const {id} = useParams();
-    const [user, setUser] = useState({});
 
     useEffect(() => {
-        const fetchData = async () => {
-            const data = await GetUserById(id);
-            setUser(data);
-        };
-        fetchData();
+        if(!user.id || user.id != id){
+            OnSetUser(id);
+        }
+        // const fetchData = async () => {
+        //     const data = await GetUserById(id);
+        //     setUser(data);
+        // };
+        // fetchData();
 
         const handlePopState = () => {
             // When user navigates back, trigger data reload
-            fetchData();
+            //fetchData();
+            OnSetUser(id);
           };
       
           // Add event listener for browser navigation back
@@ -66,13 +71,13 @@ export const Profile = () => {
                 <div className='profile-reviews'>
                     <h4>Reviews</h4>
                     {user.id != localStorage.userId && (
-                       <CreateReview user={user} setUser={setUser}/>  
+                       <CreateReview user={user}/>  
                     )}
                     {user.reviews ? (
                         user.reviews.map((r) => (
                             <>
-                                <Review key={`review-key-${r.id}`} review={r} userId={user.id} setUser={setUser}/>
-                                <EditReview key={`edit-review-key-${r.id}`} userId={user.id} review={r} setUser={setUser}/>
+                                <Review key={`review-key-${r.id}`} review={r}/>
+                                <EditReview key={`edit-review-key-${r.id}`} review={r}/>
                             </>
                         ))
                     ): (

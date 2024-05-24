@@ -3,7 +3,9 @@ import { OnUpdateReviewSubmit } from '../../services/ReviewService'
 import { GetUserById } from '../../services/UserService'
 import { useForm } from '../../utils/hooks/useForm'
 import './EditReview.css'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { GlobalContext } from '../../utils/contexts/GlobalContext'
+import { useParams } from 'react-router-dom'
 
 const EditReviewFromKeys = {
     Id: 'id',
@@ -12,38 +14,38 @@ const EditReviewFromKeys = {
     ReciverId: 'reciverId',
 }
 
-export const EditReview = ({review, userId, setUser}) => {
+export const EditReview = ({review}) => {
+    const { OnSetUser } = useContext(GlobalContext);
+    const { id } = useParams();
     const [stars, setStars] = useState(review.rating);
 
     const {values, changeHandler, onSubmit} = useForm({
         [EditReviewFromKeys.Id]: review.id,
         [EditReviewFromKeys.Text]: review.text,
         [EditReviewFromKeys.Rating]: review.rating,
-        [EditReviewFromKeys.ReciverId]: userId,
+        [EditReviewFromKeys.ReciverId]: id,
     }, OnUpdateReviewSubmit)
 
     const onChangeStar = (event, stars) => {
         setStars(stars);
     }
 
-    const OnEditSubmit = async (id) => {
+    const OnEditSubmit = async () => {
         window.document.getElementById(`review-${review.id}`).style.display = 'none';
 
-        values[EditReviewFromKeys.ReciverId] = userId;
+        values[EditReviewFromKeys.ReciverId] = id;
         values[EditReviewFromKeys.Rating] = stars;
 
         await OnUpdateReviewSubmit(values);
 
-        const data = await GetUserById(id);
-
-        setUser(data);
+        OnSetUser(id);
     }
 
     return(
         <div id={`review-${review.id}`} className="edit-review-main">
             <form className='review-form' onSubmit={(e) => {
                 e.preventDefault();
-                OnEditSubmit(userId);
+                OnEditSubmit();
             }}>
                 {/* <StarSelector totalStars={5} onSelect={onChangeStar}/> */}
                 <Rating 

@@ -14,13 +14,36 @@
     display: flex;
     flex-direction: row-reverse;
     column-gap: 20px;
+    width: 65%;
 }
 
-.group-info{
+.group-info-container{
     display: flex;
     flex-direction: column;
     align-items: center;
     row-gap: 10px;
+}
+
+.group-info{
+    padding: 10px;
+    box-shadow: 0 0 1px 0;
+    border-radius: 8px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+}
+
+.group-info h3{
+    font-size: 18px;
+    color: #2979ff;
+}
+
+.group-info-options{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .group-info-members:hover{
@@ -28,9 +51,61 @@
     cursor: pointer;
 }
 
+.group-time-btn:hover{
+    color: #2979ff;
+    cursor: pointer;
+}
+
+.group-settings-btn:hover{
+    color: #2979ff;
+    cursor: pointer;
+}
+
+.group-settings-menu{
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 0 1px 0;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 15px;
+}
+
+.group-settings-menu button{
+    background-color: transparent;
+    border-radius: 8px;
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.leave-group-btn{
+    color: red;
+    border: 1px solid red;
+    transition: 0.3s;
+}
+
+.leave-group-btn:hover{
+    cursor: pointer;
+    color: white;
+    background-color: red;
+}
+
+.group-time{
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 0 1px 0;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+}
 
 .group-messages{
-    width: 50vw;
+    width: 48vw;
     height: 65vh;
     box-shadow: 0px 0px 1px 0px black;
     border-radius: 8px;

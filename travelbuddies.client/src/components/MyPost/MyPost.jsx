@@ -17,7 +17,7 @@ export const MyPost = ({post}) => {
                     <p>{post.toDestinationName}</p>
                 </div>
                 <p className='mypost-date-time'>{post.dateAndTime}</p>
-                <textarea className='mypost-desc'>{post.description}</textarea>
+                <p className='mypost-desc'>{post.description}</p>
                 <div className='mypost-info'>
                     <p className='mypost-seats'>Avalible seats: {post.freeSeats}</p>
                     <p className='mypost-pricePerSeat'>Price per seats: {post.pricePerSeat} EUR</p>

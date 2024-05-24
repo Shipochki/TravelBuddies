@@ -24,6 +24,7 @@
     display: flex;
     align-items: center;
     column-gap: 15px;
+    width: 16vw;
 }
 
 .groups-main-group:hover{
@@ -36,4 +37,14 @@
     border-radius: 32px;
     height: 40px;
     object-fit: cover;
+}
+
+.groups-group{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.groups-group-date{
+    font-size: 14px;
 }

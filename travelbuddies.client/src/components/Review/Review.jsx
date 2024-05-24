@@ -3,22 +3,29 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil, faX } from '@fortawesome/free-solid-svg-icons';
 import { OnDeleteReviewSubmit } from '../../services/ReviewService';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { GetUserById } from '../../services/UserService';
 import { IconButton } from '@mui/material';
 import { DeleteForever } from '@mui/icons-material';
 
 import personImgOffline from '../../utils/images/blank-profile-picture-973460_960_720.png'
+import { useContext } from 'react';
+import { GlobalContext } from '../../utils/contexts/GlobalContext';
 
-export const Review = ({review, userId, setUser}) => {
+export const Review = ({review}) => {
+    const { OnSetUser } = useContext(GlobalContext);
     const navigate = useNavigate();
+    const { id } = useParams();
 
     const LoadProfile = async (e) => {
-        e.preventDefault();
+        // if(id != userId){
+        //     e.preventDefault();
+        //     const data = await GetUserById(review.creator.id);
+        //     setUser(data);
+        // }
+        
+        OnSetUser(review.creator.id);
 
-        const data = await GetUserById(review.creator.id);
-
-        setUser(data);
         navigate(`/profile/${review.creator.id}`)
     }
 
@@ -27,7 +34,11 @@ export const Review = ({review, userId, setUser}) => {
         if(confirm(text) == true){
             await OnDeleteReviewSubmit(reviewId);
 
-            LoadProfile(e);
+            // const data = await GetUserById(userId);
+
+            // setUser(data);
+
+            OnSetUser(id);
         }
     }
 

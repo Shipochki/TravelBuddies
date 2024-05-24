@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { Home } from './pages/Home/Home';
@@ -27,18 +27,35 @@ import { ThemeProvider } from '@emotion/react';
 import { createTheme } from '@mui/material';
 import { Forbidden } from './pages/Forbidden/Forbidden';
 import { BadRequest } from './pages/BadRequest/BadRequest';
-import { GetGroupById } from './services/GroupService';
+import { GetAllGroupByUserId, GetGroupById } from './services/GroupService';
+import { GetUserById } from './services/UserService';
 
 function App() {
     const navigate = useNavigate();
     const [group, setGroup] = useState({});
+    const [groups, setGroups] = useState([]);
     const [user, setUser] = useState({});
 
     const OnSetGroup = async (id) => {
         const data = await GetGroupById(id);
         setGroup(data);
         navigate(`/group/${id}`);
+    };
+
+    const OnSetGroups = async () => {
+        const data = await GetAllGroupByUserId();
+        setGroups(data);
+    };
+
+    const OnSetUser = async (id) => {
+        const data = await GetUserById(id);
+        setUser(data);
+        // navigate(`/profile/${id}`);
     }
+
+    // useEffect(() => {
+    //     OnSetGroups();
+    // }, []);
 
     const theme = createTheme({
         palette:{
@@ -64,7 +81,9 @@ function App() {
       });
 
     const globalContext = {
-        OnSetGroup
+        OnSetGroup,
+        OnSetGroups,
+        OnSetUser
     }
 
     return (
@@ -74,7 +93,7 @@ function App() {
                     <Header/>
                     {localStorage.accessToken && (
                         <>
-                            <Groups/>
+                            <Groups groups={groups}/>
                             <Menu />
                         </>
                     )}
@@ -88,7 +107,7 @@ function App() {
                                 <Route path='/createPost' element={<CreatePost/>}/>
                                 <Route path='/catalog' element={<Catalog/>}/>
                                 <Route path='/group/:id' element={<Group group={group}/>}/>
-                                <Route path='/profile/:id' element={<Profile/>}/>
+                                <Route path='/profile/:id' element={<Profile user={user}/>}/>
                                 <Route path='/reviews/:id' element={<Reviews/>}/>
                                 <Route path='/createVehicle' element={<CreateVehicle/>}/>
                                 <Route path='/editVehicle' element={<EditVehicle/>}/>

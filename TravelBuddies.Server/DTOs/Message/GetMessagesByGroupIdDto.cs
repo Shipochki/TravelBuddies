@@ -1,5 +1,6 @@
 ﻿namespace TravelBuddies.Presentation.DTOs.Message
 {
+	using TravelBuddies.Application.Common.Extensions;
 	using TravelBuddies.Domain.Entities;
 
 	public class GetMessagesByGroupIdDto
@@ -28,7 +29,7 @@
 				CreatorName = $"{message.Creator.FirstName} {message.Creator.LastName}",
 				GroupId = message.GroupId,
 				CreatorProfileLink = message.Creator.ProfilePictureLink,
-				CreatedOn = $"{message.CreatedOn.ToString("HH:mm")}"
+				CreatedOn = $"{message.CreatedOn.TimeAgo()}"
 			};
 		}
 	}

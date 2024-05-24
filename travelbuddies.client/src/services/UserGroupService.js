@@ -15,7 +15,6 @@ export const OnJoinGroupSubmit = async (groupId) => {
   
           if (response.ok) {
             // Handle successful response
-            return response.json();
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);
@@ -28,19 +27,17 @@ export const OnJoinGroupSubmit = async (groupId) => {
 
 export const OnLeaveGroupSubmit = async (groupId) => {
     try {
-        const response = await fetch(Url + '/leavegroup', {
+        const response = await fetch(Url + `/leavegroup/${groupId}`, {
           method: 'POST',
           mode: "cors",
           headers: {
               'Authorization': `Bearer ${localStorage.accessToken}`,
               'Content-Type': 'application/json'
-          },
-          body: (groupId)
+          }
         });
   
           if (response.ok) {
             // Handle successful response
-            return response.json();
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);
@@ -65,7 +62,6 @@ export const OnRemoveUserFromGroupSubmit = async (removeFromGroupKeys) => {
   
           if (response.ok) {
             // Handle successful response
-            return response.json();
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);

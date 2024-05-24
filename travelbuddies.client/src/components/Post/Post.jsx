@@ -3,9 +3,11 @@ import './Post.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { OnJoinGroupSubmit } from '../../services/UserGroupService';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, redirect, useNavigate } from 'react-router-dom';
 
 import personImgOffline from '../../utils/images/blank-profile-picture-973460_960_720.png'
+import { useContext } from 'react';
+import { GlobalContext } from '../../utils/contexts/GlobalContext';
 
 export const Post = ({
     FromDestinationName,
@@ -21,6 +23,7 @@ export const Post = ({
     Participants,
     BlackListsUsers
 }) => {
+    const { OnSetGroups }= useContext(GlobalContext);
     const navigate = useNavigate();
 
     const OnJoinSubmit = async (e) => {
@@ -28,7 +31,8 @@ export const Post = ({
         
         await OnJoinGroupSubmit(GroupId);
 
-        navigate(`/group/${GroupId}`)
+        OnSetGroups();
+        navigate(`/group/${GroupId}`);
     }
 
     const IsAllreadyInGroupAlert = () => {

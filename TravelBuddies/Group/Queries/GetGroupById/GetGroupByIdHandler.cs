@@ -41,6 +41,7 @@
 
 			Group? group = await _repository
 				.All<Group>()
+				.Include(g => g.Post)
 				.Include(g => g.Creator)
 				.Include(g => g.UsersGroups)
 				.ThenInclude(u => u.User)

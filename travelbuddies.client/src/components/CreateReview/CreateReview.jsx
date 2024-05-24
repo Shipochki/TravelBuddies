@@ -3,11 +3,12 @@ import { OnCreateReviewSubmit } from "../../services/ReviewService"
 import { useForm } from "../../utils/hooks/useForm"
 import './CreateReview.css'
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { OnCreateMessageSubmit } from "../../services/MessageService"
 import { Rating } from "@mui/material"
 import { GetUserById } from "../../services/UserService"
+import { GlobalContext } from "../../utils/contexts/GlobalContext"
 
 const ReviewFromKeys = {
     Text: 'text',
@@ -15,7 +16,8 @@ const ReviewFromKeys = {
     ReciverId: 'reciverId',
 }
 
-export const CreateReview = ({user, setUser}) => {
+export const CreateReview = ({user}) => {
+    const { OnSetUser } = useContext(GlobalContext);
     const navigate = useNavigate();
     const [stars, setStars] = useState(1);
 
@@ -41,9 +43,7 @@ export const CreateReview = ({user, setUser}) => {
         values[ReviewFromKeys.Text] = '';
         setStars(1);
     
-        const result = await GetUserById(user.id);
-
-        setUser(result);
+        OnSetUser(user.id);
     }
 
     return(

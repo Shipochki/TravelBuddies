@@ -8,6 +8,10 @@
 	{
 		public int Id { get; set; }
 
+		public required string Name { get; set; }
+
+		public required string Date { get; set; }
+
 		public required UserDto Creator { get; set; }
 
 		public List<UserDto> Members { get; set; } = null!;
@@ -19,6 +23,8 @@
 			return new GetGroupByIdDto()
 			{
 				Id = group.Id,
+				Name = $"{group.Creator.FirstName} {group.Creator.LastName}",
+				Date = group.Post.DateAndTime.ToString("MM:dd:yyyy hh:mm tt"),
 				Creator = UserDto.FromUser(group.Creator),
 				Members = group.UsersGroups
 					.Select(u => UserDto.FromUser(u.User))

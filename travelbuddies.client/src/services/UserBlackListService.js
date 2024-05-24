@@ -16,7 +16,6 @@ export const OnCreateUserBlackListSubmit = async (userBlackListFromKeys) => {
   
           if (response.ok) {
             // Handle successful response
-            return response.json();
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);

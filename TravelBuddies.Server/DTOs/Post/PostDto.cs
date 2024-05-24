@@ -36,7 +36,7 @@
 				FreeSeats = post.FreeSeats,
 				Baggage = post.Baggage,
 				Pets = post.Pets,
-				DateAndTime = post.DateAndTime.ToString(),
+				DateAndTime = post.DateAndTime.ToString("MM:dd:yyyy hh:mm tt"),
 				GroupId = post.GroupId,
 			};
 		}
