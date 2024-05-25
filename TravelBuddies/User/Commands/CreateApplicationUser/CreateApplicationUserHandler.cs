@@ -58,7 +58,7 @@
 
 			await _userManager.AddToRoleAsync(applicationUser, ApplicationRoles.Client);
 
-			string body = _mailSender.GenerateRegistrationEmail($"{applicationUser.FirstName} {applicationUser.LastName}");
+			string body = _mailSender.GenerateRegistrationEmailMessage($"{applicationUser.FirstName} {applicationUser.LastName}");
 			_mailSender.SendMessage("Succesful register", body, applicationUser.Email);
 
 			return Task.CompletedTask;

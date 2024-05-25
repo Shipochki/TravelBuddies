@@ -4,7 +4,9 @@
     {
         public void SendMessage(string subject, string body, string reciverEmail);
 
-        public string GenerateRegistrationEmail(string userName);
+        public string GenerateRegistrationEmailMessage(string userName);
+
+        public string GenretateCompletePostMessage(string userName, string paymentLink);
 
 	}
 }

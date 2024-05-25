@@ -8,31 +8,19 @@ import { Link, redirect, useNavigate } from 'react-router-dom';
 import personImgOffline from '../../utils/images/blank-profile-picture-973460_960_720.png'
 import { useContext } from 'react';
 import { GlobalContext } from '../../utils/contexts/GlobalContext';
+import { EditPost } from '../EditPost/EditPost';
 
-export const Post = ({
-    FromDestinationName,
-    ToDestinationName,
-    Description,
-    PricePerSeat,
-    FreeSeats,
-    Baggage,
-    Pets,
-    DateAndTime,
-    GroupId,
-    Creator,
-    Participants,
-    BlackListsUsers
-}) => {
+export const Post = ({post}) => {
     const { OnSetGroups }= useContext(GlobalContext);
     const navigate = useNavigate();
 
     const OnJoinSubmit = async (e) => {
         e.preventDefault();
         
-        await OnJoinGroupSubmit(GroupId);
+        await OnJoinGroupSubmit(post.GroupId);
 
         OnSetGroups();
-        navigate(`/group/${GroupId}`);
+        navigate(`/group/${post.GroupId}`);
     }
 
     const IsAllreadyInGroupAlert = () => {
@@ -46,28 +34,28 @@ export const Post = ({
     return (
         <div className='post-component'>
             <div className='post-creator'>
-                <Link to={`/profile/${Creator.Id}`}>
-                    <LazyLoadImage src={Creator.ProfilePictureLink ? Creator.ProfilePictureLink : personImgOffline}/>
+                <Link to={`/profile/${post.Creator.Id}`}>
+                    <LazyLoadImage src={post.Creator.ProfilePictureLink ? Creator.ProfilePictureLink : personImgOffline}/>
                 </Link>
-                <p>{Creator.FullName}</p>
+                <p>{post.Creator.FullName}</p>
             </div>
             <div className='post-cities'>
-                <p>{FromDestinationName}</p>
+                <p>{post.FromDestinationName}</p>
                 <FontAwesomeIcon icon={faArrowRight}/>
-                <p>{ToDestinationName}</p>
+                <p>{post.ToDestinationName}</p>
             </div>
-            <p className='post-dateandtime'><FontAwesomeIcon icon={faCalendarDays}/> {DateAndTime}</p>
-            <p className='post-decription'>{Description}</p>
+            <p className='post-dateandtime'><FontAwesomeIcon icon={faCalendarDays}/> {post.DateAndTime}</p>
+            <p className='post-decription'>{post.Description}</p>
             <div className='post-more-info'>
-                <p className='post-priceperseat'>Price: {PricePerSeat}$</p>
-                <p className='post-freeseats'>Seats available: {FreeSeats}</p>
-                <p className='post-bool'>Baggage <FontAwesomeIcon icon={Baggage ? faCheck : faCircleXmark} /></p>
-                <p className='post-bool'>Pets <FontAwesomeIcon icon={Pets ? faCheck : faCircleXmark} /></p>
+                <p className='post-priceperseat'>Price: {post.PricePerSeat}$</p>
+                <p className='post-freeseats'>Seats available: {post.FreeSeats}</p>
+                <p className='post-bool'>Baggage <FontAwesomeIcon icon={post.Baggage ? faCheck : faCircleXmark} /></p>
+                <p className='post-bool'>Pets <FontAwesomeIcon icon={post.Pets ? faCheck : faCircleXmark} /></p>
             </div>
             <div className='join-button'>
-                {!BlackListsUsers.includes(localStorage.userId) ? (
+                {!post.BlackListsUsers.includes(localStorage.userId) ? (
                     <button type='submit' onClick={(e) =>
-                        {Participants.includes(localStorage.userId) ? 
+                        {post.Participants.includes(localStorage.userId) ? 
                         IsAllreadyInGroupAlert() :
                         OnJoinSubmit(e)}}>Join</button>) : (
                     <button onClick={() => {
@@ -75,6 +63,7 @@ export const Post = ({
                     }}>Join</button>
                 )}
             </div>
+            <EditPost post={post}/>
         </div>
     )
 }

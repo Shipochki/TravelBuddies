@@ -4,7 +4,7 @@
 
 	internal class MailSenderDummy : IMailSender
 	{
-		public string GenerateRegistrationEmail(string userName)
+		public string GenerateRegistrationEmailMessage(string userName)
 		{
 			return "";
 		}

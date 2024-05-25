@@ -18,9 +18,9 @@ export const Catalog = () => {
     return (
         <div className="catalog-main">
             <div className='catalog-center'>
-                {posts.map((x, i) => (
+                {posts.map((p, i) => (
                     <div>
-                        <Post key={i} {...x}/>
+                        <Post key={i} post={p}/>
                     </div>
                 ))}
             </div>

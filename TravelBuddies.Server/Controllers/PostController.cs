@@ -174,13 +174,13 @@
 		[Authorize(Policy = ApplicationPolicies.OnlyDriver)]
 		public async Task<IActionResult> Complete(int postId)
 		{
-			await _mediator.Send(new CompletePostCommand(postId, User.Id());
+			await _mediator.Send(new CompletePostCommand(postId, User.Id()));
 
 			LogLevel logLevel = LogLevel.Information;
 			string message = "Succesfully complete post";
 
 			await _fileLogger.LogAsync(logLevel, message);
-			await _databaseLogger.LogAsync(logLevel, message);\
+			await _databaseLogger.LogAsync(logLevel, message);
 
 			return Ok();
 		} 
