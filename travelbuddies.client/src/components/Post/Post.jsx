@@ -8,7 +8,6 @@ import { Link, redirect, useNavigate } from 'react-router-dom';
 import personImgOffline from '../../utils/images/blank-profile-picture-973460_960_720.png'
 import { useContext } from 'react';
 import { GlobalContext } from '../../utils/contexts/GlobalContext';
-import { EditPost } from '../EditPost/EditPost';
 
 export const Post = ({post}) => {
     const { OnSetGroups }= useContext(GlobalContext);
@@ -63,7 +62,6 @@ export const Post = ({post}) => {
                     }}>Join</button>
                 )}
             </div>
-            <EditPost post={post}/>
         </div>
     )
 }

@@ -112,6 +112,28 @@ export const GetPostsByOwnerId = async (ownerId) => {
       errorHandler(response.status);
     }
   } catch (error) {
-    console.error('Error fetching get all post by search:', error);
+    console.error('Error fetching get post by owner id:', error);
+  }
+};
+
+export const GetPostsById = async (postId) => {
+  try {
+    const response = await fetch(Url + `/getpostsbyid/${postId}`, {
+      method: 'GET',
+      mode: "cors",
+      headers: {
+          'Authorization': `Bearer ${localStorage.accessToken}`,
+          'Content-Type': 'application/json'
+      },
+    });
+    
+    if(response.ok){
+      return response.json();
+    } else {
+      console.error('Error:', response.statusText);
+      errorHandler(response.status);
+    }
+  } catch (error) {
+    console.error('Error fetching get post by id:', error);
   }
 };

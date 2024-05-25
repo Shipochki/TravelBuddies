@@ -20,6 +20,7 @@
     using TravelBuddies.Application.Post.Queries.GetPostsByOwnerId;
     using TravelBuddies.Presentation.Extensions;
 	using TravelBuddies.Application.Post.Commands.CompletePost;
+	using TravelBuddies.Application.Post.Queries.GetPostById;
 
 	[EnableCors(ApplicationCorses.AllowOrigin)]
 	[Route("api/[controller]")]
@@ -199,6 +200,22 @@
 			await _databaseLogger.LogAsync(logLevel, message);
 
 			return Ok(posts.Select(PostDto.FromPost));
+		}
+
+		[HttpGet]
+		[Route("[action]/{postId}")]
+		[Authorize(Policy = ApplicationPolicies.OnlyDriver)]
+		public async Task<IActionResult> GetPostById(int postId)
+		{
+			Post post = await _mediator.Send(new GetPostByIdQuery() { PostId = postId });
+
+			LogLevel logLevel = LogLevel.Information;
+			string message = "Succesfully get post by id";
+
+			await _fileLogger.LogAsync(logLevel, message);
+			await _databaseLogger.LogAsync(logLevel, message);
+
+			return Ok(PostDto.FromPost(post));
 		}
 	}
 }
