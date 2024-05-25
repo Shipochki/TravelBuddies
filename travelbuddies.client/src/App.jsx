@@ -29,6 +29,7 @@ import { Forbidden } from './pages/Forbidden/Forbidden';
 import { BadRequest } from './pages/BadRequest/BadRequest';
 import { GetAllGroupByUserId, GetGroupById } from './services/GroupService';
 import { GetUserById } from './services/UserService';
+import { EditPost } from './pages/EditPost/EditPost';
 
 function App() {
     const navigate = useNavigate();
@@ -115,6 +116,7 @@ function App() {
                                 <Route path='/myPosts' element={<MyPosts/>}/>
                                 <Route path='/forbidden' element={<Forbidden/>}/>
                                 <Route path='/badRequest' element={<BadRequest/>}/>
+                                <Route path='/editPost/:id' element={<EditPost/>}/>
                             </>
                         ) : (
                             <>

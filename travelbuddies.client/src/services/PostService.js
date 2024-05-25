@@ -116,9 +116,9 @@ export const GetPostsByOwnerId = async (ownerId) => {
   }
 };
 
-export const GetPostsById = async (postId) => {
+export const GetPostById = async (postId) => {
   try {
-    const response = await fetch(Url + `/getpostsbyid/${postId}`, {
+    const response = await fetch(Url + `/getpostbyid/${postId}`, {
       method: 'GET',
       mode: "cors",
       headers: {

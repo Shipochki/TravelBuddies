@@ -26,7 +26,7 @@ export const MyPost = ({post}) => {
                 </div>
             </div>
             <div className='mypost-navigation'>
-                <Link className='edit-post-btn' to={'/editPost'}><EditIcon fontSize='16px'/> Edit</Link>
+                <Link className='edit-post-btn' to={`/editPost/${post.id}`}><EditIcon fontSize='16px'/> Edit</Link>
                 <Link className='complete-post-btn' to={'/completePost'}><CheckCircleOutlineOutlinedIcon fontSize='16px'/> Complete</Link>
                 <Link className='delete-post-btn' to={'/deletePost'}><DeleteForeverOutlinedIcon fontSize='16px'/> Delete</Link>
             </div>
