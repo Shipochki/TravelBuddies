@@ -10,10 +10,12 @@ import { Link, useParams } from 'react-router-dom';
 
 import personImgOffline from '../../utils/images/blank-profile-picture-973460_960_720.png'
 import { GlobalContext } from '../../utils/contexts/GlobalContext';
+import { Loading } from '../Loading/Loading';
 
 export const Profile = ({user}) => {
     const { OnSetUser } = useContext(GlobalContext);
     const {id} = useParams();
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if(!user.id || user.id != id){
@@ -24,6 +26,10 @@ export const Profile = ({user}) => {
         //     setUser(data);
         // };
         // fetchData();
+
+        setTimeout(() => {
+            setLoading(false); // Set loading to false after data is fetched
+          }, 500);
 
         const handlePopState = () => {
             // When user navigates back, trigger data reload
@@ -38,7 +44,11 @@ export const Profile = ({user}) => {
           return () => {
             window.removeEventListener('popstate', handlePopState);
           };
-    }, []);
+    }, [id]);
+
+    if(loading){
+        return <Loading/>
+    }
 
     return (
         <div className='profile-main'>

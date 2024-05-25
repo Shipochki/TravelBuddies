@@ -5,8 +5,39 @@ import { Link } from 'react-router-dom'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
+import { GetPostsByOwnerId, OnCompletePostById, OnDeletePostSubmit } from '../../services/PostService';
 
-export const MyPost = ({post}) => {
+export const MyPost = ({post, setPosts}) => {
+
+    const onDeletePost = async (e) => {
+        const text = `Are you sure you want to delete post: \n 
+            ${post.fromDestinationName} -> ${post.toDestinationName}
+            ${post.dateAndTime}`
+        if(confirm(text) == true){
+            e.preventDefault();
+
+            await OnDeletePostSubmit(post.id);
+
+            const data = await GetPostsByOwnerId(localStorage.userId);
+
+            setPosts(data);
+        }
+    }
+
+    const onCompletePost = async (e) => {
+        const text = `Are you sure you want to complete post: \n 
+            ${post.fromDestinationName} -> ${post.toDestinationName}
+            ${post.dateAndTime}`
+        if(confirm(text) == true){
+            e.preventDefault();
+
+            await OnCompletePostById(post.id);
+
+            const data = await GetPostsByOwnerId(localStorage.userId);
+
+            setPosts(data);
+        }
+    }
 
     return(
         <div className='mypost-main'>
@@ -27,8 +58,8 @@ export const MyPost = ({post}) => {
             </div>
             <div className='mypost-navigation'>
                 <Link className='edit-post-btn' to={`/editPost/${post.id}`}><EditIcon fontSize='16px'/> Edit</Link>
-                <Link className='complete-post-btn' to={'/completePost'}><CheckCircleOutlineOutlinedIcon fontSize='16px'/> Complete</Link>
-                <Link className='delete-post-btn' to={'/deletePost'}><DeleteForeverOutlinedIcon fontSize='16px'/> Delete</Link>
+                <Link className='complete-post-btn'onClick={onCompletePost} ><CheckCircleOutlineOutlinedIcon fontSize='16px'/> Complete</Link>
+                <Link className='delete-post-btn' onClick={onDeletePost} ><DeleteForeverOutlinedIcon fontSize='16px'/> Delete</Link>
             </div>
         </div>
     )

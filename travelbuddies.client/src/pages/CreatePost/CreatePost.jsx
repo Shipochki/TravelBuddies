@@ -24,6 +24,8 @@ import {
   NativeSelect,
   TextField,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { Loading } from "../Loading/Loading";
 
 const CreatePostFromKeys = {
   FromDestination: "fromDestinationCityId",
@@ -39,8 +41,10 @@ const CreatePostFromKeys = {
 };
 
 export const CreatePost = () => {
+  const navigate = useNavigate();
   const [cities, setCities] = useState([]);
   const [vehicle, setVehicle] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,6 +53,8 @@ export const CreatePost = () => {
 
       const dataVeh = await GetVehicleByOwnerId(localStorage.userId);
       setVehicle(dataVeh);
+
+      setLoading(false);
     };
     fetchData();
   }, []);
@@ -89,9 +95,7 @@ export const CreatePost = () => {
 
     await OnCreatePostSubmit(values);
 
-    const result = await GetPostsByOwnerId(localStorage.userId);
-
-    OnSetPostsByOwner(result);
+    navigate('/myPosts')
   };
 
   const [filteredCities, setFilteredCities] = useState([]);
@@ -160,6 +164,10 @@ export const CreatePost = () => {
     values[CreatePostFromKeys.Baggage] = !isBaggage;
     changeHandler;
   };
+
+  if(loading){
+    return <Loading/>
+  }
 
   return (
     <div className="create-post-main">

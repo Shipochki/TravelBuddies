@@ -22,6 +22,8 @@
 
 		public required string DateAndTime { get; set; }
 
+		public required string CreatorId { get; set; }
+
 		public int? GroupId { get; set; }
 
 		public static PostDto FromPost(Post post)
@@ -36,7 +38,8 @@
 				FreeSeats = post.FreeSeats,
 				Baggage = post.Baggage,
 				Pets = post.Pets,
-				DateAndTime = post.DateAndTime.ToString("MM:dd:yyyy hh:mm tt"),
+				CreatorId = post.CreatorId,
+				DateAndTime = post.DateAndTime.ToString("MM.dd.yyyy hh:mm tt"),
 				GroupId = post.GroupId,
 			};
 		}

@@ -4,6 +4,7 @@ import { GetVehicleByOwnerId, OnUpdateVehicleSubmit } from "../../services/Vehic
 import { useForm } from "../../utils/hooks/useForm";
 import { NoVehicle } from '../../components/NoVehicle/NoVehicle';
 import { Box, FormControl, InputLabel, NativeSelect } from '@mui/material';
+import { Loading } from '../Loading/Loading';
 
 const EditVehicleFromKeys = {
     Id: 'id',
@@ -25,6 +26,7 @@ const fuel = {
 
 export const EditVehicle = () => {
     const [vehicle, setVehicle] = useState({});
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -39,6 +41,8 @@ export const EditVehicle = () => {
             values[EditVehicleFromKeys.ACSystem] = data.acSystem;
             values[EditVehicleFromKeys.Year] = data.year;
             values[EditVehicleFromKeys.Color] = data.color;
+
+            setLoading(false);
         }
         fetchData();
     }, []);
@@ -91,6 +95,10 @@ export const EditVehicle = () => {
             values[EditVehicleFromKeys.ACSystem] = data.acSystem;
             values[EditVehicleFromKeys.Year] = data.year;
             values[EditVehicleFromKeys.Color] = data.color;
+    }
+
+    if(loading){
+        return <Loading/>
     }
 
     return(

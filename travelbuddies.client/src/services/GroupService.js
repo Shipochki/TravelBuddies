@@ -19,7 +19,7 @@ export const GetAllGroupByUserId = async () => {
         }  else {
             // Handle other errors
             console.error('Error:', response.statusText);
-            errorHandler(response.status)
+            //errorHandler(response.status)
         }
       } catch (error) {
         console.error('Error fetching get all group by user id:', error);

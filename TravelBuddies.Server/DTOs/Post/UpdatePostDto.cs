@@ -24,7 +24,9 @@
 
 		public bool Pets { get; set; }
 
-		public required string DateAndTime { get; set; }
+		public required string Date { get; set; }
+
+		public required string Time { get; set; }
 
 		public int PaymentType { get; set; }
 

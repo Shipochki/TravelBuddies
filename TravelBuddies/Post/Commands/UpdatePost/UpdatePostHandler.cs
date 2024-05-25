@@ -59,6 +59,7 @@
 			post.PricePerSeat = request.PricePerSeat;
 			post.Baggage = request.Baggage;
 			post.Pets = request.Pets;
+			post.FreeSeats = request.FreeSeats;
 			post.DateAndTime = DateTime.Parse(request.DateAndTime);
 			post.UpdatedOn = DateTime.Now;
 

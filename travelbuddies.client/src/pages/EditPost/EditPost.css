@@ -31,7 +31,7 @@
 }
 
 .edit-post-main form{
-    padding: 2%;
+    padding: 2vw;
     border-radius: 16px;
     display: flex;
     flex-direction: column;
@@ -40,4 +40,23 @@
     row-gap: 3vw;
     background: white;
     box-shadow: 0px 0px 1px 0px black;
+}
+
+.edit-post-main form input{
+    background-color: #F5F6F7;
+}
+
+.edit-post-description{
+    min-width: 500px;
+    max-width: 600px;
+    min-height: 100px;
+    max-height: 200px;
+    width: auto;
+    height: auto;
+    padding: 15px;
+    overflow: auto;
+    border-radius: 8px;
+    border: 0;
+    box-shadow: 0 0 1px 0;
+    background-color: #F5F6F7;
 }

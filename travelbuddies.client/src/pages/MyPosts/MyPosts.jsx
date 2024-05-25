@@ -3,19 +3,27 @@ import { NotDriver } from "../../components/NotDriver/NotDriver"
 import { MyPost } from "../../components/MyPost/MyPost"
 import { useEffect, useState } from "react"
 import { GetPostsByOwnerId } from "../../services/PostService"
+import { Loading } from '../Loading/Loading'
 
 export const MyPosts = () => {
     const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
             const data = await GetPostsByOwnerId(localStorage.userId);
             setPosts(data);
+
+            setLoading(false);
         }
 
         fetchData();
     }, []);
     
+    if(loading){
+        return <Loading/>
+    }
+
     return(
         <div className="myposts-main">
             {localStorage.role == 'driver' ? (
@@ -23,7 +31,7 @@ export const MyPosts = () => {
                     {posts.length > 0 ? (
                         <>
                             {posts.map((p) => (
-                              <MyPost post={p}/>
+                              <MyPost post={p} setPosts={setPosts}/>
                             ))}
                         </>
                     ): (

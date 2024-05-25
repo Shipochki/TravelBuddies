@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { NotDriver } from '../../components/NotDriver/NotDriver'
 import { GlobalContext } from '../../utils/contexts/GlobalContext'
 import { Box, FormControl, InputLabel, NativeSelect } from '@mui/material'
+import { Loading } from '../Loading/Loading'
 
 const VehicleFromKeys = {
     BrandName: 'brandname',
@@ -20,11 +21,14 @@ const VehicleFromKeys = {
 
 export const CreateVehicle = () => {
     const [vehicle, setVehicle] = useState({});
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
             const data = await GetVehicleByOwnerId(localStorage.userId);
             setVehicle(data);
+
+            setLoading(false);
         }
         fetchData();
     }, []);
@@ -67,6 +71,10 @@ export const CreateVehicle = () => {
         setIsACSystem(!isACSystem);
         values[VehicleFromKeys.ACSystem] = !isACSystem;
         changeHandler;
+    }
+
+    if(loading){
+        return <Loading/>
     }
 
     return(

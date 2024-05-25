@@ -36,6 +36,7 @@ function App() {
     const [group, setGroup] = useState({});
     const [groups, setGroups] = useState([]);
     const [user, setUser] = useState({});
+    const [loading, setLoading] = useState(false);
 
     const OnSetGroup = async (id) => {
         const data = await GetGroupById(id);
@@ -54,9 +55,30 @@ function App() {
         // navigate(`/profile/${id}`);
     }
 
-    // useEffect(() => {
-    //     OnSetGroups();
-    // }, []);
+    useEffect(() => {
+        // Function to check token expiration
+        const checkTokenExpiration = () => {
+          const tokenExpiration = localStorage.exp;
+          if (tokenExpiration) {
+            const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
+            if (currentTime >= tokenExpiration * 1000) {
+              // Token is expired
+              localStorage.clear();
+              console.log('Access token has expired and has been removed.');
+              navigate('/');
+            }
+          }
+        };
+    
+        // Check token expiration on component mount
+        checkTokenExpiration();
+    
+        // Set an interval to check token expiration periodically
+        const intervalId = setInterval(checkTokenExpiration, 60000); // Check every 60 seconds
+    
+        // Clean up the interval on component unmount
+        return () => clearInterval(intervalId);
+      }, []);
 
     const theme = createTheme({
         palette:{
@@ -107,8 +129,8 @@ function App() {
                                 <Route path='/becomeDriver' element={<BecomeDriver/>}/>
                                 <Route path='/createPost' element={<CreatePost/>}/>
                                 <Route path='/catalog' element={<Catalog/>}/>
-                                <Route path='/group/:id' element={<Group group={group}/>}/>
-                                <Route path='/profile/:id' element={<Profile user={user}/>}/>
+                                <Route path='/group/:id' element={<Group group={group} loading={loading}/>}/>
+                                <Route path='/profile/:id' element={<Profile user={user} loading={loading}/>}/>
                                 <Route path='/reviews/:id' element={<Reviews/>}/>
                                 <Route path='/createVehicle' element={<CreateVehicle/>}/>
                                 <Route path='/editVehicle' element={<EditVehicle/>}/>

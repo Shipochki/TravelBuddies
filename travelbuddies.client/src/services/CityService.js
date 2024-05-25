@@ -18,7 +18,7 @@ export const GetAllCities = async () => {
       }  else {
           // Handle other errors
           console.error('Error:', response.statusText);
-          errorHandler(response.status);
+          //errorHandler(response.status);
       }
     } catch (error) {
       console.error('Error fetching cities:', error);

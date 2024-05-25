@@ -16,11 +16,13 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { OnLeaveGroupSubmit } from '../../services/UserGroupService'
 import { Tooltip } from '@mui/material'
+import { Loading } from '../Loading/Loading'
 
 export const Group = ({group}) => {
     const navigate = useNavigate();
     const { OnSetGroup, OnSetGroups } = useContext(GlobalContext);
     const intervalRef = useRef(null);
+    const [loading, setLoading] = useState(true);
 
     const { id } = useParams();
 
@@ -32,6 +34,10 @@ export const Group = ({group}) => {
         intervalRef.current = setInterval(() => {
             OnSetGroup(id);
         }, 60000);
+
+        setTimeout(() => {
+            setLoading(false); // Set loading to false after data is fetched
+          }, 500);
 
         return () => clearInterval(intervalRef.current);
     }, [id]);
@@ -79,6 +85,10 @@ export const Group = ({group}) => {
             OnSetGroups();
             navigate('/');
         }
+    }
+
+    if(loading){
+        return <Loading/>
     }
 
     return (

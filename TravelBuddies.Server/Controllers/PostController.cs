@@ -154,7 +154,7 @@
 				FreeSeats = updatePostDto.FreeSeats,
 				Baggage = updatePostDto.Baggage,
 				Pets = updatePostDto.Pets,
-				DateAndTime = updatePostDto.DateAndTime,
+				DateAndTime = $"{DateTime.Parse(updatePostDto.Date).ToString("yyyy.MM.dd")} {updatePostDto.Time}",
 				PaymentType = updatePostDto.PaymentType,
 				CreatorId = User.Id()
 			};

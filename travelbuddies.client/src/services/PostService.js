@@ -50,18 +50,16 @@ export const OnCreatePostSubmit = async (createPostFromKeys) => {
 
 export const OnDeletePostSubmit = async (postId) => {
   try{
-    const response = await fetch(Url + '/delete', {
+    const response = await fetch(Url + `/delete/${postId}`, {
       method: 'POST',
       mode: 'cors',
       headers: {
           'Authorization': `Bearer ${localStorage.accessToken}`,
           'Content-Type': 'application/json'
       },
-      body: (postId)
     });
 
     if(response.ok){
-      return response.json();
     } else {
       console.error('Error', response.statusText);
       errorHandler(response.status);
@@ -84,7 +82,6 @@ export const OnUpdatePostSubmit = async (updatePostFromKeys) => {
     });
 
     if(response.ok){
-      return response.json();
     } else {
       console.error('Error:', response.statusText);
       errorHandler(response.status);
@@ -135,5 +132,27 @@ export const GetPostById = async (postId) => {
     }
   } catch (error) {
     console.error('Error fetching get post by id:', error);
+  }
+};
+
+export const OnCompletePostById = async (postId) => {
+  try {
+    const response = await fetch(Url + `/complete/${postId}`, {
+      method: 'POST',
+      mode: "cors",
+      headers: {
+          'Authorization': `Bearer ${localStorage.accessToken}`,
+          'Content-Type': 'application/json'
+      },
+    });
+    
+    if(response.ok){
+
+    } else {
+      console.error('Error:', response.statusText);
+      errorHandler(response.status);
+    }
+  } catch (error) {
+    console.error('Error fetching complete post by id:', error);
   }
 };
