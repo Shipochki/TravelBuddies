@@ -129,8 +129,8 @@ function App() {
                                 <Route path='/becomeDriver' element={<BecomeDriver/>}/>
                                 <Route path='/createPost' element={<CreatePost/>}/>
                                 <Route path='/catalog' element={<Catalog/>}/>
-                                <Route path='/group/:id' element={<Group group={group} loading={loading}/>}/>
-                                <Route path='/profile/:id' element={<Profile user={user} loading={loading}/>}/>
+                                <Route path='/group/:id' element={<Group group={group}/>}/>
+                                <Route path='/profile/:id' element={<Profile user={user}/>}/>
                                 <Route path='/reviews/:id' element={<Reviews/>}/>
                                 <Route path='/createVehicle' element={<CreateVehicle/>}/>
                                 <Route path='/editVehicle' element={<EditVehicle/>}/>

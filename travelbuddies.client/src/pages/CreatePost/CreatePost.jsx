@@ -48,11 +48,13 @@ export const CreatePost = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await GetAllCities();
-      setCities(data);
+      if (localStorage.role == "driver") {
+        const data = await GetAllCities();
+        setCities(data);
 
-      const dataVeh = await GetVehicleByOwnerId(localStorage.userId);
-      setVehicle(dataVeh);
+        const dataVeh = await GetVehicleByOwnerId(localStorage.userId);
+        setVehicle(dataVeh);
+      }
 
       setLoading(false);
     };
@@ -95,7 +97,7 @@ export const CreatePost = () => {
 
     await OnCreatePostSubmit(values);
 
-    navigate('/myPosts')
+    navigate("/myPosts");
   };
 
   const [filteredCities, setFilteredCities] = useState([]);
@@ -165,8 +167,8 @@ export const CreatePost = () => {
     changeHandler;
   };
 
-  if(loading){
-    return <Loading/>
+  if (loading) {
+    return <Loading />;
   }
 
   return (

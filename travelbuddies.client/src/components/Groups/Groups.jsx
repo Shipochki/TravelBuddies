@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 import personImgOffline from '../../utils/images/blank-profile-picture-973460_960_720.png'
 import { GlobalContext } from "../../utils/contexts/GlobalContext";
+import { Loading } from "../../pages/Loading/Loading";
 
 export const Groups = ({groups}) => {
     const { OnSetGroup, OnSetGroups } = useContext(GlobalContext);
@@ -22,6 +23,7 @@ export const Groups = ({groups}) => {
         if(!groups.length){
             OnSetGroups();
         }
+
         // const fetchData = async () => {
         //     const data = await GetAllGroupByUserId(localStorage.userId);
         //     setGroups(data);
@@ -29,7 +31,6 @@ export const Groups = ({groups}) => {
         // fetchData();
     }, []);
 
-    
     return(
         <div className="groups-main">
             <h3>{<FontAwesomeIcon icon={faPeopleGroup}/>} My Groups</h3>
