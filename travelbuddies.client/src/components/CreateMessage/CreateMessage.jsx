@@ -41,6 +41,7 @@ export const CreateMessage = ({groupId}) => {
                         value={values[MessageFromKeys.Text]}
                         onChange={changeHandler}
                         required
+                        autoComplete='off'
                         />
                     <Button type='submit'
                     variant="contained" endIcon={<SendIcon />}>

@@ -29,7 +29,7 @@ export const MyVehicle = () => {
   return (
     <div className="myvehicle-main">
       {localStorage.role == "driver" ? (
-        <>{vehicle.id ? <Vehicle vehicle={vehicle} /> : <NoVehicle />}</>
+        <>{vehicle && vehicle.id ? <Vehicle vehicle={vehicle} /> : <NoVehicle />}</>
       ) : (
         <NotDriver />
       )}

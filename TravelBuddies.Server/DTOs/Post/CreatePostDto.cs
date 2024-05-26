@@ -16,6 +16,10 @@
 
 		public decimal PricePerSeat { get; set; }
 
+		[Required]
+		[StringLength(MaxLengthCurrency)]
+		public required string Currency {  get; set; }
+
 		public int FreeSeats { get; set; }
 
 		public bool Baggage { get; set; }

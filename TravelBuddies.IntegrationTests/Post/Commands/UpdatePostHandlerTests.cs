@@ -19,6 +19,7 @@
 				CreatorId = "1",
 				DateAndTime = "",
 				Description = "Description",
+				Currency = "eur"
 			};
 
 			//Assert
@@ -44,7 +45,8 @@
 				CreatorId = user.Id,
 				Description = "test",
 				FromDestinationCity = city1,
-				ToDestinationCity = city2
+				ToDestinationCity = city2,
+				Currency = "eur"
 			};
 
 			await _dbContext.AddAsync(post);
@@ -56,6 +58,7 @@
 				DateAndTime = "",
 				Description = "Description",
 				Id = post.Id,
+				Currency = "tes"
 			};
 
 			//Assert
@@ -81,7 +84,8 @@
 				CreatorId = user.Id,
 				Description = "test",
 				FromDestinationCity = city1,
-				ToDestinationCity = city2
+				ToDestinationCity = city2,
+				Currency = "EUR"
 			};
 
 			await _dbContext.AddAsync(post);
@@ -94,6 +98,7 @@
 				Description = "Description",
 				Id = post.Id,
 				FromDestinationCityId = city1.Id,
+				Currency = "tes"
 			};
 
 			//Assert
@@ -119,7 +124,8 @@
 				CreatorId = user.Id,
 				Description = "test",
 				FromDestinationCity = city1,
-				ToDestinationCity = city2
+				ToDestinationCity = city2,
+				Currency = "eur"
 			};
 			var user2 = new ApplicationUser { UserName = "test", Email = "email" };
 
@@ -134,7 +140,8 @@
 				Description = "Description",
 				Id = post.Id,
 				FromDestinationCityId = city1.Id,
-				ToDestinationCityId = city2.Id
+				ToDestinationCityId = city2.Id,
+				Currency = "tes"
 			};
 
 			//Assert
@@ -160,7 +167,8 @@
 				CreatorId = user.Id,
 				Description = "test",
 				FromDestinationCity = city1,
-				ToDestinationCity = city2
+				ToDestinationCity = city2,
+				Currency = "eur"
 			};
 
 			await _dbContext.AddAsync(post);
@@ -174,6 +182,7 @@
 				DateAndTime = DateTime.Now.ToString(),
 				Description = "testUpdate",
 				CreatorId = user.Id,
+				Currency = "tes"
 			};
 
 			//Act

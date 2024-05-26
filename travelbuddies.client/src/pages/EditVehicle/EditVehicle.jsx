@@ -6,7 +6,7 @@ import {
 } from "../../services/VehicleService";
 import { useForm } from "../../utils/hooks/useForm";
 import { NoVehicle } from "../../components/NoVehicle/NoVehicle";
-import { Box, FormControl, InputLabel, NativeSelect } from "@mui/material";
+import { Box, FormControl, InputLabel, NativeSelect, TextField } from "@mui/material";
 import { Loading } from "../Loading/Loading";
 import { NotDriver } from "../../components/NotDriver/NotDriver";
 
@@ -113,14 +113,14 @@ export const EditVehicle = () => {
     <div className="create-vehicle-main">
       {localStorage.role == "driver" ? (
         <>
-          {vehicle.id ? (
+          {vehicle && vehicle.id ? (
             <div className="create-vehicle-content">
               <div className="create-vehicle-header">
                 <h2>Edit your Vehicle</h2>
               </div>
               <form className="create-vehicle-form" onSubmit={onUpdateSubmit}>
                 <div className="vehicle-brandname">
-                  <input
+                  {/* <input
                     type="text"
                     id="brandname"
                     placeholder="BrandName"
@@ -129,10 +129,24 @@ export const EditVehicle = () => {
                     value={values[EditVehicleFromKeys.BrandName]}
                     onChange={changeHandler}
                     required
-                  />
+                  /> */}
+                  <TextField
+                      type="text"
+                      name={EditVehicleFromKeys.BrandName}
+                      value={values[EditVehicleFromKeys.BrandName]}
+                      onChange={changeHandler}
+                      label="Brand"
+                      autoComplete="off"
+                      sx={{
+                        width: "14vw",
+                      }}
+                      minLength={1}
+                      maxLength={50}
+                      required
+                    />
                 </div>
                 <div className="vehicle-modelname">
-                  <input
+                  {/* <input
                     type="text"
                     id="modelname"
                     placeholder="ModelName"
@@ -141,10 +155,24 @@ export const EditVehicle = () => {
                     value={values[EditVehicleFromKeys.ModelName]}
                     onChange={changeHandler}
                     required
-                  />
+                  /> */}
+                  <TextField
+                      type="text"
+                      name={EditVehicleFromKeys.ModelName}
+                      value={values[EditVehicleFromKeys.ModelName]}
+                      onChange={changeHandler}
+                      label="Model"
+                      autoComplete="off"
+                      sx={{
+                        width: "14vw",
+                      }}
+                      minLength={1}
+                      maxLength={70}
+                      required
+                    />
                 </div>
                 <div className="vehicle-year">
-                  <label>Year</label>
+                  {/* <label>Year</label>
                   <input
                     type="number"
                     id="year"
@@ -153,10 +181,22 @@ export const EditVehicle = () => {
                     value={values[EditVehicleFromKeys.Year]}
                     onChange={changeHandler}
                     required
-                  />
+                  /> */}
+                  <TextField
+                      type="number"
+                      name={EditVehicleFromKeys.Year}
+                      value={values[EditVehicleFromKeys.Year]}
+                      onChange={changeHandler}
+                      label="Year"
+                      autoComplete="off"
+                      sx={{
+                        width: "8vw",
+                      }}
+                      required
+                    />
                 </div>
                 <div className="vehicle-color">
-                  <input
+                  {/* <input
                     type="text"
                     id="color"
                     className="inputModel"
@@ -165,7 +205,19 @@ export const EditVehicle = () => {
                     value={values[EditVehicleFromKeys.Color]}
                     onChange={changeHandler}
                     required
-                  />
+                  /> */}
+                  <TextField
+                      type="text"
+                      name={EditVehicleFromKeys.Color}
+                      value={values[EditVehicleFromKeys.Color]}
+                      onChange={changeHandler}
+                      label="Color"
+                      autoComplete="off"
+                      sx={{
+                        width: "14vw",
+                      }}
+                      required
+                    />
                 </div>
                 {/* <div className='vehicle-fuel'>             
                     <label for="fuel">Choose a Fuel:</label>
@@ -199,7 +251,7 @@ export const EditVehicle = () => {
                   </FormControl>
                 </Box>
                 <div className="vehicle-seatcount">
-                  <label>SeatCount</label>
+                  {/* <label>SeatCount</label>
                   <input
                     type="number"
                     id="seatcount"
@@ -207,15 +259,27 @@ export const EditVehicle = () => {
                     value={values[EditVehicleFromKeys.SeatCount]}
                     onChange={changeHandler}
                     required
-                  />
+                  /> */}
+                  <TextField
+                      type="number"
+                      name={EditVehicleFromKeys.SeatCount}
+                      value={values[EditVehicleFromKeys.SeatCount]}
+                      onChange={changeHandler}
+                      label="Seat count"
+                      autoComplete="off"
+                      sx={{
+                        width: "8vw",
+                      }}
+                      required
+                    />
                 </div>
                 <div className="vehicle-acsystme">
-                  <label>ACSystem</label>
                   <input
                     type="checkbox"
                     checked={values[EditVehicleFromKeys.ACSystem]}
                     onChange={handleIsACSystem}
                   />
+                  <label>ACSystem</label>
                 </div>
                 <div className="vehicle-upload">
                   <label>

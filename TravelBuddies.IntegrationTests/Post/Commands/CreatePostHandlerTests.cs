@@ -27,6 +27,7 @@
 				CreatorId = "1",
 				DateAndTime = "",
 				Description = "Description",
+				Currency = "Eur"
 			};
 
 			//Assert
@@ -52,6 +53,7 @@
 				CreatorId = user.Id,
 				DateAndTime = "",
 				Description = "Description",
+				Currency = "Eur"
 			};
 
 			//Assert
@@ -81,6 +83,7 @@
 				DateAndTime = "",
 				Description = "Description",
 				FromDestinationCityId = city1.Id,
+				Currency = "eur"
 			};
 
 			//Assert
@@ -110,6 +113,7 @@
 				CreatorId = user.Id,
 				DateAndTime = DateTime.Now.ToString(),
 				Description = "Description",
+				Currency = "eur",
 				FromDestinationCityId = city1.Id,
 				ToDestinationCityId = city2.Id,
 				PaymentType = (int)PaymentType.CashAndCard,

@@ -55,7 +55,8 @@
 				CreatorId = user.Id,
 				Description = "test",
 				FromDestinationCity = city1,
-				ToDestinationCity = city2
+				ToDestinationCity = city2,
+				Currency = "Eur"
 			};
 			var group = new Group()
 			{

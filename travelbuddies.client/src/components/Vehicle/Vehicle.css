@@ -3,7 +3,7 @@
     flex-direction: row;
     align-items: center;
     width: 100%;
-    padding: 10px;
+    padding: 20px;
     max-width: 50vw;
 }
 
@@ -11,15 +11,25 @@
     display: flex;
     align-items: center;
     justify-items: center;
-    flex-direction: column;
+    flex-flow: wrap;
+    gap: 10px;
 }
 
 .vehicle-info p{
     font-size: 18px;
+    box-shadow: 0 0 1px 0;
+    padding: 5px;
+    border-radius: 8px;
+    background-color: #F5F6F7;
+    color: #2979ff;
+}
+
+.vehicle-info p span{
+    color: black;
 }
 
 .vehicle img{
-    max-width: 20vw;
+    max-width: 25vw;
     border-radius: 16px;
     margin-left: auto;
 }

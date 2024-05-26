@@ -15,6 +15,8 @@
 
             public const int MaxLengthDescription = 5000;
             public const int MinLengthDescription = 50;
+
+            public const int MaxLengthCurrency = 3;
         }
 
         public static class ReviewConstants

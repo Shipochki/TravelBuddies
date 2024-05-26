@@ -57,6 +57,7 @@
 				Description = "test",
 				FromDestinationCity = city1,
 				ToDestinationCity = city2,
+				Currency = "eur"
 			};
 
 			await _dbContext.AddAsync(post);

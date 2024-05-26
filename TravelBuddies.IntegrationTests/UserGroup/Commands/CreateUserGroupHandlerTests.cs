@@ -60,7 +60,8 @@
 				CreatorId = user.Id,
 				Description = "test",
 				FromDestinationCity = city1,
-				ToDestinationCity = city2
+				ToDestinationCity = city2,
+				Currency = "eur"
 			};
 			var group = new Group()
 			{
@@ -111,7 +112,8 @@
 				Description = "test",
 				FromDestinationCity = city1,
 				ToDestinationCity = city2,
-				FreeSeats = 0
+				FreeSeats = 0,
+				Currency = "eur"
 			};
 			var group = new Group()
 			{
@@ -163,7 +165,8 @@
 				Description = "test",
 				FromDestinationCity = city1,
 				ToDestinationCity = city2,
-				FreeSeats = 3
+				FreeSeats = 3,
+				Currency = "eur"
 			};
 			var group = new Group()
 			{

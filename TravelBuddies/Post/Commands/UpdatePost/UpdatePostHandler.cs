@@ -57,6 +57,7 @@
 			post.ToDestinationCityId = request.ToDestinationCityId;
 			post.Description = request.Description;
 			post.PricePerSeat = request.PricePerSeat;
+			post.Currency = request.Currency;
 			post.Baggage = request.Baggage;
 			post.Pets = request.Pets;
 			post.FreeSeats = request.FreeSeats;

@@ -9,6 +9,11 @@
 			return "";
 		}
 
+		public string GenretateCompletePostMessage(string userName, string paymentLink)
+		{
+			return "";
+		}
+
 		public void SendMessage(string subject, string body, string reciverEmail)
 		{
 			return;

@@ -59,6 +59,7 @@
 				ToDestinationCityId = toDestination.Id,
 				Description = request.Description,
 				PricePerSeat = request.PricePerSeat,
+				Currency = request.Currency,
 				FreeSeats = request.FreeSeats,
 				Baggage = request.Baggage,
 				Pets = request.Pets,

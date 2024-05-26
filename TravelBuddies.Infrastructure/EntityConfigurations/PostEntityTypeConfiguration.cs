@@ -27,6 +27,12 @@
 				.HasMaxLength(MaxLengthDescription);
 
 			builder
+				.Property(p => p.Currency)
+				.IsRequired()
+				.HasMaxLength(MaxLengthCurrency)
+				.HasDefaultValue("EUR");
+
+			builder
 				.Property(p => p.PricePerSeat)
 				.HasColumnType("decimal(18, 2)")
 				.IsRequired();

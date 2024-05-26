@@ -8,7 +8,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { NotDriver } from "../../components/NotDriver/NotDriver";
 import { GlobalContext } from "../../utils/contexts/GlobalContext";
-import { Box, FormControl, InputLabel, NativeSelect } from "@mui/material";
+import { Box, FormControl, InputLabel, NativeSelect, TextField } from "@mui/material";
 import { Loading } from "../Loading/Loading";
 
 const VehicleFromKeys = {
@@ -89,14 +89,14 @@ export const CreateVehicle = () => {
     <div className="create-vehicle-main">
       {localStorage.role == "driver" ? (
         <>
-          {!vehicle.id ? (
+          {vehicle && !vehicle.id ? (
             <div className="create-vehicle-content">
               <div className="create-vehicle-header">
                 <h2>Add your Vehicle</h2>
               </div>
               <form className="create-vehicle-form" onSubmit={OnClickSubmit}>
                 <div className="vehicle-brandname">
-                  <input
+                  {/* <input
                     type="text"
                     id="brandname"
                     placeholder="BrandName"
@@ -105,10 +105,24 @@ export const CreateVehicle = () => {
                     value={values[VehicleFromKeys.BrandName]}
                     onChange={changeHandler}
                     required
-                  />
+                  /> */}
+                  <TextField
+                      type="text"
+                      name={VehicleFromKeys.BrandName}
+                      value={values[VehicleFromKeys.BrandName]}
+                      onChange={changeHandler}
+                      label="Brand"
+                      autoComplete="off"
+                      sx={{
+                        width: "14vw",
+                      }}
+                      minLength={1}
+                      maxLength={50}
+                      required
+                    />
                 </div>
                 <div className="vehicle-modelname">
-                  <input
+                  {/* <input
                     type="text"
                     id="modelname"
                     placeholder="ModelName"
@@ -117,10 +131,24 @@ export const CreateVehicle = () => {
                     value={values[VehicleFromKeys.ModelName]}
                     onChange={changeHandler}
                     required
-                  />
+                  /> */}
+                  <TextField
+                      type="text"
+                      name={VehicleFromKeys.ModelName}
+                      value={values[VehicleFromKeys.ModelName]}
+                      onChange={changeHandler}
+                      label="Model"
+                      autoComplete="off"
+                      sx={{
+                        width: "14vw",
+                      }}
+                      minLength={1}
+                      maxLength={70}
+                      required
+                    />
                 </div>
                 <div className="vehicle-year">
-                  <label>Year</label>
+                  {/* <label>Year</label>
                   <input
                     type="number"
                     id="year"
@@ -129,10 +157,22 @@ export const CreateVehicle = () => {
                     value={values[VehicleFromKeys.Year]}
                     onChange={changeHandler}
                     required
-                  />
+                  /> */}
+                  <TextField
+                      type="number"
+                      name={VehicleFromKeys.Year}
+                      value={values[VehicleFromKeys.Year]}
+                      onChange={changeHandler}
+                      label="Year"
+                      autoComplete="off"
+                      sx={{
+                        width: "8vw",
+                      }}
+                      required
+                    />
                 </div>
                 <div className="vehicle-color">
-                  <input
+                  {/* <input
                     type="text"
                     id="color"
                     className="inputModel"
@@ -141,7 +181,19 @@ export const CreateVehicle = () => {
                     value={values[VehicleFromKeys.Color]}
                     onChange={changeHandler}
                     required
-                  />
+                  /> */}
+                  <TextField
+                      type="text"
+                      name={VehicleFromKeys.Color}
+                      value={values[VehicleFromKeys.Color]}
+                      onChange={changeHandler}
+                      label="Color"
+                      autoComplete="off"
+                      sx={{
+                        width: "14vw",
+                      }}
+                      required
+                    />
                 </div>
                 {/* <div className='vehicle-fuel'>
                     <label for="fuel">Choose a Fuel:</label>
@@ -175,7 +227,7 @@ export const CreateVehicle = () => {
                   </FormControl>
                 </Box>
                 <div className="vehicle-seatcount">
-                  <label>SeatCount</label>
+                  {/* <label>SeatCount</label>
                   <input
                     type="number"
                     id="seatcount"
@@ -183,15 +235,27 @@ export const CreateVehicle = () => {
                     value={values[VehicleFromKeys.SeatCount]}
                     onChange={changeHandler}
                     required
-                  />
+                  /> */}
+                  <TextField
+                      type="number"
+                      name={VehicleFromKeys.SeatCount}
+                      value={values[VehicleFromKeys.SeatCount]}
+                      onChange={changeHandler}
+                      label="Seat count"
+                      autoComplete="off"
+                      sx={{
+                        width: "8vw",
+                      }}
+                      required
+                    />
                 </div>
                 <div className="vehicle-acsystme">
-                  <label>ACSystem</label>
                   <input
                     type="checkbox"
                     checked={values[VehicleFromKeys.ACSystem]}
                     onChange={handleIsACSystem}
                   />
+                  <label>ACSystem</label>
                 </div>
                 <div className="vehicle-upload">
                   <label>
