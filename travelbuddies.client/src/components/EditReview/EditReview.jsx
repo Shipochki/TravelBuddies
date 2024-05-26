@@ -60,7 +60,7 @@ export const EditReview = ({review}) => {
                     value={values[EditReviewFromKeys.Text]}
                     onChange={changeHandler}
                 />
-                <button>Edit</button>
+                <button>Save</button>
             </form>
             <span className='close'
             onClick={() => {

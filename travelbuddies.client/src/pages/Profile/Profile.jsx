@@ -65,6 +65,7 @@ export const Profile = ({user}) => {
                             <p>Email: {user.email}</p>
                             <p>Country: {user.country ? user.country : 'None'}</p>
                             <p>City: {user.city ? user.city : 'None'}</p>
+                            <p>Rating: {user.rating}</p>
                         </div>
                     </div>
                 </div>

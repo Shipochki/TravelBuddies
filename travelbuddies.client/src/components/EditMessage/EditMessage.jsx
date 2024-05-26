@@ -43,7 +43,7 @@ export const EditMessage = ({message}) => {
                         onChange={changeHandler}
                         required
                         />
-                    <button>Edit</button>
+                    <button>Save</button>
             </form>
             <span className='close'
             onClick={() => {

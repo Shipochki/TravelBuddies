@@ -74,7 +74,7 @@ export const UserMenu = () => {
                         </div>
                         <div className='navLinks'>
                             <Link to={`/profile/${localStorage.userId}`}>{<FontAwesomeIcon icon={faUser}/>} Profile</Link>
-                            <Link to={'/edit'}>{<FontAwesomeIcon icon={faPencil}/>} Edit</Link>
+                            <Link to={'/editProfile'}>{<FontAwesomeIcon icon={faPencil}/>} Edit</Link>
                             {/* {localStorage.role == 'client' ? (  
                                 <Link to={'/becomeDriver'}>{<FontAwesomeIcon icon={faDriversLicense}/>}Become Driver</Link>
                             ) : ''}

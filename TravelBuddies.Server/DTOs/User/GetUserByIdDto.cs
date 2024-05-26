@@ -20,6 +20,8 @@ namespace TravelBuddies.Presentation.DTOs.User
 
 		public string? ProfilePictureLink { get; set; }
 
+		public double? Rating { get; set; }
+
 		public List<ReviewDto>? Reviews { get; set; }
 
 		public VehicleDto? Vehicle { get; set; }

@@ -47,7 +47,7 @@
 				Currency = post.Currency,
 				Baggage = post.Baggage,
 				Pets = post.Pets,
-				DateAndTime = post.DateAndTime.ToString("yyyy-MM-dd   hh:mm tt"),
+				DateAndTime = post.DateAndTime.ToString("yyyy.MM.dd hh:mm tt"),
 				GroupId = post.GroupId,
 				PaymentType = (int)post.PaymentType,
 				Creator = UserDto.FromUser(post.Creator),

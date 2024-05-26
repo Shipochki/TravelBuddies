@@ -30,6 +30,7 @@ import { BadRequest } from './pages/BadRequest/BadRequest';
 import { GetAllGroupByUserId, GetGroupById } from './services/GroupService';
 import { GetUserById } from './services/UserService';
 import { EditPost } from './pages/EditPost/EditPost';
+import { EditProfile } from './pages/EditProfile/EditProfile';
 
 function App() {
     const navigate = useNavigate();
@@ -131,6 +132,7 @@ function App() {
                                 <Route path='/catalog' element={<Catalog/>}/>
                                 <Route path='/group/:id' element={<Group group={group}/>}/>
                                 <Route path='/profile/:id' element={<Profile user={user}/>}/>
+                                <Route path='/editProfile' element={<EditProfile />}/>
                                 <Route path='/reviews/:id' element={<Reviews/>}/>
                                 <Route path='/createVehicle' element={<CreateVehicle/>}/>
                                 <Route path='/editVehicle' element={<EditVehicle/>}/>

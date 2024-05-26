@@ -24,7 +24,7 @@
 			{
 				Id = group.Id,
 				Name = $"{group.Creator.FirstName} {group.Creator.LastName}",
-				Date = group.Post.DateAndTime.ToString("MM:dd:yyyy hh:mm tt"),
+				Date = group.Post.DateAndTime.ToString("MM.dd.yyyy hh:mm tt"),
 				Creator = UserDto.FromUser(group.Creator),
 				Members = group.UsersGroups
 					.Select(u => UserDto.FromUser(u.User))

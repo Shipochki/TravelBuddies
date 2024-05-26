@@ -418,7 +418,7 @@ export const EditPost = () => {
                 </Box>
               </div>
               <button className="create-post-btn-add" type="submit">
-                Edit
+                Save
               </button>
             </form>
           </div>

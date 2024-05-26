@@ -24,7 +24,7 @@
 				CreatorId = group.CreatorId,
 				PostId = group.PostId,
 				Name = $"{group.Post.FromDestinationCity.Name} -> {group.Post.ToDestinationCity.Name}",
-				Date = group.Post.DateAndTime.ToString("MM:dd:yyyy hh:mm tt"),
+				Date = group.Post.DateAndTime.ToString("MM.dd.yyyy hh:mm tt"),
 				CreatorProfileLink = group.Creator.ProfilePictureLink,
 			};
 		}

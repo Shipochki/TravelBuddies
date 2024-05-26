@@ -118,7 +118,9 @@
 			List<Review> reviews = await _mediator.Send(new GetReviewsByReciverIdQuery(id));
 
 			userDto.Reviews = reviews.Select(ReviewDto.FromReview).Take(3).ToList();
-			
+
+			userDto.Rating = Math.Round(reviews.Select(r => r.Rating).Average(), 2);
+
 			Vehicle? vehicle = await _mediator.Send(new GetVehicleByOwnerIdQuery(id));
 
 			if(vehicle != null)
