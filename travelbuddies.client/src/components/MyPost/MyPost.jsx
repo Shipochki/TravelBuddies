@@ -51,7 +51,7 @@ export const MyPost = ({post, setPosts}) => {
                 <p className='mypost-desc'>{post.description}</p>
                 <div className='mypost-info'>
                     <p className='mypost-seats'>Avalible seats: {post.freeSeats}</p>
-                    <p className='mypost-pricePerSeat'>Price per seats: {post.pricePerSeat} EUR</p>
+                    <p className='mypost-pricePerSeat'>Price per seats: {post.pricePerSeat} {post.currency}</p>
                     <p className='mypost-baggage'>Baggage: {post.baggage ? 'Yes' : 'No'}</p>
                     <p className='mypost-pets'>Pets: {post.pets ? 'Yes': 'No'}</p>
                 </div>

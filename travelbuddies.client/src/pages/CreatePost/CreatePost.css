@@ -201,3 +201,9 @@
     background-color: #2979ff;
     color: white;
 }
+
+.boxs-choses{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}

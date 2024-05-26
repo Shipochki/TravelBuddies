@@ -15,6 +15,8 @@
 
 		public decimal PricePerSeat { get; set; }
 
+		public required string Currency {  get; set; }
+
 		public int FreeSeats { get; set; }
 
 		public bool Baggage { get; set; }
@@ -40,6 +42,7 @@
 				ToDestinationName = post.ToDestinationCity.Name,
 				Description = post.Description,
 				PricePerSeat = post.PricePerSeat,
+				Currency = post.Currency,
 				Baggage = post.Baggage,
 				Pets = post.Pets,
 				DateAndTime = post.DateAndTime.ToString("yyyy-MM-dd   hh:mm tt"),

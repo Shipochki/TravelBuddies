@@ -14,6 +14,8 @@
 
 		public decimal PricePerSeat { get; set; }
 
+		public required string Currency {  get; set; }
+
 		public int FreeSeats { get; set; }
 
 		public bool Baggage { get; set; }
@@ -35,6 +37,7 @@
 				ToDestinationName = post.ToDestinationCity.Name,
 				Description = post.Description,
 				PricePerSeat = post.PricePerSeat,
+				Currency = post.Currency,
 				FreeSeats = post.FreeSeats,
 				Baggage = post.Baggage,
 				Pets = post.Pets,

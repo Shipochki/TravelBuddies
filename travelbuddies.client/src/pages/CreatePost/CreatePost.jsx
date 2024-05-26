@@ -38,6 +38,7 @@ const CreatePostFromKeys = {
   Date: "date",
   Time: "time",
   PaymentType: "payType",
+  Currency: "currency",
 };
 
 export const CreatePost = () => {
@@ -74,6 +75,7 @@ export const CreatePost = () => {
     [CreatePostFromKeys.Date]: "",
     [CreatePostFromKeys.Time]: "",
     [CreatePostFromKeys.PaymentType]: 0,
+    [CreatePostFromKeys.Currency]: "EUR",
   });
 
   const clickHandler = async (e) => {
@@ -175,7 +177,7 @@ export const CreatePost = () => {
     <div className="create-post-main">
       {localStorage.role == "driver" ? (
         <>
-          {vehicle != "" ? (
+          {vehicle.id ? (
             <>
               <div className="create-post-header">
                 <h2>Create Post</h2>
@@ -349,7 +351,6 @@ export const CreatePost = () => {
                         min={0}
                         max={100}
                       />
-                      &euro;
                     </label>
                   </div>
                   <div className="create-post-seats">
@@ -365,25 +366,48 @@ export const CreatePost = () => {
                     />
                   </div>
                 </div>
-                <Box sx={{ minWidth: 120 }}>
-                  <FormControl fullWidth>
-                    <InputLabel variant="standard" htmlFor="payType">
-                      Choose a Payment type
-                    </InputLabel>
-                    <NativeSelect
-                      value={values[CreatePostFromKeys.PaymentType]}
-                      onChange={changeHandler}
-                      inputProps={{
-                        name: "payType",
-                        id: "payType",
-                      }}
-                    >
-                      <option value={0}>Cash</option>
-                      <option value={1}>Card</option>
-                      <option value={2}>Cash and Card</option>
-                    </NativeSelect>
-                  </FormControl>
-                </Box>
+                <div className="boxs-choses">
+                  <Box sx={{ minWidth: 120 }}>
+                    <FormControl fullWidth>
+                      <InputLabel variant="standard" htmlFor="payType">
+                        Choose a Payment type
+                      </InputLabel>
+                      <NativeSelect
+                        value={values[CreatePostFromKeys.PaymentType]}
+                        onChange={changeHandler}
+                        inputProps={{
+                          name: "payType",
+                          id: "payType",
+                        }}
+                      >
+                        <option value={0}>Cash</option>
+                        <option value={1}>Card</option>
+                        <option value={2}>Cash and Card</option>
+                      </NativeSelect>
+                    </FormControl>
+                  </Box>
+                  <Box sx={{ minWidth: 120 }}>
+                    <FormControl fullWidth>
+                      <InputLabel variant="standard" htmlFor="currency">
+                        Choose a Currency
+                      </InputLabel>
+                      <NativeSelect
+                        value={values[CreatePostFromKeys.Currency]}
+                        onChange={changeHandler}
+                        inputProps={{
+                          name: "currency",
+                          id: "currency",
+                        }}
+                      >
+                        <option value={"EUR"}>EUR</option>
+                        <option value={"BGN"}>BGN</option>
+                        <option value={"USD"}>USD</option>
+                        <option value={"GBP"}>GBP</option>
+                      </NativeSelect>
+                    </FormControl>
+                  </Box>
+                </div>
+
                 <button className="create-post-btn-add" type="submit">
                   Add
                 </button>

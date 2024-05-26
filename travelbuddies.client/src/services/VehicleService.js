@@ -16,6 +16,7 @@ export const OnCreateVehicleSubmit = async (createVehicleFromKeys) => {
       "picturelink",
       document.querySelector("#picturelink").files[0]
     );
+    formData.append("currency", createVehicleFromKeys.currency);
 
     const response = await fetch(Url + "/create", {
       method: "POST",
@@ -54,6 +55,7 @@ export const OnUpdateVehicleSubmit = async (updateVehicleFromKeys) => {
       "picturelink",
       document.querySelector("#picturelink").files[0]
     );
+    formData.append("currency", createVehicleFromKeys.currency);
 
     const response = await fetch(Url + "/update", {
       method: "POST",

@@ -35,6 +35,7 @@ const EditPostFromKeys = {
   Date: "date",
   Time: "time",
   PaymentType: "payType",
+  Currency: "currency",
 };
 
 export const EditPost = () => {
@@ -57,7 +58,8 @@ export const EditPost = () => {
     [EditPostFromKeys.Pets]: post.pets,
     [EditPostFromKeys.Date]: "",
     [EditPostFromKeys.Time]: "",
-    [EditPostFromKeys.PaymentType]: 0,
+    [EditPostFromKeys.PaymentType]: post.paymentType,
+    [EditPostFromKeys.Currency]: post.currency,
   });
 
   useEffect(() => {
@@ -78,6 +80,8 @@ export const EditPost = () => {
       values[EditPostFromKeys.Pets] = postData.pets;
       values[EditPostFromKeys.Date] = postData.dateAndTime.split(" ")[0];
       values[EditPostFromKeys.Time] = postData.dateAndTime.split(" ")[1];
+      values[EditPostFromKeys.PaymentType] = postData.paymentType;
+      values[EditPostFromKeys.Currency] = postData.currency;
       setIsBaggage(postData.baggage);
       setIsPets(postData.pets);
 
@@ -357,7 +361,6 @@ export const EditPost = () => {
                       min={0}
                       max={100}
                     />
-                    &euro;
                   </label>
                 </div>
                 <div className="create-post-seats">
@@ -373,25 +376,47 @@ export const EditPost = () => {
                   />
                 </div>
               </div>
-              <Box sx={{ minWidth: 120 }}>
-                <FormControl fullWidth>
-                  <InputLabel variant="standard" htmlFor="payType">
-                    Choose a Payment type
-                  </InputLabel>
-                  <NativeSelect
-                    value={values[EditPostFromKeys.PaymentType]}
-                    onChange={changeHandler}
-                    inputProps={{
-                      name: "payType",
-                      id: "payType",
-                    }}
-                  >
-                    <option value={0}>Cash</option>
-                    <option value={1}>Card</option>
-                    <option value={2}>Cash and Card</option>
-                  </NativeSelect>
-                </FormControl>
-              </Box>
+              <div className="boxs-choses">
+                <Box sx={{ minWidth: 120 }}>
+                  <FormControl fullWidth>
+                    <InputLabel variant="standard" htmlFor="payType">
+                      Choose a Payment type
+                    </InputLabel>
+                    <NativeSelect
+                      value={values[EditPostFromKeys.PaymentType]}
+                      onChange={changeHandler}
+                      inputProps={{
+                        name: "payType",
+                        id: "payType",
+                      }}
+                    >
+                      <option value={0}>Cash</option>
+                      <option value={1}>Card</option>
+                      <option value={2}>Cash and Card</option>
+                    </NativeSelect>
+                  </FormControl>
+                </Box>
+                <Box sx={{ minWidth: 120 }}>
+                  <FormControl fullWidth>
+                    <InputLabel variant="standard" htmlFor="currency">
+                      Choose a Currency
+                    </InputLabel>
+                    <NativeSelect
+                      value={values[EditPostFromKeys.Currency]}
+                      onChange={changeHandler}
+                      inputProps={{
+                        name: "currency",
+                        id: "currency",
+                      }}
+                    >
+                      <option value={"EUR"}>EUR</option>
+                      <option value={"BGN"}>BGN</option>
+                      <option value={"USD"}>USD</option>
+                      <option value={"GBP"}>GBP</option>
+                    </NativeSelect>
+                  </FormControl>
+                </Box>
+              </div>
               <button className="create-post-btn-add" type="submit">
                 Edit
               </button>

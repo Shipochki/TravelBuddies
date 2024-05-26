@@ -46,7 +46,7 @@ export const Post = ({post}) => {
             <p className='post-dateandtime'><FontAwesomeIcon icon={faCalendarDays}/> {post.DateAndTime}</p>
             <p className='post-decription'>{post.Description}</p>
             <div className='post-more-info'>
-                <p className='post-priceperseat'>Price: {post.PricePerSeat}$</p>
+                <p className='post-priceperseat'>Price: {post.PricePerSeat} {post.Currency}</p>
                 <p className='post-freeseats'>Seats available: {post.FreeSeats}</p>
                 <p className='post-bool'>Baggage <FontAwesomeIcon icon={post.Baggage ? faCheck : faCircleXmark} /></p>
                 <p className='post-bool'>Pets <FontAwesomeIcon icon={post.Pets ? faCheck : faCircleXmark} /></p>
