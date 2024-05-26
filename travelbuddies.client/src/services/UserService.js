@@ -99,6 +99,52 @@ export const OnBecomeDriverSubmit = async () => {
   }
 }
 
+export const OnUpdateProfilePicutreSubmit = async () => {
+  try{
+    const formData = new FormData();
+    formData.append('profilepicture', document.querySelector("#profilepicture").files[0])
+
+    const response = await fetch(Url + `/updateprofilepicture`, {
+      method: "POST", // GET, POST, PUT, DELETE, etc.
+      mode: "cors", // no-cors,cors, same-origin
+      headers: {
+        'Authorization': `Bearer ${localStorage.accessToken}`,
+      },
+      body: formData
+    });
+
+    if(!response.ok){
+      console.log(response.statusText);
+      errorHandler(response.status);
+    }
+  }
+  catch(error){
+    console.log("Error with become driver")
+  }
+}
+
+export const OnUpdateProfileSubmit = async (editProfileFromKeys) => {
+  try{
+    const response = await fetch(Url + `/update`, {
+      method: "POST", // GET, POST, PUT, DELETE, etc.
+      mode: "cors", // no-cors,cors, same-origin
+      headers: {
+        'Authorization': `Bearer ${localStorage.accessToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(editProfileFromKeys)
+    });
+
+    if(!response.ok){
+      console.log(response.statusText);
+      errorHandler(response.status);
+    }
+  }
+  catch(error){
+    console.log("Error with become driver")
+  }
+}
+
 export const OnLogout = () => {
     localStorage.clear();
   }
@@ -124,5 +170,29 @@ export const GetUserById = async (id) => {
     }
   } catch (error) {
     console.error('Error fetching get user by id:', error);
+  };
+}
+
+export const GetOnlyUserById = async (id) => {
+  try {
+    const response = await fetch(Url + `/getonlyuserbyid/${id}`, {
+      method: 'GET',
+      mode: "cors",
+      headers: {
+          'Authorization': `Bearer ${localStorage.accessToken}`,
+          'Content-Type': 'application/json'
+      },
+    });
+
+      if (response.ok) {
+        // Handle successful response
+        return response.json();
+    }  else {
+        // Handle other errors
+        console.error('Error:', response.statusText);
+        errorHandler(response.status);
+    }
+  } catch (error) {
+    console.error('Error fetching get only user by id:', error);
   };
 }

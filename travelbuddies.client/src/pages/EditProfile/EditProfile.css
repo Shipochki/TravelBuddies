@@ -30,6 +30,7 @@
     box-shadow: 0 0 1px 0;
     border-radius: 8px;
     padding: 2vw;
+    column-gap: 2.5vw;
 }
 
 .edit-profile-img{
@@ -42,4 +43,37 @@
     width: 200px;
     border-radius: 100px;
     background-image: url('../../utils/images/blank-profile-picture-973460_960_720.png');
+}
+
+.edit-profile-content form{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 20px;
+}
+
+.edit-profile-info{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.edit-profile-btn{
+    border: 0;
+    background: white;
+    color: #2979ff;
+    width: 5vw;
+    height: 3vw;
+    border-radius: 32px;
+    border: 1px solid #2979ff;
+    font-size: 16px;
+    font-weight: 400;
+    transition: 0.3s;
+}
+
+.edit-profile-btn:hover{
+    color: white;
+    background-color: #2979ff;
+    cursor: pointer;
 }

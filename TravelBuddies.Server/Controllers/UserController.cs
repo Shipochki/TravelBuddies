@@ -136,5 +136,21 @@
 
 			return Ok(userDto);
 		}
+
+		[HttpGet]
+		[Authorize]
+		[Route("[action]/{id}")]
+		public async Task<IActionResult> GetOnlyUserById(string id)
+		{
+			ApplicationUser user = await _mediator.Send(new GetUserByIdQuery(id));
+
+			LogLevel logLevel = LogLevel.Information;
+			string message = "Succesfully get user";
+
+			await _fileLogger.LogAsync(logLevel, message);
+			await _databaseLogger.LogAsync(logLevel, message);
+
+			return Ok(GetOnlyUserByIdDto.FromUser(user));
+		}
 	}
 }
