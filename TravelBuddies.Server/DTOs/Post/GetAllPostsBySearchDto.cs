@@ -27,6 +27,8 @@
 
 		public int? GroupId { get; set; }
 
+		public int PaymentType { get; set; }
+
 		public required UserDto Creator { get; set; }
 
 		public List<string> Participants { get; set; } = null!;
@@ -47,6 +49,7 @@
 				Pets = post.Pets,
 				DateAndTime = post.DateAndTime.ToString("yyyy-MM-dd   hh:mm tt"),
 				GroupId = post.GroupId,
+				PaymentType = (int)post.PaymentType,
 				Creator = UserDto.FromUser(post.Creator),
 				Participants = post.Group.UsersGroups.Select(ug => ug.UserId).ToList(),
 				BlackListsUsers = post.Group.UsersBlackLists.Select(ug => ug.UserId).ToList(),

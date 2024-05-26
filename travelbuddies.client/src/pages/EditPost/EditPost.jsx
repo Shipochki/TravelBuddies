@@ -34,7 +34,7 @@ const EditPostFromKeys = {
   Pets: "pets",
   Date: "date",
   Time: "time",
-  PaymentType: "payType",
+  PaymentType: "paymentType",
   Currency: "currency",
 };
 
@@ -379,15 +379,15 @@ export const EditPost = () => {
               <div className="boxs-choses">
                 <Box sx={{ minWidth: 120 }}>
                   <FormControl fullWidth>
-                    <InputLabel variant="standard" htmlFor="payType">
+                    <InputLabel variant="standard" htmlFor="paymentType">
                       Choose a Payment type
                     </InputLabel>
                     <NativeSelect
                       value={values[EditPostFromKeys.PaymentType]}
                       onChange={changeHandler}
                       inputProps={{
-                        name: "payType",
-                        id: "payType",
+                        name: "paymentType",
+                        id: "paymentType",
                       }}
                     >
                       <option value={0}>Cash</option>

@@ -13,7 +13,6 @@
 		public required string Description { get; set; }
 
 		public decimal PricePerSeat { get; set; }
-
 		public required string Currency {  get; set; }
 
 		public int FreeSeats { get; set; }
@@ -25,6 +24,8 @@
 		public required string DateAndTime { get; set; }
 
 		public required string CreatorId { get; set; }
+
+		public int PaymentType {  get; set; }
 
 		public int? GroupId { get; set; }
 
@@ -44,6 +45,7 @@
 				CreatorId = post.CreatorId,
 				DateAndTime = post.DateAndTime.ToString("MM.dd.yyyy hh:mm tt"),
 				GroupId = post.GroupId,
+				PaymentType = (int)post.PaymentType
 			};
 		}
 	}

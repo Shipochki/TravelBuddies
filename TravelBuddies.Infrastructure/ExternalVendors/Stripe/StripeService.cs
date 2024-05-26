@@ -15,7 +15,7 @@
 				DefaultPriceData = new ProductDefaultPriceDataOptions
 				{
 					UnitAmount = (long)(post.PricePerSeat * 100),
-					Currency = "bgn",
+					Currency = post.Currency,
 				},
 
 			};

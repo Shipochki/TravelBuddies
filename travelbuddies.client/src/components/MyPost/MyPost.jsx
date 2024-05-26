@@ -7,6 +7,12 @@ import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 import { GetPostsByOwnerId, OnCompletePostById, OnDeletePostSubmit } from '../../services/PostService';
 
+const PayTypes = {
+    0: 'Cash',
+    1: 'Card',
+    2: 'Cash and Card'
+}
+
 export const MyPost = ({post, setPosts}) => {
 
     const onDeletePost = async (e) => {
@@ -49,6 +55,7 @@ export const MyPost = ({post, setPosts}) => {
                 </div>
                 <p className='mypost-date-time'>{post.dateAndTime}</p>
                 <p className='mypost-desc'>{post.description}</p>
+                <p className='post-paymentType'>Payment type: {PayTypes[post.paymentType]}</p>
                 <div className='mypost-info'>
                     <p className='mypost-seats'>Avalible seats: {post.freeSeats}</p>
                     <p className='mypost-pricePerSeat'>Price per seats: {post.pricePerSeat} {post.currency}</p>

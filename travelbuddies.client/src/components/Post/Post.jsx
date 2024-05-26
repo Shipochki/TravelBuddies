@@ -9,6 +9,12 @@ import personImgOffline from '../../utils/images/blank-profile-picture-973460_96
 import { useContext } from 'react';
 import { GlobalContext } from '../../utils/contexts/GlobalContext';
 
+const PayTypes = {
+    0: 'Cash',
+    1: 'Card',
+    2: 'Cash and Card'
+}
+
 export const Post = ({post}) => {
     const { OnSetGroups }= useContext(GlobalContext);
     const navigate = useNavigate();
@@ -45,6 +51,7 @@ export const Post = ({post}) => {
             </div>
             <p className='post-dateandtime'><FontAwesomeIcon icon={faCalendarDays}/> {post.DateAndTime}</p>
             <p className='post-decription'>{post.Description}</p>
+            <p className='post-paymentType'>Payment type: {PayTypes[post.PaymentType]}</p>
             <div className='post-more-info'>
                 <p className='post-priceperseat'>Price: {post.PricePerSeat} {post.Currency}</p>
                 <p className='post-freeseats'>Seats available: {post.FreeSeats}</p>

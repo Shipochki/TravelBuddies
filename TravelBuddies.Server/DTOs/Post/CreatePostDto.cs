@@ -17,7 +17,7 @@
 		public decimal PricePerSeat { get; set; }
 
 		[Required]
-		[StringLength(MaxLengthCurrency)]
+		[MaxLength(MaxLengthCurrency)]
 		public required string Currency {  get; set; }
 
 		public int FreeSeats { get; set; }

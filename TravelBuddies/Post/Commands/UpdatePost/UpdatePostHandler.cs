@@ -8,20 +8,30 @@
     using TravelBuddies.Application.Common.Interfaces.Repository;
 	using TravelBuddies.Application.Common.Exceptions.NotFound;
 	using TravelBuddies.Application.Common.Exceptions.Forbidden;
+	using TravelBuddies.Domain.Enums;
+	using TravelBuddies.Application.Common.Interfaces.Stripe;
+	using Microsoft.EntityFrameworkCore;
 
 	public class UpdatePostHandler : BaseHandler, IRequestHandler<UpdatePostCommand, Task>
 	{
+		private readonly IStripeService _stripeService;
+
 		public UpdatePostHandler(
 			IRepository repository
 			, UserManager<ApplicationUser> userManager
-			, RoleManager<IdentityRole> roleManager)
+			, RoleManager<IdentityRole> roleManager
+			, IStripeService stripeService)
 			: base(repository, userManager, roleManager)
 		{
+			_stripeService = stripeService;
 		}
 
 		public async Task<Task> Handle(UpdatePostCommand request, CancellationToken cancellationToken)
 		{
-			Post? post = await _repository.GetByIdAsync<Post>(request.Id);
+			Post? post = await _repository
+				.All<Post>(r => r.Id == request.Id)
+				.Include(r => r.Creator)
+				.FirstOrDefaultAsync();
 
 			if (post == null)
 			{
@@ -51,12 +61,20 @@
 					string.Format(ApplicationUserNotCreatorMessage, request.CreatorId));
 			}
 
+			if(string.IsNullOrEmpty(post.PaymentLink) 
+				&& (PaymentType)request.PaymentType == PaymentType.Card 
+				|| (PaymentType)request.PaymentType == PaymentType.CashAndCard)
+			{
+				post.PaymentLink = _stripeService.CreateProduct(post);
+			}
+
 			post.FromDestinationCity = fromDestination;
 			post.FromDestinationCityId = request.FromDestinationCityId;
 			post.ToDestinationCity = toDestination;
 			post.ToDestinationCityId = request.ToDestinationCityId;
 			post.Description = request.Description;
 			post.PricePerSeat = request.PricePerSeat;
+			post.PaymentType = (PaymentType)request.PaymentType;
 			post.Currency = request.Currency;
 			post.Baggage = request.Baggage;
 			post.Pets = request.Pets;

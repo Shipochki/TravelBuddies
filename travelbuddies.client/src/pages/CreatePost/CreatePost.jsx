@@ -26,6 +26,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Loading } from "../Loading/Loading";
+import { GetAllGroupByUserId } from "../../services/GroupService";
 
 const CreatePostFromKeys = {
   FromDestination: "fromDestinationCityId",
@@ -37,12 +38,13 @@ const CreatePostFromKeys = {
   Pets: "pets",
   Date: "date",
   Time: "time",
-  PaymentType: "payType",
+  PaymentType: "paymentType",
   Currency: "currency",
 };
 
 export const CreatePost = () => {
   const navigate = useNavigate();
+  const { OnSetGroups } = useContext(GlobalContext);
   const [cities, setCities] = useState([]);
   const [vehicle, setVehicle] = useState({});
   const [loading, setLoading] = useState(true);
@@ -98,6 +100,9 @@ export const CreatePost = () => {
     );
 
     await OnCreatePostSubmit(values);
+
+    const data = await GetAllGroupByUserId(localStorage.userId);
+    OnSetGroups(data);
 
     navigate("/myPosts");
   };
@@ -369,15 +374,15 @@ export const CreatePost = () => {
                 <div className="boxs-choses">
                   <Box sx={{ minWidth: 120 }}>
                     <FormControl fullWidth>
-                      <InputLabel variant="standard" htmlFor="payType">
+                      <InputLabel variant="standard" htmlFor="paymentType">
                         Choose a Payment type
                       </InputLabel>
                       <NativeSelect
                         value={values[CreatePostFromKeys.PaymentType]}
                         onChange={changeHandler}
                         inputProps={{
-                          name: "payType",
-                          id: "payType",
+                          name: "paymentType",
+                          id: "paymentType",
                         }}
                       >
                         <option value={0}>Cash</option>

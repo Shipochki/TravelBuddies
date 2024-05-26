@@ -94,3 +94,8 @@
 .fa-circle-xmark{
     color: red;
 }
+
+.post-paymentType{
+    width: 100%;
+    text-align: center;
+}
