@@ -119,7 +119,7 @@ export const OnUpdateProfilePicutreSubmit = async () => {
     }
   }
   catch(error){
-    console.log("Error with become driver")
+    console.log("Error with update profile picture")
   }
 }
 
@@ -141,7 +141,7 @@ export const OnUpdateProfileSubmit = async (editProfileFromKeys) => {
     }
   }
   catch(error){
-    console.log("Error with become driver")
+    console.log("Error with update profile")
   }
 }
 

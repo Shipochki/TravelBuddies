@@ -72,7 +72,7 @@ export const EditProfile = () => {
             <EditIcon />
           </Fab>
         </div>
-        <EditProfilePicture />
+        <EditProfilePicture setUser={setUser}/>
         <form id="edit-profile" onSubmit={onSubmit}>
           <div className="edit-profile-info">
             <TextField

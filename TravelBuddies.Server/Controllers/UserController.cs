@@ -19,8 +19,10 @@
     using TravelBuddies.Application.Vehicle.Queries.GetVehicleByOwnerId;
     using TravelBuddies.Presentation.DTOs.Vehicle;
     using TravelBuddies.Presentation.Extensions;
+	using TravelBuddies.Application.User.Commands.UpdateProfilePicture;
+	using TravelBuddies.Application.User.Commands.UpdateApplicationUser;
 
-    [EnableCors(ApplicationCorses.AllowOrigin)]
+	[EnableCors(ApplicationCorses.AllowOrigin)]
 	[Route("api/[controller]")]
 	[ApiController]
 	public class UserController : BaseController
@@ -151,6 +153,53 @@
 			await _databaseLogger.LogAsync(logLevel, message);
 
 			return Ok(GetOnlyUserByIdDto.FromUser(user));
+		}
+
+		[HttpPost]
+		[Authorize]
+		[Route("[action]")]
+		public async Task<IActionResult> UpdateProfilePicture([FromForm] UpdateUserProfilePictureDto updatePictureDto)
+		{
+			UpdateProfilePictureCommand command = new UpdateProfilePictureCommand()
+			{
+				ProfilePicture = updatePictureDto.ProfilePicture,
+				UserId = User.Id()
+			};
+
+			await _mediator.Send(command);
+
+			LogLevel logLevel = LogLevel.Information;
+			string message = "Succesfully update user profile picture";
+
+			await _fileLogger.LogAsync(logLevel, message);
+			await _databaseLogger.LogAsync(logLevel, message);
+
+			return Ok();
+		}
+
+		[HttpPost]
+		[Authorize]
+		[Route("[action]")]
+		public async Task<IActionResult> Update([FromBody] UpdateUserDto updateUserDto)
+		{
+			UpdateApplicationUserCommand command = new UpdateApplicationUserCommand()
+			{
+				Id = User.Id(),
+				FirstName = updateUserDto.FirstName,
+				LastName = updateUserDto.LastName,
+				City = updateUserDto.City,
+				Country = updateUserDto.Country,
+			};
+
+			await _mediator.Send(command);
+
+			LogLevel logLevel = LogLevel.Information;
+			string message = "Succesfully update user";
+
+			await _fileLogger.LogAsync(logLevel, message);
+			await _databaseLogger.LogAsync(logLevel, message);
+
+			return Ok();
 		}
 	}
 }

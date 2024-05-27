@@ -25,7 +25,10 @@ export const EditProfilePicture = ({ setUser }) => {
 
     await OnUpdateProfilePicutreSubmit();
 
+    values[EditProfilePictureFromKeys.ProfilePicture] = null;
+
     const data = await GetOnlyUserById(localStorage.userId);
+    setNameFile('');
 
     setUser(data);
 
@@ -50,8 +53,9 @@ export const EditProfilePicture = ({ setUser }) => {
             Upload New Profile Picture
             <input
               type="file"
-              id="picturelink"
+              id="profilepicture"
               name={EditProfilePictureFromKeys.ProfilePicture}
+              value={values[EditProfilePictureFromKeys.ProfilePicture]}
               onChange={onChangeFile}
               required
               hidden
