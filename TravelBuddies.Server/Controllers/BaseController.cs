@@ -15,11 +15,12 @@
         protected readonly ILogger _fileLogger;
         protected readonly ILogger _databaseLogger;
 
+
         public BaseController(IMediator mediator)
         { 
             _mediator = mediator;
 
-            LoggerFactory loggerFactory = new LoggerFactory(ApplicationLogsFilePaths.Logs, _mediator, LogLevel.Error.ToString());
+            LoggerFactory loggerFactory = new LoggerFactory(ApplicationLogsFilePaths.Logs, _mediator, LogLevel.Error);
             _fileLogger = loggerFactory.CreateFileLoggerAsync(ApplicationCategoryNames.FileLogger);
             _databaseLogger = loggerFactory.CreateDatabaseLoggerAsync();
         }

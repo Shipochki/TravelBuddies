@@ -2,14 +2,15 @@
 {
     using MediatR;
     using TravelBuddies.Application.Common.Interfaces.CustomLogger;
+	using TravelBuddies.Domain.Enums;
 
-    public class LoggerFactory : ILoggerFactory
+	public class LoggerFactory : ILoggerFactory
 	{
 		private readonly string _filePath;
 		private readonly IMediator _mediator;
-		private readonly string _loggerValue;
+		private readonly LogLevel _loggerValue;
 
-        public LoggerFactory(string filePath, IMediator mediator, string loggerValue = "Information")
+        public LoggerFactory(string filePath, IMediator mediator, LogLevel loggerValue = LogLevel.Information)
         {
             _filePath = filePath;
 			_mediator = mediator;

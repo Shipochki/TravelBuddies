@@ -8,9 +8,9 @@
 	{
         private readonly string _categoryName;
         private readonly string _filePath;
-		private readonly string _loggerValue;
+		private readonly LogLevel _loggerValue;
 
-        public FileLogger(string categoryName, string filePath, string loggerValue)
+        public FileLogger(string categoryName, string filePath, LogLevel loggerValue)
         {
             _categoryName = categoryName;
             _filePath = filePath;
@@ -19,9 +19,7 @@
 
 		public async Task LogAsync(LogLevel level, string message)
 		{
-			LogLevel parsedLevel;
-			Enum.TryParse(_loggerValue, out parsedLevel);
-			if (((int)parsedLevel) <= ((int)level))
+			if (_loggerValue <= level)
 			{
 				string logMessage = $"{DateTime.Now} [{level}] - {_categoryName}: {message}";
 				await WriteLogToFileAsync(logMessage);

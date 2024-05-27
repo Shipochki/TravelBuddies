@@ -11,6 +11,7 @@ import { Link, useParams } from 'react-router-dom';
 import personImgOffline from '../../utils/images/blank-profile-picture-973460_960_720.png'
 import { GlobalContext } from '../../utils/contexts/GlobalContext';
 import { Loading } from '../Loading/Loading';
+import { StarGenerator } from '../../components/StarGenerator/StarGenerator';
 
 export const Profile = ({user}) => {
     const { OnSetUser } = useContext(GlobalContext);
@@ -65,7 +66,11 @@ export const Profile = ({user}) => {
                             <p>Email: {user.email}</p>
                             <p>Country: {user.country ? user.country : 'None'}</p>
                             <p>City: {user.city ? user.city : 'None'}</p>
-                            <p>Rating: {user.rating}</p>
+                            <div>
+                                <StarGenerator num={Math.round(user.rating)}/>
+                                <p>Rating: {user.rating}</p>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>

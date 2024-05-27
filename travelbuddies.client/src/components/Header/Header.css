@@ -20,12 +20,22 @@ secondary: #F5F6F7 */
     background: white;
     height: 6vw;
     box-shadow: 0px 0px 2px 0px black;
-    background-image: url(https://thumbs.dreamstime.com/z/auto-car-logo-design-icon-vector-illustration-auto-car-logo-design-icon-vector-illustration-symbol-service-automobile-silhouette-157364282.jpg);
+    /* background-image: url(https://thumbs.dreamstime.com/z/auto-car-logo-design-icon-vector-illustration-auto-car-logo-design-icon-vector-illustration-symbol-service-automobile-silhouette-157364282.jpg);
     background-size: contain;
     background-repeat: no-repeat;
     background-position-x: 50%;
     background-position-y: 45%;
-    background-size: 55%;
+    background-size: 55%; */
+}
+
+.header-img{
+    opacity: 0.2;
+    position: absolute;
+    width: 48%;
+    height: 100%;
+    object-fit: cover;
+    padding: 0%;
+    left: 25%;
 }
 
 .header .logo-content {

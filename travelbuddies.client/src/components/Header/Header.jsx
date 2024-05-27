@@ -2,10 +2,15 @@ import { Link } from "react-router-dom"
 import { UserMenu } from "../UserMenu/UserMenu"
 import './Header.css'
 import imgLogo from '../../utils/images/logo-no-background.png'
+import carLogo from '../../utils/images/auto-car-logo-design-icon-vector-illustration-auto-car-logo-design-icon-vector-illustration-symbol-service-automobile-silhouette-157364282.jpg'
 
 export const Header = () => {
     return (
         <div className="header">
+            <img 
+                className="header-img"
+                src={carLogo}
+            />
             <div className="logo-content">
                 
                 <Link to={'/'} className="logo">

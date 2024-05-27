@@ -9,9 +9,9 @@
     public class DatabaseLogger : ILogger
 	{
 		private readonly IMediator _mediator;
-        private readonly string _loggerValue;
+        private readonly LogLevel _loggerValue;
 
-		public DatabaseLogger(IMediator mediator, string loggerValue)
+		public DatabaseLogger(IMediator mediator, LogLevel loggerValue)
         {
             _mediator = mediator;
             _loggerValue = loggerValue;
@@ -19,9 +19,7 @@
 
         public async Task LogAsync(LogLevel level, string message)
 		{
-			LogLevel parsedLevel;
-			Enum.TryParse(_loggerValue, out parsedLevel);
-			if (((int)parsedLevel) <= ((int)level))
+			if (_loggerValue <= level)
             { 
 				await _mediator.Send(new CreateLogCommand(message, level));
             }

@@ -26,17 +26,17 @@
     align-items: center;
     gap: 20px;
     background-attachment: local;
-    height: 610px;
+    min-height: 610px;
     padding: 2vw;
     position: relative;
     
 }
+
 .demo-bg {
-    opacity: 0.75;
+    opacity: 0.2;
     position: absolute;
-    width: 60%;
-    height: auto;
-    height: 610px;
+    min-height: 100vh;
+    width: 66%;
   }
 
 .search-header{
@@ -210,7 +210,7 @@
 
 .search-calendar{
     position: absolute;
-    top: 18.5vw;
+    top: 48%;
     z-index: 1;
 }
 

@@ -62,7 +62,7 @@ function App() {
           const tokenExpiration = localStorage.exp;
           if (tokenExpiration) {
             const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
-            if (currentTime >= tokenExpiration * 1000) {
+            if (currentTime >= tokenExpiration) {
               // Token is expired
               localStorage.clear();
               console.log('Access token has expired and has been removed.');

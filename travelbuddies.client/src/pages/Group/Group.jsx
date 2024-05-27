@@ -24,6 +24,8 @@ import { OnLeaveGroupSubmit } from "../../services/UserGroupService";
 import { Tooltip } from "@mui/material";
 import { Loading } from "../Loading/Loading";
 
+import backgroundImg from '../../utils/images/white-background-with-blue-geometric-and-white-line-pattern-free-vector.jpg'
+
 export const Group = ({ group }) => {
   const navigate = useNavigate();
   const { OnSetGroup, OnSetGroups } = useContext(GlobalContext);
@@ -99,6 +101,10 @@ export const Group = ({ group }) => {
 
   return (
     <div className="group-main">
+      <img
+        className="demo-bg"
+        src={backgroundImg}
+      />
       <div className="group-content">
         <div className="group-info-container">
           <div className="group-info">

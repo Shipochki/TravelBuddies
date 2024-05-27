@@ -27,6 +27,7 @@ import {
 } from "@mui/material";
 import { ArrowForward, ArrowRight } from "@mui/icons-material";
 import { Loading } from "../Loading/Loading";
+import backgroundImg from '../../utils/images/white-background-with-blue-geometric-and-white-line-pattern-free-vector.jpg'
 
 const searchFromKeys = {
   FromDestination: "fromDestinationCityId",
@@ -191,7 +192,8 @@ export const Search = () => {
     <div className="search-menu">
       <img
         className="demo-bg"
-       src="https://static.vecteezy.com/system/resources/previews/007/677/104/non_2x/white-background-with-blue-geometric-and-white-line-pattern-free-vector.jpg"/>
+        src={backgroundImg}
+      />
       <div className="search-menu-content">
         <div className="search-header">
           <h2>You can search your travel here</h2>
