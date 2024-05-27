@@ -49,6 +49,7 @@
 				statusPhrase = "Bad Request";
 			}
 
+
 			detailMessage += message + Environment.NewLine;
 			if (context.Exception is AggregateException aggregateException)
 			{

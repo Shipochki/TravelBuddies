@@ -53,7 +53,7 @@ export const Reviews = () => {
           ) : (
             <p>No reviews</p>
           )}
-          <Pagination count={10} color="primary" />
+          {/* <Pagination count={reviews.} color="primary" /> */}
         </div>
       </div>
     </div>

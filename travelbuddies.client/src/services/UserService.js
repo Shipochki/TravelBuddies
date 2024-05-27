@@ -65,13 +65,14 @@ export const OnRegisterSubmit = async (registerFromKeys) => {
         body: formData,
       });
 
+      const result = await response.json();
+
       if(response.ok){
         const result = await response.json();
 
         window.location.assign('/login');
       } else {
         console.log(response.statusText);
-        errorHandler(response.status);
       }
     } catch (error) {
       console.log("Error with register")

@@ -20,23 +20,31 @@
 
 		public static IActionResult GenerateErrorResponse(ActionContext context)
 		{
-			ErrorResponse apiError = new ErrorResponse();
-			apiError.StatusCode = 400;
-			apiError.StatusPhrase = "Bad Request";
-			apiError.Timestamp = DateTime.Now;
+			//ErrorResponse apiError = new ErrorResponse();
+			//apiError.StatusCode = 400;
+			//apiError.StatusPhrase = "Bad Request";
+			//apiError.Timestamp = DateTime.Now;
+			string detailMessage = string.Empty;
 
 			var errors = context.ModelState.AsEnumerable();
 
 			foreach (var error in errors)
 			{
-				apiError.ErrorMessage = new List<string>();
 				foreach (var inner in error.Value!.Errors)
 				{
-					apiError.ErrorMessage.Add(inner.ErrorMessage);
+					detailMessage += inner.ErrorMessage + Environment.NewLine;
 				}
 			}
+			
+			ProblemDetails problemDetails = new ProblemDetails
+			{
+				Status = 400,
+				Title = "Bad Request",
+				Detail = detailMessage.TrimEnd(),
+				Instance = context.HttpContext.Request.Path
+			};
 
-			return new BadRequestObjectResult(apiError);
+			return new JsonResult(problemDetails) { StatusCode = 400};
 		}
 	}
 }
