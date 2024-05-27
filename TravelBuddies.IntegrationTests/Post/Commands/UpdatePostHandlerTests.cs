@@ -2,18 +2,25 @@
 {
     using TravelBuddies.Application.Common.Exceptions.Forbidden;
     using TravelBuddies.Application.Common.Exceptions.NotFound;
-    using TravelBuddies.Application.Post.Commands.CreatePost;
+	using TravelBuddies.Application.Common.Interfaces.Stripe;
+	using TravelBuddies.Application.Post.Commands.CreatePost;
     using TravelBuddies.Application.Post.Commands.UpdatePost;
     using TravelBuddies.Domain.Entities;
+	using TravelBuddies.IntegrationTests.Helpers;
 
-
-    public class UpdatePostHandlerTests : BaseHandlerTests
+	public class UpdatePostHandlerTests : BaseHandlerTests
 	{
-		[Fact]
+		private readonly IStripeService _stripeService;
+        public UpdatePostHandlerTests()
+        {
+			_stripeService = new StripeServiceDummy();
+        }
+
+        [Fact]
 		public void UpdatePost_WithNonExistingPost_ShouldThrowsException()
 		{
 			//Arrange
-			var handler = new UpdatePostHandler(_repostiory, _userManager, _roleManager);
+			var handler = new UpdatePostHandler(_repostiory, _userManager, _roleManager, _stripeService);
 			var command = new UpdatePostCommand()
 			{
 				CreatorId = "1",
@@ -33,7 +40,7 @@
 		public async Task UpdatePost_WithNonExistingFromDestination_ShouldThrowsException()
 		{
 			//Arrange
-			var handler = new UpdatePostHandler(_repostiory, _userManager, _roleManager);
+			var handler = new UpdatePostHandler(_repostiory, _userManager, _roleManager, _stripeService);
 
 			var user = new ApplicationUser { UserName = "testuser", Email = "test@example.com" };
 			var country = new Country() { Name = "country" };
@@ -72,7 +79,7 @@
 		public async Task UpdatePost_WithNonExistingToDestination_ShouldThrowsException()
 		{
 			//Arrange
-			var handler = new UpdatePostHandler(_repostiory, _userManager, _roleManager);
+			var handler = new UpdatePostHandler(_repostiory, _userManager, _roleManager, _stripeService);
 
 			var user = new ApplicationUser { UserName = "testuser", Email = "test@example.com" };
 			var country = new Country() { Name = "country" };
@@ -112,7 +119,7 @@
 		public async Task UpdatePost_WithNotMatcingCreator_ShouldThrowsException()
 		{
 			//Arrange
-			var handler = new UpdatePostHandler(_repostiory, _userManager, _roleManager);
+			var handler = new UpdatePostHandler(_repostiory, _userManager, _roleManager, _stripeService);
 
 			var user = new ApplicationUser { UserName = "testuser", Email = "test@example.com" };
 			var country = new Country() { Name = "country" };
@@ -155,7 +162,7 @@
 		public async Task UpdatePost_WithValidData_ShouldUpdatePost()
 		{
 			//Arrange
-			var handler = new UpdatePostHandler(_repostiory, _userManager, _roleManager);
+			var handler = new UpdatePostHandler(_repostiory, _userManager, _roleManager, _stripeService);
 
 			var user = new ApplicationUser { UserName = "testuser", Email = "test@example.com" };
 			var country = new Country() { Name = "country" };
