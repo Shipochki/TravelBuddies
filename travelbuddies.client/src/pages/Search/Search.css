@@ -9,9 +9,35 @@
     background: #F5F6F7;
     font-family: "Roboto", sans-serif;
     color: #2979ff;
-    padding: 8vw 0 13vw 0;
+    padding: 6vw 0 0 0;
     row-gap: 3vw;
 }
+
+.search-menu-content{
+    /* background: url(https://static.vecteezy.com/system/resources/previews/007/677/104/non_2x/white-background-with-blue-geometric-and-white-line-pattern-free-vector.jpg) ;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-y: 66%;
+    background-position-x: 50%;
+    background-color: #F5F6F7;
+    width: 100%; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background-attachment: local;
+    height: 610px;
+    padding: 2vw;
+    position: relative;
+    
+}
+.demo-bg {
+    opacity: 0.75;
+    position: absolute;
+    width: 60%;
+    height: auto;
+    height: 610px;
+  }
 
 .search-header{
     height: 4vw;
@@ -184,7 +210,7 @@
 
 .search-calendar{
     position: absolute;
-    top: 35vw;
+    top: 18.5vw;
     z-index: 1;
 }
 

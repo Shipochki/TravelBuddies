@@ -183,30 +183,34 @@ export const Search = () => {
     values[searchFromKeys.PriceMax] = newPriceValue[1];
   };
 
-  if(loading){
-    return <Loading />
+  if (loading) {
+    return <Loading />;
   }
 
   return (
     <div className="search-menu">
-      <div className="search-header">
-        <h2>You can search your travel here</h2>
-      </div>
-      <form id="search" method="POST" onSubmit={clickSubmit}>
-        <div className="cities-inputs">
-          <div className="city-input">
-            <TextField
-              type="text"
-              name={searchFromKeys.FromDestination}
-              value={values[searchFromKeys.FromDestination]}
-              onChange={handleInputChange}
-              label="From destination..."
-              autoComplete="off"
-              sx={{
-                width: "14vw",
-              }}
-            />
-            {/* <input
+      <img
+        className="demo-bg"
+       src="https://static.vecteezy.com/system/resources/previews/007/677/104/non_2x/white-background-with-blue-geometric-and-white-line-pattern-free-vector.jpg"/>
+      <div className="search-menu-content">
+        <div className="search-header">
+          <h2>You can search your travel here</h2>
+        </div>
+        <form id="search" method="POST" onSubmit={clickSubmit}>
+          <div className="cities-inputs">
+            <div className="city-input">
+              <TextField
+                type="text"
+                name={searchFromKeys.FromDestination}
+                value={values[searchFromKeys.FromDestination]}
+                onChange={handleInputChange}
+                label="From destination..."
+                autoComplete="off"
+                sx={{
+                  width: "14vw",
+                }}
+              />
+              {/* <input
             type="text"
             name={searchFromKeys.FromDestination}
             value={values[searchFromKeys.FromDestination]}
@@ -214,35 +218,35 @@ export const Search = () => {
             placeholder="From destination..."
             autoComplete='off'
           /> */}
-            {filteredCities.length > 0 && (
-              <ul>
-                {filteredCities
-                  .map((city) => (
-                    <li
-                      key={city.id}
-                      onClick={() => handleSelectCity(city.name)}
-                    >
-                      {city.name}
-                    </li>
-                  ))
-                  .slice(0, 8)}
-              </ul>
-            )}
-          </div>
-          {<FontAwesomeIcon icon={faArrowRight} />}
-          <div className="city-input">
-            <TextField
-              type="text"
-              name={searchFromKeys.ToDestination}
-              value={values[searchFromKeys.ToDestination]}
-              onChange={handleToDesChange}
-              label="To destination..."
-              autoComplete="off"
-              sx={{
-                width: "14vw",
-              }}
-            />
-            {/* <input
+              {filteredCities.length > 0 && (
+                <ul>
+                  {filteredCities
+                    .map((city) => (
+                      <li
+                        key={city.id}
+                        onClick={() => handleSelectCity(city.name)}
+                      >
+                        {city.name}
+                      </li>
+                    ))
+                    .slice(0, 8)}
+                </ul>
+              )}
+            </div>
+            {<FontAwesomeIcon icon={faArrowRight} />}
+            <div className="city-input">
+              <TextField
+                type="text"
+                name={searchFromKeys.ToDestination}
+                value={values[searchFromKeys.ToDestination]}
+                onChange={handleToDesChange}
+                label="To destination..."
+                autoComplete="off"
+                sx={{
+                  width: "14vw",
+                }}
+              />
+              {/* <input
               type="text"
                 name={searchFromKeys.ToDestination}
                 value={values[searchFromKeys.ToDestination]}
@@ -250,52 +254,98 @@ export const Search = () => {
                 placeholder="To destination..."
                 autoComplete='off'
             /> */}
-            {filteredToDesCities.length > 0 && (
-              <ul>
-                {filteredToDesCities
-                  .map((city) => (
-                    <li
-                      key={city.id}
-                      onClick={() => handleToDesSelectCity(city.name)}
-                    >
-                      {city.name}
-                    </li>
-                  ))
-                  .slice(0, 8)}
-              </ul>
-            )}
+              {filteredToDesCities.length > 0 && (
+                <ul>
+                  {filteredToDesCities
+                    .map((city) => (
+                      <li
+                        key={city.id}
+                        onClick={() => handleToDesSelectCity(city.name)}
+                      >
+                        {city.name}
+                      </li>
+                    ))
+                    .slice(0, 8)}
+                </ul>
+              )}
+            </div>
           </div>
-        </div>
-        <div className="more-options">
-          <a className="more-options-a" onClick={toggleMoreOptions}>
-            {<FontAwesomeIcon icon={faSliders} />}
-            <p>More options</p>
-          </a>
-          {moreOptionsVisible && (
-            <div className="more-options-content">
-              <div className="price-range-selector">
-                <label>Price range</label>
-                <Box
-                  sx={{
-                    width: "68%",
-                    display: "flex",
-                    columnGap: "20px",
-                    alignItems: "center",
-                  }}
-                >
-                  <p>{priceValues[0]}&euro;</p>
-                  <Slider
-                    getAriaLabel={() => "Price range"}
-                    value={priceValues}
-                    onChange={handlePriceValues}
-                    valueLabelDisplay="auto"
-                    getAriaValueText={valuetext}
-                  />
-                  <p>{priceValues[1]}&euro;</p>
-                </Box>
-              </div>
+          <div className="more-options">
+            <a className="more-options-a" onClick={toggleMoreOptions}>
+              {<FontAwesomeIcon icon={faSliders} />}
+              <p>More options</p>
+            </a>
+            {moreOptionsVisible && (
+              <div className="more-options-content">
+                <div className="more-opitons-calendars">
+                  <div className="more-options-calendar from-des-cal">
+                    <div className="options-calendar-input-button">
+                      <input
+                        type="text"
+                        name={searchFromKeys.FromDate}
+                        value={values[searchFromKeys.FromDate]}
+                        placeholder="From Date: 05.21.2024"
+                        onChange={changeHandler}
+                        className="options-calendar-input"
+                      />
+                      <button type="button" onClick={toggleCalendar}>
+                        <FontAwesomeIcon
+                          icon={!calendarVisible ? faCalendarDays : faCheck}
+                        />
+                      </button>
+                    </div>
+                    <div className="search-calendar">
+                      {calendarVisible && <Calendar handle={handleFromDate} />}
+                    </div>
+                  </div>
+                  <div className="more-options-calendar to-des-cal">
+                    <div className="options-calendar-input-button">
+                      <input
+                        type="text"
+                        name={searchFromKeys.ToDate}
+                        value={values[searchFromKeys.ToDate]}
+                        placeholder="To Date: 05.29.2024"
+                        onChange={changeHandler}
+                        className="options-calendar-input"
+                      />
+                      <button type="button" onClick={toggleToDateCalendar}>
+                        <FontAwesomeIcon
+                          icon={
+                            !calendarToDateVisible ? faCalendarDays : faCheck
+                          }
+                        />
+                      </button>
+                    </div>
+                    <div className="search-calendar">
+                      {calendarToDateVisible && (
+                        <Calendar handle={handleToDate} />
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div className="price-range-selector">
+                  <label>Price range</label>
+                  <Box
+                    sx={{
+                      width: "68%",
+                      display: "flex",
+                      columnGap: "20px",
+                      alignItems: "center",
+                    }}
+                  >
+                    <p>{priceValues[0]}&euro;</p>
+                    <Slider
+                      getAriaLabel={() => "Price range"}
+                      value={priceValues}
+                      onChange={handlePriceValues}
+                      valueLabelDisplay="auto"
+                      getAriaValueText={valuetext}
+                    />
+                    <p>{priceValues[1]}&euro;</p>
+                  </Box>
+                </div>
 
-              {/* <input 
+                {/* <input 
           type="number"
           name={searchFromKeys.PriceMin}
           value={values[searchFromKeys.PriceMin]}
@@ -311,77 +361,35 @@ export const Search = () => {
           placeholder='Max Price'
           className='more-option-price'
           /> */}
-              <div className="more-opitons-calendars">
-                <div className="more-options-calendar from-des-cal">
-                  <div className="options-calendar-input-button">
+
+                <div className="more-options-bools">
+                  <div className="more-options-boolean baggage-btn">
+                    <p>Baggage</p>
                     <input
-                      type="text"
-                      name={searchFromKeys.FromDate}
-                      value={values[searchFromKeys.FromDate]}
-                      placeholder="From Date: 05.21.2024"
-                      onChange={changeHandler}
-                      className="options-calendar-input"
+                      type="checkbox"
+                      checked={isBaggage}
+                      onChange={handleIsBaggage}
                     />
-                    <button type="button" onClick={toggleCalendar}>
-                      <FontAwesomeIcon
-                        icon={!calendarVisible ? faCalendarDays : faCheck}
-                      />
-                    </button>
                   </div>
-                  <div className="search-calendar">
-                    {calendarVisible && <Calendar handle={handleFromDate} />}
-                  </div>
-                </div>
-                <div className="more-options-calendar to-des-cal">
-                  <div className="options-calendar-input-button">
+                  <div className="more-options-boolean pets-btn">
+                    <p>Pets</p>
                     <input
-                      type="text"
-                      name={searchFromKeys.ToDate}
-                      value={values[searchFromKeys.ToDate]}
-                      placeholder="To Date: 05.29.2024"
-                      onChange={changeHandler}
-                      className="options-calendar-input"
+                      type="checkbox"
+                      checked={isPets}
+                      onChange={handleIsPets}
                     />
-                    <button type="button" onClick={toggleToDateCalendar}>
-                      <FontAwesomeIcon
-                        icon={!calendarToDateVisible ? faCalendarDays : faCheck}
-                      />
-                    </button>
-                  </div>
-                  <div className="search-calendar">
-                    {calendarToDateVisible && (
-                      <Calendar handle={handleToDate} />
-                    )}
                   </div>
                 </div>
               </div>
-              <div className="more-options-bools">
-                <div className="more-options-boolean baggage-btn">
-                  <p>Baggage</p>
-                  <input
-                    type="checkbox"
-                    checked={isBaggage}
-                    onChange={handleIsBaggage}
-                  />
-                </div>
-                <div className="more-options-boolean pets-btn">
-                  <p>Pets</p>
-                  <input
-                    type="checkbox"
-                    checked={isPets}
-                    onChange={handleIsPets}
-                  />
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-        <div>
-          <button className="submit-button" type="submit">
-            Search
-          </button>
-        </div>
-      </form>
+            )}
+          </div>
+          <div>
+            <button className="submit-button" type="submit">
+              Search
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
