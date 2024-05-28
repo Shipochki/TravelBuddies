@@ -4,6 +4,7 @@ import { useForm } from '../../utils/hooks/useForm'
 import './Register.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCarSide, faCity, faEnvelope, faGlobe, faLock, faPerson, faUpload, faUser } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterFromKeys = {
     FirstName: 'firstname',
@@ -16,6 +17,8 @@ const RegisterFromKeys = {
 };
 
 export const Regiser = () => {
+    const navigate = useNavigate();
+    const [error, setError] = useState('');
 
     const { values, changeHandler, onSubmit } = useForm({
         [RegisterFromKeys.FirstName]: '',
@@ -33,9 +36,14 @@ export const Regiser = () => {
             return;
         }
         e.preventDefault();
-        await OnRegisterSubmit(values);
+        const result = await OnRegisterSubmit(values);
 
-        window.location.assign('/login')
+        if(result){
+            alert(result);
+            setError(result);
+        }else{
+            navigate('/login')
+        }
     }
 
     const [repass, setRepass] = useState('');
@@ -71,7 +79,7 @@ export const Regiser = () => {
                     <input 
                         type="text"
                         id='firstname'
-                        placeholder='FirstName'
+                        placeholder='FirstName*'
                         name={RegisterFromKeys.FirstName}
                         value={values[RegisterFromKeys.FirstName]}
                         onChange={changeHandler}
@@ -83,7 +91,7 @@ export const Regiser = () => {
                     <input 
                         type="text"
                         id='lastname'
-                        placeholder='LastName'
+                        placeholder='LastName*'
                         name={RegisterFromKeys.LastName}
                         value={values[RegisterFromKeys.LastName]}
                         onChange={changeHandler}
@@ -95,7 +103,7 @@ export const Regiser = () => {
                     <input 
                         type="email"
                         id='email'
-                        placeholder='example@mail.com'
+                        placeholder='example@mail.com*'
                         name={RegisterFromKeys.Email}
                         value={values[RegisterFromKeys.Email]}
                         onChange={changeHandler}
@@ -151,7 +159,7 @@ export const Regiser = () => {
                 <div className='register-upload-icon'>
                     <FontAwesomeIcon icon={faUpload}/>
                     <div className="register-upload">
-                    <label>Upload Profile Img
+                    <label>Upload Profile Img *
                     <input 
                         type="file"
                         id='profilepicture'

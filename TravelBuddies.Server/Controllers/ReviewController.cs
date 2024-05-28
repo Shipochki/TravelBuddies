@@ -13,8 +13,10 @@
     using TravelBuddies.Application.Review.Commands.DeleteReview;
     using Microsoft.AspNetCore.Cors;
     using TravelBuddies.Presentation.Extensions;
+	using TravelBuddies.Application.User.Queries.GetUserById;
+	using TravelBuddies.Application.Review.Queries.GetReviewsCountByReciverId;
 
-    [EnableCors(ApplicationCorses.AllowOrigin)]
+	[EnableCors(ApplicationCorses.AllowOrigin)]
 	[Route("api/[controller]")]
 	[ApiController]
 	[Authorize]
@@ -26,12 +28,19 @@
 		}
 
 		[HttpGet]
-		[Route("[action]/{reciverId}")]
-		public async Task<IActionResult> GetAllReviewByReciverId(string reciverId)
+		[Route("[action]")]
+		public async Task<IActionResult> GetAllReviewByReciverId([FromQuery]string reciverId, [FromQuery]int page, [FromQuery]int pageCount)
 		{
-			List<Review> reviews = await _mediator.Send(new GetReviewsByReciverIdQuery(reciverId));
+			ApplicationUser user = await _mediator.Send(new GetUserByIdQuery(reciverId));
 
-			return Ok(reviews.Select(GetAllReviewsByReciverIdDto.FromReview).ToList());
+			GetAllReviewsByReciverIdDto result = GetAllReviewsByReciverIdDto.FromUser(user);
+
+			List<Review> reviews = await _mediator.Send(new GetReviewsByReciverIdQuery(reciverId, page, pageCount));
+
+			result.Reviews = reviews.Select(ReviewDto.FromReview).ToList();
+			result.CountReviews = await _mediator.Send(new GetReviewsCountByReciverIdQuery(reciverId));
+
+			return Ok(result);
 		}
 
 		[HttpPost]

@@ -93,7 +93,7 @@ export const Profile = ({user}) => {
                         user.reviews.map((r) => (
                             <>
                                 <Review key={`review-key-${r.id}`} review={r}/>
-                                <EditReview key={`edit-review-key-${r.id}`} review={r}/>
+                                {/* <EditReview key={`edit-review-key-${r.id}`} review={r}/> */}
                             </>
                         ))
                     ): (
@@ -103,7 +103,7 @@ export const Profile = ({user}) => {
                     )}
                     {user.reviews && user.reviews.length == 3 && (
                         <div>
-                            <Link className='load-more-reviews' to={`/reviews/${user.id}`}>Load more</Link>
+                            <Link className='load-more-reviews' to={`/reviews?reciverId=${user.id}&page=1&pageCount=10`}>Load more</Link>
                         </div>
                     )}
                 </div>

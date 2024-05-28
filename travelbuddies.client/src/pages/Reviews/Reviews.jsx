@@ -2,39 +2,58 @@ import { useEffect, useState } from "react";
 import { Review } from "../../components/Review/Review";
 import "./Reviews.css";
 import { GetAllReviewByReciverId } from "../../services/ReviewService";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Loading } from "../Loading/Loading";
 
-import backgroundImg from '../../utils/images/white-background-with-blue-geometric-and-white-line-pattern-free-vector.jpg'
+import backgroundImg from "../../utils/images/white-background-with-blue-geometric-and-white-line-pattern-free-vector.jpg";
 import { useForm } from "../../utils/hooks/useForm";
 import { Pagination } from "@mui/material";
+import { serializer } from "../../utils/common/serializer";
 
 const ReviewsQueryFromKeys = {
-    Id: 'id',
-    Page: 'page',
-    Count: 'count'
-}
+  ReciverId: "reciverId",
+  Page: "page",
+  Count: "pageCount",
+};
 
 export const Reviews = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
-  const [reviews, setReviews] = useState([]);
+  const [data, setReviews] = useState({});
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [pageCount] = useState(10);
 
-    const {values, changeHandler, onSubmit} = useForm({
-        [ReviewsQueryFromKeys.Id]: '',
-        [ReviewsQueryFromKeys.Page]: '1',
-        [ReviewsQueryFromKeys.Count]: '10'
-    });
+  const { values, changeHandler, onSubmit } = useForm({
+    [ReviewsQueryFromKeys.ReciverId]: data.reciverId,
+    [ReviewsQueryFromKeys.Page]: page,
+    [ReviewsQueryFromKeys.Count]: pageCount,
+  });
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await GetAllReviewByReciverId(id);
+      const data = await GetAllReviewByReciverId();
       setReviews(data);
+
+      values[ReviewsQueryFromKeys.ReciverId] = data.reciverId;
 
       setLoading(false);
     };
     fetchData();
   }, []);
+
+  const OnChangePage = async (event, value) => {
+    setPage(value);
+    values[ReviewsQueryFromKeys.Page] = value;
+    changeHandler(event);
+
+    navigate(`/reviews?${serializer(values)}`);
+
+    const data = await GetAllReviewByReciverId();
+    setReviews(data);
+
+    values[ReviewsQueryFromKeys.ReciverId] = data.reciverId;
+  };
 
   if (loading) {
     return <Loading />;
@@ -42,18 +61,22 @@ export const Reviews = () => {
 
   return (
     <div className="reviews-main">
-      <img className="demo-bg" src={backgroundImg} />
+      {/* <img className="demo-bg" src={backgroundImg} /> */}
       <div className="reviews-content">
         <div className="reviews-content-header">
           <h2>Reviews</h2>
         </div>
         <div className="reviews">
-          {reviews.length > 0 ? (
-            reviews.map((r) => <Review key={r.id} review={r} />)
+          {data.reviews.length > 0 ? (
+            data.reviews.map((r) => <Review key={r.id} review={r} />)
           ) : (
             <p>No reviews</p>
           )}
-          {/* <Pagination count={reviews.} color="primary" /> */}
+          <Pagination
+            onChange={OnChangePage}
+            count={Math.ceil(data.countReviews / 10)}
+            color="primary"
+          />
         </div>
       </div>
     </div>

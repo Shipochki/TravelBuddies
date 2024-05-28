@@ -24,6 +24,8 @@
 				.All<Review>(r => r.IsDeleted == false && r.ReciverId == request.Id)
 				.OrderByDescending(r => r.CreatedOn)
 				.Include(r => r.Creator)
+				.Skip((request.Page - 1) * request.PageCount)
+				.Take(request.PageCount)
 				.ToListAsync();
 
 			return await Task.FromResult(reviews);

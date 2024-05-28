@@ -5,19 +5,6 @@
 
 	public class ErrorResponse
 	{
-		public int? StatusCode { get; set; }
-
-		public string? StatusPhrase { get; set; }
-
-		public DateTime? Timestamp { get; set; }
-
-		public List<string>? ErrorMessage { get; set; }
-
-		public override string ToString()
-		{
-			return JsonSerializer.Serialize(this);
-		}
-
 		public static IActionResult GenerateErrorResponse(ActionContext context)
 		{
 			//ErrorResponse apiError = new ErrorResponse();

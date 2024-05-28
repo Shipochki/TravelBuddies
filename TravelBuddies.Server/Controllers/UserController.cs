@@ -117,7 +117,7 @@
 
 			GetUserByIdDto userDto = GetUserByIdDto.FromUser(user);
 
-			List<Review> reviews = await _mediator.Send(new GetReviewsByReciverIdQuery(id));
+			List<Review> reviews = await _mediator.Send(new GetReviewsByReciverIdQuery(id, 1, 3));
 
 			userDto.Reviews = reviews.Select(ReviewDto.FromReview).Take(3).ToList();
 

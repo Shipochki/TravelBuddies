@@ -2,9 +2,11 @@ import { errorHandler } from "../utils/common/errorHandler";
 
 const Url = 'https://localhost:7005/api/review';
 
-export const GetAllReviewByReciverId = async (reciverId) => {
+export const GetAllReviewByReciverId = async () => {
+  const params = new URLSearchParams(location.search);
+
     try {
-        const response = await fetch(Url + `/getallreviewbyreciverid/${reciverId}`, {
+        const response = await fetch(Url + `/getallreviewbyreciverid?${params.toString()}`, {
           method: 'GET',
           mode: "cors",
           headers: {

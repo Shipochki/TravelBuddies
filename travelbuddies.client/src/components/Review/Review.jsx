@@ -12,6 +12,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import personImgOffline from "../../utils/images/blank-profile-picture-973460_960_720.png";
 import { useContext } from "react";
 import { GlobalContext } from "../../utils/contexts/GlobalContext";
+import { EditReview } from "../EditReview/EditReview";
 
 export const Review = ({ review }) => {
   const { OnSetUser } = useContext(GlobalContext);
@@ -38,7 +39,7 @@ export const Review = ({ review }) => {
       // const data = await GetUserById(userId);
 
       // setUser(data);
-
+      
       OnSetUser(id);
     }
   };
@@ -56,7 +57,6 @@ export const Review = ({ review }) => {
         />
         <p>{review.creator.fullName}</p>
       </div>
-
       <div className="review-rating-createdon-info">
         <p className="review-rating">{review.rating}/5</p>
         <p className="review-createdon">{review.createdOn}</p>
@@ -131,6 +131,7 @@ export const Review = ({ review }) => {
           </div>
         )}
       </div>
+      <EditReview key={`edit-review-key-${review.id}`} review={review}/>
     </div>
   );
 };

@@ -1,29 +1,23 @@
 ﻿namespace TravelBuddies.Presentation.DTOs.Review
 {
 	using TravelBuddies.Domain.Entities;
-	using TravelBuddies.Presentation.DTOs.User;
 
 	public class GetAllReviewsByReciverIdDto
 	{
-		public int Id { get; set; }
-
-		public required UserDto Creator { get; set; }
-
 		public required string ReciverId { get; set; }
 
-		public string? Text { get; set; }
+		public required string ReciverFullName { get; set; }
 
-		public int Rating { get; set; }
+		public int CountReviews { get; set; }
 
-		public static GetAllReviewsByReciverIdDto FromReview(Review review)
+		public List<ReviewDto> Reviews { get; set; }
+
+		public static GetAllReviewsByReciverIdDto FromUser(ApplicationUser user)
 		{
 			return new GetAllReviewsByReciverIdDto()
 			{
-				Id = review.Id,
-				Creator = UserDto.FromUser(review.Creator),
-				ReciverId = review.ReciverId,
-				Text = review.Text,
-				Rating = review.Rating,
+				ReciverId = user.Id,
+				ReciverFullName = $"{user.FirstName} {user.LastName}",
 			};
 		}
 	}
