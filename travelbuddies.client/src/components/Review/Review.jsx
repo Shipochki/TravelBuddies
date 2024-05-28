@@ -14,7 +14,7 @@ import { useContext } from "react";
 import { GlobalContext } from "../../utils/contexts/GlobalContext";
 import { EditReview } from "../EditReview/EditReview";
 
-export const Review = ({ review }) => {
+export const Review = ({ review, setData }) => {
   const { OnSetUser } = useContext(GlobalContext);
   const navigate = useNavigate();
   const { id } = useParams();
@@ -40,7 +40,11 @@ export const Review = ({ review }) => {
 
       // setUser(data);
       
-      OnSetUser(id);
+      //OnSetUser(id);
+
+      //setIsDeleted(true);
+
+      setData(id);
     }
   };
 

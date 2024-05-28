@@ -30,12 +30,12 @@
 
   .menuLines{
     border: black;
-    max-width: 3vw;
-    max-height: 3vw;
+    max-width: 40px;
+    max-height: 40px;
     border-radius: 3vw;
     object-fit: cover;
-    width: 2.7vw;
-    height: 2.7vw;
+    min-width: 30px;
+    min-height: 30px;
 }
 
 .menuLines hr{
@@ -94,4 +94,11 @@
     flex-direction: column;
     align-items: center;
     row-gap: 5px;
+}
+
+@media screen and (max-width: 1024px) {
+    .menuLines{
+        max-width: 30px;
+        max-height: 30px;
+    }
 }

@@ -23,6 +23,7 @@ export const Reviews = () => {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [pageCount] = useState(10);
+  const [isDeleted, setIsDeleted] = useState(false);
 
   const { values, changeHandler, onSubmit } = useForm({
     [ReviewsQueryFromKeys.ReciverId]: data.reciverId,
@@ -40,6 +41,11 @@ export const Reviews = () => {
       setLoading(false);
     };
     fetchData();
+
+    // if(isDeleted){
+    //   fetchData();
+    //   setIsDeleted(false);
+    // }
 
     const handlePopState = () => {
       // When user navigates back, trigger data reload
@@ -69,6 +75,11 @@ export const Reviews = () => {
     values[ReviewsQueryFromKeys.ReciverId] = data.reciverId;
   };
 
+  const OnSetData = async (id) => {
+    const data = await GetAllReviewByReciverId();
+    setReviews(data);
+  }
+
   if (loading) {
     return <Loading />;
   }
@@ -82,7 +93,7 @@ export const Reviews = () => {
         </div>
         <div className="reviews">
           {data.reviews.length > 0 ? (
-            data.reviews.map((r) => <Review key={r.id} review={r} />)
+            data.reviews.map((r) => <Review key={r.id} review={r} setData={OnSetData}/>)
           ) : (
             <p>No reviews</p>
           )}

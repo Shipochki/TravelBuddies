@@ -17,6 +17,7 @@ export const Profile = ({user}) => {
     const { OnSetUser } = useContext(GlobalContext);
     const {id} = useParams();
     const [loading, setLoading] = useState(true);
+    const [isDeleted, setIsDeleted] = useState(false);
 
     useEffect(() => {
         if(!user.id || user.id != id){
@@ -27,6 +28,11 @@ export const Profile = ({user}) => {
         //     setUser(data);
         // };
         // fetchData();
+
+        // if(isDeleted){
+        //     OnSetUser(id);
+        //     setIsDeleted(false);
+        // }
 
         setTimeout(() => {
             setLoading(false); // Set loading to false after data is fetched
@@ -92,7 +98,7 @@ export const Profile = ({user}) => {
                     {user.reviews ? (
                         user.reviews.map((r) => (
                             <>
-                                <Review key={`review-key-${r.id}`} review={r}/>
+                                <Review key={`review-key-${r.id}`} review={r} setData={OnSetUser}/>
                                 {/* <EditReview key={`edit-review-key-${r.id}`} review={r}/> */}
                             </>
                         ))
