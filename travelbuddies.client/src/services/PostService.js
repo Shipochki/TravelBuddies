@@ -38,10 +38,14 @@ export const OnCreatePostSubmit = async (createPostFromKeys) => {
     });
 
     if(response.ok){
-      return await response.json();
+      //return await response.json();
+      return true;
     } else {
+      const result = await response.json();
+      alert(result.detail);
       console.error('Error:', response.statusText);
-      errorHandler(response.status);
+      //errorHandler(response.status);
+      return false;
     }
   } catch (error){
     console.error('Error fetching create post', error)

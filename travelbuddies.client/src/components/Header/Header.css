@@ -88,3 +88,9 @@ secondary: #F5F6F7 */
     font-size: 1.2vw;
     letter-spacing: 0.5px;
 }
+
+@media screen and (max-width: 1024px) {
+    .navigation-home{
+        visibility: hidden;
+    }
+}

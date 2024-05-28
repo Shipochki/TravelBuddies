@@ -48,3 +48,24 @@
 .groups-group-date{
     font-size: 14px;
 }
+
+.popup-groups-btn{
+    visibility: hidden;
+    position: fixed;
+    top: 6vw;
+    flex-direction: column;
+    right: 8vw;
+    padding: 5px;
+    align-items: center;
+    background: #F5F6F7;
+    color: #8D949E;
+    padding: 2vw 0;
+    border: 0;
+    z-index: 1;
+}
+
+@media screen and (max-width: 1024px) {
+    .groups-main{
+        visibility: hidden;
+    }
+}

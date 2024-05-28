@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { Loading } from "../Loading/Loading";
 import { NotDriver } from "../../components/NotDriver/NotDriver";
 
+import backgroundImg from "../../utils/images/white-background-with-blue-geometric-and-white-line-pattern-free-vector.jpg";
+
 export const MyVehicle = () => {
   const [vehicle, setVehicle] = useState({});
   const [loading, setLoading] = useState(true);
@@ -28,8 +30,15 @@ export const MyVehicle = () => {
 
   return (
     <div className="myvehicle-main">
+      <img className="demo-bg" src={backgroundImg} />
       {localStorage.role == "driver" ? (
-        <>{vehicle && vehicle.id ? <Vehicle vehicle={vehicle} /> : <NoVehicle />}</>
+        <>
+          {vehicle && vehicle.id ? (
+            <Vehicle vehicle={vehicle} />
+          ) : (
+            <NoVehicle />
+          )}
+        </>
       ) : (
         <NotDriver />
       )}

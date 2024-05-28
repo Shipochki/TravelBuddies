@@ -32,13 +32,6 @@
     
 }
 
-.demo-bg {
-    opacity: 0.2;
-    position: absolute;
-    min-height: 100vh;
-    width: 66%;
-  }
-
 .search-header{
     height: 4vw;
     width: 40vw;

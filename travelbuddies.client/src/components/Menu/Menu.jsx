@@ -37,7 +37,7 @@ export const Menu = () => {
           </Tooltip>
         </div>
         {reviewVisable && (
-          <Link to={`/reviews/${localStorage.userId}`}>My Reviews</Link>
+          <Link to={`/reviews?reciverId=${localStorage.userId}&page=1&pageCount=10`}>My Reviews</Link>
         )}
       </div>
       <div className="driver-links">

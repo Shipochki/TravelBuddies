@@ -9,11 +9,13 @@
     flex-direction: row;
     column-gap: 10px;
     align-items: center;
+    min-height: 3vw;
+    max-height: 6vw;
 }
 
 .message-form form input{
-    width: 30vw;
-    height: 3vw;
+    width: 70%;
+    height: 100%;
     border-radius: 6px;
     border: 0;
     background: white;
@@ -22,9 +24,19 @@
 }
 
 .message-form form button{
-    height: 3vw;
+    height: 100%;
 }
 
 .message-form form button:hover{
     cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .message-form{
+        width: 90%;
+    }
+
+    .message-form form{
+        justify-content: space-around;
+    }
 }

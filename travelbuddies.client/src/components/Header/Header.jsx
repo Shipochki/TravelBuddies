@@ -19,7 +19,7 @@ export const Header = () => {
             </div>
             <div className="navigation">
                 <ul>
-                    <li>
+                    <li className="navigation-home">
                         <Link to={'/'}>Home</Link>
                     </li>
                     {!localStorage.accessToken && (

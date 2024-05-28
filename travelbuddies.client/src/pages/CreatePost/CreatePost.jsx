@@ -99,12 +99,14 @@ export const CreatePost = () => {
       values[CreatePostFromKeys.PricePerSeat]
     );
 
-    await OnCreatePostSubmit(values);
+    const isSuccess = await OnCreatePostSubmit(values);
 
-    const data = await GetAllGroupByUserId(localStorage.userId);
-    OnSetGroups(data);
+    if (isSuccess) {
+      const data = await GetAllGroupByUserId(localStorage.userId);
+      OnSetGroups(data);
 
-    navigate("/myPosts");
+      navigate("/myPosts");
+    }
   };
 
   const [filteredCities, setFilteredCities] = useState([]);
@@ -271,7 +273,7 @@ export const CreatePost = () => {
                   name={CreatePostFromKeys.Description}
                   value={values[CreatePostFromKeys.Description]}
                   onChange={changeHandler}
-                  placeholder="Description..."
+                  placeholder="Description...*"
                 />
                 <div className="create-post-date-time">
                   <div className="create-post-date-time-info">
@@ -280,7 +282,7 @@ export const CreatePost = () => {
                       id="date"
                       className="create-post-date"
                       value={values[CreatePostFromKeys.Date.slice(0, 17)]}
-                      placeholder="Choose date"
+                      placeholder="Choose date*"
                       disabled
                     />
                     <input
@@ -288,7 +290,7 @@ export const CreatePost = () => {
                       id="time"
                       className="create-post-date"
                       value={values[CreatePostFromKeys.Time]}
-                      placeholder="Choose time"
+                      placeholder="Choose time*"
                       disabled
                     />
                   </div>
@@ -344,7 +346,7 @@ export const CreatePost = () => {
                 </div>
                 <div className="create-post-nums-inputs">
                   <div className="create-post-price">
-                    <label>Price per seat</label>
+                    <label>Price per seat:</label>
                     <label>
                       <input
                         type="number"

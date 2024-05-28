@@ -54,6 +54,7 @@
 			}
 
 			message.IsDeleted = true;
+			message.DeletedOn = DateTime.Now;
 
 			await _repository.SaveChangesAsync();
 

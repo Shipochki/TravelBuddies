@@ -17,6 +17,7 @@
     width: 65%;
     position: relative;
     padding-top: 1.5vw;
+    height: 100vh;
 }
 
 .group-info-container{
@@ -38,7 +39,7 @@
     flex-direction: column;
     align-items: center;
     row-gap: 10px;
-    min-width: 13vw;
+    width: 100%;
 }
 
 .group-info h3{
@@ -126,5 +127,38 @@
     flex-direction: column-reverse;
     padding: 1vw;
     row-gap: 15px;
-    overflow: auto;
+    overflow-x: hidden;
+}
+
+@media screen and (max-width: 1024px) {
+    .group-content{
+        width: 100%;
+        padding: 20px;
+    }
+
+    .group-info-container{
+        width: 30%;
+    }
+
+    .group-messages-content{
+        width: 80%;
+    }
+
+    .group-messages{
+        width: 90%;
+        padding: 3vw 1vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .group-info-container{
+        display: none;
+    }
+    .group-messages-content{
+        width: 100%;
+    }
+
+    .group-messages{
+        padding: 3vw 1vw;
+    }
 }

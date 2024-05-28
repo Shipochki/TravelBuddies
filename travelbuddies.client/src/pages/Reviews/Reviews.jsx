@@ -40,6 +40,20 @@ export const Reviews = () => {
       setLoading(false);
     };
     fetchData();
+
+    const handlePopState = () => {
+      // When user navigates back, trigger data reload
+      //fetchData();
+      fetchData();
+    };
+
+    // Add event listener for browser navigation back
+    window.addEventListener('popstate', handlePopState);
+
+    // Cleanup: remove event listener when component unmounts
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
   }, []);
 
   const OnChangePage = async (event, value) => {

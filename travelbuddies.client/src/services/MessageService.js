@@ -19,8 +19,9 @@ export const OnCreateMessageSubmit = async (createMessageFromKeys) => {
             return await response.json();
         }  else {
             // Handle other errors
+            alert(await response.json());
             console.error('Error:', response.statusText);
-            errorHandler(response.status);
+            //errorHandler(response.status);
         }
       } catch (error) {
         console.error('Error fetching create message:', error);
@@ -43,8 +44,9 @@ export const OnUpdateMessageSubmit = async (updateMessageFromKeys) => {
             // Handle successful response
         }  else {
             // Handle other errors
+            alert(await response.json());
             console.error('Error:', response.statusText);
-            errorHandler(response.status);
+            // errorHandler(response.status);
         }
       } catch (error) {
         console.error('Error fetching update message:', error);
