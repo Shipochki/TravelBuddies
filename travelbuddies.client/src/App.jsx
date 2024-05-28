@@ -31,6 +31,7 @@ import { GetAllGroupByUserId, GetGroupById } from './services/GroupService';
 import { GetUserById } from './services/UserService';
 import { EditPost } from './pages/EditPost/EditPost';
 import { EditProfile } from './pages/EditProfile/EditProfile';
+import { BottomMenu } from './components/BottomNavigation/BottomMenu';
 
 function App() {
     const navigate = useNavigate();
@@ -153,6 +154,7 @@ function App() {
                         )} 
                     <Route path='*' element={<NotFound/>}/>
                 </Routes>
+                <BottomMenu/>
                 <Footer/>
                 </div>
             </ThemeProvider>

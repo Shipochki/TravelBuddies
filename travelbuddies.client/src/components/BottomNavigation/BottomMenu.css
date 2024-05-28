@@ -1,0 +1,10 @@
+.bottom-menu{
+    display: none;
+    width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .bottom-menu{
+        display: block;
+    }
+}
