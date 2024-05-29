@@ -12,8 +12,8 @@ import { useState } from "react";
 import { Tooltip } from "@mui/material";
 
 export const Menu = () => {
-  const [driverVisable, setDriverVisable] = useState(false);
-  const [reviewVisable, setReviewVisable] = useState(false);
+  const [driverVisable, setDriverVisable] = useState(true);
+  const [reviewVisable, setReviewVisable] = useState(true);
 
   const OnSetDriverVisable = () => {
     setDriverVisable(!driverVisable);
@@ -24,11 +24,11 @@ export const Menu = () => {
   }
 
   return (
-    <div className="left-menu-main">
+    <div id="left-menu-main" className="left-menu-main">
       <div className="reviews-link">
         <div className="reviews-link-menu">
           <h4>{<FontAwesomeIcon icon={faStar} />} Review</h4>
-          <Tooltip title="Review links">
+          <Tooltip className="review-bars" title="Review links">
             <FontAwesomeIcon
               className="menu-driver-bars"
               onClick={OnSetReviewVisable}
@@ -43,7 +43,7 @@ export const Menu = () => {
       <div className="driver-links">
         <div className="driver-links-menu">
           <h4>{<FontAwesomeIcon icon={faIdCard} />} Driver</h4>
-          <Tooltip title="Driver links">
+          <Tooltip className="driver-bars" title="Driver links">
             <FontAwesomeIcon
               className="menu-driver-bars"
               onClick={OnSetDriverVisable}

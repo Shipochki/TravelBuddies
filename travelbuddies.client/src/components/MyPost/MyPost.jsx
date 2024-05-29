@@ -11,6 +11,9 @@ import {
   OnDeletePostSubmit,
 } from "../../services/PostService";
 import { Fab, Tooltip } from "@mui/material";
+import { useContext } from "react";
+import { GlobalContext } from "../../utils/contexts/GlobalContext";
+import { GetAllGroupByUserId } from "../../services/GroupService";
 
 const PayTypes = {
   0: "Cash",
@@ -19,6 +22,7 @@ const PayTypes = {
 };
 
 export const MyPost = ({ post, setPosts }) => {
+  const {OnSetGroups} = useContext(GlobalContext);
   const navigate = useNavigate();
 
   const onDeletePost = async (e) => {
@@ -33,6 +37,10 @@ export const MyPost = ({ post, setPosts }) => {
       const data = await GetPostsByOwnerId(localStorage.userId);
 
       setPosts(data);
+
+      const groups = await GetAllGroupByUserId(localStorage.userId);
+
+      OnSetGroups(groups);
     }
   };
 

@@ -10,7 +10,7 @@
 	using TravelBuddies.Application.Common.Exceptions.NotFound;
 	using TravelBuddies.Application.Common.Exceptions.Forbidden;
 
-	public class DeletePostHandler : BaseHandler, IRequestHandler<DeletePostCommand, Task>
+	public class DeletePostHandler : BaseHandler, IRequestHandler<DeletePostCommand, int>
 	{
 		public DeletePostHandler(
 			IRepository repository
@@ -20,7 +20,7 @@
 		{
 		}
 
-		public async Task<Task> Handle(DeletePostCommand request, CancellationToken cancellationToken)
+		public async Task<int> Handle(DeletePostCommand request, CancellationToken cancellationToken)
 		{
 			Post? post = await _repository.GetByIdAsync<Post>(request.PostId);
 
@@ -50,7 +50,7 @@
 
 			await _repository.SaveChangesAsync();
 
-			return Task.CompletedTask;
+			return await Task.FromResult((int)post.GroupId);
 		}
 	}
 }

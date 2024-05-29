@@ -4,5 +4,5 @@
 
 	public class DeleteGroupCommand : GroupDto, IRequest<Task>
 	{
-	}
+    }
 }

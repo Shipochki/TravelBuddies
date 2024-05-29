@@ -15,6 +15,7 @@
     background: #F5F6F7;
     color: #8D949E;
     padding: 2vw 0;
+    z-index: 1;
 }
 
 .groups-main-group{
@@ -67,5 +68,12 @@
 @media screen and (max-width: 1024px) {
     .groups-main{
         visibility: hidden;
+        width: 30%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .groups-main{
+        width: 100%;
     }
 }

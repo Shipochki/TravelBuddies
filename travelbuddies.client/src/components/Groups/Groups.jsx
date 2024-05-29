@@ -36,13 +36,8 @@ export const Groups = ({ groups }) => {
   }, []);
 
   return (
-    <div className="groups-menu-main">
-      <div>
-        <button onClick={OnClickReSize} className="popup-groups-btn">
-          <FontAwesomeIcon icon={faPeopleGroup} />
-        </button>
-      </div>
-      <div className="groups-main">
+    <div  className="groups-menu-main">
+      <div id="groups-menu-main" className="groups-main">
         <h3>{<FontAwesomeIcon icon={faPeopleGroup} />} My Groups</h3>
         {groups.length == 0 && <p>You don't have any groups</p>}
         {groups.map((g, i) => (

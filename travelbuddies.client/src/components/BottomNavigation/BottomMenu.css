@@ -1,10 +1,13 @@
 .bottom-menu{
     display: none;
     width: 100%;
+    z-index: 2;
+    position: absolute;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
     .bottom-menu{
         display: block;
+        z-index: 2;
     }
 }

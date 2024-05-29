@@ -12,6 +12,7 @@
     color: #8D949E;
     height: 100vh;
     padding: 1vw;
+    z-index: 1;
 }
 
 .reviews-link{
@@ -123,6 +124,23 @@
 
 @media screen and (max-width: 1024px) {
     .left-menu-main{
-        display: none;
+        visibility: hidden;
+        width: 30%;
+        border-right: 1px solid;
+    }
+
+    .review-bars{
+        visibility: hidden;
+    }
+
+    .driver-bars{
+        visibility: hidden;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .left-menu-main{
+        width: 100%;
+        padding-top: 40px;
     }
 }

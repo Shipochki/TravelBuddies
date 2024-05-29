@@ -27,7 +27,12 @@ import {
 } from "@mui/material";
 import { ArrowForward, ArrowRight } from "@mui/icons-material";
 import { Loading } from "../Loading/Loading";
-import backgroundImg from '../../utils/images/white-background-with-blue-geometric-and-white-line-pattern-free-vector.jpg'
+import backgroundImg from "../../utils/images/white-background-with-blue-geometric-and-white-line-pattern-free-vector.jpg";
+
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 const searchFromKeys = {
   FromDestination: "fromDestinationCityId",
@@ -190,10 +195,7 @@ export const Search = () => {
 
   return (
     <div className="search-menu">
-      <img
-        className="demo-bg"
-        src={backgroundImg}
-      />
+      <img className="demo-bg" src={backgroundImg} />
       <div className="search-menu-content">
         <div className="search-header">
           <h2>You can search your travel here</h2>
@@ -280,7 +282,12 @@ export const Search = () => {
             {moreOptionsVisible && (
               <div className="more-options-content">
                 <div className="more-opitons-calendars">
-                  <div className="more-options-calendar from-des-cal">
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DemoContainer components={["DatePicker"]}>
+                      <DatePicker label="Basic date picker" />
+                    </DemoContainer>
+                  </LocalizationProvider>
+                  {/* <div className="more-options-calendar from-des-cal">
                     <div className="options-calendar-input-button">
                       <input
                         type="text"
@@ -323,7 +330,7 @@ export const Search = () => {
                         <Calendar handle={handleToDate} />
                       )}
                     </div>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="price-range-selector">
                   <label>Price range</label>

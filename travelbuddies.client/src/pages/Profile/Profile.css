@@ -84,3 +84,9 @@
     text-decoration: underline;
     text-underline-offset: 2px;
 }
+
+@media screen and (max-width: 1024px) {
+    .profile-content{
+        width: 90%;
+    }
+}

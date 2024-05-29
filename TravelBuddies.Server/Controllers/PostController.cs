@@ -21,6 +21,7 @@
     using TravelBuddies.Presentation.Extensions;
 	using TravelBuddies.Application.Post.Commands.CompletePost;
 	using TravelBuddies.Application.Post.Queries.GetPostById;
+	using TravelBuddies.Application.Group.Commands.DeleteGroup;
 
 	[EnableCors(ApplicationCorses.AllowOrigin)]
 	[Route("api/[controller]")]
@@ -129,7 +130,16 @@
 		[Authorize(Policy = ApplicationPolicies.DriverAndAdmin)]
 		public async Task<IActionResult> Delete(int postId)
 		{
-			await _mediator.Send(new DeletePostCommand(postId, User.Id()));
+			int groupId = await _mediator.Send(new DeletePostCommand(postId, User.Id()));
+
+			DeleteGroupCommand deleteGroupCmd = new DeleteGroupCommand()
+			{
+				Id = groupId,
+				PostId = postId,
+				CreatorId = User.Id()
+			};
+
+			await _mediator.Send(deleteGroupCmd);
 
 			LogLevel logLevel = LogLevel.Information;
 			string message = "Succesfully deleted post";
