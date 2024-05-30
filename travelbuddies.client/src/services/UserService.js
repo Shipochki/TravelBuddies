@@ -48,7 +48,7 @@ export const OnLoginSubmit = async (loginFromKeys) => {
   }
 
 export const OnRegisterSubmit = async (registerFromKeys) => {
-  console.log(document.querySelector("#profilepicture"));
+  //console.log(document.querySelector("#profilepicture"));
     const formData = new FormData();
     formData.append('firstname', registerFromKeys.firstname);
     formData.append('lastname', registerFromKeys.lastname);
@@ -56,7 +56,8 @@ export const OnRegisterSubmit = async (registerFromKeys) => {
     formData.append('city', registerFromKeys.city);
     formData.append('country', registerFromKeys.country);
     formData.append('password', registerFromKeys.password);
-    formData.append('profilepicture', document.querySelector("#profilepicture").files[0])
+    //formData.append('profilepicture', document.querySelector("#profilepicture").files[0])
+    formData.append('profilepicture', registerFromKeys.image);
 
     try {
       const response = await fetch(Url + `/register`, {

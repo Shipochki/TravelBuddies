@@ -15,10 +15,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, TextField } from "@mui/material";
 import { ErrorMessage, Field, Form, Formik, useField } from "formik";
 import { FormikTextField } from "../../components/FormikTextField/FormikTextField";
 import { FormikFileInput } from "../../components/FormikFileInput/FormikFileInput";
+import { styled } from '@mui/material/styles';
+import CloseIcon from '@mui/icons-material/Close';
 
 const RegisterFromKeys = {
   FirstName: "firstname",
@@ -77,6 +79,24 @@ const SignupSchema = Yup.object().shape({
     ),
 });
 
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  "& .MuiDialogContent-root": {
+    padding: theme.spacing(2),
+  },
+  "& .MuiDialogActions-root": {
+    padding: theme.spacing(1),
+  },
+  "& .MuiBox-root":{
+    //padding: "10% 30%"
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
+  },
+  "& .css-f5zjvo":{
+    width: "400px"
+  }
+}));
+
 export const Regiser = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
@@ -125,6 +145,15 @@ export const Regiser = () => {
     const name = path[path.length - 1];
 
     setNameFile(name);
+  };
+
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
   };
 
   return (
@@ -253,13 +282,13 @@ export const Regiser = () => {
             }}
             validationSchema={SignupSchema}
             onSubmit={(values) => {
-              if (values.image) {
-                const reader = new FileReader();
-                reader.onloadend = () => {
-                  setPreview(reader.result);
-                };
-                reader.readAsDataURL(values.image);
-              }
+              //   if (values.image) {
+              //     const reader = new FileReader();
+              //     reader.onloadend = () => {
+              //       setPreview(reader.result);
+              //     };
+              //     reader.readAsDataURL(values.image);
+              //   }
               clickSubmit(values);
             }}
           >
@@ -268,7 +297,8 @@ export const Regiser = () => {
                 <Box
                   display="flex"
                   justifyContent="center"
-                  columnGap="10px"
+                  columnGap="40px"
+                  rowGap="10px"
                   flexWrap="wrap"
                   flexDirection="row"
                   alignItems="center"
@@ -315,12 +345,48 @@ export const Regiser = () => {
                     label="Confirm Password"
                     isRequired={true}
                   />
-                  <FormikFileInput
+                  <>
+                    <Button sx={{minWidth:"182px"}} variant="outlined" onClick={handleClickOpen}>
+                      Upload picture
+                    </Button>
+                    <BootstrapDialog
+                      onClose={handleClose}
+                      aria-labelledby="customized-dialog-title"
+                      open={open}
+                    >
+                      <DialogTitle
+                        sx={{ m: 0, p: 2 }}
+                        id="customized-dialog-title"
+                      >
+                        Your picture
+                      </DialogTitle>
+                      <IconButton
+                        aria-label="close"
+                        onClick={handleClose}
+                        sx={{
+                          position: "absolute",
+                          right: 8,
+                          top: 8,
+                          color: (theme) => theme.palette.grey[500],
+                        }}
+                      >
+                        <CloseIcon />
+                      </IconButton>
+                      <DialogContent dividers>
+                        <FormikFileInput name="image" label="Upload Image" />
+                      </DialogContent>
+                      <DialogActions>
+                        <Button autoFocus onClick={handleClose}>
+                          Save
+                        </Button>
+                      </DialogActions>
+                    </BootstrapDialog>
+                  </>
+                  {/* <FormikFileInput
                     name="image"
                     label="Upload Image"
-                    setFieldValue={setFieldValue}
-                  />
-                  {preview && (
+                  /> */}
+                  {/* {preview && (
                     <img
                       src={preview}
                       alt="Preview"
@@ -330,7 +396,7 @@ export const Regiser = () => {
                         marginTop: "10px",
                       }}
                     />
-                  )}
+                  )} */}
                 </Box>
                 <Button
                   type="submit"

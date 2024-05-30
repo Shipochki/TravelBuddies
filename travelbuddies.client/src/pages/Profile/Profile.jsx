@@ -12,6 +12,7 @@ import personImgOffline from '../../utils/images/blank-profile-picture-973460_96
 import { GlobalContext } from '../../utils/contexts/GlobalContext';
 import { Loading } from '../Loading/Loading';
 import { StarGenerator } from '../../components/StarGenerator/StarGenerator';
+import { Rating } from '@mui/material';
 
 export const Profile = ({user}) => {
     const { OnSetUser } = useContext(GlobalContext);
@@ -73,7 +74,7 @@ export const Profile = ({user}) => {
                             <p>Country: {user.country ? user.country : 'None'}</p>
                             <p>City: {user.city ? user.city : 'None'}</p>
                             <div>
-                                <StarGenerator num={Math.round(user.rating)}/>
+                                <Rating name="read-only" value={Math.round(user.rating)} readOnly />
                                 <p>Rating: {user.rating}</p>
                             </div>
                             

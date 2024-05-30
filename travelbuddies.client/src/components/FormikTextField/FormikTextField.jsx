@@ -13,7 +13,9 @@ export const FormikTextField = ({ label, isRequired, ...props }) => {
     helperText={meta.touched && meta.error}
     margin="normal"
     sx={{
-        maxWidth:"200px"
+        maxWidth:"200px",
+        maxHeight:"50px"
     }}
+    variant="standard"
   />)
 }

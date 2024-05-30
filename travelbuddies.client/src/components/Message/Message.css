@@ -7,6 +7,15 @@
     flex-direction: row-reverse;
 }
 
+.my-message .message-text{
+    background-color: #306cd2;
+    color: white;
+}
+
+.my-message .message-text span{
+    color: white;
+}
+
 .message-content{
     position: relative;
     display: flex;
