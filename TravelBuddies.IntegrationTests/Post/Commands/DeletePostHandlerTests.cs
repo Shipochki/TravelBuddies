@@ -71,7 +71,8 @@
 				Description = "test",
 				FromDestinationCity = city1,
 				ToDestinationCity = city2,
-				Currency = "eur"
+				Currency = "eur",
+				GroupId = 1
 			};
 
 			await _dbContext.AddAsync(post);
@@ -80,10 +81,11 @@
 			var command = new DeletePostCommand(post.Id, user.Id);
 
 			//Act
-			await handler.Handle(command, default);
+			var groupId = await handler.Handle(command, default);
 
 			//Assert
 			Assert.True(post.IsDeleted);
+			Assert.Equal(post.Id, groupId);
 		}
 	}
 }

@@ -92,7 +92,16 @@ export const Search = () => {
     } else {
       values[searchFromKeys.FromDestination] = fromdes.id;
       values[searchFromKeys.ToDestination] = todes.id;
-
+      if(values[searchFromKeys.FromDate] != null){
+        let date = new Date(values[searchFromKeys.FromDate]);
+        values[searchFromKeys.FromDate] = date.toISOString();
+      }
+     
+      if(values[searchFromKeys.ToDate]){
+        let date = new Date(values[searchFromKeys.ToDate])
+        values[searchFromKeys.ToDate] = date.toISOString();
+      }
+      
       navigate(`/catalog?${serializer(values)}`);
     }
   };
@@ -137,7 +146,7 @@ export const Search = () => {
   };
 
   const handleFromDate = (date) => {
-    console.log(date);
+    console.log(date['$d']);
     values[searchFromKeys.FromDate] = date;
     changeHandler;
   };
@@ -280,11 +289,19 @@ export const Search = () => {
               <p>More options</p>
             </a>
             {moreOptionsVisible && (
-              <div className="more-options-content">
+              <div id="search-more-options" className="more-options-content">
                 <div className="more-opitons-calendars">
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DemoContainer components={["DatePicker"]}>
-                      <DatePicker label="Basic date picker" />
+                      <DatePicker 
+                        label="From date" 
+                        value={values[searchFromKeys.FromDate]}
+                        onChange={(newValue) => handleFromDate(newValue)}/>
+                      <DatePicker
+                        label="To date"
+                        value={values[searchFromKeys.ToDate]}
+                        onChange={(newValue) => handleToDate(newValue)}
+                      />
                     </DemoContainer>
                   </LocalizationProvider>
                   {/* <div className="more-options-calendar from-des-cal">
@@ -342,7 +359,7 @@ export const Search = () => {
                       alignItems: "center",
                     }}
                   >
-                    <p>{priceValues[0]}&euro;</p>
+                    <p>{priceValues[0]}</p>
                     <Slider
                       getAriaLabel={() => "Price range"}
                       value={priceValues}
@@ -350,7 +367,7 @@ export const Search = () => {
                       valueLabelDisplay="auto"
                       getAriaValueText={valuetext}
                     />
-                    <p>{priceValues[1]}&euro;</p>
+                    <p>{priceValues[1]}</p>
                   </Box>
                 </div>
 

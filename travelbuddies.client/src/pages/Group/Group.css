@@ -151,11 +151,16 @@
 }
 
 @media screen and (max-width: 768px) {
+    .group-main{
+        padding: 3vw 0;
+    }
+
     .group-info-container{
         display: none;
     }
     .group-messages-content{
         width: 100%;
+        padding-top: 12vw;
     }
 
     .group-messages{

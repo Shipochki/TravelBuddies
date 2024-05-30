@@ -26,7 +26,7 @@
 			await _dbContext.AddAsync(review);
 			await _dbContext.SaveChangesAsync();
 
-			var query = new GetReviewsByReciverIdQuery(user2.Id);
+			var query = new GetReviewsByReciverIdQuery(user2.Id, 1, 10);
 
 			//Act
 			var result = await handler.Handle(query, default);

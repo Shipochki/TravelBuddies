@@ -4,8 +4,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import GroupsIcon from "@mui/icons-material/Groups";
 import { useEffect, useState } from "react";
 import "./BottomMenu.css";
+import { useNavigate } from "react-router-dom";
 
 export const BottomMenu = () => {
+  const navigate = useNavigate();
   const [value, setValue] = useState(1);
 
   const OnSetMenuVisable = () => {
@@ -47,6 +49,8 @@ export const BottomMenu = () => {
       "hidden";
     window.document.querySelector("#left-menu-main").style.visibility =
       "hidden";
+
+      navigate('/');
   };
 
   return (

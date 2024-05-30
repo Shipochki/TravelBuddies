@@ -228,7 +228,7 @@
 .more-opitons-calendars{
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .price-range-selector{

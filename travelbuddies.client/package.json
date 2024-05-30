@@ -21,11 +21,13 @@
     "@mui/material": "^5.15.18",
     "@mui/x-date-pickers": "^7.5.1",
     "dayjs": "^1.11.11",
+    "formik": "^2.4.6",
     "google-map-react": "^2.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-lazy-load-image-component": "^1.6.0",
-    "react-router-dom": "^6.23.0"
+    "react-router-dom": "^6.23.0",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
