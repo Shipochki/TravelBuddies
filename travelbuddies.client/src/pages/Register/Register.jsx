@@ -47,12 +47,7 @@ const SignupSchema = Yup.object().shape({
     .matches(/[@$!%*?&]/, "Must contain at least one special character")
     .required("Required"),
   repassword: Yup.string()
-    .min(8, "To Short!")
-    .max(16, "To Long!")
-    .matches(/[a-z]/, "Must contain at least one lowercase letter")
-    .matches(/[A-Z]/, "Must contain at least one uppercase letter")
-    .matches(/\d/, "Must contain at least one number")
-    .matches(/[@$!%*?&]/, "Must contain at least one special character")
+    .oneOf([Yup.ref('password'), null], 'Passwords must match')
     .required("Required"),
   firstname: Yup.string()
     .min(3, "To Short!")
@@ -120,6 +115,7 @@ export const Regiser = () => {
     //   return;
     // }
     //e.preventDefault();
+
     const result = await OnRegisterSubmit(values);
 
     if (result) {

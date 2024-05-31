@@ -30,7 +30,7 @@
 
 		public async Task<Task> Handle(CreateApplicationUserCommand request, CancellationToken cancellationToken)
 		{
-			string profilePictureLink = string.Empty;
+			string? profilePictureLink = null;
 
 			if(request.ProfilePicture != null)
 			{

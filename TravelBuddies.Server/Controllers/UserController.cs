@@ -121,7 +121,7 @@
 
 			userDto.Reviews = reviews.Select(ReviewDto.FromReview).Take(3).ToList();
 
-			userDto.Rating = Math.Round(reviews.Select(r => r.Rating).Average(), 2);
+			userDto.Rating = reviews.Count > 0 ? Math.Round(reviews.Select(r => r.Rating).Average(), 2) : 0;
 
 			Vehicle? vehicle = await _mediator.Send(new GetVehicleByOwnerIdQuery(id));
 

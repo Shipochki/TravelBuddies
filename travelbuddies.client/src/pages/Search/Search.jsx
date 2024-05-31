@@ -18,6 +18,7 @@ import { GetAllCities } from "../../services/CityService";
 import {
   Autocomplete,
   Box,
+  Button,
   FormLabel,
   Slider,
   Stack,
@@ -92,16 +93,16 @@ export const Search = () => {
     } else {
       values[searchFromKeys.FromDestination] = fromdes.id;
       values[searchFromKeys.ToDestination] = todes.id;
-      if(values[searchFromKeys.FromDate] != null){
+      if (values[searchFromKeys.FromDate] != null) {
         let date = new Date(values[searchFromKeys.FromDate]);
         values[searchFromKeys.FromDate] = date.toISOString();
       }
-     
-      if(values[searchFromKeys.ToDate]){
-        let date = new Date(values[searchFromKeys.ToDate])
+
+      if (values[searchFromKeys.ToDate]) {
+        let date = new Date(values[searchFromKeys.ToDate]);
         values[searchFromKeys.ToDate] = date.toISOString();
       }
-      
+
       navigate(`/catalog?${serializer(values)}`);
     }
   };
@@ -146,7 +147,7 @@ export const Search = () => {
   };
 
   const handleFromDate = (date) => {
-    console.log(date['$d']);
+    console.log(date["$d"]);
     values[searchFromKeys.FromDate] = date;
     changeHandler;
   };
@@ -284,19 +285,24 @@ export const Search = () => {
             </div>
           </div>
           <div className="more-options">
-            <a className="more-options-a" onClick={toggleMoreOptions}>
-              {<FontAwesomeIcon icon={faSliders} />}
-              <p>More options</p>
-            </a>
+            <Tooltip title="More options">
+              <Button onClick={toggleMoreOptions}>
+                <FontAwesomeIcon
+                  className="more-options-icon"
+                  icon={faSliders}
+                />
+              </Button>
+            </Tooltip>
             {moreOptionsVisible && (
               <div id="search-more-options" className="more-options-content">
                 <div className="more-opitons-calendars">
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DemoContainer components={["DatePicker"]}>
-                      <DatePicker 
-                        label="From date" 
+                      <DatePicker
+                        label="From date"
                         value={values[searchFromKeys.FromDate]}
-                        onChange={(newValue) => handleFromDate(newValue)}/>
+                        onChange={(newValue) => handleFromDate(newValue)}
+                      />
                       <DatePicker
                         label="To date"
                         value={values[searchFromKeys.ToDate]}

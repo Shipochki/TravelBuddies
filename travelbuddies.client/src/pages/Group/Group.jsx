@@ -21,10 +21,10 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { OnLeaveGroupSubmit } from "../../services/UserGroupService";
-import { Tooltip } from "@mui/material";
+import { Button, Tooltip } from "@mui/material";
 import { Loading } from "../Loading/Loading";
 
-import backgroundImg from '../../utils/images/white-background-with-blue-geometric-and-white-line-pattern-free-vector.jpg'
+import backgroundImg from "../../utils/images/white-background-with-blue-geometric-and-white-line-pattern-free-vector.jpg";
 
 export const Group = ({ group }) => {
   const navigate = useNavigate();
@@ -101,10 +101,7 @@ export const Group = ({ group }) => {
 
   return (
     <div className="group-main">
-      <img
-        className="demo-bg"
-        src={backgroundImg}
-      />
+      <img className="demo-bg" src={backgroundImg} />
       <div className="group-content">
         <div className="group-info-container">
           <div className="group-info">
@@ -112,22 +109,40 @@ export const Group = ({ group }) => {
             <div className="group-info-options">
               {/* <p className='group-info-members' onClick={onClickVisable}><FontAwesomeIcon icon={faPeopleGroup}/></p> */}
               <Tooltip title="Members">
-                <GroupsIcon
-                  className="group-info-members"
+                <Button
+                  sx={{
+                    color: "black",
+                  }}
+                  variant="text"
                   onClick={onClickVisable}
-                />
+                  className="group-info-members"
+                >
+                  <GroupsIcon />
+                </Button>
               </Tooltip>
               <Tooltip title="Date and Time">
-                <AccessTimeIcon
-                  className="group-time-btn"
+                <Button
+                  sx={{
+                    color: "black",
+                  }}
+                  variant="text"
                   onClick={onTimeVisable}
-                />
+                  className="group-time-btn"
+                >
+                  <AccessTimeIcon />
+                </Button>
               </Tooltip>
               <Tooltip title="Settings">
-                <SettingsIcon
-                  className="group-settings-btn"
+                <Button
+                  sx={{
+                    color: "black",
+                  }}
+                  variant="text"
                   onClick={onSettingVisa}
-                />
+                  className="group-settings-btn"
+                >
+                  <SettingsIcon />
+                </Button>
               </Tooltip>
             </div>
           </div>
@@ -142,7 +157,7 @@ export const Group = ({ group }) => {
           )}
           {timeVisable && (
             <div className="group-time">
-              <p>Date and time</p>
+              <p>Date and time of departure</p>
               <p>{group.date}</p>
             </div>
           )}

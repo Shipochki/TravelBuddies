@@ -96,7 +96,7 @@ export const Profile = ({user}) => {
                     {user.id != localStorage.userId && (
                        <CreateReview user={user}/>  
                     )}
-                    {user.reviews ? (
+                    {user.reviews && user.reviews.length ? (
                         user.reviews.map((r) => (
                             <>
                                 <Review key={`review-key-${r.id}`} review={r} setData={OnSetUser}/>

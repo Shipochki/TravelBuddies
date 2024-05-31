@@ -2,7 +2,7 @@
 {
 	public abstract class BaseEntity<T> : IActionInfo
 	{
-		public T? Id { get; set; }
+		public T Id { get; set; }
 
 		public DateTime CreatedOn { get; set; }
 

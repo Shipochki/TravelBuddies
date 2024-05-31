@@ -9,13 +9,13 @@ import { useNavigate } from "react-router-dom";
 import personImgOffline from "../../utils/images/blank-profile-picture-973460_960_720.png";
 import { GlobalContext } from "../../utils/contexts/GlobalContext";
 import { Loading } from "../../pages/Loading/Loading";
+import { Button } from "@mui/material";
 
 export const Groups = ({ groups }) => {
   const { OnSetGroup, OnSetGroups } = useContext(GlobalContext);
-    const [isVisableMenu, setIsVisableMenu] = useState(true);
-    
-    const OnClickReSize = () => {
-    }
+  const [isVisableMenu, setIsVisableMenu] = useState(true);
+
+  const OnClickReSize = () => {};
 
   const OnGetGroup = async (id) => {
     //const data = await GetGroupById(id);
@@ -36,32 +36,41 @@ export const Groups = ({ groups }) => {
   }, []);
 
   return (
-    <div  className="groups-menu-main">
+    <div className="groups-menu-main">
       <div id="groups-menu-main" className="groups-main">
         <h3>{<FontAwesomeIcon icon={faPeopleGroup} />} My Groups</h3>
-        {groups.length == 0 && <p>You don't have any groups</p>}
+        {groups.length == 0 && <p>You don't participate in any groups</p>}
         {groups.map((g, i) => (
-          <div
-            key={i}
-            id={g.id}
-            onClick={() => {
-              OnGetGroup(g.id);
-              // window.location.assign(`/group/${g.id}`);
+          <Button
+            sx={{
+              color: "black",
             }}
-            className="groups-main-group"
+            variant="text"
           >
-            <div className="picture-group">
-              <LazyLoadImage
-                src={
-                  g.creatorProfileLink ? g.creatorProfileLink : personImgOffline
-                }
-              />
+            <div
+              key={i}
+              id={g.id}
+              onClick={() => {
+                OnGetGroup(g.id);
+                // window.location.assign(`/group/${g.id}`);
+              }}
+              className="groups-main-group"
+            >
+              <div className="picture-group">
+                <LazyLoadImage
+                  src={
+                    g.creatorProfileLink
+                      ? g.creatorProfileLink
+                      : personImgOffline
+                  }
+                />
+              </div>
+              <div className="groups-group">
+                <p>{g.name}</p>
+                <p className="groups-group-date">{g.date}</p>
+              </div>
             </div>
-            <div className="groups-group">
-              <p>{g.name}</p>
-              <p className="groups-group-date">{g.date}</p>
-            </div>
-          </div>
+          </Button>
         ))}
       </div>
     </div>

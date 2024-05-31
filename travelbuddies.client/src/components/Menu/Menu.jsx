@@ -21,7 +21,7 @@ export const Menu = () => {
 
   const OnSetReviewVisable = () => {
     setReviewVisable(!reviewVisable);
-  }
+  };
 
   return (
     <div id="left-menu-main" className="left-menu-main">
@@ -37,7 +37,11 @@ export const Menu = () => {
           </Tooltip>
         </div>
         {reviewVisable && (
-          <Link to={`/reviews?reciverId=${localStorage.userId}&page=1&pageCount=10`}>My Reviews</Link>
+          <Link
+            to={`/reviews?reciverId=${localStorage.userId}&page=1&pageCount=10`}
+          >
+            My Reviews
+          </Link>
         )}
       </div>
       <div className="driver-links">
@@ -54,17 +58,21 @@ export const Menu = () => {
         {driverVisable && (
           <>
             <Link to={"/becomeDriver"}>Become Driver</Link>
-            <div className="vehicle-links">
-              <h5>{<FontAwesomeIcon icon={faCarSide} />} Vehicle</h5>
-              <Link to={"/myVehicle"}>My Vehicle</Link>
-              <Link to={"/createVehicle"}>Add Vehicle</Link>
-              <Link to={"/editVehicle"}>Edit Vehicle</Link>
-            </div>
-            <div className="post-links">
-              <h5>{<FontAwesomeIcon icon={faParagraph} />} Post</h5>
-              <Link to={"/myPosts"}>My Posts</Link>
-              <Link to={"/createPost"}>Add Post</Link>
-            </div>
+            {localStorage.role == "driver" && (
+              <>
+                <div className="vehicle-links">
+                  <h5>{<FontAwesomeIcon icon={faCarSide} />} Vehicle</h5>
+                  <Link to={"/myVehicle"}>My Vehicle</Link>
+                  <Link to={"/createVehicle"}>Add Vehicle</Link>
+                  <Link to={"/editVehicle"}>Edit Vehicle</Link>
+                </div>
+                <div className="post-links">
+                  <h5>{<FontAwesomeIcon icon={faParagraph} />} Post</h5>
+                  <Link to={"/myPosts"}>My Posts</Link>
+                  <Link to={"/createPost"}>Add Post</Link>
+                </div>
+              </>
+            )}
           </>
         )}
       </div>

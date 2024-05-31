@@ -49,7 +49,7 @@ export const UserMenu = () => {
                     }}>
                         <LazyLoadImage
                             className='menuLines'
-                            src={localStorage.profilePictureLink !== 'undefined' ? localStorage.profilePictureLink : personImgOffline}/>
+                            src={localStorage.profilePictureLink !== "undefined" ? localStorage.profilePictureLink : personImgOffline}/>
                     </Button>
                 </Tooltip>
             ): (
@@ -59,7 +59,7 @@ export const UserMenu = () => {
                     }}>
                         <LazyLoadImage
                             className='menuLines clicked'
-                            src={localStorage.profilePictureLink !== 'undefined' ? localStorage.profilePictureLink : personImgOffline}/>
+                            src={localStorage.profilePictureLink !== "undefined" ? localStorage.profilePictureLink : personImgOffline}/>
                     </Button>
                 </Tooltip>
             )}
@@ -69,7 +69,7 @@ export const UserMenu = () => {
                     <div>
                         <div className='profile-info'>
                             <LazyLoadImage
-                            src={localStorage.profilePictureLink !== 'undefined' ? localStorage.profilePictureLink : personImgOffline}/>
+                            src={localStorage.profilePictureLink !== "undefined" ? localStorage.profilePictureLink : personImgOffline}/>
                             <p>{localStorage.fullname}</p>
                         </div>
                         <div className='navLinks'>

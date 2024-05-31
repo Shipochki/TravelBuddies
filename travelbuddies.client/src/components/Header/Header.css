@@ -21,12 +21,25 @@ secondary: #F5F6F7 */
     max-height: 90px;
     min-height: 60px;
     box-shadow: 0px 0px 2px 0px black;
+    padding: 0 2vw 0 1vw;
     /* background-image: url(https://thumbs.dreamstime.com/z/auto-car-logo-design-icon-vector-illustration-auto-car-logo-design-icon-vector-illustration-symbol-service-automobile-silhouette-157364282.jpg);
     background-size: contain;
     background-repeat: no-repeat;
     background-position-x: 50%;
     background-position-y: 45%;
     background-size: 55%; */
+}
+
+.header-left-side{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-bars{
+    width: 20px;
+    height: 20px;
 }
 
 .header-img{
@@ -41,7 +54,6 @@ secondary: #F5F6F7 */
 
 .header .logo-content {
     display: flex;
-    padding: 0px 80px;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -55,7 +67,6 @@ secondary: #F5F6F7 */
     align-items: center;
     column-gap: 10px;
 }
-
 
 .logo {
     font-size: 2vw;
@@ -80,7 +91,6 @@ secondary: #F5F6F7 */
     justify-items: center;
     list-style: none;
     margin: 10px 20px;
-    padding-right: 10vw;
     align-items: center;
 }
 
@@ -105,6 +115,10 @@ secondary: #F5F6F7 */
 
     .logo img{
         max-width: 80px;
+    }
+
+    #header-bars-btn{
+        display: none;
     }
 }
 
