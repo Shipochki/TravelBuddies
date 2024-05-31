@@ -40,6 +40,7 @@ secondary: #F5F6F7 */
 .header-bars{
     width: 20px;
     height: 20px;
+    display: none;
 }
 
 .header-img{

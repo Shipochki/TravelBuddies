@@ -57,7 +57,9 @@ export const Menu = () => {
         </div>
         {driverVisable && (
           <>
-            <Link to={"/becomeDriver"}>Become Driver</Link>
+            {localStorage.role == "client" && (
+              <Link to={"/becomeDriver"}>Become Driver</Link>
+            )}
             {localStorage.role == "driver" && (
               <>
                 <div className="vehicle-links">

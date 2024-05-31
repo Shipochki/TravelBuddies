@@ -12,6 +12,20 @@
     border-radius: 8px;
 }
 
+.post-background-img{
+    opacity: 0.2;
+    position: absolute;
+    width: 48%;
+    height: 100%;
+    object-fit: cover;
+    padding: 0%;
+    left: 25%;
+}
+
+.post-content{
+    position: relative;
+}
+
 .post-creator{
     display: flex;
     align-items: center;
@@ -49,6 +63,54 @@
     box-shadow: 0px 0px 1px 0px;
 }
 
+.post-paymentType-content{
+    display: flex;
+    height: 160px;
+    width: 100%;
+    background-position: center;
+    background-size: contain;
+    justify-content: center;
+    font-weight: 500;
+    align-items: center;
+    flex-direction: row;
+    column-gap: 3vw;
+    box-shadow: 0 0 1px 0;
+    border-radius: 8px;
+}
+
+.post-paymentType span {
+    color: #2979ff;
+}
+
+.post-pets-content{
+    display: flex;
+    width: 50%;
+    flex-direction: row;
+    align-items: center;
+    font-weight: 500;
+    justify-content: center;
+    column-gap: 5vw;
+    height: 150px;
+    background-position: center;
+    background-size: contain;
+}
+
+/* .post-paymentType{
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+} */
+
+.post-paymentType-img{
+    width: 150px;
+    height: 150px;
+    border-radius: 100px;
+    /* opacity: 0.5;
+    position: absolute;
+    object-fit: cover;
+    padding: 0%;
+    left: 25%; */
+}
+
 .post-more-info{
     display: grid;
     align-content: center;
@@ -58,8 +120,20 @@
     grid-row-gap: 1vw;
 }
 
-.post-bool svg{
-    font-size: 18px;
+.post-more-info p {
+    font-size: 16px;
+}
+
+.post-more-info p span{
+    color: #2979ff;
+    font-size: 17px;
+}
+
+.post-bool{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 10px;
 }
 
 .join-button{
@@ -93,9 +167,4 @@
 
 .fa-circle-xmark{
     color: red;
-}
-
-.post-paymentType{
-    width: 100%;
-    text-align: center;
 }
