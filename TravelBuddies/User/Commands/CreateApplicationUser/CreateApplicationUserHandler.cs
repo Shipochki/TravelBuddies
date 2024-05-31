@@ -13,18 +13,18 @@
 
 	public class CreateApplicationUserHandler : BaseHandler, IRequestHandler<CreateApplicationUserCommand, Task>
 	{
-		//private readonly IBlobService _blobService;
+		private readonly IBlobService _blobService;
 		private readonly IMailSender _mailSender;
 
 		public CreateApplicationUserHandler(
 			IRepository repository
 			, UserManager<ApplicationUser> userManager
 			, RoleManager<IdentityRole> roleManager
-			//, IBlobService blobService
+			, IBlobService blobService
 			, IMailSender mailSender)
 			: base(repository, userManager, roleManager)
 		{
-			//_blobService = blobService;
+			_blobService = blobService;
 			_mailSender = mailSender;
 		}
 
@@ -34,7 +34,7 @@
 
 			if(request.ProfilePicture != null)
 			{
-				//profilePictureLink = await _blobService.UploadImageAsync(request.ProfilePicture);
+				profilePictureLink = await _blobService.UploadImageAsync(request.ProfilePicture);
 			}
 
 			ApplicationUser applicationUser = new ApplicationUser()
