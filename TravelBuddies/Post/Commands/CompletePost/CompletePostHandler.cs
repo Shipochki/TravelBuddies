@@ -44,7 +44,7 @@
 
 			if (post.PaymentType == PaymentType.CashAndCard || post.PaymentType == PaymentType.Card)
 			{
-				//await SendMessageToAllMembers(post);
+				await SendMessageToAllMembers(post);
 			}
 
 			post.IsCompleted = true;
@@ -53,27 +53,31 @@
 			return Task.CompletedTask;
 		}
 
-		//private async Task SendMessageToAllMembers(Post post)
-		//{
-		//	Group? group = await _repository
-		//					.All<Group>(g => g.Id == post.GroupId)
-		//					.Include(g => g.UsersGroups)
-		//					.ThenInclude(g => g.User)
-		//					.FirstOrDefaultAsync();
+		private async Task SendMessageToAllMembers(Post post)
+		{
+			Group? group = await _repository
+							.All<Group>(g => g.Id == post.GroupId)
+							.Include(g => g.UsersGroups)
+							.ThenInclude(g => g.User)
+							.FirstOrDefaultAsync();
 
-		//	if (group == null)
-		//	{
-		//		throw new GroupNotFoundException(
-		//			string.Format(GroupNotFoundMessage, post.GroupId));
-		//	}
+			if (group == null)
+			{
+				throw new GroupNotFoundException(
+					string.Format(GroupNotFoundMessage, post.GroupId));
+			}
 
-		//	for (int i = 0; i < group.UsersGroups.Count; i++)
-		//	{
-		//		UserGroup userGroup = group.UsersGroups[i];
-		//		string body = _mailSender.GenretateCompletePostMessage($"{userGroup.User.FirstName} {userGroup.User.LastName}", post.PaymentLink);
+			for (int i = 0; i < group.UsersGroups.Count; i++)
+			{
+				UserGroup userGroup = group.UsersGroups[i];
 
-		//		_mailSender.SendMessage("Complete trip", body, userGroup.User.Email);
-		//	}
-		//}
+				if(userGroup.UserId != group.CreatorId)
+				{
+					string body = _mailSender.GenretateCompletePostMessage($"{userGroup.User.FirstName} {userGroup.User.LastName}", post.PaymentLink);
+					_mailSender.SendMessage("Complete trip", body, userGroup.User.Email);
+				}
+
+			}
+		}
 	}
 }

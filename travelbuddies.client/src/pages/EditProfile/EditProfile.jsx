@@ -59,7 +59,7 @@ export const EditProfile = () => {
         <h2>Edit Profile</h2>
       </div>
       <div className="edit-profile-content">
-        <div className="edit-profile-img">
+        <div style={{backgroundImage: `url(${localStorage.profilePictureLink})`}} className="edit-profile-img">
           <Fab
             onClick={() => {
               window.document.getElementById(

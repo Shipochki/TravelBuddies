@@ -46,7 +46,6 @@ export const Group = ({ group }) => {
     setTimeout(() => {
       setLoading(false); // Set loading to false after data is fetched
     }, 500);
-
     return () => clearInterval(intervalRef.current);
   }, [id]);
 

@@ -15,12 +15,21 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, TextField } from "@mui/material";
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  IconButton,
+  TextField,
+} from "@mui/material";
 import { ErrorMessage, Field, Form, Formik, useField } from "formik";
 import { FormikTextField } from "../../components/FormikTextField/FormikTextField";
 import { FormikFileInput } from "../../components/FormikFileInput/FormikFileInput";
-import { styled } from '@mui/material/styles';
-import CloseIcon from '@mui/icons-material/Close';
+import { styled } from "@mui/material/styles";
+import CloseIcon from "@mui/icons-material/Close";
 
 const RegisterFromKeys = {
   FirstName: "firstname",
@@ -47,7 +56,7 @@ const SignupSchema = Yup.object().shape({
     .matches(/[@$!%*?&]/, "Must contain at least one special character")
     .required("Required"),
   repassword: Yup.string()
-    .oneOf([Yup.ref('password'), null], 'Passwords must match')
+    .oneOf([Yup.ref("password"), null], "Passwords must match")
     .required("Required"),
   firstname: Yup.string()
     .min(3, "To Short!")
@@ -81,15 +90,15 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogActions-root": {
     padding: theme.spacing(1),
   },
-  "& .MuiBox-root":{
+  "& .MuiBox-root": {
     //padding: "10% 30%"
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
   },
-  "& .css-f5zjvo":{
-    width: "400px"
-  }
+  "& .css-f5zjvo": {
+    width: "400px",
+  },
 }));
 
 export const Regiser = () => {
@@ -312,15 +321,15 @@ export const Regiser = () => {
                     isRequired={true}
                   />
                   <FormikTextField
-                    name="city"
-                    type="text"
-                    label="City"
-                    isRequired={false}
-                  />
-                  <FormikTextField
                     name="country"
                     type="text"
                     label="Country"
+                    isRequired={false}
+                  />
+                  <FormikTextField
+                    name="city"
+                    type="text"
+                    label="City"
                     isRequired={false}
                   />
                   <FormikTextField
@@ -342,7 +351,11 @@ export const Regiser = () => {
                     isRequired={true}
                   />
                   <>
-                    <Button sx={{minWidth:"182px"}} variant="outlined" onClick={handleClickOpen}>
+                    <Button
+                      sx={{ minWidth: "182px" }}
+                      variant="outlined"
+                      onClick={handleClickOpen}
+                    >
                       Upload picture
                     </Button>
                     <BootstrapDialog

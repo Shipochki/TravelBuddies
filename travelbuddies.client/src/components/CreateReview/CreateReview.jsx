@@ -19,7 +19,7 @@ const ReviewFromKeys = {
 export const CreateReview = ({user}) => {
     const { OnSetUser } = useContext(GlobalContext);
     const navigate = useNavigate();
-    const [stars, setStars] = useState(1);
+    const [stars, setStars] = useState(0);
 
     const {values, changeHandler, onSubmit} = useForm({
         [ReviewFromKeys.Text]: '',
@@ -39,7 +39,7 @@ export const CreateReview = ({user}) => {
         
         await OnCreateReviewSubmit(values);
 
-        values[ReviewFromKeys.Rating] = 1;
+        values[ReviewFromKeys.Rating] = 0;
         values[ReviewFromKeys.Text] = '';
         setStars(1);
     

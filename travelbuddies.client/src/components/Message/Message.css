@@ -62,6 +62,10 @@
     object-fit: cover;
 }
 
+.message-creator-name{
+    font-size: 10px;
+}
+
 .message-creator-info img:hover{
     cursor: pointer;
 }
