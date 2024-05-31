@@ -1,17 +1,17 @@
 ﻿namespace TravelBuddies.Application.Post.Commands.CreatePost
 {
-    using MediatR;
-    using Microsoft.AspNetCore.Identity;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using TravelBuddies.Application.Common.Interfaces.Stripe;
-    using TravelBuddies.Application.Common.Exceptions.NotFound;
-    using TravelBuddies.Domain.Entities;
-    using TravelBuddies.Domain.Enums;
-    using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;
-    using TravelBuddies.Application.Common.Interfaces.Repository;
+	using MediatR;
+	using Microsoft.AspNetCore.Identity;
+	using System.Threading;
+	using System.Threading.Tasks;
+	using TravelBuddies.Application.Common.Interfaces.Stripe;
+	using TravelBuddies.Application.Common.Exceptions.NotFound;
+	using TravelBuddies.Domain.Entities;
+	using TravelBuddies.Domain.Enums;
+	using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;
+	using TravelBuddies.Application.Common.Interfaces.Repository;
 
-    public class CreatePostHandler : BaseHandler, IRequestHandler<CreatePostCommand, Post>
+	public class CreatePostHandler : BaseHandler, IRequestHandler<CreatePostCommand, Post>
 	{
 		private readonly IStripeService _stripeService;
 
@@ -70,12 +70,15 @@
 				CreatedOn = DateTime.Now,
 			};
 
-			if(post.PaymentType == PaymentType.Card || post.PaymentType == PaymentType.CashAndCard)
+
+
+			await _repository.AddAsync(post);
+
+			if (post.PaymentType == PaymentType.Card || post.PaymentType == PaymentType.CashAndCard)
 			{
 				post.PaymentLink = _stripeService.CreateProduct(post);
 			}
 
-			await _repository.AddAsync(post);
 			await _repository.SaveChangesAsync();
 
 			return await Task.FromResult(post);

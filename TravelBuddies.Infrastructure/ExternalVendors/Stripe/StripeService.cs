@@ -10,8 +10,7 @@
 		{
 			var createProductOptions = new ProductCreateOptions
 			{
-				Id = post.Id.ToString(),
-				Name = $"{post.Id} - {post.Creator.Email}",
+				Name = $"{post.Id} - {post.Creator.Email} - {post.DateAndTime}",
 				DefaultPriceData = new ProductDefaultPriceDataOptions
 				{
 					UnitAmount = (long)(post.PricePerSeat * 100),

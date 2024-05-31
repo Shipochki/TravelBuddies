@@ -18,10 +18,12 @@ import { GlobalContext } from "../../utils/contexts/GlobalContext";
 import { GetVehicleByOwnerId } from "../../services/VehicleService";
 import { GetAllCities } from "../../services/CityService";
 import {
+  Alert,
   Box,
   FormControl,
   InputLabel,
   NativeSelect,
+  Snackbar,
   TextField,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -105,6 +107,8 @@ export const CreatePost = () => {
       const data = await GetAllGroupByUserId(localStorage.userId);
       OnSetGroups(data);
 
+      HandleAlertOpen();
+
       navigate("/myPosts");
     }
   };
@@ -174,6 +178,19 @@ export const CreatePost = () => {
     setIsBaggage(!isBaggage);
     values[CreatePostFromKeys.Baggage] = !isBaggage;
     changeHandler;
+  };
+
+  const [alertOpen, setAlertOpen] = useState(false);
+
+  const HandleAlertOpen = () => {
+    setAlertOpen(true);
+  };
+
+  const HandleAlerClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setAlertOpen(false);
   };
 
   if (loading) {
@@ -419,6 +436,20 @@ export const CreatePost = () => {
                   Add
                 </button>
               </form>
+              <Snackbar
+                open={alertOpen}
+                autoHideDuration={6000}
+                onClose={HandleAlerClose}
+              >
+                <Alert
+                  onClose={HandleAlerClose}
+                  severity="success"
+                  variant="filled"
+                  sx={{ width: "100%" }}
+                >
+                  Succesfully added post!
+                </Alert>
+              </Snackbar>
             </>
           ) : (
             <NoVehicle />

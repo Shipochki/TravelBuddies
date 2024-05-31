@@ -21,6 +21,7 @@
 			mailMessage.To.Add(reciverEmail);
 			mailMessage.Subject = subject;
 			mailMessage.Body = body;
+            mailMessage.IsBodyHtml = true;
 
 			smtpClient.SendMailAsync(mailMessage).Wait();
 		}

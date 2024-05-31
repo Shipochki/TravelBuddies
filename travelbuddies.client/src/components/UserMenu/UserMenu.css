@@ -30,12 +30,10 @@
 
   .menuLines{
     border: black;
-    max-width: 40px;
-    max-height: 40px;
+    width: 40px;
+    height: 40px;
     border-radius: 3vw;
     object-fit: cover;
-    min-width: 30px;
-    min-height: 30px;
 }
 
 .menuLines hr{
