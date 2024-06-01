@@ -22,7 +22,8 @@
 
 		public async Task<Task> Handle(DeleteGroupCommand request, CancellationToken cancellationToken)
 		{
-			Group? group = await _repository.GetByIdAsync<Group>(request.Id);
+			Group? group = await _repository
+				.GetByIdAsync<Group>(request.Id);
 
 			if (group == null)
 			{
@@ -30,7 +31,8 @@
 					string.Format(GroupNotFoundMessage, request.Id));
 			}
 
-			ApplicationUser? user = await _userManager.FindByIdAsync(request.CreatorId);
+			ApplicationUser? user = await _userManager
+				.FindByIdAsync(request.CreatorId);
 
 			if(user == null)
 			{

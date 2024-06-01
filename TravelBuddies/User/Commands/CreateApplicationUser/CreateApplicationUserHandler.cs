@@ -6,6 +6,7 @@
     using TravelBuddies.Domain.Common;
     using TravelBuddies.Domain.Entities;
     using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;
+	using static TravelBuddies.Application.Common.MailMessages.MailMessages;
     using TravelBuddies.Application.Common.Interfaces.AzureStorage;
     using TravelBuddies.Application.Common.Interfaces.Repository;
 	using TravelBuddies.Application.Common.Exceptions.BadRequest;
@@ -58,8 +59,10 @@
 
 			await _userManager.AddToRoleAsync(applicationUser, ApplicationRoles.Client);
 
-			string body = _mailSender.GenerateRegistrationEmailMessage($"{applicationUser.FirstName} {applicationUser.LastName}");
-			_mailSender.SendMessage("Succesful register", body, applicationUser.Email);
+			
+			await _mailSender.SendMessage("Succesful register"
+				, string.Format(SuccesfullRegisterMessage, applicationUser.UserName)
+				, new List<string>() { applicationUser.Email });
 
 			return Task.CompletedTask;
 		}

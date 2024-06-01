@@ -22,7 +22,8 @@
 
 		public async Task<Task> Handle(UpdateMessageCommand request, CancellationToken cancellationToken)
 		{
-			Message? message = await _repository.GetByIdAsync<Message>(request.Id);
+			Message? message = await _repository
+				.GetByIdAsync<Message>(request.Id);
 
 			if (message == null)
 			{

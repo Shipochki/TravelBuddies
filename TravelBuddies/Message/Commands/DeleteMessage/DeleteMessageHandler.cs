@@ -21,7 +21,8 @@
 
 		public async Task<Task> Handle(DeleteMessageCommand request, CancellationToken cancellationToken)
 		{
-			Message? message = await _repository.GetByIdAsync<Message>(request.MessageId);
+			Message? message = await _repository
+				.GetByIdAsync<Message>(request.MessageId);
 
 			if (message == null)
 			{
@@ -29,7 +30,8 @@
 					string.Format(MessageNotFoundMessage, request.MessageId));
 			}
 
-			ApplicationUser? user = await _userManager.FindByIdAsync(request.CreatorId);
+			ApplicationUser? user = await _userManager
+				.FindByIdAsync(request.CreatorId);
 
 			if (user == null)
 			{
@@ -37,7 +39,8 @@
 					string.Format(ApplicationUserNotFoundMessage, request.CreatorId));
 			}
 
-			Group? group = await _repository.GetByIdAsync<Group>(message.GroupId);
+			Group? group = await _repository
+				.GetByIdAsync<Group>(message.GroupId);
 
 			if (group == null)
 			{

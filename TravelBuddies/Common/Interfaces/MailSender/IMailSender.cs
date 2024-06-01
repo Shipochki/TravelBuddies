@@ -2,11 +2,7 @@
 {
     public interface IMailSender
     {
-        public void SendMessage(string subject, string body, string reciverEmail);
-
-        public string GenerateRegistrationEmailMessage(string userName);
-
-        public string GenretateCompletePostMessage(string userName, string paymentLink);
+        public Task SendMessage(string subject, string body, List<string> recivers);
 
 	}
 }

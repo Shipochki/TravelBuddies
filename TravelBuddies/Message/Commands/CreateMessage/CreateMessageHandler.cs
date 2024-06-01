@@ -23,7 +23,8 @@
 
 		public async Task<Message> Handle(CreateMessageCommand request, CancellationToken cancellationToken)
 		{
-			ApplicationUser? creator = await _userManager.FindByIdAsync(request.CreatorId);
+			ApplicationUser? creator = await _userManager
+				.FindByIdAsync(request.CreatorId);
 
 			if (creator == null)
 			{
@@ -32,8 +33,7 @@
 			}
 
 			Group? group = await _repository
-				.All<Group>(g => g.Id == request.GroupId)
-				.FirstOrDefaultAsync();
+				.FirstOrDefaultAsync<Group>(g => g.Id == request.GroupId);
 
 			if (group == null)
 			{
@@ -42,8 +42,7 @@
 			}
 
 			UserGroup? userGroup = await _repository
-				.All<UserGroup>(u => u.UserId == creator.Id)
-				.FirstOrDefaultAsync();
+				.FirstOrDefaultAsync<UserGroup>(u => u.UserId == creator.Id);
 
 			if(userGroup == null)
 			{

@@ -20,7 +20,8 @@
 
 		public async Task<Group> Handle(CreateGroupCommand request, CancellationToken cancellationToken)
 		{
-			ApplicationUser? creator = await _userManager.FindByIdAsync(request.CreatorId);
+			ApplicationUser? creator = await _userManager
+				.FindByIdAsync(request.CreatorId);
 
 			if (creator == null)
 			{
@@ -28,7 +29,8 @@
 					string.Format(ApplicationUserNotFoundMessage, request.CreatorId));
 			}
 
-			Post? post = await _repository.GetByIdAsync<Post>(request.PostId);
+			Post? post = await _repository
+				.GetByIdAsync<Post>(request.PostId);
 
 			if (post == null)
 			{
@@ -47,6 +49,7 @@
 
 			await _repository.AddAsync(group);
 			await _repository.SaveChangesAsync();
+
 			return await Task.FromResult(group);
 		}
 	}

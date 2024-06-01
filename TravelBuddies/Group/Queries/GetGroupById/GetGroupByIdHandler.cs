@@ -22,7 +22,8 @@
 
 		public async Task<Group> Handle(GetGroupByIdQuery request, CancellationToken cancellationToken)
 		{
-			ApplicationUser? user = await _userManager.FindByIdAsync(request.UserId);
+			ApplicationUser? user = await _userManager
+				.FindByIdAsync(request.UserId);
 
 			if (user == null)
 			{
@@ -45,10 +46,11 @@
 				.Include(g => g.Creator)
 				.Include(g => g.UsersGroups)
 				.ThenInclude(u => u.User)
+					.Where(u => u.IsDeleted == false)
 				.Include(g => g.Messages
 					.Where(m => m.IsDeleted == false))
-				.ThenInclude(m => m.Creator)
-				.FirstOrDefaultAsync(g => g.Id == request.GroupId);
+					.ThenInclude(m => m.Creator)
+				.FirstOrDefaultAsync(g => g.Id == request.GroupId && g.IsDeleted == false);
 
 			if (group == null)
 			{

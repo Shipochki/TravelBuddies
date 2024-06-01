@@ -30,7 +30,9 @@
                 _loaded.Day + 1
                 ) < DateTime.Now)
             {
-                _cities = await _repository.All<City>().ToListAsync();
+                _cities = await _repository
+                    .All<City>().ToListAsync();
+
                 _loaded = DateTime.Now;
             }
 

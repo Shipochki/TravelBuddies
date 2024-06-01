@@ -5,6 +5,7 @@
 	using System.Threading;
 	using TravelBuddies.Domain.Entities;
 	using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;
+	using static TravelBuddies.Application.Common.MailMessages.MailMessages;
 	using TravelBuddies.Application.Common.Interfaces.Repository;
 	using TravelBuddies.Application.Common.Exceptions.NotFound;
 	using TravelBuddies.Application.Common.Exceptions.Forbidden;
@@ -67,17 +68,11 @@
 					string.Format(GroupNotFoundMessage, post.GroupId));
 			}
 
-			for (int i = 0; i < group.UsersGroups.Count; i++)
-			{
-				UserGroup userGroup = group.UsersGroups[i];
-
-				if(userGroup.UserId != group.CreatorId)
-				{
-					string body = _mailSender.GenretateCompletePostMessage($"{userGroup.User.FirstName} {userGroup.User.LastName}", post.PaymentLink);
-					_mailSender.SendMessage("Complete trip", body, userGroup.User.Email);
-				}
-
-			}
+			await _mailSender.SendMessage("Complete Trip"
+				, string.Format(CompletePostMessage, "Buddy", "Buddy", post.PaymentLink)
+				, group.UsersGroups
+					.Where(ug => ug.UserId != post.CreatorId)
+					.Select(ug => ug.User.Email).ToList());
 		}
 	}
 }
