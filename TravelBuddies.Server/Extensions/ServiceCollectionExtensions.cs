@@ -23,25 +23,26 @@
 
 	public static class ServiceCollectionExtensions
 	{
-		public static void AddServices(this WebApplicationBuilder builder)
+		public static void SetUpApplicationBuilder(this WebApplicationBuilder builder)
 		{
 			var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 			builder.Services.AddDbContext<TravelBuddiesDbContext>(options =>
 				options.UseSqlServer(connectionString));
 
-			builder.Services.SetupMediatR();
-			builder.Services.SetupIdentity();
-			builder.Services.AddScopedServices();
-			builder.Services.PolicyConfigure();
-			builder.Services.CorsesConfigure();
-			builder.Services.AddJwtAuthentication(builder.Configuration);
-			builder.Services.AddGlobalExceptionHandler();
+			builder.Services.ConfigureMediatR();
+			builder.Services.ConfigureIdentity();
+			builder.Services.ConfigureScopedServices();
+			builder.Services.ConfigurePolicy();
+			builder.Services.ConfigureCorses();
+			builder.Services.ConfigureJwtAuthentication(builder.Configuration);
+			builder.Services.ConfigureGlobalExceptionHandler();
 			builder.Services.ConfigureApiBehavior();
+			builder.Services.ConfigureSwagger();
 
 			StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
 		}
 
-		private static IServiceCollection AddScopedServices(this IServiceCollection services)
+		private static IServiceCollection ConfigureScopedServices(this IServiceCollection services)
 		{
 			services.AddScoped<UserManager<ApplicationUser>>();
 			services.AddScoped<IRepository, Repository>();
@@ -53,7 +54,7 @@
 			return services;
 		}
 
-		private static IServiceCollection AddGlobalExceptionHandler(this IServiceCollection services)
+		private static IServiceCollection ConfigureGlobalExceptionHandler(this IServiceCollection services)
 		{
 			services.AddControllers(options =>
 			{
@@ -73,7 +74,7 @@
 			return services;
 		}
 
-		private static IServiceCollection SetupMediatR(this IServiceCollection services)
+		private static IServiceCollection ConfigureMediatR(this IServiceCollection services)
 		{
 			services.AddMediatR(cf 
 				=> cf.RegisterServicesFromAssembly(typeof(BaseHandler).Assembly));
@@ -81,7 +82,7 @@
 			return services;
 		}
 
-		private static IServiceCollection SetupIdentity(this IServiceCollection services)
+		private static IServiceCollection ConfigureIdentity(this IServiceCollection services)
 		{
 			services
 				.AddIdentity<ApplicationUser, IdentityRole>(options =>
@@ -92,7 +93,7 @@
 			return services;
 		}
 
-		private static IServiceCollection CorsesConfigure(this IServiceCollection service)
+		private static IServiceCollection ConfigureCorses(this IServiceCollection service)
 		{
 			service.AddCors(options =>
 			{
@@ -105,6 +106,15 @@
 			});
 
 			return service;
+		}
+
+		private static IServiceCollection ConfigureSwagger(this IServiceCollection services)
+		{
+			// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+			services.AddEndpointsApiExplorer();
+			services.AddSwaggerGen();
+
+			return services;
 		}
 	}
 }

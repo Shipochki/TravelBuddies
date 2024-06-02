@@ -46,7 +46,6 @@
 				.Include(g => g.Creator)
 				.Include(g => g.UsersGroups)
 				.ThenInclude(u => u.User)
-					.Where(u => u.IsDeleted == false)
 				.Include(g => g.Messages
 					.Where(m => m.IsDeleted == false))
 					.ThenInclude(m => m.Creator)

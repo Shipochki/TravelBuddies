@@ -147,6 +147,7 @@
     .group-messages{
         width: 90%;
         padding: 3vw 1vw;
+        row-gap: 40px;
     }
 }
 

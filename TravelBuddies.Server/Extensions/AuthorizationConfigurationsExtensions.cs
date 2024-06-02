@@ -4,7 +4,7 @@
 
     public static class AuthorizationConfigurationsExtensions
     {
-        public static IServiceCollection PolicyConfigure(this IServiceCollection service)
+        public static IServiceCollection ConfigurePolicy(this IServiceCollection service)
         {
             service.AddAuthorization(options =>
             {

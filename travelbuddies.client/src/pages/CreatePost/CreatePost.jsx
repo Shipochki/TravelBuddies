@@ -431,6 +431,30 @@ export const CreatePost = () => {
                     </FormControl>
                   </Box>
                 </div>
+                {/* {(values[CreatePostFromKeys.PaymentType] == 1 ||
+                  values[CreatePostFromKeys.PaymentType] == 2) && (
+                  <div className="create-post-payment-provider">
+                    <Box sx={{ minWidth: 120 }}>
+                    <FormControl fullWidth>
+                      <InputLabel variant="standard" htmlFor="paymentType">
+                        Choose a Payment type
+                      </InputLabel>
+                      <NativeSelect
+                        value={values[CreatePostFromKeys.PaymentType]}
+                        onChange={changeHandler}
+                        inputProps={{
+                          name: "paymentType",
+                          id: "paymentType",
+                        }}
+                      >
+                        <option value={0}>Cash</option>
+                        <option value={1}>Card</option>
+                        <option value={2}>Cash and Card</option>
+                      </NativeSelect>
+                    </FormControl>
+                  </Box>
+                  </div>
+                )} */}
 
                 <button className="create-post-btn-add" type="submit">
                   Add

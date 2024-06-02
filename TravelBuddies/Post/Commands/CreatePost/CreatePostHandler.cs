@@ -27,7 +27,8 @@
 
 		public async Task<Post> Handle(CreatePostCommand request, CancellationToken cancellationToken)
 		{
-			ApplicationUser? creator = await _userManager.FindByIdAsync(request.CreatorId);
+			ApplicationUser? creator = await _userManager
+				.FindByIdAsync(request.CreatorId);
 
 			if (creator == null)
 			{
@@ -35,7 +36,8 @@
 					string.Format(ApplicationUserNotFoundMessage, request.CreatorId));
 			}
 
-			City? fromDestination = await _repository.GetByIdAsync<City>(request.FromDestinationCityId);
+			City? fromDestination = await _repository
+				.GetByIdAsync<City>(request.FromDestinationCityId);
 
 			if (fromDestination == null)
 			{
@@ -43,7 +45,8 @@
 					string.Format(CityNotFoundMessage, request.FromDestinationCityId));
 			}
 
-			City? toDestination = await _repository.GetByIdAsync<City>(request.ToDestinationCityId);
+			City? toDestination = await _repository
+				.GetByIdAsync<City>(request.ToDestinationCityId);
 
 			if (toDestination == null)
 			{
@@ -70,15 +73,12 @@
 				CreatedOn = DateTime.Now,
 			};
 
-
-
-			await _repository.AddAsync(post);
-
 			if (post.PaymentType == PaymentType.Card || post.PaymentType == PaymentType.CashAndCard)
 			{
 				post.PaymentLink = _stripeService.CreateProduct(post);
 			}
 
+			await _repository.AddAsync(post);
 			await _repository.SaveChangesAsync();
 
 			return await Task.FromResult(post);
