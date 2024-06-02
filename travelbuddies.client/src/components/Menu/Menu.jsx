@@ -8,8 +8,12 @@ import {
   faParagraph,
   faStar,
 } from "@fortawesome/free-solid-svg-icons";
+import StarIcon from "@mui/icons-material/Star";
+import BadgeIcon from "@mui/icons-material/Badge";
+import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+import FeedIcon from '@mui/icons-material/Feed';
 import { useState } from "react";
-import { Tooltip } from "@mui/material";
+import { Button, Tooltip } from "@mui/material";
 
 export const Menu = () => {
   const [driverVisable, setDriverVisable] = useState(true);
@@ -25,59 +29,38 @@ export const Menu = () => {
 
   return (
     <div id="left-menu-main" className="left-menu-main">
-      <div className="reviews-link">
-        <div className="reviews-link-menu">
-          <h4>{<FontAwesomeIcon icon={faStar} />} Review</h4>
-          <Tooltip className="review-bars" title="Review links">
-            <FontAwesomeIcon
-              className="menu-driver-bars"
-              onClick={OnSetReviewVisable}
-              icon={faBars}
-            />
-          </Tooltip>
-        </div>
-        {reviewVisable && (
-          <Link
-            to={`/reviews?reciverId=${localStorage.userId}&page=1&pageCount=10`}
-          >
-            My Reviews
+      <div className="review-button">
+        <Link
+          className="btn-link"
+          to={`/reviews?reciverId=${localStorage.userId}&page=1&pageCount=10`}
+        >
+          <StarIcon />
+          <p>Review</p>
+        </Link>
+      </div>
+      {localStorage.role == "client" ? (
+        <div className="becomedriver-btn-link">
+          <Link className="btn-link" to={`/becomeDriver`}>
+            <BadgeIcon />
+            <p>Become Driver</p>
           </Link>
-        )}
-      </div>
-      <div className="driver-links">
-        <div className="driver-links-menu">
-          <h4>{<FontAwesomeIcon icon={faIdCard} />} Driver</h4>
-          <Tooltip className="driver-bars" title="Driver links">
-            <FontAwesomeIcon
-              className="menu-driver-bars"
-              onClick={OnSetDriverVisable}
-              icon={faBars}
-            />
-          </Tooltip>
         </div>
-        {driverVisable && (
-          <>
-            {localStorage.role == "client" && (
-              <Link to={"/becomeDriver"}>Become Driver</Link>
-            )}
-            {localStorage.role == "driver" && (
-              <>
-                <div className="vehicle-links">
-                  <h5>{<FontAwesomeIcon icon={faCarSide} />} Vehicle</h5>
-                  <Link to={"/myVehicle"}>My Vehicle</Link>
-                  <Link to={"/createVehicle"}>Add Vehicle</Link>
-                  <Link to={"/editVehicle"}>Edit Vehicle</Link>
-                </div>
-                <div className="post-links">
-                  <h5>{<FontAwesomeIcon icon={faParagraph} />} Post</h5>
-                  <Link to={"/myPosts"}>My Posts</Link>
-                  <Link to={"/createPost"}>Add Post</Link>
-                </div>
-              </>
-            )}
-          </>
-        )}
-      </div>
+      ) : (
+        <>
+        <div className="vehicle-btn-link">
+          <Link className="btn-link" to={`/vehicleMenu`}>
+            <DirectionsCarIcon />
+            <p>Vehicle</p>
+          </Link>
+        </div>
+        <div className="post-btn-link">
+          <Link className="btn-link" to={`/postMenu`}>
+            <FeedIcon />
+            <p>Post</p>
+          </Link>
+        </div>
+        </>
+      )}
     </div>
   );
 };

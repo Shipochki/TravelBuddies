@@ -53,7 +53,7 @@ export const UserMenu = () => {
                     </Button>
                 </Tooltip>
             ): (
-                <Tooltip title="User settings">
+                <Tooltip title="Profile settings">
                     <Button sx={{
                         borderRadius: '32px'
                     }}>

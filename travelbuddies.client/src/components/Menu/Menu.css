@@ -7,119 +7,37 @@
     flex-direction: column;
     align-items: center;
     top: 6vw;
-    width: 17vw;
     background: #F5F6F7;
     color: #8D949E;
     height: 100vh;
     padding: 1vw;
     z-index: 1;
-}
-
-.reviews-link{
-    display: flex;
-    flex-direction: column;
-    font-size: 18px;
-    letter-spacing: 0.8px;
-    width: 100%;
-    padding: 2vw 0;
-    border-bottom: 2px solid lightgray;
-}
-
-.reviews-link-menu{
-    display: flex;
-    justify-content: space-between;
-    width: 70%;
-}
-
-.driver-links{
-    display: flex;
-    flex-direction: column;
-    font-size: 18px;
-    letter-spacing: 0.8px;
-    width: 100%;
-    padding: 2vw 0;
-    border-bottom: 2px solid lightgray;
-    align-items: flex-start;
-    row-gap: 10px;
-}
-
-.driver-links-menu{
-    display: flex;
-    justify-content: space-between;
-    width: 70%;
-}
-
-.vehicle-links{
-    display: flex;
-    flex-direction: column;
-    font-size: 18px;
-    letter-spacing: 0.8px;
-    width: 100%;
-    row-gap: 5px;
-}
-
-.post-links{
-    display: flex;
-    flex-direction: column;
-    font-size: 18px;
-    letter-spacing: 0.8px;
-    width: 100%;
-    row-gap: 5px;
-}
-
-.left-menu-main div h4{
-    padding-left: 1vw;
-    color: #2979ff;;
-}
-
-.left-menu-main div h5{
-    padding-left: 1.5vw;
-    color: #2979ff;
-    font-size: 18px;
-    margin: 0;
-}
-
-.reviews-link a{
-    text-decoration: none;
-    color: black;
-    width: 100%;
-    padding-left: 2vw;
-    height: 2vw;
-    border-radius: 8px;
-    margin-top: 10px;
-}
-
-.driver-links a{
-    text-decoration: none;
-    color: black;
-    width: 100%;
-    padding-left: 2vw;
-    height: 2vw;
-    border-radius: 8px;
-}
-
-.menu-driver-bars{
-    align-self: center;
-    height: 22px;
-    color: #2979ff;
-}
-
-.menu-driver-bars:hover{
-    cursor: pointer;
-    background-color: white;
-}
-
-.vehicle-links a{
-    padding-left: 3vw;
-}
-
-.post-links a{
-    padding-left: 3vw;
+    min-width: 6vw;
 }
 
 .left-menu-main div a:hover{
     background-color: white;
     cursor: pointer;  
+}
+
+.left-menu-main div{
+    min-width: 6vw;
+}
+
+.btn-link{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #2979ff;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: large;
+}
+
+.btn-link svg{
+    width: 25px;
+    height: 25px;
 }
 
 @media screen and (max-width: 1024px) {

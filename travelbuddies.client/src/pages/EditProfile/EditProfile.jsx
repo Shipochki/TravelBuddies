@@ -9,6 +9,7 @@ import { Fab, TextField } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { EditProfilePicture } from "../../components/EditProfilePicture/EditProfilePicture";
 import { useForm } from "../../utils/hooks/useForm";
+import profileImg from '../../utils/images/blank-profile-picture-973460_960_720.png'
 
 const EditProfileFromKeys = {
   FirstName: "firstName",
@@ -59,7 +60,7 @@ export const EditProfile = () => {
         <h2>Edit Profile</h2>
       </div>
       <div className="edit-profile-content">
-        <div style={{backgroundImage: `url(${localStorage.profilePictureLink})`}} className="edit-profile-img">
+        <div style={{backgroundImage: `url(${localStorage.profilePictureLink != 'undefined' ? localStorage.profilePictureLink : profileImg})`}} className="edit-profile-img">
           <Fab
             onClick={() => {
               window.document.getElementById(

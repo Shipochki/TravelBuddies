@@ -135,7 +135,7 @@ function App() {
                 <Route path="/group/:id" element={<Group group={group} />} />
                 <Route path="/profile/:id" element={<Profile user={user} />} />
                 <Route path="/editProfile" element={<EditProfile />} />
-                <Route path="/reviews/" element={<Reviews />} />
+                <Route path="/reviews" element={<Reviews />} />
                 <Route path="/createVehicle" element={<CreateVehicle />} />
                 <Route path="/editVehicle" element={<EditVehicle />} />
                 <Route path="/myVehicle" element={<MyVehicle />} />
