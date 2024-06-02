@@ -1,0 +1,74 @@
+
+.vehicle-menu{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.vehicle-menu-header{
+    height: 4vw;
+    width: 55%;
+    text-align: center;
+    align-content: center;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 1px 0 black;
+    color: #2979ff;
+}
+
+.vehicle-menu-content{
+    width: 55%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: #2979ff;
+    gap: 20px;
+    background-color: white;
+    height: 300px;
+    box-shadow: 0 0 1px 0 black;
+    border-radius: 8px;
+}
+
+.vehicle-menu a{
+    width: 30%;
+    height: 200px;
+    border: 2px solid;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #2979ff;
+    background-color: #F5F6F7;
+}
+
+.vehicle-menu a:hover{
+    cursor: pointer;
+    background-color: white;
+    width: 31%;
+    height: 220px;
+}
+
+.vehicle-menu a h3{
+    font-size: 26px;
+}
+
+.vehicle-menu a svg{
+    width: 30%;
+    height: 30%;
+}
+
+.vehicle-menu a:hover h3{
+    font-size: 28px;
+}
+
+.vehicle-menu a:hover svg{
+    width: 32%;
+    height: 32%;
+}
