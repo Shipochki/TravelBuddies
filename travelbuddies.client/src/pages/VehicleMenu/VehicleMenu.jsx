@@ -4,8 +4,25 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
 import backgroundImg from "../../utils/images/white-background-with-blue-geometric-and-white-line-pattern-free-vector.jpg";
+import { useEffect, useRef, useState } from "react";
+import { Loading } from "../Loading/Loading";
 
 export const VehicleMenu = () => {
+  const [loading, setLoading] = useState(true);
+
+  const intervalRef = useRef(null);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false); // Set loading to false after data is fetched
+    }, 500);
+    return () => clearInterval(intervalRef.current);
+  }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <div className="vehicle-menu">
         <img className="demo-bg" src={backgroundImg} />

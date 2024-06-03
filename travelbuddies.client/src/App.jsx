@@ -33,6 +33,7 @@ import { EditPost } from "./pages/EditPost/EditPost";
 import { EditProfile } from "./pages/EditProfile/EditProfile";
 import { BottomMenu } from "./components/BottomNavigation/BottomMenu";
 import { VehicleMenu } from "./pages/VehicleMenu/VehicleMenu";
+import { PostMenu } from "./pages/PostMenu/PostMenu";
 
 function App() {
   const navigate = useNavigate();
@@ -145,6 +146,7 @@ function App() {
                 <Route path="/badRequest" element={<BadRequest />} />
                 <Route path="/editPost/:id" element={<EditPost />} />
                 <Route path="/vehicleMenu" element={<VehicleMenu />} />
+                <Route path="/postMenu" element={<PostMenu />} />
               </>
             ) : (
               <>

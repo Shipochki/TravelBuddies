@@ -41,7 +41,7 @@ export const CreateReview = ({user}) => {
 
         values[ReviewFromKeys.Rating] = 0;
         values[ReviewFromKeys.Text] = '';
-        setStars(1);
+        setStars(0);
     
         OnSetUser(user.id);
     }
@@ -61,8 +61,11 @@ export const CreateReview = ({user}) => {
                     name={[ReviewFromKeys.Text]}
                     value={values[ReviewFromKeys.Text]}
                     onChange={changeHandler}
+                    maxLength={2000}
                 />
-                <button><FontAwesomeIcon icon={faPlus}/> Add a review</button>
+                <button
+                disabled={(values[ReviewFromKeys.Text] == '' || stars == 0)}
+                ><FontAwesomeIcon icon={faPlus}/> Add a review</button>
             </form>
         </div>
     )

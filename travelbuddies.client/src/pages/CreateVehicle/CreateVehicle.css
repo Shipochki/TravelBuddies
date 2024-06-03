@@ -17,6 +17,7 @@
     align-items: center;
     row-gap: 2vw;
     padding: 8vw;
+    position: relative;
 }
 
 .create-vehicle-header{
@@ -210,6 +211,7 @@
     align-items: center;
     justify-content: center;
     row-gap: 20px;
+    position: relative;
 }
 
 .allready-have-vehicle h3{

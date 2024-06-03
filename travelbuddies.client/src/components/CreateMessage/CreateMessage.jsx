@@ -22,6 +22,7 @@ export const CreateMessage = ({groupId}) => {
 
     const onCreateSubmit = async (id) => {
         values[MessageFromKeys.GroupId] = id;
+
         await OnCreateMessageSubmit(values);
 
         values[MessageFromKeys.Text] = '';
@@ -42,8 +43,10 @@ export const CreateMessage = ({groupId}) => {
                         onChange={changeHandler}
                         required
                         autoComplete='off'
+                        maxLength={5000}
                         />
                     <Button type='submit'
+                    disabled={values[MessageFromKeys.Text] == ''}
                     variant="contained" endIcon={<SendIcon />}>
                         Send
                     </Button>
