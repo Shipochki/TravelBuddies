@@ -22,9 +22,9 @@ import HomeIcon from "@mui/icons-material/Home";
 import StarIcon from "@mui/icons-material/Star";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import PostAddIcon from '@mui/icons-material/PostAdd';
+import PostAddIcon from "@mui/icons-material/PostAdd";
 import EditIcon from "@mui/icons-material/Edit";
-import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import DynamicFeedIcon from "@mui/icons-material/DynamicFeed";
 import { Menu } from "../Menu/Menu";
 import { useState } from "react";
 
@@ -183,13 +183,15 @@ export const Header = () => {
       </div>
       <div className="navigation">
         <ul>
-          <li className="navigation-home">
-            <Link to={"/"}>Home</Link>
-          </li>
           {!localStorage.accessToken && (
-            <li>
-              <Link to={"/about"}>About</Link>
-            </li>
+            <>
+              <li className="navigation-home">
+                <Link to={"/"}>Home</Link>
+              </li>
+              <li>
+                <Link to={"/about"}>About</Link>
+              </li>
+            </>
           )}
           <li>
             {localStorage.accessToken ? (
