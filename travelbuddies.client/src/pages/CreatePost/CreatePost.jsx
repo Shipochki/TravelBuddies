@@ -29,6 +29,13 @@ import {
 import { useNavigate } from "react-router-dom";
 import { Loading } from "../Loading/Loading";
 import { GetAllGroupByUserId } from "../../services/GroupService";
+import {
+  DatePicker,
+  LocalizationProvider,
+  TimePicker,
+} from "@mui/x-date-pickers";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 const CreatePostFromKeys = {
   FromDestination: "fromDestinationCityId",
@@ -76,8 +83,8 @@ export const CreatePost = () => {
     [CreatePostFromKeys.FreeSeats]: 0,
     [CreatePostFromKeys.Baggage]: false,
     [CreatePostFromKeys.Pets]: false,
-    [CreatePostFromKeys.Date]: "",
-    [CreatePostFromKeys.Time]: "",
+    [CreatePostFromKeys.Date]: null,
+    [CreatePostFromKeys.Time]: null,
     [CreatePostFromKeys.PaymentType]: 0,
     [CreatePostFromKeys.Currency]: "EUR",
   });
@@ -100,6 +107,17 @@ export const CreatePost = () => {
     values[CreatePostFromKeys.PricePerSeat] = Number(
       values[CreatePostFromKeys.PricePerSeat]
     );
+
+    if (values[CreatePostFromKeys.Date]) {
+      let date = new Date(values[CreatePostFromKeys.Date]);
+      values[CreatePostFromKeys.Date] = date.toISOString();
+    }
+
+    if (values[CreatePostFromKeys.Time]) {
+      let time = new Date(values[CreatePostFromKeys.Time]);
+      values[CreatePostFromKeys.Time] = time.toTimeString().split(' ')[0];
+    }
+
 
     const isSuccess = await OnCreatePostSubmit(values);
 
@@ -153,8 +171,12 @@ export const CreatePost = () => {
   };
 
   const handleDate = (date) => {
-    console.log(date);
     values[CreatePostFromKeys.Date] = date;
+    changeHandler;
+  };
+
+  const handleTime = (time) => {
+    values[CreatePostFromKeys.Time] = time;
     changeHandler;
   };
 
@@ -293,7 +315,7 @@ export const CreatePost = () => {
                   placeholder="Description...*"
                 />
                 <div className="create-post-date-time">
-                  <div className="create-post-date-time-info">
+                  {/* <div className="create-post-date-time-info">
                     <input
                       type="text"
                       id="date"
@@ -339,7 +361,21 @@ export const CreatePost = () => {
                         icon={!calendarVisible ? faCalendarDays : faCheck}
                       />
                     </button>
-                  </div>
+                  </div> */}
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DemoContainer components={["DatePicker"]}>
+                      <DatePicker
+                        label="Date of Departure"
+                        value={values[CreatePostFromKeys.Date]}
+                        onChange={(newValue) => handleDate(newValue)}
+                      />
+                      <TimePicker
+                        label="Time of Departure"
+                        value={values[CreatePostFromKeys.Time]}
+                        onChange={(newValue) => handleTime(newValue)}
+                      />
+                    </DemoContainer>
+                  </LocalizationProvider>
                 </div>
                 <div className="create-post-bools">
                   <div className="create-post-baggage">
