@@ -14,6 +14,7 @@ import {
   FormControl,
   FormControlLabel,
   InputLabel,
+  MenuItem,
   NativeSelect,
   Switch,
   TextField,
@@ -27,6 +28,7 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { styled } from "@mui/material/styles";
 import { FormikFileInput } from "../../components/FormikFileInput/FormikFileInput";
 import { FormikSwitch } from "../../components/FormikSwitch/FormikSwitch";
+import { FormikSelect } from "../../components/FormikSelect/FormikSelect";
 
 const SignupSchema = Yup.object().shape({
   brandName: Yup.string()
@@ -43,19 +45,19 @@ const SignupSchema = Yup.object().shape({
     .required("Required"),
   year: Yup.number().required("Required"),
   seatCount: Yup.number().required("Requried"),
-  // image: Yup.mixed()
-  //   .required("A file is required")
-  //   .test(
-  //     "fileSize",
-  //     "File too large",
-  //     (value) => value && value.size <= 1024 * 1024
-  //   ) // 1MB
-  //   .test(
-  //     "fileType",
-  //     "Unsupported file format",
-  //     (value) =>
-  //       value && ["image/jpeg", "image/png", "image/gif"].includes(value.type)
-  //   ),
+  image: Yup.mixed()
+    .required("A file is required")
+    .test(
+      "fileSize",
+      "File too large",
+      (value) => value && value.size <= 1024 * 1024
+    ) // 1MB
+    .test(
+      "fileType",
+      "Unsupported file format",
+      (value) =>
+        value && ["image/jpeg", "image/png", "image/gif"].includes(value.type)
+    ),
 });
 
 const VehicleFromKeys = {
@@ -123,17 +125,12 @@ export const CreateVehicle = () => {
   };
 
   const clickSubmit = async (values) => {
-    // if (values[RegisterFromKeys.Password] != repass) {
-    //   return;
-    // }
-    //e.preventDefault();
-
     const result = await OnCreateVehicleSubmit(values);
 
     if (result) {
-      alert(result);
-    } else {
       navigate(`/myVehicle`);
+    } else {
+      alert(result);
     }
   };
 
@@ -176,24 +173,17 @@ export const CreateVehicle = () => {
                   modelName: "",
                   year: 0,
                   color: "",
-                  fuel: 0,
+                  fuel: "",
                   seatCount: 0,
                   acSystem: false,
                   image: null,
                 }}
                 validationSchema={SignupSchema}
                 onSubmit={(values) => {
-                  //   if (values.image) {
-                  //     const reader = new FileReader();
-                  //     reader.onloadend = () => {
-                  //       setPreview(reader.result);
-                  //     };
-                  //     reader.readAsDataURL(values.image);
-                  //   }
                   clickSubmit(values);
                 }}
               >
-                {({ isSubmitting }) => (
+                {({ isSubmitting, setFieldValue }) => (
                   <Form>
                     <Box
                       display="grid"
@@ -255,24 +245,15 @@ export const CreateVehicle = () => {
                         />
                       </div>
                       <div className="vehicle-fuel">
-                        <Box sx={{ minWidth: 120, gridArea: "fuel" }}>
-                          <FormControl fullWidth>
-                            <InputLabel variant="standard" htmlFor="fuel">
-                              Choose a Fuel
-                            </InputLabel>
-                            <NativeSelect
-                              name="fuel"
-                              inputProps={{
-                                name: "fuel",
-                                id: "fuel",
-                              }}
-                            >
-                              <option value={0}>Diesel</option>
-                              <option value={1}>Gasoline</option>
-                              <option value={2}>Electric</option>
-                            </NativeSelect>
-                          </FormControl>
-                        </Box>
+                        <Field
+                          name="fuel"
+                          label="Choose a Fuel"
+                          component={FormikSelect}
+                        >
+                          <MenuItem value={0}>Diesel</MenuItem>
+                          <MenuItem value={1}>Gasoline</MenuItem>
+                          <MenuItem value={2}>Electric</MenuItem>
+                        </Field>
                       </div>
                       <div className="vehicle-seatcount">
                         <FormikTextField
@@ -298,6 +279,12 @@ export const CreateVehicle = () => {
                             name="image"
                             required
                             hidden
+                            onChange={(event) => {
+                              setFieldValue(
+                                "image",
+                                event.currentTarget.files[0]
+                              );
+                            }}
                           />
                         </label>
                         <span>{nameFile}</span>

@@ -13,10 +13,7 @@ export const OnCreateVehicleSubmit = async (createVehicleFromKeys) => {
     formData.append("fuel", createVehicleFromKeys.fuel);
     formData.append("seatcount", createVehicleFromKeys.seatCount);
     formData.append("acsystem", createVehicleFromKeys.acSystem);
-    formData.append(
-      "picturelink",
-      createVehicleFromKeys.image
-    );
+    formData.append("picturelink", createVehicleFromKeys.image);
 
     const response = await fetch(Url + "/create", {
       method: "POST",
@@ -29,7 +26,7 @@ export const OnCreateVehicleSubmit = async (createVehicleFromKeys) => {
 
     if (response.ok) {
       // Handle successful response
-      return response.json();
+      return true;
     } else {
       // Handle other errors
       console.error("Error:", response.statusText);
@@ -44,17 +41,16 @@ export const OnUpdateVehicleSubmit = async (updateVehicleFromKeys) => {
   try {
     const formData = new FormData();
     formData.append("id", updateVehicleFromKeys.id);
-    formData.append("brandname", updateVehicleFromKeys.brandname);
-    formData.append("modelname", updateVehicleFromKeys.modelname);
+    formData.append("brandname", updateVehicleFromKeys.brandName);
+    formData.append("modelname", updateVehicleFromKeys.modelName);
     formData.append("year", updateVehicleFromKeys.year);
     formData.append("color", updateVehicleFromKeys.color);
     formData.append("fuel", updateVehicleFromKeys.fuel);
-    formData.append("seatcount", updateVehicleFromKeys.seatcount);
-    formData.append("acsystem", updateVehicleFromKeys.acsystem);
-    formData.append(
-      "picturelink",
-      document.querySelector("#picturelink").files[0]
-    );
+    formData.append("seatcount", updateVehicleFromKeys.seatCount);
+    formData.append("acsystem", updateVehicleFromKeys.acSystem);
+    if (updateVehicleFromKeys.image) {
+      formData.append("picturelink", createVehicleFromKeys.image);
+    }
 
     const response = await fetch(Url + "/update", {
       method: "POST",
@@ -67,7 +63,7 @@ export const OnUpdateVehicleSubmit = async (updateVehicleFromKeys) => {
 
     if (response.ok) {
       // Handle successful response
-      return response.json();
+      return true;
     } else {
       // Handle other errors
       console.error("Error:", response.statusText);
@@ -100,9 +96,9 @@ export const OnDeleteVehicleSubmit = async (vehicleId) => {
     // }
 
     const options = {
-      method: 'POST',
-    }
-    await fetchWrapper(Url + `/delete/${vehicleId}`, options)
+      method: "POST",
+    };
+    await fetchWrapper(Url + `/delete/${vehicleId}`, options);
   } catch (error) {
     console.error("Error fetching create vehicle:", error);
   }
@@ -132,7 +128,7 @@ export const GetVehicleByOwnerId = async (ownerId) => {
     //   errorHandler(response.status);
     // }
 
-    return await fetchWrapper(Url + `/getvehiclebyownerid/${ownerId}`)
+    return await fetchWrapper(Url + `/getvehiclebyownerid/${ownerId}`);
   } catch (error) {
     console.error("Error fetching get vehicle by owner id:", error);
   }
