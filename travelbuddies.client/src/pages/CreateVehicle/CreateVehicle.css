@@ -134,7 +134,7 @@
     background-color: #F5F6F7;
 } */
 
-.vehicle-acsystme{
+.vehicle-acsystem{
     grid-area: acsystem;
     display: flex;
     align-items: center;
@@ -173,7 +173,7 @@
 
 .vehicle-upload span{
     display: block;
-    text-overflow: ellipsis; /* Truncate text with ellipsis */
+    text-overflow: ellipsis; 
     overflow: hidden;
     white-space: nowrap;
     width: 15vw;
