@@ -16,6 +16,10 @@
     width: 13vw;
 }
 
+.become-driver-btn{
+    font-size: 16px;
+}
+
 .left-menu-main div a:hover{
     background-color: white;
     cursor: pointer;  

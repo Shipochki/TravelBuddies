@@ -42,7 +42,7 @@ export const Menu = () => {
         <div className="becomedriver-btn-link">
           <Link className="btn-link" to={`/becomeDriver`}>
             <BadgeIcon />
-            <p>Become Driver</p>
+            <p className="become-driver-btn">Become Driver</p>
           </Link>
         </div>
       ) : (
