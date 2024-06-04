@@ -46,6 +46,7 @@ export const EditVehicle = () => {
         const data = await GetVehicleByOwnerId(localStorage.userId);
         setVehicle(data);
 
+        if(data){
         values[EditVehicleFromKeys.Id] = data.id;
         values[EditVehicleFromKeys.BrandName] = data.brandName;
         values[EditVehicleFromKeys.ModelName] = data.modelName;
@@ -53,7 +54,7 @@ export const EditVehicle = () => {
         values[EditVehicleFromKeys.SeatCount] = data.seatCount;
         values[EditVehicleFromKeys.ACSystem] = data.acSystem;
         values[EditVehicleFromKeys.Year] = data.year;
-        values[EditVehicleFromKeys.Color] = data.color;
+        values[EditVehicleFromKeys.Color] = data.color;}
       }
 
       setLoading(false);
@@ -63,15 +64,15 @@ export const EditVehicle = () => {
 
   const { values, changeHandler, onSubmit } = useForm(
     {
-      [EditVehicleFromKeys.Id]: vehicle.id,
-      [EditVehicleFromKeys.BrandName]: vehicle.brandName,
-      [EditVehicleFromKeys.ModelName]: vehicle.modelName,
-      [EditVehicleFromKeys.Fuel]: fuel[vehicle.fuel],
-      [EditVehicleFromKeys.SeatCount]: vehicle.seatCount,
+      [EditVehicleFromKeys.Id]: '',
+      [EditVehicleFromKeys.BrandName]: '',
+      [EditVehicleFromKeys.ModelName]: '',
+      [EditVehicleFromKeys.Fuel]: 0,
+      [EditVehicleFromKeys.SeatCount]: 0,
       [EditVehicleFromKeys.PictureLink]: null,
-      [EditVehicleFromKeys.ACSystem]: vehicle.acSystem,
-      [EditVehicleFromKeys.Year]: vehicle.year,
-      [EditVehicleFromKeys]: vehicle.color,
+      [EditVehicleFromKeys.ACSystem]: false,
+      [EditVehicleFromKeys.Year]: 0,
+      [EditVehicleFromKeys]: '',
     },
     OnUpdateVehicleSubmit
   );
@@ -122,7 +123,7 @@ export const EditVehicle = () => {
       {localStorage.role == "driver" ? (
         <>
           <img className="demo-bg" src={backgroundImg} />
-          {vehicle && vehicle.id ? (
+          {vehicle ? (
             <div className="create-vehicle-content">
               <div className="create-vehicle-header">
                 <h2>Edit your Vehicle</h2>

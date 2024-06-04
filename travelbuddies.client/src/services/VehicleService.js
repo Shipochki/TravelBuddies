@@ -1,4 +1,5 @@
 import { errorHandler } from "../utils/common/errorHandler";
+import { fetchWrapper } from "../utils/common/fetchWrapper";
 
 const Url = "https://localhost:7005/api/vehicle";
 
@@ -79,24 +80,29 @@ export const OnUpdateVehicleSubmit = async (updateVehicleFromKeys) => {
 
 export const OnDeleteVehicleSubmit = async (vehicleId) => {
   try {
-    const response = await fetch(Url + "/create", {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        Authorization: `Bearer ${localStorage.accessToken}`,
-        "Content-Type": "application/json",
-      },
-      body: vehicleId,
-    });
+    // const response = await fetch(Url + "/create", {
+    //   method: "POST",
+    //   mode: "cors",
+    //   headers: {
+    //     Authorization: `Bearer ${localStorage.accessToken}`,
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: vehicleId,
+    // });
 
-    if (response.ok) {
-      // Handle successful response
-      return response.json();
-    } else {
-      // Handle other errors
-      console.error("Error:", response.statusText);
-      errorHandler(response.status);
+    // if (response.ok) {
+    //   // Handle successful response
+    //   return response.json();
+    // } else {
+    //   // Handle other errors
+    //   console.error("Error:", response.statusText);
+    //   errorHandler(response.status);
+    // }
+
+    const options = {
+      method: 'POST',
     }
+    await fetchWrapper(Url + `/delete/${vehicleId}`, options)
   } catch (error) {
     console.error("Error fetching create vehicle:", error);
   }
@@ -104,27 +110,29 @@ export const OnDeleteVehicleSubmit = async (vehicleId) => {
 
 export const GetVehicleByOwnerId = async (ownerId) => {
   try {
-    const response = await fetch(Url + `/getvehiclebyownerid/${ownerId}`, {
-      method: "GET",
-      mode: "cors",
-      headers: {
-        Authorization: `Bearer ${localStorage.accessToken}`,
-        "Content-Type": "application/json",
-      },
-    });
+    // const response = await fetch(Url + `/getvehiclebyownerid/${ownerId}`, {
+    //   method: "GET",
+    //   mode: "cors",
+    //   headers: {
+    //     Authorization: `Bearer ${localStorage.accessToken}`,
+    //     "Content-Type": "application/json",
+    //   },
+    // });
 
-    if (response.ok) {
-      // Handle successful response
-      if(!response.headers.get('Content-Length')){
-        return response.json();
-      }else{
-        return {};
-      }
-    } else {
-      // Handle other errors
-      console.error("Error:", response.statusText);
-      errorHandler(response.status);
-    }
+    // if (response.ok) {
+    //   // Handle successful response
+    //   if(!response.headers.get('Content-Length')){
+    //     return response.json();
+    //   }else{
+    //     return {};
+    //   }
+    // } else {
+    //   // Handle other errors
+    //   console.error("Error:", response.statusText);
+    //   errorHandler(response.status);
+    // }
+
+    return await fetchWrapper(Url + `/getvehiclebyownerid/${ownerId}`)
   } catch (error) {
     console.error("Error fetching get vehicle by owner id:", error);
   }

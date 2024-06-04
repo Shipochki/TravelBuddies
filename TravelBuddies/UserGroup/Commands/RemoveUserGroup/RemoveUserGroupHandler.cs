@@ -9,6 +9,7 @@
     using TravelBuddies.Application.Common.Interfaces.Repository;
 	using TravelBuddies.Application.Common.Exceptions.NotFound;
 	using TravelBuddies.Application.Common.Exceptions.Forbidden;
+	using Microsoft.EntityFrameworkCore;
 
 	public class RemoveUserGroupHandler : BaseHandler, IRequestHandler<RemoveUserGroupCommand, Task>
 	{
@@ -38,7 +39,11 @@
 					string.Format(ApplicationUserNotFoundMessage, request.OwnerId));
 			}
 
-			Group? group = await _repository.GetByIdAsync<Group>(request.GroupId);
+			Group? group = await _repository
+				.All<Group>(g => g.Id == request.GroupId)
+				.Include(g => g.Post)
+				.Include(g => g.UsersGroups)
+				.FirstOrDefaultAsync();
 
 			if (group == null)
 			{
@@ -60,6 +65,12 @@
 			{
 				throw new ApplicationUserNotInGroupException(
 					string.Format(ApplicationUserNotInGroupMessage, request.UserIdForRemove, request.GroupId));
+			}
+			
+			if (group.UsersGroups.Count - 1 == 0)
+			{
+				group.IsDeleted = true;
+				group.Post.IsDeleted = true;
 			}
 
 			_repository.Delete(userGroup);

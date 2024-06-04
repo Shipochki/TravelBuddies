@@ -165,7 +165,7 @@ export const CreateVehicle = () => {
       {localStorage.role == "driver" ? (
         <>
           <img className="demo-bg" src={backgroundImg} />
-          {vehicle && !vehicle.id ? (
+          {!vehicle ? (
             <div className="create-vehicle-content">
               <div className="create-vehicle-header">
                 <h2>Add your Vehicle</h2>
