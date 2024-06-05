@@ -26,10 +26,9 @@
 			DateTime fromDate;
 			DateTime toDate;
 			List<Post> posts = await _repository
-				.All<Post>(
-				p => p.IsCompleted == false && p.IsDeleted == false &&
-				(!DateTime.TryParse(request.FromDate, out fromDate) || p.DateAndTime >= fromDate) &&
-				(!DateTime.TryParse(request.ToDate, out toDate) || p.DateAndTime <= toDate) &&
+				.All<Post>(p => p.IsCompleted == false && p.IsDeleted == false
+					&& (!DateTime.TryParse(request.FromDate, out fromDate) || p.DateAndTime >= fromDate)
+					&& (!DateTime.TryParse(request.ToDate, out toDate) || p.DateAndTime <= toDate) &&
 				p.FromDestinationCityId == request.FromDestinationCityId &&
 				p.ToDestinationCityId == request.ToDestinationCityId &&
 				(request.PriceMin == null || p.PricePerSeat >= request.PriceMin) &&

@@ -13,14 +13,15 @@
 
 	public class CreateVehicleHandler : BaseHandler, IRequestHandler<CreateVehicleCommand, Vehicle>
 	{
-		//private readonly IBlobService _blobService;
+		private readonly IBlobService _blobService;
 		public CreateVehicleHandler(
 			IRepository repository
 			, UserManager<ApplicationUser> userManager
-			, RoleManager<IdentityRole> roleManager)
+			, RoleManager<IdentityRole> roleManager
+			, IBlobService blobService)
 			: base(repository, userManager, roleManager)
 		{
-			//_blobService = blobService;
+			_blobService = blobService;
 		}
 
 		public async Task<Vehicle> Handle(CreateVehicleCommand request, CancellationToken cancellationToken)
@@ -33,8 +34,7 @@
 					string.Format(ApplicationUserNotFoundMessage, request.OwnerId));
 			}
 
-			//string pictureLink = await _blobService.UploadImageAsync(request.PictureLink);
-			string pictureLink = string.Empty;
+			string pictureLink = await _blobService.UploadImageAsync(request.PictureLink);
 
 			Vehicle vehicle = new Vehicle()
 			{

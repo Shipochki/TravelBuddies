@@ -10,7 +10,7 @@
 
 		public int CountReviews { get; set; }
 
-		public List<ReviewDto> Reviews { get; set; }
+		public List<ReviewDto>? Reviews { get; set; }
 
 		public static GetAllReviewsByReciverIdDto FromUser(ApplicationUser user)
 		{

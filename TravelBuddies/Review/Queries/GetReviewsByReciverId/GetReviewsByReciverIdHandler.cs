@@ -21,7 +21,7 @@
 		public async Task<List<Review>> Handle(GetReviewsByReciverIdQuery request, CancellationToken cancellationToken)
 		{
 			List<Review> reviews = await _repository
-				.All<Review>(r => r.IsDeleted == false && r.ReciverId == request.Id)
+				.AllReadonly<Review>(r => r.IsDeleted == false && r.ReciverId == request.Id)
 				.OrderByDescending(r => r.CreatedOn)
 				.Include(r => r.Creator)
 				.Skip((request.Page - 1) * request.PageCount)
