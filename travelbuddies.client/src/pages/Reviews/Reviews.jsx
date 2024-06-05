@@ -87,6 +87,7 @@ export const Reviews = () => {
   return (
     <div className="reviews-main">
       {/* <img className="demo-bg" src={backgroundImg} /> */}
+      {/* <div style={{backgroundImage: `url(${backgroundImg})` }}></div> */}
       <div className="reviews-content">
         <div className="reviews-content-header">
           <h2>Reviews</h2>

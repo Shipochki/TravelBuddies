@@ -13,6 +13,10 @@
     row-gap: 3vw;
 }
 
+.search-menu .demo-bg{
+    height: 99vh;
+}
+
 .search-menu-content{
     /* background: url(https://static.vecteezy.com/system/resources/previews/007/677/104/non_2x/white-background-with-blue-geometric-and-white-line-pattern-free-vector.jpg) ;
     background-size: contain;

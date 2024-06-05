@@ -15,6 +15,8 @@
     using TravelBuddies.Presentation.Extensions;
 	using TravelBuddies.Application.User.Queries.GetUserById;
 	using TravelBuddies.Application.Review.Queries.GetReviewsCountByReciverId;
+	using TravelBuddies.Presentation.DTOs.User;
+	using TravelBuddies.Application.Review.Queries.GetReviewsAvgRatingByReciverId;
 
 	[EnableCors(ApplicationCorses.AllowOrigin)]
 	[Route("api/[controller]")]
@@ -39,6 +41,7 @@
 
 			result.Reviews = reviews.Select(ReviewDto.FromReview).ToList();
 			result.CountReviews = await _mediator.Send(new GetReviewsCountByReciverIdQuery(reciverId));
+			result.Rating = await _mediator.Send(new GetReviewsAvgRatingByReciverIdQuery(reciverId));
 
 			return Ok(result);
 		}

@@ -8,6 +8,10 @@
 
 		public required string ReciverFullName { get; set; }
 
+		public string? ProfilePictureLink { get; set; }
+
+		public double? Rating { get; set; }
+
 		public int CountReviews { get; set; }
 
 		public List<ReviewDto>? Reviews { get; set; }
@@ -18,6 +22,7 @@
 			{
 				ReciverId = user.Id,
 				ReciverFullName = $"{user.FirstName} {user.LastName}",
+				ProfilePictureLink = user.ProfilePictureLink,
 			};
 		}
 	}

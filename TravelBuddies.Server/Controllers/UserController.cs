@@ -21,6 +21,7 @@
     using TravelBuddies.Presentation.Extensions;
 	using TravelBuddies.Application.User.Commands.UpdateProfilePicture;
 	using TravelBuddies.Application.User.Commands.UpdateApplicationUser;
+	using TravelBuddies.Application.Review.Queries.GetReviewsAvgRatingByReciverId;
 
 	[EnableCors(ApplicationCorses.AllowOrigin)]
 	[Route("api/[controller]")]
@@ -121,7 +122,7 @@
 
 			userDto.Reviews = reviews.Select(ReviewDto.FromReview).Take(3).ToList();
 
-			userDto.Rating = reviews.Count > 0 ? Math.Round(reviews.Select(r => r.Rating).Average(), 2) : 0;
+			userDto.Rating = await _mediator.Send(new GetReviewsAvgRatingByReciverIdQuery(id));
 
 			Vehicle? vehicle = await _mediator.Send(new GetVehicleByOwnerIdQuery(id));
 
