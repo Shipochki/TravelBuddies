@@ -1,11 +1,12 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import './About.css';
+import aboutImg from '../../utils/images/jez-timms-_Ch_onWf38o-unsplash.jpg'
 
 export const About = () => {
     return(
         <div className="about-content">
             <h3>This Is Our Story</h3>
-            <LazyLoadImage src={'https://sttravelbuddies001.blob.core.windows.net/web/jez-timms-_Ch_onWf38o-unsplash.jpg'} alt="spark" />
+            <LazyLoadImage src={aboutImg} alt="spark" />
             <p className='topic'>The Spark of Inspiration</p>
             <p className='topic-content'>It all began with a spark—an ember of 
                 inspiration ignited by our collective yearning 

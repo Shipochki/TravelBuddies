@@ -2,6 +2,9 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "./Home.css"
 import { Link } from "react-router-dom";
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import thirdLayerImg1 from '../../utils/images/austin-distel-wD1LRb9OeEo-unsplash.jpg'
+import thirdLayerImg2 from '../../utils/images/austin-kehmeier-lyiKExA4zQA-unsplash.jpg'
+import thirdLayerImg3 from '../../utils/images/girl-with-red-hat-gL3-jTs_Q7g-unsplash.jpg'
 
 export const Home = () => {
     return (
@@ -33,7 +36,7 @@ export const Home = () => {
                     <div className="third-layer-card">
                         <LazyLoadImage 
                         effect="blur"
-                        src={'https://sttravelbuddies001.blob.core.windows.net/web/austin-distel-wD1LRb9OeEo-unsplash.jpg'} alt="community" />
+                        src={thirdLayerImg1} alt="community" />
                         <h3>Community-Centric Approach</h3>
                         <p>Our application isn't just about facilitating 
                         travel plans; it's about cultivating a vibrant 
@@ -43,7 +46,7 @@ export const Home = () => {
                     <div className="third-layer-card">
                         <LazyLoadImage
                         effect="blur"
-                        src={'https://sttravelbuddies001.blob.core.windows.net/web/austin-kehmeier-lyiKExA4zQA-unsplash.jpg'} alt="Emphasis" />
+                        src={thirdLayerImg2} alt="Emphasis" />
                         <h3>Emphasis on Safety and Inclusivity</h3>
                         <p>We prioritize the safety and well-being of our 
                         users above all else, implementing robust safety 
@@ -57,7 +60,7 @@ export const Home = () => {
                     <div className="third-layer-card">
                         <LazyLoadImage
                         effect="blur"
-                        src={'https://sttravelbuddies001.blob.core.windows.net/web/girl-with-red-hat-gL3-jTs_Q7g-unsplash.jpg'} alt="Focus " />
+                        src={thirdLayerImg3} alt="Focus " />
                         <h3>Focus on Authentic Experiences</h3>
                         <p>Through cutting-edge algorithms and user-friendly 
                         interfaces, we strive to make the process of finding 

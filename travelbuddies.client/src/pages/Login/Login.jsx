@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
+import loginImg from '../../utils/images/anne-nygard-rTC5SF27jIc-unsplash.jpg'
 
 const LoginFromKeys = {
     Email: 'email',
@@ -24,7 +25,7 @@ export const Login = () => {
     return (
         <div className="login-main">
             <div id='container' className="login-content">
-                <LazyLoadImage src={'https://sttravelbuddies001.blob.core.windows.net/web/anne-nygard-rTC5SF27jIc-unsplash.jpg'} alt="" />
+                <LazyLoadImage src={loginImg} alt="" />
                 <div className='container-right'>
                     <h2>Log In</h2>
                     <form id="login" method="POST" onSubmit={onSubmit}>
