@@ -1,5 +1,4 @@
 import React from 'react';
-import { useField } from 'formik';
 import { FormControlLabel, Switch } from '@mui/material';
 
 export const FormikSwitch = ({ field, form, label, ...props }) => {

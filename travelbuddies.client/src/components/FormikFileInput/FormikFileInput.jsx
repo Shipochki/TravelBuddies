@@ -40,23 +40,6 @@ export const FormikFileInput = ({ label, ...props }) => {
           }}
         />
       )}
-      {/* <Input
-        type="file"
-        onChange={(event) => {
-          setFieldValue(field.name, event.currentTarget.files[0]);
-          if (event.currentTarget.files[0]) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-              setPreview(reader.result);
-            };
-            reader.readAsDataURL(event.currentTarget.files[0]);
-          }
-        }}
-        inputProps={{ accept: "image/*" }}
-        sx={{
-          maxWidth: "200px",
-        }}
-      /> */}
       <Input
         type="file"
         inputProps={{ accept: 'image/*' }}

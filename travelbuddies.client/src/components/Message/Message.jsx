@@ -1,8 +1,7 @@
 import "./Message.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { OnDeleteMessageSubmit } from "../../services/MessageService";
-import { GetGroupById } from "../../services/GroupService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useState } from "react";
@@ -12,7 +11,6 @@ import { GlobalContext } from "../../utils/contexts/GlobalContext";
 
 export const Message = ({ message, i, ownerId }) => {
   const { OnSetGroup } = useContext(GlobalContext);
-  const [vissable, setVissable] = useState(false);
 
   const ConfirmDelete = async (messageId) => {
     const text = `Are you sure you want to delete this message:\n ${message.text}`;

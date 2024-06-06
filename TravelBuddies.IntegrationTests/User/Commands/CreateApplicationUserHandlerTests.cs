@@ -21,7 +21,7 @@
 		public void CreateApplicationUser_WithNotSuccessfulCreation_ShouldThrowsException()
 		{
 			//Arrange
-			var handler = new CreateApplicationUserHandler(_repostiory, _userManager, _roleManager, _mailSender);
+			var handler = new CreateApplicationUserHandler(_repostiory, _userManager, _roleManager,_blobService, _mailSender);
 
 			var command = new CreateApplicationUserCommand()
 			{

@@ -83,7 +83,6 @@ export const MemberGroup = ({member, ownerId, groupId}) => {
                         <button className="ban-user-btn" onClick={ConfirmBan}>Ban<BlockIcon fontSize="8px"/></button>
                     </Box>
                 </Popper>
-            
         </div>
     )
 }

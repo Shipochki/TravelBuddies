@@ -75,12 +75,6 @@ export const UserMenu = () => {
                         <div className='navLinks'>
                             <Link to={`/profile/${localStorage.userId}`}>{<FontAwesomeIcon icon={faUser}/>} Profile</Link>
                             <Link to={'/editProfile'}>{<FontAwesomeIcon icon={faPencil}/>} Edit</Link>
-                            {/* {localStorage.role == 'client' ? (  
-                                <Link to={'/becomeDriver'}>{<FontAwesomeIcon icon={faDriversLicense}/>}Become Driver</Link>
-                            ) : ''}
-                            {localStorage.role == 'driver' ? (
-                                <Link to={'/createPost'}>{<FontAwesomeIcon icon={faPlus}/>}Add Post</Link>
-                            ) : ''} */}
                             <a onClick={() => {OnLogout()}}><FontAwesomeIcon icon={faSignOut}/> Logout</a>
                         </div>
                     </div>

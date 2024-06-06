@@ -3,15 +3,12 @@ import './Profile.css';
 import { Review } from '../../components/Review/Review';
 import { CreateReview } from '../../components/CreateReview/CreateReview';
 import { Vehicle } from '../../components/Vehicle/Vehicle';
-import { EditReview } from '../../components/EditReview/EditReview';
 import { useContext, useEffect, useState } from 'react';
-import { GetUserById } from '../../services/UserService';
 import { Link, useParams } from 'react-router-dom';
 
 import personImgOffline from '../../utils/images/blank-profile-picture-973460_960_720.png'
 import { GlobalContext } from '../../utils/contexts/GlobalContext';
 import { Loading } from '../Loading/Loading';
-import { StarGenerator } from '../../components/StarGenerator/StarGenerator';
 import { Rating } from '@mui/material';
 
 export const Profile = ({user}) => {
@@ -24,31 +21,16 @@ export const Profile = ({user}) => {
         if(!user.id || user.id != id){
             OnSetUser(id);
         }
-        // const fetchData = async () => {
-        //     const data = await GetUserById(id);
-        //     setUser(data);
-        // };
-        // fetchData();
-
-        // if(isDeleted){
-        //     OnSetUser(id);
-        //     setIsDeleted(false);
-        // }
-
         setTimeout(() => {
-            setLoading(false); // Set loading to false after data is fetched
+            setLoading(false);
           }, 500);
 
         const handlePopState = () => {
-            // When user navigates back, trigger data reload
-            //fetchData();
             OnSetUser(id);
           };
       
-          // Add event listener for browser navigation back
           window.addEventListener('popstate', handlePopState);
       
-          // Cleanup: remove event listener when component unmounts
           return () => {
             window.removeEventListener('popstate', handlePopState);
           };
@@ -100,7 +82,6 @@ export const Profile = ({user}) => {
                         user.reviews.map((r) => (
                             <>
                                 <Review key={`review-key-${r.id}`} review={r} setData={OnSetUser}/>
-                                {/* <EditReview key={`edit-review-key-${r.id}`} review={r}/> */}
                             </>
                         ))
                     ): (

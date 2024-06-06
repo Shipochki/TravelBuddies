@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./MyPost.css";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 import CheckCircleOutlineOutlinedIcon from "@mui/icons-material/CheckCircleOutlineOutlined";
@@ -84,9 +84,6 @@ export const MyPost = ({ post, setPosts }) => {
         </div>
       </div>
       <div className="mypost-navigation">
-        {/* <Link className='edit-post-btn' to={`/editPost/${post.id}`}><EditIcon fontSize='16px'/> Edit</Link>
-                <Link className='complete-post-btn'onClick={onCompletePost} ><CheckCircleOutlineOutlinedIcon fontSize='16px'/> Complete</Link>
-                <Link className='delete-post-btn' onClick={onDeletePost} ><DeleteForeverOutlinedIcon fontSize='16px'/> Delete</Link> */}
         <Tooltip title="Edit">
           <Fab
             onClick={() => {

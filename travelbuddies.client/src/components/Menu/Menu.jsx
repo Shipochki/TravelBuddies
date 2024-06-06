@@ -1,19 +1,10 @@
 import { Link } from "react-router-dom";
 import "./Menu.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBars,
-  faCarSide,
-  faIdCard,
-  faParagraph,
-  faStar,
-} from "@fortawesome/free-solid-svg-icons";
 import StarIcon from "@mui/icons-material/Star";
 import BadgeIcon from "@mui/icons-material/Badge";
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import FeedIcon from '@mui/icons-material/Feed';
 import { useState } from "react";
-import { Button, Tooltip } from "@mui/material";
 
 export const Menu = () => {
   const [driverVisable, setDriverVisable] = useState(true);

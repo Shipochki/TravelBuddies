@@ -1,6 +1,5 @@
 import { Rating } from '@mui/material'
 import { OnUpdateReviewSubmit } from '../../services/ReviewService'
-import { GetUserById } from '../../services/UserService'
 import { useForm } from '../../utils/hooks/useForm'
 import './EditReview.css'
 import { useContext, useState } from 'react'
@@ -47,7 +46,6 @@ export const EditReview = ({review}) => {
                 e.preventDefault();
                 OnEditSubmit();
             }}>
-                {/* <StarSelector totalStars={5} onSelect={onChangeStar}/> */}
                 <Rating 
                     name="size-medium"
                     value={stars}

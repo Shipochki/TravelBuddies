@@ -1,5 +1,6 @@
 ﻿namespace TravelBuddies.IntegrationTests.Helpers
 {
+	using System.Threading.Tasks;
 	using TravelBuddies.Application.Common.Interfaces.MailSender;
 
 	internal class MailSenderDummy : IMailSender
@@ -14,9 +15,9 @@
 			return "";
 		}
 
-		public void SendMessage(string subject, string body, string reciverEmail)
+		public Task SendMessage(string subject, string body, List<string> recivers)
 		{
-			return;
+			return Task.FromResult("");
 		}
 	}
 }

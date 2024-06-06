@@ -8,7 +8,7 @@ import "./Post.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { OnJoinGroupSubmit } from "../../services/UserGroupService";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { Link, redirect, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import personImgOffline from "../../utils/images/blank-profile-picture-973460_960_720.png";
 import { useContext, useState } from "react";
@@ -17,8 +17,6 @@ import { GlobalContext } from "../../utils/contexts/GlobalContext";
 import cashImg from "../../utils/images/8993556.png";
 import cardImg from "../../utils/images/payment-card-icon-vector-21079946.jpg";
 import difPayType from "../../utils/images/cash-vs-credit-ca.png";
-import yesPetsImg from "../../utils/images/8391113.png";
-import noPetsImg from "../../utils/images/5015651.png";
 import {
   Button,
   Dialog,
@@ -140,30 +138,6 @@ export const Post = ({ post }) => {
           </DialogActions>
         </BootstrapDialog>
       </>
-      {/* <div>
-        <div className="post-paymentType-content">
-          <div className="post-prices">
-            <p className="post-paymentType">
-              Payment type: {PayTypes[post.PaymentType]}
-            </p>
-            <p className="post-priceperseat">
-              Price: {post.PricePerSeat} {post.Currency}
-            </p>
-          </div>
-          <img
-            className="post-paymentType-img"
-            src={PayTypesImgs[post.PaymentType]}
-            alt={PayTypes[post.PaymentType]}
-          />
-        </div>
-        <div className="post-pets-content">
-          <p className="post-pets-text">Pets:</p>
-            <img
-                className="post-paymentType-img"
-                src={post.Pets ? yesPetsImg : noPetsImg}
-            />
-        </div>
-      </div> */}
       <div className="post-paymentType-content">
         <div className="post-prices">
           <p className="post-paymentType">

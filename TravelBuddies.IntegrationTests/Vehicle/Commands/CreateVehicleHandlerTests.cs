@@ -19,7 +19,7 @@
 		public void CreateVehicle_WithNonExistingUser_ShouldThrowsException()
 		{
 			//Arrange
-			var handler = new CreateVehicleHandler(_repostiory, _userManager, _roleManager);
+			var handler = new CreateVehicleHandler(_repostiory, _userManager, _roleManager, _blobService);
 			var command = new CreateVehicleCommand()
 			{
 				BrandName = "test",
@@ -39,7 +39,7 @@
 		public async Task CreateVehicle_WithValidData_ShouldCreateVehicle()
 		{
 			//Arrange
-			var handler = new CreateVehicleHandler(_repostiory, _userManager, _roleManager);
+			var handler = new CreateVehicleHandler(_repostiory, _userManager, _roleManager, _blobService);
 
 			var user = new ApplicationUser() { UserName = "test", Email = "test" };
 

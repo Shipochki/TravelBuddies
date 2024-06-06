@@ -1,12 +1,9 @@
 import "./Review.css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencil, faX } from "@fortawesome/free-solid-svg-icons";
 import { OnDeleteReviewSubmit } from "../../services/ReviewService";
 import { useNavigate, useParams } from "react-router-dom";
-import { GetUserById } from "../../services/UserService";
-import { Fab, IconButton, Tooltip } from "@mui/material";
-import { DeleteForever, DeleteForeverOutlined } from "@mui/icons-material";
+import { Fab, Tooltip } from "@mui/material";
+import { DeleteForeverOutlined } from "@mui/icons-material";
 import EditIcon from "@mui/icons-material/Edit";
 
 import personImgOffline from "../../utils/images/blank-profile-picture-973460_960_720.png";
@@ -20,12 +17,6 @@ export const Review = ({ review, setData }) => {
   const { id } = useParams();
 
   const LoadProfile = async (e) => {
-    // if(id != userId){
-    //     e.preventDefault();
-    //     const data = await GetUserById(review.creator.id);
-    //     setUser(data);
-    // }
-
     OnSetUser(review.creator.id);
 
     navigate(`/profile/${review.creator.id}`);
@@ -35,14 +26,6 @@ export const Review = ({ review, setData }) => {
     const text = `Are you sure you want to delete this review:\n ${review.text}`;
     if (confirm(text) == true) {
       await OnDeleteReviewSubmit(reviewId);
-
-      // const data = await GetUserById(userId);
-
-      // setUser(data);
-      
-      //OnSetUser(id);
-
-      //setIsDeleted(true);
 
       setData(id);
     }
@@ -71,16 +54,6 @@ export const Review = ({ review, setData }) => {
           localStorage.role == "admin") && (
           <div className="review-editing-buttons last-child">
             {review.creator.id == localStorage.userId && (
-              // <div className='button-container'>
-              //     <button
-              //         onClick={() => {
-              //             window.document.getElementById(`review-${review.id}`).style.display = 'flex';
-              //         }}
-              //         className='review-button'>
-              //         <FontAwesomeIcon icon={faPencil}/>
-              //     </button>
-              //     <span className='button-info'>Edit</span>
-              // </div>
               <Tooltip title="Edit">
                 <Fab
                 sx={{
@@ -100,23 +73,6 @@ export const Review = ({ review, setData }) => {
               </Tooltip>
             )}
             <div className="button-container">
-              {/* <button
-                                onClick={(e) => {
-                                    e.preventDefault()
-                                    ConfirmDelete(e, review.id);
-                                }}
-                                className='delete-review-button'>
-                                <FontAwesomeIcon icon={faX}/>
-                            </button> */}
-              {/* <IconButton
-                onClick={(e) => {
-                  e.preventDefault();
-                  ConfirmDelete(e, review.id);
-                }}
-                aria-label="delete"
-              >
-                <DeleteForever sx={{ color: "red" }} />
-              </IconButton> */}
               <Tooltip title="Delete">
                 <Fab
                 sx={{
@@ -130,7 +86,6 @@ export const Review = ({ review, setData }) => {
                   <DeleteForeverOutlined />
                 </Fab>
               </Tooltip>
-              {/* <span className="button-info">Delete</span> */}
             </div>
           </div>
         )}

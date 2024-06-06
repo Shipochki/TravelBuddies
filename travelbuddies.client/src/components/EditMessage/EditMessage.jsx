@@ -1,8 +1,6 @@
 import './EditMessage.css'
 import { OnUpdateMessageSubmit } from '../../services/MessageService';
 import { useForm } from '../../utils/hooks/useForm';
-import { useNavigate } from 'react-router-dom';
-import { GetGroupById } from '../../services/GroupService';
 import { useContext } from 'react';
 import { GlobalContext } from '../../utils/contexts/GlobalContext';
 

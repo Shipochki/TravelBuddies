@@ -1,17 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "../../utils/hooks/useForm";
 import {
-  GetPostsByOwnerId,
   OnCreatePostSubmit,
 } from "../../services/PostService";
 import "./CreatePost.css";
-import Calendar from "../../components/Calendar/Calendar";
 import { NotDriver } from "../../components/NotDriver/NotDriver";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowRight,
-  faCalendarDays,
-  faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import { NoVehicle } from "../../components/NoVehicle/NoVehicle";
 import { GlobalContext } from "../../utils/contexts/GlobalContext";
@@ -74,8 +70,6 @@ export const CreatePost = () => {
     };
     fetchData();
   }, []);
-
-  const { OnSetPostsByOwner } = useContext(GlobalContext);
 
   const { values, changeHandler, onSubmit } = useForm({
     [CreatePostFromKeys.FromDestination]: "",
@@ -184,10 +178,6 @@ export const CreatePost = () => {
 
   const [calendarVisible, setCalendarVisible] = useState(false);
 
-  const toggleCalendar = () => {
-    setCalendarVisible(!calendarVisible);
-  };
-
   const [isPets, setIsPets] = useState(false);
 
   const handleIsPets = () => {
@@ -247,15 +237,6 @@ export const CreatePost = () => {
                       }}
                       required
                     />
-                    {/* <input
-                            type="text"
-                            name={CreatePostFromKeys.FromDestination}
-                            value={values[CreatePostFromKeys.FromDestination]}
-                            onChange={handleFromDesChange}
-                            placeholder="From destination..."
-                            autoComplete="off"
-                            required
-                        /> */}
                     {filteredCities.length > 0 && (
                       <ul>
                         {filteredCities
@@ -285,15 +266,6 @@ export const CreatePost = () => {
                       }}
                       required
                     />
-                    {/* <input
-                            type="text"
-                            name={CreatePostFromKeys.ToDestination}
-                            value={values[CreatePostFromKeys.ToDestination]}
-                            onChange={handleToDesChange}
-                            placeholder="To destination..."
-                            autoComplete="off"
-                            required
-                        /> */}
                     {filteredToDesCities.length > 0 && (
                       <ul>
                         {filteredToDesCities
@@ -319,53 +291,6 @@ export const CreatePost = () => {
                   placeholder="Description...*"
                 />
                 <div className="create-post-date-time">
-                  {/* <div className="create-post-date-time-info">
-                    <input
-                      type="text"
-                      id="date"
-                      className="create-post-date"
-                      value={values[CreatePostFromKeys.Date.slice(0, 17)]}
-                      placeholder="Choose date*"
-                      disabled
-                    />
-                    <input
-                      type="text"
-                      id="time"
-                      className="create-post-date"
-                      value={values[CreatePostFromKeys.Time]}
-                      placeholder="Choose time*"
-                      disabled
-                    />
-                  </div>
-                  {calendarVisible && (
-                    <div className="calendar-time">
-                      <Calendar handle={handleDate} />
-                      <input
-                        type="time"
-                        className="create-post-time-input"
-                        name={CreatePostFromKeys.Time}
-                        value={values[CreatePostFromKeys.Time]}
-                        onChange={changeHandler}
-                        required
-                      />
-                    </div>
-                  )}
-                  <div className="btn-calendar-container">
-                    {!calendarVisible && (
-                      <span className="tooltip-btn-calendar-info">
-                        Date and Time selector
-                      </span>
-                    )}
-                    <button
-                      className="create-post-btn-calendar"
-                      type="button"
-                      onClick={toggleCalendar}
-                    >
-                      <FontAwesomeIcon
-                        icon={!calendarVisible ? faCalendarDays : faCheck}
-                      />
-                    </button>
-                  </div> */}
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DemoContainer components={["DatePicker"]}>
                       <DatePicker
@@ -471,31 +396,6 @@ export const CreatePost = () => {
                     </FormControl>
                   </Box>
                 </div>
-                {/* {(values[CreatePostFromKeys.PaymentType] == 1 ||
-                  values[CreatePostFromKeys.PaymentType] == 2) && (
-                  <div className="create-post-payment-provider">
-                    <Box sx={{ minWidth: 120 }}>
-                    <FormControl fullWidth>
-                      <InputLabel variant="standard" htmlFor="paymentType">
-                        Choose a Payment type
-                      </InputLabel>
-                      <NativeSelect
-                        value={values[CreatePostFromKeys.PaymentType]}
-                        onChange={changeHandler}
-                        inputProps={{
-                          name: "paymentType",
-                          id: "paymentType",
-                        }}
-                      >
-                        <option value={0}>Cash</option>
-                        <option value={1}>Card</option>
-                        <option value={2}>Cash and Card</option>
-                      </NativeSelect>
-                    </FormControl>
-                  </Box>
-                  </div>
-                )} */}
-
                 <button className="create-post-btn-add" type="submit">
                   Add
                 </button>

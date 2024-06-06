@@ -4,7 +4,6 @@ import { useForm } from "../../utils/hooks/useForm"
 import './CreateReview.css'
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
 import { useContext, useState } from "react"
-import { useNavigate } from "react-router-dom"
 import { Rating } from "@mui/material"
 import { GlobalContext } from "../../utils/contexts/GlobalContext"
 
@@ -16,7 +15,6 @@ const ReviewFromKeys = {
 
 export const CreateReview = ({user}) => {
     const { OnSetUser } = useContext(GlobalContext);
-    const navigate = useNavigate();
     const [stars, setStars] = useState(0);
 
     const {values, changeHandler, onSubmit} = useForm({
@@ -47,7 +45,6 @@ export const CreateReview = ({user}) => {
     return(
         <div className="create-review-main">
             <form className='review-form' onSubmit={OnCreateSubmit}>
-                {/* <StarSelector onSelect={onChangeStar}/> */}
                 <Rating 
                     name="size-medium"
                     value={stars}

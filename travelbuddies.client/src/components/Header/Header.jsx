@@ -16,8 +16,6 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import HomeIcon from "@mui/icons-material/Home";
 import StarIcon from "@mui/icons-material/Star";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
@@ -25,7 +23,6 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import EditIcon from "@mui/icons-material/Edit";
 import DynamicFeedIcon from "@mui/icons-material/DynamicFeed";
-import { Menu } from "../Menu/Menu";
 import { useState } from "react";
 
 export const Header = () => {
