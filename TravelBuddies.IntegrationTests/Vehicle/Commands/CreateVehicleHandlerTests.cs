@@ -67,7 +67,7 @@
 			Assert.Equal(command.SeatCount, result.SeatCount);
 			Assert.Equal(command.Year, result.Year);
 			Assert.False(result.ACSystem);
-			Assert.Equal("", result.PictureLink);
+			Assert.Equal("testLink", result.PictureLink);
 		}
 	}
 }

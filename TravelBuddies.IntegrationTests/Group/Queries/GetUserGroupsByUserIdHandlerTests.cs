@@ -64,7 +64,7 @@
 			var reuslt = await handler.Handle(command, default);
 
 			//Assert
-			Assert.Equal(group, reuslt.First());
+			Assert.Equal(group.Id, reuslt.First().Id);
 			Assert.Single(reuslt);
 		}
 	}

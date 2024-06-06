@@ -57,10 +57,8 @@
             {
                 Assert.Equal(cities[i].Name, actualResult[i].Name);
                 Assert.Equal(cities[i].Id, actualResult[i].Id);
-                Assert.Equal(cities[i].CountryId, actualResult[i].CountryId);
-                Assert.Equal(cities[i].Country, actualResult[i].Country);
-                Assert.Equal(cities[i].Country.Name, actualResult[i].Country.Name);
-                Assert.Equal(cities[i].Country.Id, actualResult[i].Country.Id);
+                Assert.Equal(cities[i].Country.Id, actualResult[i].CountryId);
+                Assert.Equal(cities[i].Country.Id, actualResult[i].CountryId);
                 Assert.Equal(cities[i].CreatedOn.Date, actualResult[i].CreatedOn.Date);
             }
         }

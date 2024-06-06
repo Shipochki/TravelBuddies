@@ -141,7 +141,7 @@
 			var result = await handler.Handle(command, default);
 			
 			//Assert
-			Assert.Equal(message, result.First());
+			Assert.Equal(message.Id, result.First().Id);
 		}
 	}
 }

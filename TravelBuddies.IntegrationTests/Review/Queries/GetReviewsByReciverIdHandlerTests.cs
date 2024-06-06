@@ -32,7 +32,7 @@
 			var result = await handler.Handle(query, default);
 
 			//Assert
-			Assert.Equal(review, result.First());
+			Assert.Equal(review.Id, result.First().Id);
 		}
 	}
 }

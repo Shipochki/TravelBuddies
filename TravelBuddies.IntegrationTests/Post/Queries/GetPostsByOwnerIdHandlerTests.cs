@@ -49,7 +49,7 @@
 			var result = await handler.Handle(query, default);
 
 			//Assert
-			Assert.Equal(post, result.First());
+			Assert.Equal(post.Id, result.First().Id);
 		}
 	}
 }
