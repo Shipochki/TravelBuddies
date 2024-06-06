@@ -2,6 +2,7 @@
 {
 	using MediatR;
 	using Microsoft.AspNetCore.Identity;
+	using Microsoft.EntityFrameworkCore;
 	using System.Threading;
 	using System.Threading.Tasks;
 	using TravelBuddies.Application.Common.Interfaces.Repository;
@@ -19,13 +20,19 @@
 
 		public async Task<double> Handle(GetReviewsAvgRatingByReciverIdQuery request, CancellationToken cancellationToken)
 		{
-			double rating = _repository
+			List<Review> rating = await _repository
 				.AllReadonly<Review>(
-					r => r.IsDeleted == false 
+					r => r.IsDeleted == false
 					&& r.ReciverId == request.ReciverId)
-				.Average(r => r.Rating);
+				.ToListAsync();
 
-			return await Task.FromResult(Math.Round(rating, 2));
+			double result = rating.Count > 0
+				? Math.Round(rating
+					.Select(r => r.Rating)
+					.Average(), 2)
+				: 0;
+
+			return result;
 		}
 	}
 }

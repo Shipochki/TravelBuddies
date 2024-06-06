@@ -157,18 +157,6 @@ export const Search = () => {
     changeHandler;
   };
 
-  const [calendarVisible, setCalendarVisible] = useState(false);
-
-  const toggleCalendar = () => {
-    setCalendarVisible(!calendarVisible);
-  };
-
-  const [calendarToDateVisible, setCalendarToDateVisible] = useState(false);
-
-  const toggleToDateCalendar = () => {
-    setCalendarToDateVisible(!calendarToDateVisible);
-  };
-
   const [moreOptionsVisible, setMoreOptionsVisible] = useState(false);
 
   const toggleMoreOptions = () => {
@@ -224,14 +212,6 @@ export const Search = () => {
                   width: "14vw",
                 }}
               />
-              {/* <input
-            type="text"
-            name={searchFromKeys.FromDestination}
-            value={values[searchFromKeys.FromDestination]}
-            onChange={handleInputChange}
-            placeholder="From destination..."
-            autoComplete='off'
-          /> */}
               {filteredCities.length > 0 && (
                 <ul>
                   {filteredCities
@@ -260,14 +240,6 @@ export const Search = () => {
                   width: "14vw",
                 }}
               />
-              {/* <input
-              type="text"
-                name={searchFromKeys.ToDestination}
-                value={values[searchFromKeys.ToDestination]}
-                onChange={handleToDesChange}
-                placeholder="To destination..."
-                autoComplete='off'
-            /> */}
               {filteredToDesCities.length > 0 && (
                 <ul>
                   {filteredToDesCities
@@ -310,50 +282,6 @@ export const Search = () => {
                       />
                     </DemoContainer>
                   </LocalizationProvider>
-                  {/* <div className="more-options-calendar from-des-cal">
-                    <div className="options-calendar-input-button">
-                      <input
-                        type="text"
-                        name={searchFromKeys.FromDate}
-                        value={values[searchFromKeys.FromDate]}
-                        placeholder="From Date: 05.21.2024"
-                        onChange={changeHandler}
-                        className="options-calendar-input"
-                      />
-                      <button type="button" onClick={toggleCalendar}>
-                        <FontAwesomeIcon
-                          icon={!calendarVisible ? faCalendarDays : faCheck}
-                        />
-                      </button>
-                    </div>
-                    <div className="search-calendar">
-                      {calendarVisible && <Calendar handle={handleFromDate} />}
-                    </div>
-                  </div>
-                  <div className="more-options-calendar to-des-cal">
-                    <div className="options-calendar-input-button">
-                      <input
-                        type="text"
-                        name={searchFromKeys.ToDate}
-                        value={values[searchFromKeys.ToDate]}
-                        placeholder="To Date: 05.29.2024"
-                        onChange={changeHandler}
-                        className="options-calendar-input"
-                      />
-                      <button type="button" onClick={toggleToDateCalendar}>
-                        <FontAwesomeIcon
-                          icon={
-                            !calendarToDateVisible ? faCalendarDays : faCheck
-                          }
-                        />
-                      </button>
-                    </div>
-                    <div className="search-calendar">
-                      {calendarToDateVisible && (
-                        <Calendar handle={handleToDate} />
-                      )}
-                    </div>
-                  </div> */}
                 </div>
                 <div className="price-range-selector">
                   <label>Price range</label>
@@ -376,24 +304,6 @@ export const Search = () => {
                     <p>{priceValues[1]}</p>
                   </Box>
                 </div>
-
-                {/* <input 
-          type="number"
-          name={searchFromKeys.PriceMin}
-          value={values[searchFromKeys.PriceMin]}
-          onChange={changeHandler}
-          placeholder='Min Price'
-          className='more-option-price'
-          />
-          <input
-          type='number'
-          name={searchFromKeys.PriceMax}
-          value={values[searchFromKeys.PriceMax]}
-          onChange={changeHandler}
-          placeholder='Max Price'
-          className='more-option-price'
-          /> */}
-
                 <div className="more-options-bools">
                   <div className="more-options-boolean baggage-btn">
                     <p>Baggage</p>

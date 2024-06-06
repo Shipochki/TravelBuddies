@@ -50,7 +50,6 @@ export const OnLoginSubmit = async (loginFromKeys) => {
 };
 
 export const OnRegisterSubmit = async (registerFromKeys) => {
-  //console.log(document.querySelector("#profilepicture"));
   const formData = new FormData();
   formData.append("firstname", registerFromKeys.firstname);
   formData.append("lastname", registerFromKeys.lastname);
@@ -58,7 +57,6 @@ export const OnRegisterSubmit = async (registerFromKeys) => {
   formData.append("city", registerFromKeys.city);
   formData.append("country", registerFromKeys.country);
   formData.append("password", registerFromKeys.password);
-  //formData.append('profilepicture', document.querySelector("#profilepicture").files[0])
   formData.append("profilepicture", registerFromKeys.image);
 
   try {
@@ -82,20 +80,6 @@ export const OnRegisterSubmit = async (registerFromKeys) => {
 
 export const OnBecomeDriverSubmit = async () => {
   try {
-    // const response = await fetch(Url + `/becomedriver`, {
-    //   method: "POST", // GET, POST, PUT, DELETE, etc.
-    //   mode: "cors", // no-cors,cors, same-origin
-    //   headers: {
-    //     'Authorization': `Bearer ${localStorage.accessToken}`,
-    //     'Content-Type': 'application/json'
-    //   },
-    // });
-
-    // if(!response.ok){
-    //   console.log(response.statusText);
-    //   errorHandler(response.status);
-    // }
-
     const options = {
       method: "POST",
     };
@@ -133,21 +117,6 @@ export const OnUpdateProfilePicutreSubmit = async () => {
 
 export const OnUpdateProfileSubmit = async (editProfileFromKeys) => {
   try {
-    // const response = await fetch(Url + `/update`, {
-    //   method: "POST", // GET, POST, PUT, DELETE, etc.
-    //   mode: "cors", // no-cors,cors, same-origin
-    //   headers: {
-    //     'Authorization': `Bearer ${localStorage.accessToken}`,
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify(editProfileFromKeys)
-    // });
-
-    // if(!response.ok){
-    //   console.log(response.statusText);
-    //   errorHandler(response.status);
-    // }
-
     const options = {
       method: "POST",
       body: JSON.stringify(editProfileFromKeys),
@@ -164,24 +133,6 @@ export const OnLogout = () => {
 
 export const GetUserById = async (id) => {
   try {
-    // const response = await fetch(Url + `/getuserbyid/${id}`, {
-    //   method: 'GET',
-    //   mode: "cors",
-    //   headers: {
-    //       'Authorization': `Bearer ${localStorage.accessToken}`,
-    //       'Content-Type': 'application/json'
-    //   },
-    // });
-
-    //   if (response.ok) {
-    //     // Handle successful response
-    //     return response.json();
-    // }  else {
-    //     // Handle other errors
-    //     console.error('Error:', response.statusText);
-    //     errorHandler(response.status);
-    // }
-
     return await fetchWrapper(Url + `/getuserbyid/${id}`);
   } catch (error) {
     console.error("Error fetching get user by id:", error);
@@ -190,23 +141,6 @@ export const GetUserById = async (id) => {
 
 export const GetOnlyUserById = async (id) => {
   try {
-    // const response = await fetch(Url + `/getonlyuserbyid/${id}`, {
-    //   method: 'GET',
-    //   mode: "cors",
-    //   headers: {
-    //       'Authorization': `Bearer ${localStorage.accessToken}`,
-    //       'Content-Type': 'application/json'
-    //   },
-    // });
-
-    //   if (response.ok) {
-    //     // Handle successful response
-    //     return response.json();
-    // }  else {
-    //     // Handle other errors
-    //     console.error('Error:', response.statusText);
-    //     errorHandler(response.status);
-    // }
     return await fetchWrapper(Url + `/getonlyuserbyid/${id}`);
   } catch (error) {
     console.error("Error fetching get only user by id:", error);
