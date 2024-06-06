@@ -10,6 +10,7 @@
     using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;
     using TravelBuddies.Application.Common.Interfaces.Repository;
 	using TravelBuddies.Application.Common.Exceptions.NotFound;
+	using Microsoft.AspNetCore.Http;
 
 	public class CreateVehicleHandler : BaseHandler, IRequestHandler<CreateVehicleCommand, Vehicle>
 	{
@@ -26,7 +27,8 @@
 
 		public async Task<Vehicle> Handle(CreateVehicleCommand request, CancellationToken cancellationToken)
 		{
-			ApplicationUser? owner = await _userManager.FindByIdAsync(request.OwnerId);
+			ApplicationUser? owner = await _userManager
+				.FindByIdAsync(request.OwnerId);
 
 			if (owner == null)
 			{

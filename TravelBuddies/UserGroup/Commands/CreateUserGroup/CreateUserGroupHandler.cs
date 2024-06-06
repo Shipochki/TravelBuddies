@@ -23,7 +23,8 @@
 
 		public async Task<Task> Handle(CreateUserGroupCommand request, CancellationToken cancellationToken)
 		{
-			ApplicationUser? user = await _userManager.FindByIdAsync(request.UserId);
+			ApplicationUser? user = await _userManager
+				.FindByIdAsync(request.UserId);
 
 			if (user == null)
 			{
@@ -31,7 +32,8 @@
 					string.Format(ApplicationUserNotFoundMessage, request.UserId));
 			}
 
-			Group? group = await _repository.GetByIdAsync<Group>(request.GroupId);
+			Group? group = await _repository
+				.GetByIdAsync<Group>(request.GroupId);
 
 			if (group == null)
 			{
@@ -56,7 +58,8 @@
 					string.Format(ApplicationUserAllreadyInGroupMessage, request.UserId, request.GroupId));
 			}
 
-			Post? post = await _repository.GetByIdAsync<Post>(group.PostId);
+			Post? post = await _repository
+				.GetByIdAsync<Post>(group.PostId);
 
 			if(post == null)
 			{

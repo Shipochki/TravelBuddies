@@ -39,7 +39,8 @@
 					string.Format(PostNotFoundMessage, request.Id));
 			}
 
-			City? fromDestination = await _repository.GetByIdAsync<City>(request.FromDestinationCityId);
+			City? fromDestination = await _repository
+				.GetByIdAsync<City>(request.FromDestinationCityId);
 
 			if (fromDestination == null)
 			{
@@ -47,7 +48,8 @@
 					string.Format(CityNotFoundMessage, request.FromDestinationCityId));
 			}
 
-			City? toDestination = await _repository.GetByIdAsync<City>(request.ToDestinationCityId);
+			City? toDestination = await _repository
+				.GetByIdAsync<City>(request.ToDestinationCityId);
 
 			if (toDestination == null)
 			{

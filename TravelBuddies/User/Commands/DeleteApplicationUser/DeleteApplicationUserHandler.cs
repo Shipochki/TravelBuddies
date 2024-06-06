@@ -20,7 +20,8 @@
 
 		public async Task<Task> Handle(DeleteApplicationUserCommand request, CancellationToken cancellationToken)
 		{
-			ApplicationUser? applicationUser = await _userManager.FindByIdAsync(request.Id);
+			ApplicationUser? applicationUser = await _userManager
+				.FindByIdAsync(request.Id);
 
 			if (applicationUser == null)
 			{

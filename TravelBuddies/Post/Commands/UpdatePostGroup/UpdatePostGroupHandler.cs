@@ -20,7 +20,8 @@
 
 		public async Task<Task> Handle(UpdatePostGroupCommand request, CancellationToken cancellationToken)
 		{
-			Post? post = await _repository.GetByIdAsync<Post>(request.PostId);
+			Post? post = await _repository
+				.GetByIdAsync<Post>(request.PostId);
 
 			if (post == null)
 			{
@@ -28,7 +29,8 @@
 					string.Format(PostNotFoundMessage, request.PostId));
 			}
 
-			Group? group = await _repository.GetByIdAsync<Group>(request.GroupId);
+			Group? group = await _repository
+				.GetByIdAsync<Group>(request.GroupId);
 
 			if (group == null)
 			{

@@ -34,7 +34,8 @@
 
         public async Task<string> Handle(LoginApplicationUserCommand request, CancellationToken cancellationToken)
         {
-            ApplicationUser? user = await _userManager.FindByEmailAsync(request.Email);
+            ApplicationUser? user = await _userManager
+                .FindByEmailAsync(request.Email);
 
             if(user == null)
             {
@@ -47,9 +48,11 @@
                 throw new InvalidLoginException(InvalidLoginMessage);
             }
 
-            await _signInManager.SignInAsync(user, isPersistent: false);
+            await _signInManager
+                .SignInAsync(user, isPersistent: false);
 
-            string token = _tokenService.GenerateAccessToken(user, _configuration, _userManager);
+            string token = _tokenService
+                .GenerateAccessToken(user, _configuration, _userManager);
 
             return token;
         }

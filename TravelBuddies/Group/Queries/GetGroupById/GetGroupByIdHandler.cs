@@ -32,7 +32,9 @@
 			}
 
 			UserGroup? userGroup = await _repository
-				.FirstOrDefaultAsync<UserGroup>(u => u.UserId == request.UserId && u.GroupId == request.GroupId);
+				.FirstOrDefaultAsync<UserGroup>(
+				u => u.UserId == request.UserId
+				&& u.GroupId == request.GroupId);
 
 			if (userGroup == null)
 			{
@@ -41,7 +43,7 @@
 			}
 
 			Group? group = await _repository
-				.All<Group>()
+				.AllReadonly<Group>()
 				.Include(g => g.Post)
 				.Include(g => g.Creator)
 				.Include(g => g.UsersGroups)
@@ -49,7 +51,9 @@
 				.Include(g => g.Messages
 					.Where(m => m.IsDeleted == false))
 					.ThenInclude(m => m.Creator)
-				.FirstOrDefaultAsync(g => g.Id == request.GroupId && g.IsDeleted == false);
+				.FirstOrDefaultAsync(
+					g => g.Id == request.GroupId
+					&& g.IsDeleted == false);
 
 			if (group == null)
 			{

@@ -42,8 +42,8 @@
 			}
 
 			UserGroup? userGroup = await _repository
-				.FirstOrDefaultAsync<UserGroup>(u => 
-				u.UserId == request.UserId 
+				.FirstOrDefaultAsync<UserGroup>(
+				u => u.UserId == request.UserId 
 				&& u.GroupId == request.GroupId);
 
 			if(userGroup == null)
@@ -53,7 +53,9 @@
 			}
 
 			List<Message> messages = await _repository
-				.All<Message>(m => m.IsDeleted == false && m.GroupId == group.Id)
+				.AllReadonly<Message>(
+				m => m.IsDeleted == false
+				&& m.GroupId == group.Id)
 				.Include(m => m.Creator)
 				.ToListAsync();
 

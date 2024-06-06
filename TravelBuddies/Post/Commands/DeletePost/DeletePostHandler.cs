@@ -22,7 +22,8 @@
 
 		public async Task<int> Handle(DeletePostCommand request, CancellationToken cancellationToken)
 		{
-			Post? post = await _repository.GetByIdAsync<Post>(request.PostId);
+			Post? post = await _repository
+				.GetByIdAsync<Post>(request.PostId);
 
 			if (post == null)
 			{
@@ -30,7 +31,8 @@
 					string.Format(PostNotFoundMessage, request.PostId));
 			}
 
-			ApplicationUser? user = await _userManager.FindByIdAsync(request.CreatorId);
+			ApplicationUser? user = await _userManager
+				.FindByIdAsync(request.CreatorId);
 
 			if (user == null)
 			{
@@ -50,7 +52,7 @@
 
 			await _repository.SaveChangesAsync();
 
-			return await Task.FromResult((int)post.GroupId);
+			return await Task.FromResult(post.GroupId ?? 0);
 		}
 	}
 }

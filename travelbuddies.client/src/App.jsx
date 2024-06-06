@@ -40,8 +40,6 @@ function App() {
   const [group, setGroup] = useState({});
   const [groups, setGroups] = useState([]);
   const [user, setUser] = useState({});
-  const [reviews, setReviews] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   const OnSetGroup = async (id) => {
     const data = await GetGroupById(id);

@@ -31,7 +31,7 @@
 			}
 
 			List<Group> groups = await _repository
-				.All<Group>(g => g.UsersGroups.Any(u => u.UserId == request.UserId) && g.IsDeleted == false)
+				.AllReadonly<Group>(g => g.UsersGroups.Any(u => u.UserId == request.UserId) && g.IsDeleted == false)
 				.Include(g => g.Creator)
 				.Include(g => g.UsersGroups)
 				.Include(g => g.Post)

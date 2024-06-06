@@ -19,7 +19,8 @@
 
 		public async Task<Task> Handle(UpdateApplicationUserCommand request, CancellationToken cancellationToken)
 		{
-			ApplicationUser? user = await _userManager.FindByIdAsync(request.Id);
+			ApplicationUser? user = await _userManager
+				.FindByIdAsync(request.Id);
 
 			if (user == null)
 			{

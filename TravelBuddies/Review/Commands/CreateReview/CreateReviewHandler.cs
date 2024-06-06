@@ -20,7 +20,8 @@
 
 		public async Task<Review> Handle(CreateReviewCommand request, CancellationToken cancellationToken)
 		{
-			ApplicationUser? creator = await _userManager.FindByIdAsync(request.CreatorId);
+			ApplicationUser? creator = await _userManager
+				.FindByIdAsync(request.CreatorId);
 
 			if (creator == null)
 			{
@@ -28,7 +29,8 @@
 					string.Format(ApplicationUserNotFoundMessage, request.CreatorId));
 			}
 
-			ApplicationUser? reciver = await _userManager.FindByIdAsync(request.ReciverId);
+			ApplicationUser? reciver = await _userManager
+				.FindByIdAsync(request.ReciverId);
 
 			if (reciver == null)
 			{

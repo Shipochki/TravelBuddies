@@ -3,7 +3,6 @@ import './CreateMessage.css';
 import { useForm } from '../../utils/hooks/useForm';
 import { Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
-import { GetGroupById } from '../../services/GroupService';
 import { useContext } from 'react';
 import { GlobalContext } from '../../utils/contexts/GlobalContext';
 

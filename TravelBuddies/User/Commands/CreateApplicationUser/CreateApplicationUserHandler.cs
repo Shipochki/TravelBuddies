@@ -35,7 +35,8 @@
 
 			if(request.ProfilePicture != null)
 			{
-				profilePictureLink = await _blobService.UploadImageAsync(request.ProfilePicture);
+				profilePictureLink = await _blobService
+					.UploadImageAsync(request.ProfilePicture);
 			}
 
 			ApplicationUser applicationUser = new ApplicationUser()
@@ -50,14 +51,16 @@
 				CreatedOn = DateTime.Now
 			};
 
-			IdentityResult result = await _userManager.CreateAsync(applicationUser, request.Password);
+			IdentityResult result = await _userManager
+				.CreateAsync(applicationUser, request.Password);
 
 			if (!result.Succeeded)
 			{
 				throw new UnableToCreateApplicationUserException(UnableToCreateApplicationUserMessage);
 			}
 
-			await _userManager.AddToRoleAsync(applicationUser, ApplicationRoles.Client);
+			await _userManager
+				.AddToRoleAsync(applicationUser, ApplicationRoles.Client);
 
 			
 			await _mailSender.SendMessage("Succesful register"

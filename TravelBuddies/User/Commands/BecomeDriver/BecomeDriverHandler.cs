@@ -23,7 +23,8 @@
 
 		public async Task<Task> Handle(BecomeDriverCommand request, CancellationToken cancellationToken)
 		{
-			ApplicationUser? applicationUser = await _userManager.FindByIdAsync(request.UserId);
+			ApplicationUser? applicationUser = await _userManager
+				.FindByIdAsync(request.UserId);
 
 			if (applicationUser == null)
 			{
@@ -31,17 +32,21 @@
 					string.Format(ApplicationUserNotFoundMessage, request.UserId));
 			}
 
-			IdentityRole? identityRole = await _roleManager.FindByNameAsync(ApplicationRoles.Driver);
+			IdentityRole? identityRole = await _roleManager
+				.FindByNameAsync(ApplicationRoles.Driver);
 
-			if (identityRole == null || identityRole.Name.IsNullOrEmpty())
+			if (identityRole == null
+				|| identityRole.Name.IsNullOrEmpty())
 			{
 				throw new IdentityRoleNotFoundException(
 					string.Format(IdentityRoleNotFoundMessage, ApplicationRoles.Driver));
 			}
 
-			await _userManager.RemoveFromRoleAsync(applicationUser, ApplicationRoles.Client);
+			await _userManager
+				.RemoveFromRoleAsync(applicationUser, ApplicationRoles.Client);
 
-			IdentityResult result = await _userManager.AddToRoleAsync(applicationUser, ApplicationRoles.Driver);
+			IdentityResult result = await _userManager
+				.AddToRoleAsync(applicationUser, ApplicationRoles.Driver);
 
 			if (!result.Succeeded)
 			{

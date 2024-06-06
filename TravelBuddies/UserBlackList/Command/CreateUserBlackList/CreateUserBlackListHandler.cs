@@ -22,7 +22,8 @@
 
 		public async Task<Task> Handle(CreateUserBlackListCommand request, CancellationToken cancellationToken)
 		{
-			ApplicationUser? user = await _userManager.FindByIdAsync(request.UserId);
+			ApplicationUser? user = await _userManager
+				.FindByIdAsync(request.UserId);
 
 			if (user == null)
 			{
@@ -30,7 +31,8 @@
 					string.Format(ApplicationUserNotFoundMessage, request.UserId));
 			}
 
-			ApplicationUser? owner = await _userManager.FindByIdAsync(request.OwnerId);
+			ApplicationUser? owner = await _userManager
+				.FindByIdAsync(request.OwnerId);
 
 			if (owner == null)
 			{
@@ -38,7 +40,8 @@
 					string.Format(ApplicationUserNotFoundMessage, request.OwnerId));
 			}
 
-			Group? group = await _repository.GetByIdAsync<Group>(request.GroupId);
+			Group? group = await _repository
+				.GetByIdAsync<Group>(request.GroupId);
 
 			if (group == null)
 			{

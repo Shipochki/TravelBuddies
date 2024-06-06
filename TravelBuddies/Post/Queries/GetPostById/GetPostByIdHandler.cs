@@ -23,7 +23,7 @@
 		public async Task<Post> Handle(GetPostByIdQuery request, CancellationToken cancellationToken)
 		{
 			Post? post = await _repository
-				.All<Post>(
+				.AllReadonly<Post>(
 					p => p.Id == request.PostId
 					&& p.IsDeleted == false
 					&& p.IsCompleted == false)

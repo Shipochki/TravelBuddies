@@ -17,8 +17,8 @@ export const Vehicle = ({vehicle}) => {
                 <p>Seat count: <span>{vehicle.seatCount}</span></p>
                 <p>ACSystem: <span><FontAwesomeIcon icon={vehicle.acSystem ? faCheck : faX}/></span></p>
             </div>
-            {/* <LazyLoadImage className='vehicle-img' src={vehicle.pictureLink ? vehicle.pictureLink : vehicleImg}/> */}
-            <LazyLoadImage className='vehicle-img' src={vehicleImg}/>
+            <LazyLoadImage className='vehicle-img' src={vehicle.pictureLink ? vehicle.pictureLink : vehicleImg}/>
+            {/* <LazyLoadImage className='vehicle-img' src={vehicleImg}/> */}
         </div>
     )
 }

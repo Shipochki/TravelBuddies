@@ -57,7 +57,7 @@
 		private async Task SendMessageToAllMembers(Post post)
 		{
 			Group? group = await _repository
-							.All<Group>(g => g.Id == post.GroupId)
+							.AllReadonly<Group>(g => g.Id == post.GroupId)
 							.Include(g => g.UsersGroups)
 							.ThenInclude(g => g.User)
 							.FirstOrDefaultAsync();

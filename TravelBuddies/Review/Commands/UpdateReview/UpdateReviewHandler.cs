@@ -22,7 +22,8 @@
 
 		public async Task<Review> Handle(UpdateReviewCommand request, CancellationToken cancellationToken)
 		{
-			Review? review = await _repository.GetByIdAsync<Review>(request.Id);
+			Review? review = await _repository
+				.GetByIdAsync<Review>(request.Id);
 
 			if (review == null)
 			{

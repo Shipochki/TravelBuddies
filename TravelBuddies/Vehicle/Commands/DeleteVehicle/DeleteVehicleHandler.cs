@@ -21,7 +21,8 @@
 
 		public async Task<Task> Handle(DeleteVehicleCommand request, CancellationToken cancellationToken)
 		{
-			Vehicle? vehicle = await _repository.GetByIdAsync<Vehicle>(request.VehicleId);
+			Vehicle? vehicle = await _repository
+				.GetByIdAsync<Vehicle>(request.VehicleId);
 
 			if (vehicle == null)
 			{
@@ -29,7 +30,8 @@
 					string.Format(VehicleNotFoundMessage, request.VehicleId));
 			}
 
-			ApplicationUser? user = await _userManager.FindByIdAsync(request.OwnerId);
+			ApplicationUser? user = await _userManager
+				.FindByIdAsync(request.OwnerId);
 
 			if (user == null)
 			{

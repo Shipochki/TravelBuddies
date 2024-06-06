@@ -24,7 +24,8 @@
 
 		public async Task<Task> Handle(UpdateProfilePictureCommand request, CancellationToken cancellationToken)
 		{
-			ApplicationUser? user = await _userManager.FindByIdAsync(request.UserId);
+			ApplicationUser? user = await _userManager
+				.FindByIdAsync(request.UserId);
 
 			if (user == null)
 			{
@@ -32,7 +33,8 @@
 					string.Format(ApplicationUserNotFoundMessage, request.UserId));
 			}
 
-			user.ProfilePictureLink = await _blobService.UploadImageAsync(request.ProfilePicture);
+			user.ProfilePictureLink = await _blobService
+				.UploadImageAsync(request.ProfilePicture);
 
 			await _repository.SaveChangesAsync();
 

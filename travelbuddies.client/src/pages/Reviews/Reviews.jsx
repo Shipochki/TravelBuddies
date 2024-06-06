@@ -18,12 +18,10 @@ const ReviewsQueryFromKeys = {
 
 export const Reviews = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
   const [data, setReviews] = useState({});
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [pageCount] = useState(10);
-  const [isDeleted, setIsDeleted] = useState(false);
 
   const { values, changeHandler, onSubmit } = useForm({
     [ReviewsQueryFromKeys.ReciverId]: data.reciverId,
@@ -42,21 +40,12 @@ export const Reviews = () => {
     };
     fetchData();
 
-    // if(isDeleted){
-    //   fetchData();
-    //   setIsDeleted(false);
-    // }
-
     const handlePopState = () => {
-      // When user navigates back, trigger data reload
-      //fetchData();
       fetchData();
     };
 
-    // Add event listener for browser navigation back
     window.addEventListener('popstate', handlePopState);
 
-    // Cleanup: remove event listener when component unmounts
     return () => {
       window.removeEventListener('popstate', handlePopState);
     };
@@ -97,7 +86,7 @@ export const Reviews = () => {
             data.reviews.map((r) => <Review key={r.id} review={r} setData={OnSetData}/>)
           ) : (
             <p>No reviews</p>
-          )}
+          )}  
           <Pagination
             onChange={OnChangePage}
             count={Math.ceil(data.countReviews / 10)}

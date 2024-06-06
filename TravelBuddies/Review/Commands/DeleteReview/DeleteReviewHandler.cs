@@ -22,7 +22,8 @@
 
 		public async Task<Task> Handle(DeleteReviewCommand request, CancellationToken cancellationToken)
 		{
-			Review? review = await _repository.GetByIdAsync<Review>(request.ReviewId);
+			Review? review = await _repository
+				.GetByIdAsync<Review>(request.ReviewId);
 
 			if (review == null)
 			{
@@ -30,7 +31,8 @@
 					string.Format(ReviewNotFoundMessage, request.ReviewId));
 			}
 
-			ApplicationUser? user = await _userManager.FindByIdAsync(request.CreatorId);
+			ApplicationUser? user = await _userManager
+				.FindByIdAsync(request.CreatorId);
 
 			if (user == null)
 			{

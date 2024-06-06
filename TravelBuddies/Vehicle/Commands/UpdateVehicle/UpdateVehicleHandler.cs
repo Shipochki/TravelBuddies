@@ -26,7 +26,8 @@
 
 		public async Task<Task> Handle(UpdateVehicleCommand request, CancellationToken cancellationToken)
 		{
-			Vehicle? vehicle = await _repository.GetByIdAsync<Vehicle>(request.Id);
+			Vehicle? vehicle = await _repository
+				.GetByIdAsync<Vehicle>(request.Id);
 
 			if (vehicle == null)
 			{
@@ -42,7 +43,8 @@
 
 			if(request.PictureLink != null)
 			{
-				string pictureLink = await _blobService.UploadImageAsync(request.PictureLink);
+				string pictureLink = await _blobService
+					.UploadImageAsync(request.PictureLink);
 			}
 
 			vehicle.BrandName = request.BrandName;

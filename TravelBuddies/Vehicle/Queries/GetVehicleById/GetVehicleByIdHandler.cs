@@ -21,7 +21,8 @@
 
 		public async Task<Vehicle> Handle(GetVehicleByIdQuery request, CancellationToken cancellationToken)
 		{
-			Vehicle? vehicle = await _repository.GetByIdAsync<Vehicle>(request.VehicleId);
+			Vehicle? vehicle = await _repository
+				.GetByIdAsync<Vehicle>(request.VehicleId);
 
 			if (vehicle == null)
 			{

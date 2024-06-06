@@ -30,7 +30,10 @@
 			}
 
 			List<Post> posts = await _repository
-				.All<Post>(p => p.IsDeleted == false && p.CreatorId == request.OwnerId && p.IsCompleted == false)
+				.AllReadonly<Post>(
+					p => p.IsDeleted == false
+					&& p.CreatorId == request.OwnerId
+					&& p.IsCompleted == false)
 				.Include(p => p.FromDestinationCity)
 				.Include(p => p.ToDestinationCity)
 				.ToListAsync();

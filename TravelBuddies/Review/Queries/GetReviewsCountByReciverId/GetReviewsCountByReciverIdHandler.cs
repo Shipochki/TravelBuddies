@@ -19,9 +19,13 @@
 
 		public async Task<int> Handle(GetReviewsCountByReciverIdQuery request, CancellationToken cancellationToken)
 		{
-			return _repository
-				.All<Review>(r => r.IsDeleted == false && r.ReciverId == request.ReciverId)
+			int count = _repository
+				.AllReadonly<Review>(
+				r => r.IsDeleted == false
+				&& r.ReciverId == request.ReciverId)
 				.Count();
+
+			return await Task.FromResult(count);
 		}
 	}
 }

@@ -20,10 +20,12 @@
 		public async Task<double> Handle(GetReviewsAvgRatingByReciverIdQuery request, CancellationToken cancellationToken)
 		{
 			double rating = _repository
-				.AllReadonly<Review>(r => r.IsDeleted == false && r.ReciverId == request.ReciverId)
+				.AllReadonly<Review>(
+					r => r.IsDeleted == false 
+					&& r.ReciverId == request.ReciverId)
 				.Average(r => r.Rating);
 
-			return await Task.FromResult(rating);
+			return await Task.FromResult(Math.Round(rating, 2));
 		}
 	}
 }
