@@ -5,6 +5,10 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import thirdLayerImg1 from '../../utils/images/austin-distel-wD1LRb9OeEo-unsplash.jpg'
 import thirdLayerImg2 from '../../utils/images/austin-kehmeier-lyiKExA4zQA-unsplash.jpg'
 import thirdLayerImg3 from '../../utils/images/girl-with-red-hat-gL3-jTs_Q7g-unsplash.jpg'
+import fourthLayerImg1 from '../../utils/images/felix-rostig-UmV2wr-Vbq8-unsplash.jpg'
+import fourthLayerImg2 from '../../utils/images/jorge-saavedra-94qZsII4kN8-unsplash.jpg'
+import fourthLayerImg3 from '../../utils/images/helena-lopes-PGnqT0rXWLs-unsplash.jpg'
+import fourthLayerImg4 from '../../utils/images/scott-dukette-1HpQU1evGK8-unsplash.jpg'
 
 export const Home = () => {
     return (
@@ -75,16 +79,16 @@ export const Home = () => {
             <div className="fourth-layer">
                 <LazyLoadImage
                 effect="blur"
-                src={'https://sttravelbuddies001.blob.core.windows.net/web/felix-rostig-UmV2wr-Vbq8-unsplash.jpg'} alt="people" />
+                src={fourthLayerImg1} alt="people" />
                 <LazyLoadImage 
                 effect="blur"
-                src={'https://sttravelbuddies001.blob.core.windows.net/web/jorge-saavedra-94qZsII4kN8-unsplash.jpg'} alt="two girls" />
+                src={fourthLayerImg2} alt="two girls" />
                 <LazyLoadImage
                 effect="blur" 
-                src={'https://sttravelbuddies001.blob.core.windows.net/web/helena-lopes-PGnqT0rXWLs-unsplash.jpg'} alt="friends" />
+                src={fourthLayerImg3} alt="friends" />
                 <LazyLoadImage
                 effect="blur" 
-                src={'https://sttravelbuddies001.blob.core.windows.net/web/scott-dukette-1HpQU1evGK8-unsplash.jpg'} alt="car" />
+                src={fourthLayerImg4} alt="car" />
             </div>
             <div className="fifth-layer">
                 <h3>“Not all those who wander are lost.”</h3>

@@ -88,8 +88,8 @@ export const Post = ({ post }) => {
         <Link to={`/profile/${post.Creator.Id}`}>
           <LazyLoadImage
             src={
-              post.Creator.ProfilePictureLink
-                ? Creator.ProfilePictureLink
+              post.Creator.ProfilePictureLink != null
+                ? post.Creator.ProfilePictureLink
                 : personImgOffline
             }
           />

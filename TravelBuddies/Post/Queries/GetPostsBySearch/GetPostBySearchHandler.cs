@@ -36,6 +36,7 @@
 					&& (request.PriceMax == null || p.PricePerSeat <= request.PriceMax)
 					&& (request.Baggage == null || p.Baggage == request.Baggage)
 					&& (request.Pets == null || p.Pets == request.Pets))
+				.OrderByDescending(c => c.CreatedOn)
 				.Include(c => c.FromDestinationCity)
 				.Include(c => c.ToDestinationCity)
 				.Include(c => c.Creator)

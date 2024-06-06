@@ -208,6 +208,7 @@ export const EditPost = () => {
                     sx={{
                       width: "14vw",
                     }}
+                    disabled
                     required
                   />
                   {filteredCities.length > 0 && (
@@ -237,6 +238,7 @@ export const EditPost = () => {
                     sx={{
                       width: "14vw",
                     }}
+                    disabled
                     required
                   />
                   {filteredToDesCities.length > 0 && (

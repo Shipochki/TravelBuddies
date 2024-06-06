@@ -217,7 +217,7 @@ export const CreatePost = () => {
         <>
         {/* <img className="demo-bg" src={backgroundImg} />
         <img className="demo-bg" src={backgroundImg} /> */}
-          {vehicle.id ? (
+          {vehicle ? (
             <>
               <div className="create-post-header">
                 <h2>Create Post</h2>

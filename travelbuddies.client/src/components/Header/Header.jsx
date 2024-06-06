@@ -160,7 +160,7 @@ export const Header = () => {
 
   return (
     <div className="header">
-      <img className="header-img" src={carLogo} />
+      {localStorage.accessToken && <img className="header-img" src={carLogo} />}
       <div className="header-left-side">
         {localStorage.accessToken && (
           <div>
