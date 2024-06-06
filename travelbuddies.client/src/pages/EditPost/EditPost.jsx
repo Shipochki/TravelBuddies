@@ -210,15 +210,6 @@ export const EditPost = () => {
                     }}
                     required
                   />
-                  {/* <input
-                            type="text"
-                            name={CreatePostFromKeys.FromDestination}
-                            value={values[CreatePostFromKeys.FromDestination]}
-                            onChange={handleFromDesChange}
-                            placeholder="From destination..."
-                            autoComplete="off"
-                            required
-                        /> */}
                   {filteredCities.length > 0 && (
                     <ul>
                       {filteredCities
@@ -248,15 +239,6 @@ export const EditPost = () => {
                     }}
                     required
                   />
-                  {/* <input
-                            type="text"
-                            name={CreatePostFromKeys.ToDestination}
-                            value={values[CreatePostFromKeys.ToDestination]}
-                            onChange={handleToDesChange}
-                            placeholder="To destination..."
-                            autoComplete="off"
-                            required
-                        /> */}
                   {filteredToDesCities.length > 0 && (
                     <ul>
                       {filteredToDesCities
