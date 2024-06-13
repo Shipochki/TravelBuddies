@@ -23,7 +23,8 @@
     align-items: center;
     text-align: center;
     column-gap:  50px;
-    max-width: 1250px;
+    max-width: 850px;
+    box-shadow: 0 0 12px 0;
 }
 
 .register-welcome{

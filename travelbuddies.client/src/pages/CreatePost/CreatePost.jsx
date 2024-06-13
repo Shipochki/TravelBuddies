@@ -215,8 +215,8 @@ export const CreatePost = () => {
     <div className="create-post-main">
       {localStorage.role == "driver" ? (
         <>
-        {/* <img className="demo-bg" src={backgroundImg} />
-        <img className="demo-bg" src={backgroundImg} /> */}
+        <img className="demo-bg" src={backgroundImg} />
+        {/* <img className="demo-bg" src={backgroundImg} /> */}
           {vehicle ? (
             <>
               <div className="create-post-header">

@@ -1,32 +1,22 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./Search.css";
-import Calendar from "../../components/Calendar/Calendar";
 import { useForm } from "../../utils/hooks/useForm";
 import { serializer } from "../../utils/common/serializer";
 import { OnSearchSubmit } from "../../services/PostService";
-import { GlobalContext } from "../../utils/contexts/GlobalContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowRight,
-  faCalendarDays,
-  faCheck,
   faSliders,
-  faX,
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { GetAllCities } from "../../services/CityService";
 import {
-  Autocomplete,
   Box,
   Button,
-  FormLabel,
   Slider,
-  Stack,
   TextField,
   Tooltip,
-  Typography,
 } from "@mui/material";
-import { ArrowForward, ArrowRight } from "@mui/icons-material";
 import { Loading } from "../Loading/Loading";
 import backgroundImg from "../../utils/images/white-background-with-blue-geometric-and-white-line-pattern-free-vector.jpg";
 

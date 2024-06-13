@@ -230,7 +230,12 @@ export const Regiser = () => {
                   variant="contained"
                   color="primary"
                   disabled={isSubmitting}
-                  sx={{ mt: 2 }}
+                  sx={{ 
+                    mt: 2, 
+                    width: "90px",
+                    height: "40px",
+                    fontSize: "medium"
+                  }}
                 >
                   Submit
                 </Button>

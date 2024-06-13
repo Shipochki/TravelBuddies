@@ -44,11 +44,11 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    font-size: small;
+    font-size: medium;
 }
 
 .groups-group-date{
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .popup-groups-btn{

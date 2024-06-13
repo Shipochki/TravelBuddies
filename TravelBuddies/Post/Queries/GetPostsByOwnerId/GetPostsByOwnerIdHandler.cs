@@ -36,6 +36,7 @@
 					&& p.IsCompleted == false)
 				.Include(p => p.FromDestinationCity)
 				.Include(p => p.ToDestinationCity)
+				.OrderByDescending(p => p.DateAndTime)
 				.ToListAsync();
 
 			return await Task.FromResult(posts);

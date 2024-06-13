@@ -157,6 +157,7 @@
     background-color: #ffffff;
 
     background: rgb(255, 255, 255, 0.5) url('../../utils/images/86cb94_2aab507a4a174fa7914ff41583146c13~mv2_d_5472_3648_s_4_2 (2).jpg') no-repeat fixed;
+    background-size: cover;
 }
 
 .fifth-layer h3{
