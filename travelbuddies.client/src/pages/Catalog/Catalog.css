@@ -1,10 +1,10 @@
 
 .catalog-main{
-    padding-top: 6vw;
+    padding-top: 90px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
+    height: 100vh;
 }
 
 .catalog-center{
@@ -13,7 +13,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #F5F6F7;
-    min-height: 100vh;
+    max-height: 100vh;
     row-gap: 4vw;
+    overflow: auto;
+    position: relative;
 }

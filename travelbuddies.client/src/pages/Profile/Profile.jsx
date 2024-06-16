@@ -11,11 +11,12 @@ import { GlobalContext } from '../../utils/contexts/GlobalContext';
 import { Loading } from '../Loading/Loading';
 import { Rating } from '@mui/material';
 
+import backgroundImg from "../../utils/images/white-background-with-blue-geometric-and-white-line-pattern-free-vector.jpg";
+
 export const Profile = ({user}) => {
     const { OnSetUser } = useContext(GlobalContext);
     const {id} = useParams();
     const [loading, setLoading] = useState(true);
-    const [isDeleted, setIsDeleted] = useState(false);
 
     useEffect(() => {
         if(!user.id || user.id != id){
@@ -42,6 +43,7 @@ export const Profile = ({user}) => {
 
     return (
         <div className='profile-main'>
+            <img className="demo-bg" src={backgroundImg} />
             <div className='profile-content'>
                 <div className='profile-content-info'>
                     <LazyLoadImage 

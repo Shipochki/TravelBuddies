@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import { OnSearchSubmit } from '../../services/PostService';
 import { Loading } from '../Loading/Loading';
 
+import backgroundImg from "../../utils/images/white-background-with-blue-geometric-and-white-line-pattern-free-vector.jpg";
+
 export const Catalog = () => {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -24,6 +26,7 @@ export const Catalog = () => {
 
     return (
         <div className="catalog-main">
+            <img className="demo-bg" src={backgroundImg} />
             <div className='catalog-center'>
                 {posts.map((p, i) => (
                     <div>
