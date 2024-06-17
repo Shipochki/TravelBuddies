@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { OnBecomeDriverSubmit } from "../../services/UserService";
 import { useForm } from "../../utils/hooks/useForm";
 import "./BecomeDriver.css";
@@ -9,6 +9,7 @@ import backgroundImg from '../../utils/images/white-background-with-blue-geometr
 export const BecomeDriver = () => {
   const [frontFileName, setFrontFileName] = useState([]);
   const [backFileName, setBackFileName] = useState([]);
+  const navigate = useNavigate();
 
   const onChangeFrontFile = (e) => {
     const path = e.target.value.split("\\");
@@ -24,7 +25,12 @@ export const BecomeDriver = () => {
     setBackFileName(name);
   };
 
-  const { values, changeHandler, onSubmit } = useForm({}, OnBecomeDriverSubmit);
+  // const { values, changeHandler, onSubmit } = useForm({}, OnBecomeDriverSubmit);
+
+  const onSubmit = async () => {
+    await OnBecomeDriverSubmit();
+    alert("🎉 Congratulations! 🎉\n\nYou are now a Driver! 🚗\n\nTo update your status, please re-login to your account.\n\n🔄 Re-login Required");
+  }
 
   return (
     <div className="becomedriver-main">
@@ -39,6 +45,7 @@ export const BecomeDriver = () => {
           </div>
         ) : (
           <div className="becomedriver-content">
+            <h2>Become Driver</h2>
             <form className="becomedriver-form" onSubmit={onSubmit}>
               <div className="license-upload">
                 <label>

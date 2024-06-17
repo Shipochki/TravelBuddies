@@ -216,7 +216,6 @@ export const CreatePost = () => {
       {localStorage.role == "driver" ? (
         <>
         <img className="demo-bg" src={backgroundImg} />
-        {/* <img className="demo-bg" src={backgroundImg} /> */}
           {vehicle ? (
             <>
               <div className="create-post-header">
@@ -264,6 +263,7 @@ export const CreatePost = () => {
                       sx={{
                         width: "14vw",
                       }}
+                      min={50}
                       required
                     />
                     {filteredToDesCities.length > 0 && (

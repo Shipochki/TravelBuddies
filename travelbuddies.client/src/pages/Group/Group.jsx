@@ -1,18 +1,12 @@
 import "./Group.css";
 import { useContext, useRef, useState } from "react";
-import { GetGroupById } from "../../services/GroupService";
 import { useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPeopleGroup } from "@fortawesome/free-solid-svg-icons";
 import { MemberGroup } from "../../components/MemberGroup/MemberGroup";
 import { Message } from "../../components/Message/Message";
 import { CreateMessage } from "../../components/CreateMessage/CreateMessage";
 import { EditMessage } from "../../components/EditMessage/EditMessage";
 import {
-  Link,
   useParams,
-  redirect,
-  Navigate,
   useNavigate,
 } from "react-router-dom";
 import { GlobalContext } from "../../utils/contexts/GlobalContext";
@@ -41,28 +35,13 @@ export const Group = ({ group }) => {
 
     intervalRef.current = setInterval(() => {
       OnSetGroup(id);
-    }, 60000);
+    }, 1000);
 
     setTimeout(() => {
       setLoading(false); // Set loading to false after data is fetched
     }, 500);
     return () => clearInterval(intervalRef.current);
   }, [id]);
-
-  // useEffect(() => {
-  //     const handlePopState = () => {
-  //         // When user navigates back, trigger data reload
-  //         OnSetGroup(id);
-  //       };
-
-  //       // Add event listener for browser navigation back
-  //       window.addEventListener('popstate', handlePopState);
-
-  //       // Cleanup: remove event listener when component unmounts
-  //       return () => {
-  //         window.removeEventListener('popstate', handlePopState);
-  //       };
-  // }, [id])
 
   const [membersVisable, setMembersVisable] = useState(false);
 
@@ -106,7 +85,6 @@ export const Group = ({ group }) => {
           <div className="group-info">
             <h3>Group of {group.name}</h3>
             <div className="group-info-options">
-              {/* <p className='group-info-members' onClick={onClickVisable}><FontAwesomeIcon icon={faPeopleGroup}/></p> */}
               <Tooltip title="Members">
                 <Button
                   sx={{

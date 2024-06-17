@@ -1,5 +1,5 @@
 import "./EditPost.css";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { GetPostById, OnUpdatePostSubmit } from "../../services/PostService";
 import { GetAllCities } from "../../services/CityService";
@@ -20,8 +20,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Calendar from "../../components/Calendar/Calendar";
 import { Forbidden } from "../Forbidden/Forbidden";
-import { GlobalContext } from "../../utils/contexts/GlobalContext";
 import { Loading } from "../Loading/Loading";
+import backgroundImg from "../../utils/images/white-background-with-blue-geometric-and-white-line-pattern-free-vector.jpg";
 
 const EditPostFromKeys = {
   Id: "id",
@@ -187,224 +187,227 @@ export const EditPost = () => {
       {localStorage.role == "driver" &&
       localStorage.userId == post.creatorId ? (
         <div className="edit-post-main">
-          <div className="edit-post-header">
-            <h2>Edit Post</h2>
-          </div>
-          <div className="edit-post-content">
-            <form
-              className="edit-post-form"
-              id="edit-post"
-              onSubmit={OnEditSubmit}
-            >
-              <div className="cities-inputs">
-                <div className="city-input">
-                  <TextField
-                    type="text"
-                    name={EditPostFromKeys.FromDestination}
-                    value={values[EditPostFromKeys.FromDestination]}
-                    onChange={handleFromDesChange}
-                    label="From destination..."
-                    autoComplete="off"
-                    sx={{
-                      width: "14vw",
-                    }}
-                    disabled
-                    required
-                  />
-                  {filteredCities.length > 0 && (
-                    <ul>
-                      {filteredCities
-                        .map((city) => (
-                          <li
-                            key={city.id}
-                            onClick={() => handleFromDesSelectCity(city.name)}
-                          >
-                            {city.name}
-                          </li>
-                        ))
-                        .slice(0, 10)}
-                    </ul>
-                  )}
-                </div>
-                <FontAwesomeIcon icon={faArrowRight} />
-                <div className="city-input">
-                  <TextField
-                    type="text"
-                    name={EditPostFromKeys.ToDestination}
-                    value={values[EditPostFromKeys.ToDestination]}
-                    onChange={handleToDesChange}
-                    label="To destination..."
-                    autoComplete="off"
-                    sx={{
-                      width: "14vw",
-                    }}
-                    disabled
-                    required
-                  />
-                  {filteredToDesCities.length > 0 && (
-                    <ul>
-                      {filteredToDesCities
-                        .map((city) => (
-                          <li
-                            key={city.id}
-                            onClick={() => handleToDesSelectCity(city.name)}
-                          >
-                            {city.name}
-                          </li>
-                        ))
-                        .slice(0, 10)}
-                    </ul>
-                  )}
-                </div>
-              </div>
-              <textarea
-                type="text"
-                className="edit-post-description"
-                name={EditPostFromKeys.Description}
-                value={values[EditPostFromKeys.Description]}
-                onChange={changeHandler}
-                placeholder="Description..."
-              />
-              <div className="create-post-date-time">
-                <div className="create-post-date-time-info">
-                  <input
-                    type="text"
-                    id="date"
-                    className="create-post-date"
-                    value={values[EditPostFromKeys.Date.slice(0, 17)]}
-                    placeholder="Choose date"
-                    disabled
-                  />
-                  <input
-                    type="text"
-                    id="time"
-                    className="create-post-date"
-                    value={values[EditPostFromKeys.Time]}
-                    placeholder="Choose time"
-                    disabled
-                  />
-                </div>
-                {calendarVisible && (
-                  <div className="calendar-time">
-                    <Calendar handle={handleDate} />
-                    <input
-                      type="time"
-                      className="create-post-time-input"
-                      name={EditPostFromKeys.Time}
-                      value={values[EditPostFromKeys.Time]}
-                      onChange={changeHandler}
+          <div className="edit-post-container">
+            <img className="demo-bg" src={backgroundImg} />
+            <div className="edit-post-header">
+              <h2>Edit Post</h2>
+            </div>
+            <div className="edit-post-content">
+              <form
+                className="edit-post-form"
+                id="edit-post"
+                onSubmit={OnEditSubmit}
+              >
+                <div className="cities-inputs">
+                  <div className="city-input">
+                    <TextField
+                      type="text"
+                      name={EditPostFromKeys.FromDestination}
+                      value={values[EditPostFromKeys.FromDestination]}
+                      onChange={handleFromDesChange}
+                      label="From destination..."
+                      autoComplete="off"
+                      sx={{
+                        width: "14vw",
+                      }}
+                      disabled
                       required
+                    />
+                    {filteredCities.length > 0 && (
+                      <ul>
+                        {filteredCities
+                          .map((city) => (
+                            <li
+                              key={city.id}
+                              onClick={() => handleFromDesSelectCity(city.name)}
+                            >
+                              {city.name}
+                            </li>
+                          ))
+                          .slice(0, 10)}
+                      </ul>
+                    )}
+                  </div>
+                  <FontAwesomeIcon icon={faArrowRight} />
+                  <div className="city-input">
+                    <TextField
+                      type="text"
+                      name={EditPostFromKeys.ToDestination}
+                      value={values[EditPostFromKeys.ToDestination]}
+                      onChange={handleToDesChange}
+                      label="To destination..."
+                      autoComplete="off"
+                      sx={{
+                        width: "14vw",
+                      }}
+                      disabled
+                      required
+                    />
+                    {filteredToDesCities.length > 0 && (
+                      <ul>
+                        {filteredToDesCities
+                          .map((city) => (
+                            <li
+                              key={city.id}
+                              onClick={() => handleToDesSelectCity(city.name)}
+                            >
+                              {city.name}
+                            </li>
+                          ))
+                          .slice(0, 10)}
+                      </ul>
+                    )}
+                  </div>
+                </div>
+                <textarea
+                  type="text"
+                  className="edit-post-description"
+                  name={EditPostFromKeys.Description}
+                  value={values[EditPostFromKeys.Description]}
+                  onChange={changeHandler}
+                  placeholder="Description..."
+                />
+                <div className="create-post-date-time">
+                  <div className="create-post-date-time-info">
+                    <input
+                      type="text"
+                      id="date"
+                      className="create-post-date"
+                      value={values[EditPostFromKeys.Date.slice(0, 17)]}
+                      placeholder="Choose date"
+                      disabled
+                    />
+                    <input
+                      type="text"
+                      id="time"
+                      className="create-post-date"
+                      value={values[EditPostFromKeys.Time]}
+                      placeholder="Choose time"
+                      disabled
                     />
                   </div>
-                )}
-                <div className="btn-calendar-container">
-                  <Tooltip title="Date and Time" placement="top">
-                    <button
-                      className="create-post-btn-calendar"
-                      type="button"
-                      onClick={toggleCalendar}
-                    >
-                      <FontAwesomeIcon
-                        icon={!calendarVisible ? faCalendarDays : faCheck}
+                  {calendarVisible && (
+                    <div className="calendar-time">
+                      <Calendar handle={handleDate} />
+                      <input
+                        type="time"
+                        className="create-post-time-input"
+                        name={EditPostFromKeys.Time}
+                        value={values[EditPostFromKeys.Time]}
+                        onChange={changeHandler}
+                        required
                       />
-                    </button>
-                  </Tooltip>
+                    </div>
+                  )}
+                  <div className="btn-calendar-container">
+                    <Tooltip title="Date and Time" placement="top">
+                      <button
+                        className="create-post-btn-calendar"
+                        type="button"
+                        onClick={toggleCalendar}
+                      >
+                        <FontAwesomeIcon
+                          icon={!calendarVisible ? faCalendarDays : faCheck}
+                        />
+                      </button>
+                    </Tooltip>
+                  </div>
                 </div>
-              </div>
-              <div className="create-post-bools">
-                <div className="create-post-baggage">
-                  <p>Baggage:</p>
-                  <label>{isBaggage ? "Yes" : "No"}</label>
-                  <input
-                    type="checkbox"
-                    checked={isBaggage}
-                    onChange={handleIsBaggage}
-                  />
+                <div className="create-post-bools">
+                  <div className="create-post-baggage">
+                    <p>Baggage:</p>
+                    <label>{isBaggage ? "Yes" : "No"}</label>
+                    <input
+                      type="checkbox"
+                      checked={isBaggage}
+                      onChange={handleIsBaggage}
+                    />
+                  </div>
+                  <div className="create-post-pets">
+                    <p>Pets:</p>
+                    <label>{isPets ? "Yes" : "No"}</label>
+                    <input
+                      type="checkbox"
+                      checked={isPets}
+                      onChange={handleIsPets}
+                    />
+                  </div>
                 </div>
-                <div className="create-post-pets">
-                  <p>Pets:</p>
-                  <label>{isPets ? "Yes" : "No"}</label>
-                  <input
-                    type="checkbox"
-                    checked={isPets}
-                    onChange={handleIsPets}
-                  />
-                </div>
-              </div>
-              <div className="create-post-nums-inputs">
-                <div className="create-post-price">
-                  <label>Price per seat</label>
-                  <label>
+                <div className="create-post-nums-inputs">
+                  <div className="create-post-price">
+                    <label>Price per seat</label>
+                    <label>
+                      <input
+                        type="number"
+                        name={EditPostFromKeys.PricePerSeat}
+                        value={values[EditPostFromKeys.PricePerSeat]}
+                        onChange={changeHandler}
+                        placeholder="10"
+                        required
+                        min={0}
+                        max={100}
+                      />
+                    </label>
+                  </div>
+                  <div className="create-post-seats">
+                    <label>Available seats:</label>
                     <input
                       type="number"
-                      name={EditPostFromKeys.PricePerSeat}
-                      value={values[EditPostFromKeys.PricePerSeat]}
+                      name={EditPostFromKeys.FreeSeats}
+                      value={values[EditPostFromKeys.FreeSeats]}
                       onChange={changeHandler}
-                      placeholder="10"
+                      placeholder="3"
                       required
-                      min={0}
-                      max={100}
+                      min={1}
                     />
-                  </label>
+                  </div>
                 </div>
-                <div className="create-post-seats">
-                  <label>Available seats:</label>
-                  <input
-                    type="number"
-                    name={EditPostFromKeys.FreeSeats}
-                    value={values[EditPostFromKeys.FreeSeats]}
-                    onChange={changeHandler}
-                    placeholder="3"
-                    required
-                    min={1}
-                  />
+                <div className="boxs-choses">
+                  <Box sx={{ minWidth: 120 }}>
+                    <FormControl fullWidth>
+                      <InputLabel variant="standard" htmlFor="paymentType">
+                        Choose a Payment type
+                      </InputLabel>
+                      <NativeSelect
+                        value={values[EditPostFromKeys.PaymentType]}
+                        onChange={changeHandler}
+                        inputProps={{
+                          name: "paymentType",
+                          id: "paymentType",
+                        }}
+                      >
+                        <option value={0}>Cash</option>
+                        <option value={1}>Card</option>
+                        <option value={2}>Cash and Card</option>
+                      </NativeSelect>
+                    </FormControl>
+                  </Box>
+                  <Box sx={{ minWidth: 120 }}>
+                    <FormControl fullWidth>
+                      <InputLabel variant="standard" htmlFor="currency">
+                        Choose a Currency
+                      </InputLabel>
+                      <NativeSelect
+                        value={values[EditPostFromKeys.Currency]}
+                        onChange={changeHandler}
+                        inputProps={{
+                          name: "currency",
+                          id: "currency",
+                        }}
+                      >
+                        <option value={"EUR"}>EUR</option>
+                        <option value={"BGN"}>BGN</option>
+                        <option value={"USD"}>USD</option>
+                        <option value={"GBP"}>GBP</option>
+                      </NativeSelect>
+                    </FormControl>
+                  </Box>
                 </div>
-              </div>
-              <div className="boxs-choses">
-                <Box sx={{ minWidth: 120 }}>
-                  <FormControl fullWidth>
-                    <InputLabel variant="standard" htmlFor="paymentType">
-                      Choose a Payment type
-                    </InputLabel>
-                    <NativeSelect
-                      value={values[EditPostFromKeys.PaymentType]}
-                      onChange={changeHandler}
-                      inputProps={{
-                        name: "paymentType",
-                        id: "paymentType",
-                      }}
-                    >
-                      <option value={0}>Cash</option>
-                      <option value={1}>Card</option>
-                      <option value={2}>Cash and Card</option>
-                    </NativeSelect>
-                  </FormControl>
-                </Box>
-                <Box sx={{ minWidth: 120 }}>
-                  <FormControl fullWidth>
-                    <InputLabel variant="standard" htmlFor="currency">
-                      Choose a Currency
-                    </InputLabel>
-                    <NativeSelect
-                      value={values[EditPostFromKeys.Currency]}
-                      onChange={changeHandler}
-                      inputProps={{
-                        name: "currency",
-                        id: "currency",
-                      }}
-                    >
-                      <option value={"EUR"}>EUR</option>
-                      <option value={"BGN"}>BGN</option>
-                      <option value={"USD"}>USD</option>
-                      <option value={"GBP"}>GBP</option>
-                    </NativeSelect>
-                  </FormControl>
-                </Box>
-              </div>
-              <button className="create-post-btn-add" type="submit">
-                Save
-              </button>
-            </form>
+                <button className="create-post-btn-add" type="submit">
+                  Save
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       ) : (

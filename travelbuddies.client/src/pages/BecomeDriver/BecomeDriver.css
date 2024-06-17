@@ -23,6 +23,11 @@
     position: relative;
 }
 
+.becomedriver-content h2{
+    padding-bottom: 20px;
+    color: #2979ff;
+}
+
 .becomedriver-form{
     display: flex;
     flex-direction: column;

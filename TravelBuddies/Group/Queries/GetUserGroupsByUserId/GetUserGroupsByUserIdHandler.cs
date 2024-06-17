@@ -38,6 +38,7 @@
 				.ThenInclude(g => g.FromDestinationCity)
 				.Include(g => g.Post)
 				.ThenInclude(g => g.ToDestinationCity)
+				.OrderByDescending(g => g.Post.DateAndTime)
 				.ToListAsync();
 
 			return await Task.FromResult(groups);

@@ -7,8 +7,18 @@
     background: #F5F6F7;
     font-family: "Roboto", sans-serif;
     row-gap: 25px;
-    padding: 9vw 0 5vw 0;
+    padding-top: 90px;
     color: #2979ff;
+}
+
+.edit-post-container{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    height: 700px;
 }
 
 .edit-post-header{
@@ -19,6 +29,7 @@
     background: white;
     border-radius: 8px;
     box-shadow: 0 0 1px 0 black;
+    position: relative;
 }
 
 .edit-post-header h2{
@@ -28,6 +39,11 @@
     align-items: center;
     justify-content: center;
     color: #2979ff;
+}
+
+.edit-post-content{
+    position: relative;
+    overflow: auto;
 }
 
 .edit-post-main form{

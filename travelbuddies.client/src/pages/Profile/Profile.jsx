@@ -58,8 +58,8 @@ export const Profile = ({user}) => {
                             <p>Country: {user.country ? user.country : 'None'}</p>
                             <p>City: {user.city ? user.city : 'None'}</p>
                             <div>
-                                <Rating name="read-only" value={Math.round(user.rating)} readOnly />
                                 <p>Rating: {user.rating}</p>
+                                <Rating name="read-only" value={Math.round(user.rating)} readOnly />
                             </div>
                             
                         </div>

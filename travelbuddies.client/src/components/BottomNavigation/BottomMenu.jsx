@@ -2,7 +2,7 @@ import { BottomNavigation, BottomNavigationAction, Box } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import MenuIcon from "@mui/icons-material/Menu";
 import GroupsIcon from "@mui/icons-material/Groups";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./BottomMenu.css";
 import { useNavigate } from "react-router-dom";
 
@@ -40,7 +40,7 @@ export const BottomMenu = () => {
       })
     } else {
       menu.style.visibility = "hidden";
-      setValue(1);;
+      setValue(1);
     }
   };
 
