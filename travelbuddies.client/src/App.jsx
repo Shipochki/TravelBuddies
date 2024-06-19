@@ -34,6 +34,7 @@ import { EditProfile } from "./pages/EditProfile/EditProfile";
 import { BottomMenu } from "./components/BottomNavigation/BottomMenu";
 import { VehicleMenu } from "./pages/VehicleMenu/VehicleMenu";
 import { PostMenu } from "./pages/PostMenu/PostMenu";
+import { Success } from "./pages/Success/Success";
 
 function App() {
   const navigate = useNavigate();
@@ -145,6 +146,7 @@ function App() {
                 <Route path="/editPost/:id" element={<EditPost />} />
                 <Route path="/vehicleMenu" element={<VehicleMenu />} />
                 <Route path="/postMenu" element={<PostMenu />} />
+                <Route path="/success" element={<Success/>}/>
               </>
             ) : (
               <>

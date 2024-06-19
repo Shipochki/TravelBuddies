@@ -43,7 +43,7 @@
 
 			if(request.PictureLink != null)
 			{
-				string pictureLink = await _blobService
+				vehicle.PictureLink = await _blobService
 					.UploadImageAsync(request.PictureLink);
 			}
 

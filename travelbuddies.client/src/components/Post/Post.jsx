@@ -17,6 +17,7 @@ import { GlobalContext } from "../../utils/contexts/GlobalContext";
 import cashImg from "../../utils/images/8993556.png";
 import cardImg from "../../utils/images/payment-card-icon-vector-21079946.jpg";
 import difPayType from "../../utils/images/cash-vs-credit-ca.png";
+import InfoIcon from "@mui/icons-material/Info";
 import {
   Button,
   Dialog,
@@ -24,6 +25,7 @@ import {
   DialogContent,
   DialogTitle,
   IconButton,
+  Tooltip,
   Typography,
   styled,
 } from "@mui/material";
@@ -57,10 +59,14 @@ export const Post = ({ post }) => {
   const OnJoinSubmit = async (e) => {
     e.preventDefault();
 
-    await OnJoinGroupSubmit(post.GroupId);
+    if (post.FreeSeats == 0) {
+      alert("No seats available!");
+    } else {
+      await OnJoinGroupSubmit(post.GroupId);
 
-    OnSetGroups();
-    navigate(`/group/${post.GroupId}`);
+      OnSetGroups();
+      navigate(`/group/${post.GroupId}`);
+    }
   };
 
   const IsAllreadyInGroupAlert = () => {
@@ -152,15 +158,26 @@ export const Post = ({ post }) => {
       </div>
       <div className="post-more-info">
         <p className="post-priceperseat">
-          Price: <span>{post.PricePerSeat} {post.Currency}</span>
+          Price:{" "}
+          <span>
+            {post.PricePerSeat} {post.Currency}
+          </span>
         </p>
-        <p className="post-freeseats">Seats available: <span>{post.FreeSeats}</span></p>
+        <p className="post-freeseats">
+          Seats available: <span>{post.FreeSeats}</span>
+        </p>
         <div className="post-bool">
-          <p>Is passenger allowed to bring <span>Baggage</span>:</p>
+          <Tooltip title="Can I bring baggage with me?">
+            <InfoIcon sx={{ color: "#2979ff" }} />
+          </Tooltip>
+          <span>Baggage:</span>
           <FontAwesomeIcon icon={post.Baggage ? faCheck : faCircleXmark} />
         </div>
         <div className="post-bool">
-          <p>Is passenger allowed to bring <span>Pets</span>:</p>
+          <Tooltip title="Can I take my pets with me?">
+            <InfoIcon sx={{ color: "#2979ff" }} />
+          </Tooltip>
+          <span>Pets:</span>
           <FontAwesomeIcon icon={post.Pets ? faCheck : faCircleXmark} />
         </div>
       </div>

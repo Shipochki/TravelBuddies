@@ -95,7 +95,7 @@ export const MyPost = ({ post, setPosts }) => {
             <EditIcon />
           </Fab>
         </Tooltip>
-        <Tooltip title="Complete">
+        <Tooltip title="Complete Trip">
           <Fab onClick={onCompletePost} color="success" aria-label="complete">
             <CheckCircleOutlineOutlinedIcon />
           </Fab>

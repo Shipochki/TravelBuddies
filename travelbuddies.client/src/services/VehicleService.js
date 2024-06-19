@@ -49,7 +49,7 @@ export const OnUpdateVehicleSubmit = async (updateVehicleFromKeys) => {
     formData.append("seatcount", updateVehicleFromKeys.seatCount);
     formData.append("acsystem", updateVehicleFromKeys.acSystem);
     if (updateVehicleFromKeys.image) {
-      formData.append("picturelink", createVehicleFromKeys.image);
+      formData.append("picturelink", updateVehicleFromKeys.image);
     }
 
     const response = await fetch(Url + "/update", {

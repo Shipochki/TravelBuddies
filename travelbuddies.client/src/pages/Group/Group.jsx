@@ -35,7 +35,7 @@ export const Group = ({ group }) => {
 
     intervalRef.current = setInterval(() => {
       OnSetGroup(id);
-    }, 1000);
+    }, 5000);
 
     setTimeout(() => {
       setLoading(false); // Set loading to false after data is fetched

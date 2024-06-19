@@ -21,6 +21,7 @@ import {
   NativeSelect,
   Snackbar,
   TextField,
+  Tooltip,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Loading } from "../Loading/Loading";
@@ -33,7 +34,10 @@ import {
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import backgroundImg from "../../utils/images/white-background-with-blue-geometric-and-white-line-pattern-free-vector.jpg";
+import InfoIcon from '@mui/icons-material/Info';
+import dayjs from 'dayjs';
 
+const today = dayjs();
 
 const CreatePostFromKeys = {
   FromDestination: "fromDestinationCityId",
@@ -297,6 +301,7 @@ export const CreatePost = () => {
                         label="Date of Departure"
                         value={values[CreatePostFromKeys.Date]}
                         onChange={(newValue) => handleDate(newValue)}
+                        minDate={today}
                       />
                       <TimePicker
                         label="Time of Departure"
@@ -308,6 +313,9 @@ export const CreatePost = () => {
                 </div>
                 <div className="create-post-bools">
                   <div className="create-post-baggage">
+                    <Tooltip title="Can customers bring baggage with them?" placement="top">
+                      <InfoIcon/>
+                    </Tooltip>
                     <p>Baggage:</p>
                     <label>{isBaggage ? "Yes" : "No"}</label>
                     <input
@@ -317,6 +325,9 @@ export const CreatePost = () => {
                     />
                   </div>
                   <div className="create-post-pets">
+                  <Tooltip title="Can customers bring pets with them?" placement="top">
+                      <InfoIcon/>
+                    </Tooltip>
                     <p>Pets:</p>
                     <label>{isPets ? "Yes" : "No"}</label>
                     <input
@@ -328,6 +339,9 @@ export const CreatePost = () => {
                 </div>
                 <div className="create-post-nums-inputs">
                   <div className="create-post-price">
+                  <Tooltip title="Write how much the trip will cost for one customer!" placement="top">
+                      <InfoIcon/>
+                    </Tooltip>
                     <label>Price per seat:</label>
                     <label>
                       <input
@@ -343,6 +357,9 @@ export const CreatePost = () => {
                     </label>
                   </div>
                   <div className="create-post-seats">
+                  <Tooltip title="Write how many available seats there are by removing yourself and if you are not alone and the people you will take!" placement="top">
+                      <InfoIcon/>
+                    </Tooltip>
                     <label>Available seats:</label>
                     <input
                       type="number"

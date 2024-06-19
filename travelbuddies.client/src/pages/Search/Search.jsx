@@ -24,6 +24,9 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import InfoIcon from '@mui/icons-material/Info';
+import dayjs from 'dayjs';
+
 
 const searchFromKeys = {
   FromDestination: "fromDestinationCityId",
@@ -35,6 +38,9 @@ const searchFromKeys = {
   Baggage: "baggage",
   Pets: "pets",
 };
+
+const today = dayjs();
+const tomorrow = dayjs().add(1, 'day');
 
 function valuetext(value) {
   return `${value}`;
@@ -264,11 +270,13 @@ export const Search = () => {
                         label="From date"
                         value={values[searchFromKeys.FromDate]}
                         onChange={(newValue) => handleFromDate(newValue)}
+                        minDate={today}
                       />
                       <DatePicker
                         label="To date"
                         value={values[searchFromKeys.ToDate]}
                         onChange={(newValue) => handleToDate(newValue)}
+                        minDate={tomorrow}
                       />
                     </DemoContainer>
                   </LocalizationProvider>
@@ -296,6 +304,9 @@ export const Search = () => {
                 </div>
                 <div className="more-options-bools">
                   <div className="more-options-boolean baggage-btn">
+                  <Tooltip title="Can I bring baggage with me?" placement="top">
+                      <InfoIcon/>
+                    </Tooltip>
                     <p>Baggage</p>
                     <input
                       type="checkbox"
@@ -304,6 +315,9 @@ export const Search = () => {
                     />
                   </div>
                   <div className="more-options-boolean pets-btn">
+                  <Tooltip title="Can I take my pets with me?" placement="top">
+                      <InfoIcon/>
+                    </Tooltip>
                     <p>Pets</p>
                     <input
                       type="checkbox"

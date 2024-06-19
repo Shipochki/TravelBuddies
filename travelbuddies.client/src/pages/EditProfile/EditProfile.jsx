@@ -1,5 +1,5 @@
 import "./EditProfile.css";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Loading } from "../Loading/Loading";
 import {
   GetOnlyUserById,
@@ -15,6 +15,7 @@ import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 
 import backgroundImg from "../../utils/images/white-background-with-blue-geometric-and-white-line-pattern-free-vector.jpg";
+import { GlobalContext } from "../../utils/contexts/GlobalContext";
 
 
 const SignupSchema = Yup.object().shape({
@@ -31,6 +32,7 @@ const SignupSchema = Yup.object().shape({
 });
 
 export const EditProfile = () => {
+  const { OnSetUser } = useContext(GlobalContext);
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -51,6 +53,7 @@ export const EditProfile = () => {
     if (result) {
       alert(result);
     } else {
+      OnSetUser(localStorage.userId);
       navigate(`/profile/${localStorage.userId}`);
     }
   };

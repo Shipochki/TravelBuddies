@@ -12,7 +12,7 @@
     height: 100vh;
     row-gap: 15px;
     overflow: auto;
-    background: #F5F6F7;
+    /* background: #F5F6F7; */
     color: #8D949E;
     padding: 2vw 0;
     z-index: 1;

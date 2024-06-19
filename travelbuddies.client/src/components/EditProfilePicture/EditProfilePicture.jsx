@@ -1,16 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./EditProfilePicture.css";
 import { useForm } from "../../utils/hooks/useForm";
 import {
   GetOnlyUserById,
   OnUpdateProfilePicutreSubmit,
 } from "../../services/UserService";
+import { GlobalContext } from "../../utils/contexts/GlobalContext";
 
 const EditProfilePictureFromKeys = {
   ProfilePicture: "profilePicture",
 };
 
 export const EditProfilePicture = ({ setUser }) => {
+  const { OnSetUser } = useContext(GlobalContext);
   const [nameFile, setNameFile] = useState("");
 
   const { values, changeHandler, onSubmit } = useForm(
@@ -28,6 +30,8 @@ export const EditProfilePicture = ({ setUser }) => {
     values[EditProfilePictureFromKeys.ProfilePicture] = null;
 
     const data = await GetOnlyUserById(localStorage.userId);
+    localStorage.profilePictureLink = data.profilePictureLink;
+    OnSetUser(localStorage.userId);
     setNameFile('');
 
     setUser(data);

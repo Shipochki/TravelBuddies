@@ -2,9 +2,7 @@ import { useState } from "react";
 import { OnRegisterSubmit } from "../../services/UserService";
 import "./Register.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCarSide
-} from "@fortawesome/free-solid-svg-icons";
+import { faCarSide } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import {
@@ -165,12 +163,7 @@ export const Regiser = () => {
                     label="City"
                     isRequired={false}
                   />
-                  <FormikTextField
-                    name="email"
-                    type="email"
-                    label="Email"
-                    isRequired={true}
-                  />
+
                   <FormikTextField
                     name="password"
                     type="password"
@@ -181,6 +174,12 @@ export const Regiser = () => {
                     name="repassword"
                     type="password"
                     label="Confirm Password"
+                    isRequired={true}
+                  />
+                  <FormikTextField
+                    name="email"
+                    type="email"
+                    label="Email"
                     isRequired={true}
                   />
                   <>
@@ -230,11 +229,11 @@ export const Regiser = () => {
                   variant="contained"
                   color="primary"
                   disabled={isSubmitting}
-                  sx={{ 
-                    mt: 2, 
+                  sx={{
+                    mt: 2,
                     width: "90px",
                     height: "40px",
-                    fontSize: "medium"
+                    fontSize: "medium",
                   }}
                 >
                   Submit
