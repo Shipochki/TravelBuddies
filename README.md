@@ -2,8 +2,6 @@
 
 Welcome to TravelBuddies, a comprehensive travel management application that facilitates the creation and management of user profiles, driver registrations, travel posts, group communication, and payment processing.
 
-You can watch my presentation from here: https://youtu.be/YF_xFsQuQow
-
 ## Table of Contents
 
 1. [Overview](#overview)
