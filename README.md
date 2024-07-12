@@ -2,6 +2,8 @@
 
 Welcome to TravelBuddies, a comprehensive travel management application that facilitates the creation and management of user profiles, driver registrations, travel posts, group communication, and payment processing.
 
+You can watch my presentation from here: https://youtu.be/YF_xFsQuQow
+
 ## Table of Contents
 
 1. [Overview](#overview)
@@ -147,5 +149,3 @@ To run TravelBuddies locally, follow these steps:
   - On the right, view monthly profit statistics.
 - **Real-Time Communication** (planned):
   - Implement Azure SignalR Service for real-time user communication.
-
-
