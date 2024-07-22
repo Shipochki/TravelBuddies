@@ -1,14 +1,14 @@
 ﻿namespace TravelBuddies.Application.User.Commands.CreateApplicationUser
 {
-    using MediatR;
-    using Microsoft.AspNetCore.Identity;
-    using System.Threading;
-    using TravelBuddies.Domain.Common;
-    using TravelBuddies.Domain.Entities;
-    using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;
+	using MediatR;
+	using Microsoft.AspNetCore.Identity;
+	using System.Threading;
+	using TravelBuddies.Domain.Common;
+	using TravelBuddies.Domain.Entities;
+	using static TravelBuddies.Application.Common.Exceptions.Messages.ExceptionMessages;
 	using static TravelBuddies.Application.Common.MailMessages.MailMessages;
-    using TravelBuddies.Application.Common.Interfaces.AzureStorage;
-    using TravelBuddies.Application.Common.Interfaces.Repository;
+	using TravelBuddies.Application.Common.Interfaces.AzureStorage;
+	using TravelBuddies.Application.Common.Interfaces.Repository;
 	using TravelBuddies.Application.Common.Exceptions.BadRequest;
 	using TravelBuddies.Application.Common.Interfaces.MailSender;
 
@@ -33,10 +33,17 @@
 		{
 			string? profilePictureLink = null;
 
-			if(request.ProfilePicture != null)
+			if (request.ProfilePicture != null)
 			{
-				profilePictureLink = await _blobService
-					.UploadImageAsync(request.ProfilePicture);
+				try
+				{
+					profilePictureLink = await _blobService
+										.UploadImageAsync(request.ProfilePicture);
+				}
+				catch (Exception)
+				{
+				}
+
 			}
 
 			ApplicationUser applicationUser = new ApplicationUser()
@@ -62,7 +69,7 @@
 			await _userManager
 				.AddToRoleAsync(applicationUser, ApplicationRoles.Client);
 
-			
+
 			await _mailSender.SendMessage("Succesful register"
 				, string.Format(SuccesfullRegisterMessage, applicationUser.UserName)
 				, new List<string>() { applicationUser.Email });

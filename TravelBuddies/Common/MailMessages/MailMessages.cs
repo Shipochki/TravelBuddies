@@ -41,5 +41,97 @@
                             </div>
                         </body>
                     </html>";
+
+		public const string JoinNotificationToDriver = @"
+    <html>
+    <body>
+        <div class=""container"">
+            <div class=""header"">
+                New Member Joined Your Group
+            </div>
+            <div class=""message"">
+                Hi <strong>{{driver_name}}</strong>,
+                <br><br>
+                We're pleased to inform you that a new member, <strong>{{member_name}}</strong>, has joined your group ""{{group_name}}"". They are eager to contribute and collaborate with you.
+                <br><br>
+                Please welcome them to the group and feel free to reach out if you need any assistance.
+                <br><br>
+                Best regards,
+                <br>
+                Your Group Management Team
+            </div>
+        </div>
+    </body>
+    </html>
+    ";
+
+		public const string LeaveNotificationToDriver = @"
+    <html>
+    <body>
+        <div class=""container"">
+            <div class=""header"">
+                Member Left Your Group
+            </div>
+            <div class=""message"">
+                Hi <strong>{{driver_name}}</strong>,
+                <br><br>
+                We regret to inform you that <strong>{{member_name}}</strong> has left your group ""{{group_name}}"". Their contributions will be missed.
+                <br><br>
+                If you have any questions or need assistance regarding your group, please feel free to reach out to us.
+                <br><br>
+                Best regards,
+                <br>
+                Your Group Management Team
+            </div>
+        </div>
+    </body>
+    </html>
+    ";
+
+		public const string JoinNotificationToMember = @"
+    <html>
+    <body>
+        <div class=""container"">
+            <div class=""header"">
+                Welcome to the Group!
+            </div>
+            <div class=""message"">
+                Hi <strong>{{member_name}}</strong>,
+                <br><br>
+                Welcome to the ""{{group_name}}""! We're excited to have you join us. Your participation is greatly appreciated.
+                <br><br>
+                If you have any questions or need assistance, please don't hesitate to contact us.
+                <br><br>
+                Best regards,
+                <br>
+                The Group Team
+            </div>
+        </div>
+    </body>
+    </html>
+    ";
+
+		public const string LeaveNotificationToMember = @"
+    <html>
+    <body>
+        <div class=""container"">
+            <div class=""header"">
+                You've Left the Group
+            </div>
+            <div class=""message"">
+                Hi <strong>{{member_name}}</strong>,
+                <br><br>
+                We're sorry to inform you that you have left the ""{{group_name}}"". We appreciate your participation during your time with us.
+                <br><br>
+                If you have any questions or would like further information, please feel free to reach out.
+                <br><br>
+                Best regards,
+                <br>
+                The Group Team
+            </div>
+        </div>
+    </body>
+    </html>
+    ";
 	}
 }

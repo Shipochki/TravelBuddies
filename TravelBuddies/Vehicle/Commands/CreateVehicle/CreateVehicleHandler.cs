@@ -36,7 +36,8 @@
 					string.Format(ApplicationUserNotFoundMessage, request.OwnerId));
 			}
 
-			string pictureLink = await _blobService.UploadImageAsync(request.PictureLink);
+			//string pictureLink = await _blobService.UploadImageAsync(request.PictureLink);
+			string pictureLink = string.Empty;
 
 			Vehicle vehicle = new Vehicle()
 			{

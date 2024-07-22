@@ -75,6 +75,7 @@ export const Search = () => {
     OnSearchSubmit
   );
 
+  
   const clickSubmit = async (e) => {
     e.preventDefault();
     const fromdes = cities.filter(
@@ -91,15 +92,14 @@ export const Search = () => {
       values[searchFromKeys.ToDestination] = todes.id;
       if (values[searchFromKeys.FromDate] != null) {
         let date = new Date(values[searchFromKeys.FromDate]);
-        values[searchFromKeys.FromDate] = date.toISOString();
+        values[searchFromKeys.FromDate] = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
       }
 
       if (values[searchFromKeys.ToDate]) {
         let date = new Date(values[searchFromKeys.ToDate]);
-        values[searchFromKeys.ToDate] = date.toISOString();
+        values[searchFromKeys.ToDate] = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
       }
-
-      navigate(`/catalog?${serializer(values)}`);
+      navigate(`/catalog?${serializer(values)}`);    
     }
   };
 
@@ -194,7 +194,15 @@ export const Search = () => {
         <div className="search-header">
           <h2>You can search your travel here</h2>
         </div>
-        <form id="search" method="POST" onSubmit={clickSubmit}>
+        <form id="search" method="POST" onSubmit={(e) => {
+          e.preventDefault()
+          if(values[searchFromKeys.FromDate] > values[searchFromKeys.ToDate]){
+            alert("The \"From\" date can't be later than the \"To\" date. Please ensure your date range is correctly selected.")
+          }
+          else{
+            clickSubmit(e);
+          }
+        }}>
           <div className="cities-inputs">
             <div className="city-input">
               <TextField
@@ -276,7 +284,7 @@ export const Search = () => {
                         label="To date"
                         value={values[searchFromKeys.ToDate]}
                         onChange={(newValue) => handleToDate(newValue)}
-                        minDate={tomorrow}
+                        minDate={today}
                       />
                     </DemoContainer>
                   </LocalizationProvider>
@@ -304,7 +312,7 @@ export const Search = () => {
                 </div>
                 <div className="more-options-bools">
                   <div className="more-options-boolean baggage-btn">
-                  <Tooltip title="Can I bring baggage with me?" placement="top">
+                  <Tooltip title="Do you bring baggage with you?" placement="top">
                       <InfoIcon/>
                     </Tooltip>
                     <p>Baggage</p>
@@ -315,7 +323,7 @@ export const Search = () => {
                     />
                   </div>
                   <div className="more-options-boolean pets-btn">
-                  <Tooltip title="Can I take my pets with me?" placement="top">
+                  <Tooltip title="Do you bring pets with you?" placement="top">
                       <InfoIcon/>
                     </Tooltip>
                     <p>Pets</p>

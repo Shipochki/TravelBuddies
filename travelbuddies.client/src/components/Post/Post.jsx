@@ -167,14 +167,14 @@ export const Post = ({ post }) => {
           Seats available: <span>{post.FreeSeats}</span>
         </p>
         <div className="post-bool">
-          <Tooltip title="Can I bring baggage with me?">
+          <Tooltip title="Can you bring baggage with you?">
             <InfoIcon sx={{ color: "#2979ff" }} />
           </Tooltip>
           <span>Baggage:</span>
           <FontAwesomeIcon icon={post.Baggage ? faCheck : faCircleXmark} />
         </div>
         <div className="post-bool">
-          <Tooltip title="Can I take my pets with me?">
+          <Tooltip title="Can you bring pets with you?">
             <InfoIcon sx={{ color: "#2979ff" }} />
           </Tooltip>
           <span>Pets:</span>

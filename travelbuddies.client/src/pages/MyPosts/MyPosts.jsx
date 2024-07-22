@@ -41,7 +41,7 @@ export const MyPosts = () => {
             </>
           ) : (
             <div>
-              <h2>You don't have created Posts</h2>
+              <h2>Looks like you haven't created any posts yet! Why not start now?</h2>
             </div>
           )}
         </div>

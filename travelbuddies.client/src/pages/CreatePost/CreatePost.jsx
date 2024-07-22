@@ -1,14 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "../../utils/hooks/useForm";
-import {
-  OnCreatePostSubmit,
-} from "../../services/PostService";
+import { OnCreatePostSubmit } from "../../services/PostService";
 import "./CreatePost.css";
 import { NotDriver } from "../../components/NotDriver/NotDriver";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowRight,
-} from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { NoVehicle } from "../../components/NoVehicle/NoVehicle";
 import { GlobalContext } from "../../utils/contexts/GlobalContext";
 import { GetVehicleByOwnerId } from "../../services/VehicleService";
@@ -34,8 +30,8 @@ import {
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import backgroundImg from "../../utils/images/white-background-with-blue-geometric-and-white-line-pattern-free-vector.jpg";
-import InfoIcon from '@mui/icons-material/Info';
-import dayjs from 'dayjs';
+import InfoIcon from "@mui/icons-material/Info";
+import dayjs from "dayjs";
 
 const today = dayjs();
 
@@ -59,6 +55,7 @@ export const CreatePost = () => {
   const [cities, setCities] = useState([]);
   const [vehicle, setVehicle] = useState({});
   const [loading, setLoading] = useState(true);
+  const [minDes, setMinDes] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -115,9 +112,8 @@ export const CreatePost = () => {
 
     if (values[CreatePostFromKeys.Time]) {
       let time = new Date(values[CreatePostFromKeys.Time]);
-      values[CreatePostFromKeys.Time] = time.toTimeString().split(' ')[0];
+      values[CreatePostFromKeys.Time] = time.toTimeString().split(" ")[0];
     }
-
 
     const isSuccess = await OnCreatePostSubmit(values);
 
@@ -219,13 +215,24 @@ export const CreatePost = () => {
     <div className="create-post-main">
       {localStorage.role == "driver" ? (
         <>
-        <img className="demo-bg" src={backgroundImg} />
+          <img className="demo-bg" src={backgroundImg} />
           {vehicle ? (
             <>
               <div className="create-post-header">
                 <h2>Create Post</h2>
               </div>
-              <form id="create-post" method="POST" onSubmit={clickHandler}>
+              <form
+                id="create-post"
+                method="POST"
+                onSubmit={(e) => {
+                  if (values[CreatePostFromKeys.Description].length < 50) {
+                    e.preventDefault();
+                    alert("Description must be at least 50 characters!");
+                  } else {
+                    clickHandler(e);
+                  }
+                }}
+              >
                 <div className="cities-inputs">
                   <div className="city-input">
                     <TextField
@@ -294,6 +301,7 @@ export const CreatePost = () => {
                   onChange={changeHandler}
                   placeholder="Description...*"
                 />
+                <span>{minDes}</span>
                 <div className="create-post-date-time">
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DemoContainer components={["DatePicker"]}>
@@ -307,14 +315,18 @@ export const CreatePost = () => {
                         label="Time of Departure"
                         value={values[CreatePostFromKeys.Time]}
                         onChange={(newValue) => handleTime(newValue)}
+                        minTime={dayjs('hh:mm aa')}
                       />
                     </DemoContainer>
                   </LocalizationProvider>
                 </div>
                 <div className="create-post-bools">
                   <div className="create-post-baggage">
-                    <Tooltip title="Can customers bring baggage with them?" placement="top">
-                      <InfoIcon/>
+                    <Tooltip
+                      title="Can customers bring baggage with them?"
+                      placement="top"
+                    >
+                      <InfoIcon />
                     </Tooltip>
                     <p>Baggage:</p>
                     <label>{isBaggage ? "Yes" : "No"}</label>
@@ -325,8 +337,11 @@ export const CreatePost = () => {
                     />
                   </div>
                   <div className="create-post-pets">
-                  <Tooltip title="Can customers bring pets with them?" placement="top">
-                      <InfoIcon/>
+                    <Tooltip
+                      title="Can customers bring pets with them?"
+                      placement="top"
+                    >
+                      <InfoIcon />
                     </Tooltip>
                     <p>Pets:</p>
                     <label>{isPets ? "Yes" : "No"}</label>
@@ -339,8 +354,11 @@ export const CreatePost = () => {
                 </div>
                 <div className="create-post-nums-inputs">
                   <div className="create-post-price">
-                  <Tooltip title="Write how much the trip will cost for one customer!" placement="top">
-                      <InfoIcon/>
+                    <Tooltip
+                      title="Write how much the trip will cost for one customer!"
+                      placement="top"
+                    >
+                      <InfoIcon />
                     </Tooltip>
                     <label>Price per seat:</label>
                     <label>
@@ -357,8 +375,11 @@ export const CreatePost = () => {
                     </label>
                   </div>
                   <div className="create-post-seats">
-                  <Tooltip title="Write how many available seats there are by removing yourself and if you are not alone and the people you will take!" placement="top">
-                      <InfoIcon/>
+                    <Tooltip
+                      title="Write how many available seats there are by removing yourself and if you are not alone and the people you will take!"
+                      placement="top"
+                    >
+                      <InfoIcon />
                     </Tooltip>
                     <label>Available seats:</label>
                     <input
